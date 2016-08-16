@@ -276,3 +276,12 @@ $
 delimiter ;     # 将 delimiter 改成默认的; 这样符合我们的习惯
 call p();       # 调用这个存储过程
 ```
+
+sql 中将联表出现的 null 替换成 0， 可以用这个方法。
+
+```sql
+if(tb2.shop_click is null, 0,tb2.shop_click)
+```
+
+用group by来去重要比 distinct 效率要高很多。
+
