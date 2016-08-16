@@ -1,5 +1,10 @@
 ---
 title: PHP 学习笔记
+categories:
+- programming
+tags:
+- php
+- web
 ---
 
 2014-12-03 11:38

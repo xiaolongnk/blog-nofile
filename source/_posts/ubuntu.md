@@ -1,5 +1,9 @@
 ---
 title: Ubuntu学习笔记
+categories:
+  - Linux
+tags:
+  - Linux
 ---
 
 ### 制作 ubuntu 15.10 镜像。

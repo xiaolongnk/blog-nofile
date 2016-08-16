@@ -12,9 +12,9 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://blog.nofile.cc
 root: ''
-permalink: :year/:month/:day/:title/
+permalink: posts/:category/:year/:month/:day/:title.html
 permalink_defaults:
 
 # Directory
@@ -46,6 +46,13 @@ highlight:
 # Category & Tag
 default_category: uncategorized
 category_map:
+  linux: Linux
+  mysql: Mysql
+  redis: Redis
+  dataStructure: 数据结构和算法
+  programming: 编程
+  leetcode: Leetcode
+
 tag_map:
 
 # Date / Time format
@@ -63,7 +70,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: yilia
+#theme: landscape
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
