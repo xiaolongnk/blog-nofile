@@ -1,5 +1,5 @@
 ---
-title: MAC 使用心得
+title: {{MAC 使用心得}}
 ---
 
 ### MAC 使用心得 
