@@ -1,9 +1,9 @@
 ---
 title: Ubuntu学习笔记
 categories:
-- Linux
+  - Linux
 tags:
-- Linux
+  - Linux
 ---
 
 ### 制作 ubuntu 镜像

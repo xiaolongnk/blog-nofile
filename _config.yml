@@ -4,11 +4,11 @@
 
 # Site
 title: 欧小龙的博客
-subtitle:
-description:
+subtitle: 
+description: 技术博客
 author: 欧小龙
-language:
-timezone:
+language: zh
+timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'

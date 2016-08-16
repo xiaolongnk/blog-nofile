@@ -1,10 +1,10 @@
 ---
 title: PHP 学习笔记
 categories:
-- programming
+  - programming
 tags:
-- php
-- web
+  - php
+  - web
 ---
 
 
