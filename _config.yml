@@ -3,10 +3,10 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 欧小龙的博客
-subtitle: 
-description: 技术博客
-author: 欧小龙
+title: faith's blog
+subtitle: NOTHING IS TRUE
+description: NOTHING IS TRUE
+author: faith
 language: zh-CN
 timezone: Asia/Shanghai
 
@@ -46,13 +46,6 @@ highlight:
 # Category & Tag
 default_category: uncategorized
 category_map:
-  linux: Linux
-  mysql: Mysql
-  redis: Redis
-  dataStructure: 数据结构和算法
-  programming: 编程
-  leetcode: Leetcode
-
 tag_map:
 
 # Date / Time format
