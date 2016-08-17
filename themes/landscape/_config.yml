@@ -8,6 +8,8 @@ rss: /atom.xml
 excerpt_link: Read More
 fancybox: true
 
+duoshuo_shortname: nofile
+
 # Sidebar
 sidebar: right
 widgets:
@@ -16,12 +18,14 @@ widgets:
 - tagcloud
 - archive
 - recent_posts
+- duoshuo_recent_comments
 
 # display widgets at the bottom of index pages (pagination == 2)
 index_widgets:
 # - category
 # - tagcloud
 # - archive
+
 
 # widget behavior
 archive_type: 'monthly'
