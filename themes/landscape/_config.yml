@@ -99,4 +99,4 @@ pagination_dir: page
 #path: sitemap.xml
 #baidusitemap:
 #path: baidusitemap.xml
-swift_search: true
+#swift_search: true

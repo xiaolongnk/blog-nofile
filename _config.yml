@@ -95,4 +95,4 @@ favicon: /favicon.png
 per_page: 30
 pagination_dir: page
 # 自动生成sitemap
-swift_search: true
+#swift_search: true
