@@ -132,8 +132,8 @@ deploy:
 #"?imageView2/1/w/800/h/300/interlace/1/q/70"
 
 # post default images
-post-default-img: https://img.nofile.cc/icon.jpg
-post-default-img-mobile: https://img.nofile.cc/icon.jpg
+post-default-img: https://img.nofile.cc/banner.jpg
+post-default-img-mobile: https://img.nofile.cc/banner.jpg
 #移动端显示的图片
 
 # search api , set your custom key
