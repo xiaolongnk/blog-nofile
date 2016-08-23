@@ -1,7 +1,6 @@
-# Site
 title: 青山依旧
-subtitle: 不忘初心，放得始终
-description: 不忘初心，方得始终
+subtitle: 不忘初心，方能始终
+description: 不忘初心，方能始终
 author: 青山依旧
 language: zh-CN
 timezone: Asia/Shanghai
@@ -12,6 +11,58 @@ url: http://blog.nofile.cc
 root: ''
 permalink: posts/:category/:year/:month/:day/:title.html
 permalink_defaults:
+
+# custom Site settings
+# more detail check out docs
+SEOTitle: 青山依旧
+#cdn: 'header-off'
+header-img: https://img.nofile.cc/banner.jpg
+email: xiaolongnk@126.com
+keyword: # seo key words
+
+# custom end
+
+
+# SNS settings
+# RSS:
+weibo_username: 5369993110
+zhihu_username: ou-xiao-long-89
+github_username: xiaolongnk
+facebook_username:
+linkedin_username:
+
+# Build settings
+anchorjs: false                        # if you want to customize anchor. check out line:181 of `post.html`
+
+
+# Disqus settings
+disqus_username:
+
+# Duoshuo settings
+duoshuo_username:  nofile
+# Share component is depend on Comment so we can NOT use share only.
+duoshuo_share: true                     # set to false if you want to use Comment without Sharing
+
+
+# Analytics settings
+# Baidu Analytics
+#ba_track_id:
+# Google Analytics
+#ga_track_id:       # Format: UA-xxxxxx-xx
+#ga_domain:
+
+# Sidebar settings
+sidebar: true
+sidebar-about-description: 不忘初心,方能始终
+sidebar-avatar: https://img.nofile.cc/icon.jpg
+
+
+# Featured Tags
+featured-tags: true                     # whether or not using Feature-Tags
+featured-condition-size: 0           # A tag will be featured if the size of it is more than this condition value
+
+# friends
+friends:  # 友链
 
 # Directory
 source_dir: source
@@ -30,47 +81,19 @@ titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 highlight:
   enable: true
-  line_number: true
-  auto_detect: true
+  line_number: false
+  auto_detect: false
   tab_replace:
 
 # Category & Tag
 default_category: uncategorized
 category_map:
 tag_map:
-
-# Header
-menu:
-  Home: /
-  Archives: /archives
-  About: /about
-
-rss: /atom.xml
-
-# Content
-excerpt_link: Read More
-fancybox: true
-
-duoshuo_shortname: nofile
-
-# Sidebar
-sidebar: right
-widgets:
-- category
-- tagcloud
-- archive
-- recent_posts
-- duoshuo_recent_comments
-
-# display widgets at the bottom of index pages (pagination == 2)
-# widget behavior
-archive_type: 'monthly'
-show_count: false
 
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date
@@ -79,20 +102,40 @@ show_count: false
 date_format: YYYY-MM-DD
 time_format: HH:mm:ss
 
-#baidu_tongji:
-baidu_tongji: true
-## Miscellaneous
-#google_analytics:
-
-favicon: /favicon.png
-#twitter:
-#google_plus:
-#fb_admins:
-#fb_app_id:
-
 # Pagination
 ## Set per_page to 0 to disable pagination
-per_page: 30
+per_page: 20
 pagination_dir: page
-# 自动生成sitemap
-#swift_search: true
+
+# Extensions
+## Plugins: https://hexo.io/plugins/
+## Themes: https://hexo.io/themes/
+theme: Anisina
+
+# Deployment
+## Docs: https://hexo.io/docs/deployment.html
+deploy:
+  type:
+  repo:
+  branch:
+
+
+# img CDN path
+#cdn-url:  # 你的CDN地址
+# Qiniu imageView2 API
+# More info http://developer.qiniu.com/code/v6/api/kodo-api/image/imageview2.html
+#clip-content: http://blog.nofile.cc/css/images/banner.jpg
+#"?imageView2/1/w/1400/h/400/interlace/1/q/90"
+#clip-avatar: http://blog.nofile.cc/css/images/banner.jpg
+#"?imageView2/2/w/300/h/300/interlace/1/q/90"
+#clip-home-post-bg: http://blog.nofile.cc/css/images/banner.jpg
+#"?imageView2/1/w/800/h/300/interlace/1/q/70"
+
+# post default images
+post-default-img: https://img.nofile.cc/icon.jpg
+post-default-img-mobile: https://img.nofile.cc/icon.jpg
+#移动端显示的图片
+
+# search api , set your custom key
+#swiftype_key:
+
