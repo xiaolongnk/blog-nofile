@@ -1,7 +1,7 @@
-title: 青山依旧
-subtitle: 不忘初心，方能始终
-description: 不忘初心，方能始终
-author: 青山依旧
+title: faith
+subtitle: leetcode学习
+description: 技术笔记，leetcode学习
+author: faith
 language: zh-CN
 timezone: Asia/Shanghai
 
@@ -14,11 +14,11 @@ permalink_defaults:
 
 # custom Site settings
 # more detail check out docs
-SEOTitle: 青山依旧
+SEOTitle: faith's blog
 #cdn: 'header-off'
 header-img: https://img.nofile.cc/banner.jpg
 email: xiaolongnk@126.com
-keyword: # seo key words
+keyword: mysql , leetcode , php , nginx , linux ,shell , python , mac , mysql索引,https,programming, awk,sed,vim,阅读,kindle,dfs,算法
 
 # custom end
 
@@ -46,7 +46,7 @@ duoshuo_share: false                     # set to false if you want to use Comme
 
 # Analytics settings
 # Baidu Analytics
-#ba_track_id:
+ba_track_id: b98900c3864b32c37d696546d1911856
 # Google Analytics
 #ga_track_id:       # Format: UA-xxxxxx-xx
 #ga_domain:
