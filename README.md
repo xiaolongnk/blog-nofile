@@ -8,3 +8,5 @@
 
 基于hexo实现，写文章比较麻烦，正在考虑其他方式。
 学习rebase
+
+learn rebase 1.
