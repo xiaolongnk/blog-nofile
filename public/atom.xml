@@ -1,0 +1,897 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>faith</title>
+  <subtitle>leetcode学习</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://blog.nofile.cc/"/>
+  <updated>2016-08-20T11:31:26.000Z</updated>
+  <id>https://blog.nofile.cc/</id>
+  
+  <author>
+    <name>faith</name>
+    <email>xiaolongnk@126.com</email>
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>382. Linked List Random Node</title>
+    <link href="https://blog.nofile.cc/posts/leetcode/2016/08/20/ag-382.html"/>
+    <id>https://blog.nofile.cc/posts/leetcode/2016/08/20/ag-382.html</id>
+    <published>2016-08-20T11:07:00.000Z</published>
+    <updated>2016-08-20T11:31:26.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="382-Linked-List-Random-Node"><a href="#382-Linked-List-Random-Node" class="headerlink" title="382. Linked List Random Node"></a><a href="https://leetcode.com/problems/linked-list-random-node/" target="_blank" rel="external">382. Linked List Random Node</a></h4><pre><code>Given a singly linked list, return a random node&apos;s value from the linked list. Each node must have the same probability of being chosen.
+Follow up:
+What if the linked list is extremely large and its length is unknown to you? Could you solve this efficiently without using extra space?
+</code></pre><h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><p>这个题目的做法其实很简单。最开始先选择第一个元素，然后一直往后那，到第k个元素，以1/k的概率用这个元素替换已经选中的元素。可以证明每个元素被选中的概率都是1/n。算法最核心就是以1/k的概率替换选中的元素。这个可以利用rand函数就可以实现。因为cnt从0开始，所以拿参0来做参考值。下面是证明过程。第k个元素最终被选择的概率=第k个元素被选择<code>*</code>并且在后面的选择过程中没有被替换的概率=<code>1/k*(1-1/(k+1))*(1-1/(k+2))...*(1-(1/n))</code>=1/n。这就可以表明，算法中的每个元素被选择的概率都是1/n</p>
+<p>看了下同类的题解，都说到了这个<a href="http://www.cnblogs.com/HappyAngel/archive/2011/02/07/1949762.html" target="_blank" rel="external">蓄水池抽样</a>,这篇文章写的不错，里面有详细的分析和证明，大家可以参考下，我就不再这里重复了，最主要的是自己能够计算证明一下概率的计算。</p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> random</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, head)</span>:</span></div><div class="line">        self.head = head</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getRandom</span><span class="params">(self)</span>:</span></div><div class="line">        tmp = self.head</div><div class="line">        cnt = <span class="number">0</span></div><div class="line">        ans = <span class="keyword">None</span></div><div class="line">        <span class="keyword">while</span> tmp:</div><div class="line">            <span class="keyword">if</span> random.randint(<span class="number">0</span>,cnt) == <span class="number">0</span>:</div><div class="line">                ans = tmp</div><div class="line">            tmp = tmp.next</div><div class="line">            cnt += <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> ans.val</div><div class="line">       </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListNode</span><span class="params">(object)</span>:</span></div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self , val)</span>:</span></div><div class="line">        self.val = val</div><div class="line">        self.next = <span class="keyword">None</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">genList</span><span class="params">(head)</span>:</span></div><div class="line">    prev = head</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">5</span>):</div><div class="line">        tmp = ListNode(i)</div><div class="line">        tmp.val = i</div><div class="line">        tmp.next = <span class="keyword">None</span></div><div class="line">        <span class="keyword">if</span> i == <span class="number">0</span>:</div><div class="line">            head = tmp</div><div class="line">            prev = tmp</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            prev.next = tmp</div><div class="line">            prev = tmp</div><div class="line">    <span class="keyword">return</span> head</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">printList</span><span class="params">(head)</span>:</span></div><div class="line">    tmp = head</div><div class="line">    <span class="keyword">while</span> tmp:</div><div class="line">        <span class="keyword">print</span> tmp.val,</div><div class="line">        tmp = tmp.next</div><div class="line">    <span class="keyword">pass</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:</div><div class="line">    head = ListNode(<span class="number">-1</span>)</div><div class="line">    nh = genList(head)</div><div class="line">    mapp = dict()</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">5</span>):</div><div class="line">        mapp[i] = <span class="number">0</span></div><div class="line">    obj = Solution(nh)</div><div class="line"></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">100000</span>):</div><div class="line">        val = obj.getRandom()</div><div class="line">        mapp[val]+=<span class="number">1</span></div><div class="line"></div><div class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> mapp:</div><div class="line">        <span class="keyword">print</span> mapp[k],str(float(mapp[k])/<span class="number">100000</span> * <span class="number">100</span>)+<span class="string">"%"</span></div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;382-Linked-List-Random-Node&quot;&gt;&lt;a href=&quot;#382-Linked-List-Random-Node&quot; class=&quot;headerlink&quot; title=&quot;382. Linked List Random Node&quot;&gt;&lt;/a&gt;&lt;a h
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://blog.nofile.cc/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://blog.nofile.cc/tags/leetcode/"/>
+    
+      <category term="random" scheme="https://blog.nofile.cc/tags/random/"/>
+    
+      <category term="概率" scheme="https://blog.nofile.cc/tags/%E6%A6%82%E7%8E%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Longest Palindromic Substring</title>
+    <link href="https://blog.nofile.cc/posts/leetcode/2016/08/20/ag-05.html"/>
+    <id>https://blog.nofile.cc/posts/leetcode/2016/08/20/ag-05.html</id>
+    <published>2016-08-20T11:06:00.000Z</published>
+    <updated>2016-08-20T11:31:21.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="Longest-Palindromic-Substring"><a href="#Longest-Palindromic-Substring" class="headerlink" title="Longest Palindromic Substring"></a><a href="https://leetcode.com/problems/longest-palindromic-substring/" target="_blank" rel="external">Longest Palindromic Substring</a></h4><pre><code>Given a string S, find the longest palindromic substring in S. You may assume that the maximum length of S is 1000, and there exists one unique longest palindromic substring.
+</code></pre><h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><p>看到了将先将原字符串处理成带<code>#</code>的方式，觉着这样处理方便一些。这样处理之后，最长的回文子串一定是关于<code>#</code>中心对称的。所以在我们的算法中，只要对每一个字符j，判断它两边的最长对称串就可以了。整体的复杂度大概是o(n2)。注意对数组越界的处理。这个思路，用python实现了，无奈会超时，该用c实现就可以了。但是刚开始总有几个case和我本机测试不一样。以为oj出问题了，后面再本地多高了几组样例测试，发现本地其实也有问题。后面检查，是我的那个临时变量没有初始化。初始化了之后，ac，并且速度也还可以。作为参考，2份代码都贴了过来，我先写了python版本的，后面发现超时，就将python的翻译成了c版本的。除了char数组变量初始化的坑，其他的基本还好。<strong>以后写c代码，一定记得变量初始化</strong>。</p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c"><table><tr><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">char</span>* <span class="title">longestPalindrome</span><span class="params">(<span class="keyword">char</span>* s)</span> </span>&#123;</div><div class="line">    <span class="keyword">char</span> ts[<span class="number">2005</span>];</div><div class="line">    <span class="built_in">memset</span>(ts,<span class="number">0</span>,<span class="keyword">sizeof</span>(ts));</div><div class="line">    ts[<span class="number">0</span>] = <span class="string">'#'</span>;</div><div class="line">    <span class="keyword">int</span> cnt = <span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="built_in">strlen</span>(s); i++)&#123;</div><div class="line">        ts[cnt++] = s[i];</div><div class="line">        ts[cnt++] = <span class="string">'#'</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> lents = <span class="built_in">strlen</span>(ts);</div><div class="line">    <span class="keyword">int</span> max = <span class="number">1</span>;</div><div class="line">    <span class="keyword">int</span> pos = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;lents; i++)&#123;</div><div class="line">        <span class="keyword">int</span> currentMax = <span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span> ; j &lt; i ; j++)&#123;</div><div class="line">            <span class="keyword">int</span> l = i - j - <span class="number">1</span>;</div><div class="line">            <span class="keyword">int</span> r = i + j + <span class="number">1</span>;</div><div class="line">            <span class="keyword">if</span>(l &lt; <span class="number">0</span> || r &gt;= lents)&#123;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span>( ts[l] == ts[r])&#123;</div><div class="line">                currentMax+=<span class="number">2</span>;</div><div class="line">            &#125;<span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        currentMax = (currentMax - <span class="number">1</span>) / <span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span> (currentMax &gt;= max)&#123;</div><div class="line">            max = currentMax;</div><div class="line">            pos = i;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    s = (<span class="keyword">char</span> *)<span class="built_in">malloc</span>(<span class="number">2005</span>*<span class="keyword">sizeof</span>(<span class="keyword">char</span>));</div><div class="line">    <span class="built_in">memset</span>(s , <span class="number">0</span> ,<span class="keyword">sizeof</span>(s));</div><div class="line">    cnt = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = pos - max + <span class="number">1</span>; i&lt;pos + max ; i++)&#123;</div><div class="line">        <span class="keyword">if</span>(ts[i]!=<span class="string">'#'</span>) s[cnt++] = ts[i];</div><div class="line">    &#125;</div><div class="line">    s[cnt]=<span class="string">'\0'</span>;</div><div class="line">    <span class="keyword">return</span> s;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">char</span> str[<span class="number">1000</span>];</div><div class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%s"</span>,str)!=EOF)&#123;</div><div class="line">        <span class="keyword">char</span> * ans = longestPalindrome(str);</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%s\n"</span>,ans);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">longestPalindrome</span><span class="params">(self, s)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type s: str</div><div class="line">        :rtype: str</div><div class="line">        """</div><div class="line">        ns = <span class="string">"#"</span>+<span class="string">"#"</span>.join(list(s))+<span class="string">"#"</span></div><div class="line">        max = <span class="number">1</span></div><div class="line">        pos = <span class="number">0</span></div><div class="line">        mlen = len(ns)</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,mlen):</div><div class="line">            currentMax = <span class="number">1</span>;</div><div class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>,i):</div><div class="line">                l = i - j - <span class="number">1</span></div><div class="line">                r = i + <span class="number">1</span> + j</div><div class="line">                <span class="keyword">if</span> l &lt; <span class="number">0</span> <span class="keyword">or</span> r &gt;= mlen:</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="keyword">if</span> ns[l] == ns[r]:</div><div class="line">                    currentMax+=<span class="number">2</span></div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">            currentMax = (currentMax - <span class="number">1</span>) /<span class="number">2</span></div><div class="line">            <span class="keyword">if</span> currentMax &gt;= max:</div><div class="line">                max = currentMax</div><div class="line">                pos = i</div><div class="line">        <span class="keyword">return</span> <span class="string">""</span>.join(ns[pos - max: pos + max + <span class="number">1</span>].split(<span class="string">"#"</span>))</div><div class="line">    </div><div class="line"></div><div class="line">    </div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:</div><div class="line">    ns = Solution()</div><div class="line">    st = <span class="string">"jglknendplocymmvwtoxvebkekzfdhykknufqdkntnqvgfbahsljkobhbxkvyictzkqjqydczuxjkgecdyhixdttxfqmgksrkyvopwprsgoszftuhawflzjyuyrujrxluhzjvbflxgcovilthvuihzttzithnsqbdxtafxrfrblulsakrahulwthhbjcslceewxfxtavljpimaqqlcbrdgtgjryjytgxljxtravwdlnrrauxplempnbfeusgtqzjtzshwieutxdytlrrqvyemlyzolhbkzhyfyttevqnfvmpqjngcnazmaagwihxrhmcibyfkccyrqwnzlzqeuenhwlzhbxqxerfifzncimwqsfatudjihtumrtjtggzleovihifxufvwqeimbxvzlxwcsknksogsbwwdlwulnetdysvsfkonggeedtshxqkgbhoscjgpiel"</span></div><div class="line">    <span class="keyword">print</span> ns.longestPalindrome(st)</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;Longest-Palindromic-Substring&quot;&gt;&lt;a href=&quot;#Longest-Palindromic-Substring&quot; class=&quot;headerlink&quot; title=&quot;Longest Palindromic Substring&quot;&gt;&lt;/a
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://blog.nofile.cc/categories/leetcode/"/>
+    
+    
+      <category term="字符串" scheme="https://blog.nofile.cc/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    
+      <category term="算法" scheme="https://blog.nofile.cc/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="leetcode" scheme="https://blog.nofile.cc/tags/leetcode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Expression Add Operators</title>
+    <link href="https://blog.nofile.cc/posts/leetcode/2016/08/20/ag-282.html"/>
+    <id>https://blog.nofile.cc/posts/leetcode/2016/08/20/ag-282.html</id>
+    <published>2016-08-20T11:06:00.000Z</published>
+    <updated>2016-08-20T11:31:25.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="282-Expression-Add-Operators"><a href="#282-Expression-Add-Operators" class="headerlink" title="282. Expression Add Operators"></a><a href="https://leetcode.com/problems/expression-add-operators/" target="_blank" rel="external">282. Expression Add Operators</a></h4><pre><code>Given a string that contains only digits 0-9 and a target value, return all possibilities to add binary operators (not unary) +, -, or * between the digits so they evaluate to the target value.
+
+Examples: 
+&quot;123&quot;, 6 -&gt; [&quot;1+2+3&quot;, &quot;1*2*3&quot;] 
+&quot;232&quot;, 8 -&gt; [&quot;2*3+2&quot;, &quot;2+3*2&quot;]
+&quot;105&quot;, 5 -&gt; [&quot;1*0+5&quot;,&quot;10-5&quot;]
+&quot;00&quot;, 0 -&gt; [&quot;0+0&quot;, &quot;0-0&quot;, &quot;0*0&quot;]
+&quot;3456237490&quot;, 9191 -&gt; []
+</code></pre><h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><p>题目要求找到所有的计算方案。是一个明显的dfs问题。关键是想清楚dfs的方式。dfs的参数大概是这几个。要记录答案retList ，输入参数num，当前的target，当前搜索到字符串内的位置pos，当前的搜索路径path，当前的数字值current，前面的数字值prev。还要注意防止00这样的数字出现，所以在搜索是要对00这样的case进行下清理。</p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">addOperators</span><span class="params">(self, num, target)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type num: str</div><div class="line">        :type target: int</div><div class="line">        :rtype: List[str]</div><div class="line">        """</div><div class="line">        ans = []</div><div class="line">        self.solve( num  , target , ans , <span class="number">0</span> ,<span class="string">""</span> ,<span class="number">0</span> ,<span class="number">0</span>)</div><div class="line">        <span class="keyword">return</span> ans</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">solve</span><span class="params">(self , num , target , retList , pos , path , current , prev )</span>:</span></div><div class="line">        <span class="keyword">if</span> len(num) == pos:</div><div class="line">            <span class="keyword">if</span> current == target:</div><div class="line">                retList.append(path)</div><div class="line">                <span class="keyword">return</span></div><div class="line">        </div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(pos , len(num)):</div><div class="line">            <span class="keyword">if</span> i != pos <span class="keyword">and</span> num[pos] == <span class="string">'0'</span>:</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            curstr = num[pos:i+<span class="number">1</span>]</div><div class="line">            currentval = int(curstr)</div><div class="line">            <span class="keyword">if</span> pos == <span class="number">0</span>:</div><div class="line">                self.solve(num , target , retList , i+<span class="number">1</span> , path + curstr , current + currentval , currentval)</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                self.solve(num , target , retList , i+<span class="number">1</span> , path + <span class="string">'+'</span> + curstr , current + currentval , currentval)</div><div class="line">                self.solve(num , target , retList , i+<span class="number">1</span> , path + <span class="string">'-'</span> + curstr , current - currentval , -currentval)</div><div class="line">                self.solve(num , target , retList , i+<span class="number">1</span> , path + <span class="string">'*'</span> + curstr , current - prev + prev * currentval , prev * currentval)</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:</div><div class="line">    sn = Solution()</div><div class="line">    num = <span class="string">"105"</span></div><div class="line">    target = <span class="number">5</span></div><div class="line">    <span class="keyword">print</span> sn.addOperators(num , target)</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;282-Expression-Add-Operators&quot;&gt;&lt;a href=&quot;#282-Expression-Add-Operators&quot; class=&quot;headerlink&quot; title=&quot;282. Expression Add Operators&quot;&gt;&lt;/a&gt;&lt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://blog.nofile.cc/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://blog.nofile.cc/tags/leetcode/"/>
+    
+      <category term="dfs" scheme="https://blog.nofile.cc/tags/dfs/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HTTPS Your site</title>
+    <link href="https://blog.nofile.cc/posts/web/2016/08/19/note-https.html"/>
+    <id>https://blog.nofile.cc/posts/web/2016/08/19/note-https.html</id>
+    <published>2016-08-19T08:54:00.000Z</published>
+    <updated>2016-08-23T14:07:23.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="让NGINX支持SSL"><a href="#让NGINX支持SSL" class="headerlink" title="让NGINX支持SSL"></a>让NGINX支持SSL</h4><p>需要编译时支持ssl，可以sbin/nginx -V 来查看confiture参数，如果当时没有支持，那么需要重新编译安装。 编译参数前面已经有一篇文章了。<a href="https://blog.nofile.cc/posts/nginx/2016/08/17/note-ng.html">nginx编译参数</a>,也不用全加，用<code>--with-http_ssl_module</code> 就可以了。</p>
+<h4 id="生成证书"><a href="#生成证书" class="headerlink" title="生成证书"></a>生成证书</h4><p>主要参考这个<a href="https://letsencrypt.org/getting-started/" target="_blank" rel="external">letsencrypty</a>，可以生成免费证书。 生成方式也很简单，读上面的文章基本就能明白。<a href="https://certbot.eff.org/#ubuntutrusty-nginx" target="_blank" rel="external">ubuntu+nginx</a>.</p>
+<p>大致步骤如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">wget https://dl.eff.org/certbot-auto</div><div class="line">chmod a+x certbot-auto</div><div class="line">./certbot-auto</div><div class="line">./path/to/certbot-auto certonly --webroot -w /var/www/example -d example.com -d www.example.com -w /var/www/thing -d thing.is -d m.thing.is</div></pre></td></tr></table></figure>
+<p>执行完之后系统中会生成这些文件。<img src="https://img.nofile.cc/cert.jpg" alt="系统中生成的文件"></p>
+<pre><code>This command will obtain a single cert for example.com, www.example.com, thing.is, and m.thing.is; it will place files below /var/www/example to prove control of the first two domains, and under /var/www/thing for the second pair.
+</code></pre><h4 id="Automating-renewal"><a href="#Automating-renewal" class="headerlink" title="Automating renewal"></a>Automating renewal</h4><p>上面生成的证书，有效期好像是1个月，所以需要到期自己重新renewal一下。方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">./path/to/certbot-auto renew --dry-run</div><div class="line">./path/to/certbot-auto renew --quiet --no-self-upgrade</div></pre></td></tr></table></figure>
+<h4 id="配置NGINX"><a href="#配置NGINX" class="headerlink" title="配置NGINX"></a>配置NGINX</h4><p>配置就不多说了.首先需要配置2个server，监听2个端口。这样可以强制将80端口的请求重定向至443端口。https本身监听的是443端口。最主要的是ssl中间那3行。将步骤2中生成的对应key写在nginx的配置文件里。注意改成你的具体路径。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">server &#123;</div><div class="line"></div><div class="line">    listen       443;</div><div class="line">    server_name  blog.nofile.cc;</div><div class="line"></div><div class="line">    ssl                  on;</div><div class="line">    ssl_certificate      /xxxx/letsencrypt/live/yoursite/fullchain.pem;</div><div class="line">    ssl_certificate_key  /xxxx/letsencrypt/live/yoursite/privkey.pem;</div><div class="line">   </div><div class="line">     location / &#123;</div><div class="line">        #这个地方指定被访问的文件夹位置</div><div class="line">        root   /your/webroot/;</div><div class="line">        index  index.html;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">server &#123;</div><div class="line">    listen      80;</div><div class="line">    server_name blog.nofile.cc;</div><div class="line">    return 301 https://blog.nofile.cc$request_uri;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>配置好之后，重启nginx，应该就可以看到绿色的锁了。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;让NGINX支持SSL&quot;&gt;&lt;a href=&quot;#让NGINX支持SSL&quot; class=&quot;headerlink&quot; title=&quot;让NGINX支持SSL&quot;&gt;&lt;/a&gt;让NGINX支持SSL&lt;/h4&gt;&lt;p&gt;需要编译时支持ssl，可以sbin/nginx -V 来查看conf
+    
+    </summary>
+    
+      <category term="web" scheme="https://blog.nofile.cc/categories/web/"/>
+    
+    
+      <category term="https" scheme="https://blog.nofile.cc/tags/https/"/>
+    
+      <category term="nginx" scheme="https://blog.nofile.cc/tags/nginx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>String to Integer (atoi)</title>
+    <link href="https://blog.nofile.cc/posts/leetcode/2016/08/19/ag-08.html"/>
+    <id>https://blog.nofile.cc/posts/leetcode/2016/08/19/ag-08.html</id>
+    <published>2016-08-19T03:27:00.000Z</published>
+    <updated>2016-08-20T11:31:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="String-to-Integer-atoi"><a href="#String-to-Integer-atoi" class="headerlink" title="String to Integer (atoi)"></a>String to Integer (atoi)</h4><p>implement atoi to convert a string to an integer.</p>
+<p><em>Hint</em>: Carefully consider all possible input cases. If you want a challenge, please do not see below and ask yourself what are the possible input cases.</p>
+<p><em>Notes</em>: It is intended for this problem to be specified vaguely (ie, no given input specs). You are responsible to gather all the input requirements up front.</p>
+<h5 id="Requirements-for-atoi"><a href="#Requirements-for-atoi" class="headerlink" title="Requirements for atoi:"></a>Requirements for atoi:</h5><p>The function first discards as many whitespace characters as necessary until the first non-whitespace character is found. Then, starting from this character, takes an optional initial plus or minus sign followed by as many numerical digits as possible, and interprets them as a numerical value.</p>
+<p>The string can contain additional characters after those that form the integral number, which are ignored and have no effect on the behavior of this function.</p>
+<p>If the first sequence of non-whitespace characters in str is not a valid integral number, or if no such sequence exists because either str is empty or it contains only whitespace characters, no conversion is performed.</p>
+<p>If no valid conversion could be performed, a zero value is returned. If the correct value is out of the range of representable values, INT_MAX (2147483647) or INT_MIN (-2147483648) is returned.</p>
+<h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><p>主要还是读题，其实题目还是挺不好读的，有好多细节，读不出来就会wa掉。因为计算过程中32int会溢出，所以结果返回用了long long。不知道用int是不是也可以实现。如果很在意时间的话，题目中应该可以看出，可能包含大量无效字符的case，所以直接忽略这类case，应该可以节省不少时间。</p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">myAtoi</span><span class="params">(<span class="keyword">char</span>* str)</span> </span>&#123;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> M_MAX_INT 2147483648</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> N_MAX_INT -2147483648</span></div><div class="line"></div><div class="line"> 	<span class="keyword">if</span>(str == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> cnt = <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> positive_flag = <span class="number">1</span>;</div><div class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(*str != <span class="string">'\0'</span>)&#123;</div><div class="line">        <span class="keyword">if</span>(*str == <span class="string">' '</span>)&#123;</div><div class="line">            <span class="keyword">if</span>(cnt) <span class="keyword">break</span>;</div><div class="line">            str++;</div><div class="line">            <span class="keyword">continue</span>;</div><div class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(*str &gt;= <span class="string">'0'</span> &amp;&amp; *str &lt;=<span class="string">'9'</span>)&#123;</div><div class="line">            ans = ans * <span class="number">10</span> + (*str - <span class="string">'0'</span>);</div><div class="line">            <span class="keyword">if</span>(ans &gt;= M_MAX_INT ) &#123;</div><div class="line">                <span class="keyword">if</span>(positive_flag)&#123;</div><div class="line">                    ans = <span class="number">2147483647</span>;</div><div class="line">                &#125;<span class="keyword">else</span> &#123;</div><div class="line">                    ans = N_MAX_INT;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">return</span> ans;</div><div class="line">            &#125;</div><div class="line">            cnt++;</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(*str == <span class="string">'-'</span>)&#123;</div><div class="line">            <span class="keyword">if</span>(cnt) <span class="keyword">break</span>;</div><div class="line">            positive_flag = <span class="number">0</span>;</div><div class="line">            cnt++;</div><div class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(*str == <span class="string">'+'</span>)&#123;</div><div class="line">            <span class="keyword">if</span>(cnt) <span class="keyword">break</span>;</div><div class="line">            cnt++;</div><div class="line">        &#125;<span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">        str++;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(positive_flag) <span class="keyword">return</span> ans;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">-1</span>*ans;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">char</span> str[<span class="number">100</span>] =<span class="string">""</span>;</div><div class="line">    <span class="keyword">while</span>(gets(str))&#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"input is: %s\n"</span>,str);</div><div class="line">        <span class="keyword">int</span> ans = myAtoi(str);</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;String-to-Integer-atoi&quot;&gt;&lt;a href=&quot;#String-to-Integer-atoi&quot; class=&quot;headerlink&quot; title=&quot;String to Integer (atoi)&quot;&gt;&lt;/a&gt;String to Integer 
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://blog.nofile.cc/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://blog.nofile.cc/tags/leetcode/"/>
+    
+      <category term="atoi" scheme="https://blog.nofile.cc/tags/atoi/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode LRU Cache</title>
+    <link href="https://blog.nofile.cc/posts/leetcode/2016/08/18/ag-146.html"/>
+    <id>https://blog.nofile.cc/posts/leetcode/2016/08/18/ag-146.html</id>
+    <published>2016-08-18T15:29:00.000Z</published>
+    <updated>2016-08-20T11:31:24.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="LRU-Cache"><a href="#LRU-Cache" class="headerlink" title="LRU Cache"></a>LRU Cache</h4><p>Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: get and set.</p>
+<p>get(key) - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.<br>set(key, value) - Set or insert the value if the key is not already present. When the cache reached its capacity, it should invalidate the least recently used item before inserting a new item.</p>
+<h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><p>读完题目，其实最核心的部分就是维护一个LRU的顺序，能够在需要淘汰数据的时候以o(1)的算法选出需要淘汰的节点。Python中有有序字典这种数据结构。这种字典可以将字典中的所有(k,v)按照插入顺序来保存。新插入的在后面。并且还提供了popitem方法。正好符合这个题目的要求。popitem(last=True|False),last = False 表示按照FIFO进行pop，True表示按照LIFO进行淘汰。注意边界。插入和访问都需要先将元素从这个OrderedDict中删除，以维护LRU所需要的顺序。</p>
+<p>如果没有这种结构的话，可以自己实现一个双向链表来解决这个问题。这样链表结构的调整比较容易，如果是数组的话，将一个元素放在最前面，是要调整整个数组的顺序的，成本太高，这种情况，链表就很有优势,这就是用链表的最重要的原因吧。</p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> collections</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span><span class="params">(object)</span>:</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, capacity)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type capacity: int</div><div class="line">        """</div><div class="line">        self.capacity = capacity</div><div class="line">        self.ldict = collections.OrderedDict()</div><div class="line">        </div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self, key)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            value = self.ldict[key]</div><div class="line">            <span class="keyword">del</span> self.ldict[key]</div><div class="line">            self.ldict[key] = value</div><div class="line">            <span class="keyword">return</span> value</div><div class="line">        <span class="keyword">except</span>:</div><div class="line">            <span class="keyword">return</span> <span class="number">-1</span></div><div class="line"></div><div class="line">        </div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">set</span><span class="params">(self, key, value)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type key: int</div><div class="line">        :type value: int</div><div class="line">        :rtype: nothing</div><div class="line">        """</div><div class="line">        <span class="keyword">print</span> self.capacity</div><div class="line">        <span class="keyword">print</span> self.ldict</div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            <span class="keyword">del</span> self.ldict[key]</div><div class="line">            self.ldict[key] = value</div><div class="line">        <span class="keyword">except</span>:</div><div class="line">            <span class="keyword">if</span> len(self.ldict) == self.capacity:</div><div class="line">                self.ldict.popitem(last=<span class="keyword">False</span>)</div><div class="line">            self.ldict[key] = value</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mprint</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">print</span> self.ldict</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:</div><div class="line">    lru = LRUCache(<span class="number">3</span>)</div><div class="line">    lru.set(<span class="number">1</span>,<span class="number">1</span>)</div><div class="line">    lru.set(<span class="number">2</span>,<span class="number">2</span>)</div><div class="line">    lru.set(<span class="number">3</span>,<span class="number">3</span>)</div><div class="line">    lru.set(<span class="number">4</span>,<span class="number">4</span>)</div><div class="line">    lru.set(<span class="number">5</span>,<span class="number">5</span>)</div><div class="line">    lru.set(<span class="number">3</span>,<span class="number">3</span>)</div><div class="line">    lru.set(<span class="number">6</span>,<span class="number">6</span>)</div><div class="line">    lru.mprint()</div><div class="line">    <span class="keyword">pass</span></div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;LRU-Cache&quot;&gt;&lt;a href=&quot;#LRU-Cache&quot; class=&quot;headerlink&quot; title=&quot;LRU Cache&quot;&gt;&lt;/a&gt;LRU Cache&lt;/h4&gt;&lt;p&gt;Design and implement a data structure for 
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://blog.nofile.cc/categories/leetcode/"/>
+    
+    
+      <category term="算法" scheme="https://blog.nofile.cc/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="LRU" scheme="https://blog.nofile.cc/tags/LRU/"/>
+    
+      <category term="有序字典" scheme="https://blog.nofile.cc/tags/%E6%9C%89%E5%BA%8F%E5%AD%97%E5%85%B8/"/>
+    
+      <category term="OrderedDict" scheme="https://blog.nofile.cc/tags/OrderedDict/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode Mini Parser</title>
+    <link href="https://blog.nofile.cc/posts/leetcode/2016/08/18/ag-385.html"/>
+    <id>https://blog.nofile.cc/posts/leetcode/2016/08/18/ag-385.html</id>
+    <published>2016-08-18T15:03:00.000Z</published>
+    <updated>2016-08-20T11:31:28.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="Mini-Parser"><a href="#Mini-Parser" class="headerlink" title="Mini Parser"></a>Mini Parser</h4><p>Given a nested list of integers represented as a string, implement a parser to deserialize it.</p>
+<p>Each element is either an integer, or a list – whose elements may also be integers or other lists.</p>
+<p>Note: You may assume that the string is well-formed:</p>
+<p>String is non-empty.<br>String does not contain white spaces.<br>String contains only digits 0-9, [, - ,’,’ , ].<br>Example 1:</p>
+<p>Given s = “324”,</p>
+<p>You should return a NestedInteger object which contains a single integer 324.<br>Example 2:</p>
+<p>Given s = “[123,[456,[789]]]”,</p>
+<p>Return a NestedInteger object containing a nested list with 2 elements:</p>
+<ol>
+<li>An integer containing value 123.</li>
+<li>A nested list containing two elements:<ol>
+<li>An integer containing value 456.</li>
+<li>A nested list with one element:<ol>
+<li>An integer containing value 789.</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><p>应该是一个字符串处理的问题。对特殊字符进行处理，处理事件主要由[,]来触发。o(n)算法。需要想清楚对每一个字符的处理方式。NestedInteger的维护，会使用到栈这种结构，在Python里面，list可以当作栈来使用。这个题目的边界条件，主要是[]里面可能是空的。整个过程有一点小复杂，主要还是靠自己思考，脑筋动起来吧。示例代码中的NestedInteger的class的方法是我自己加的，为了测试代码，测试语法问题。</p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">NestedInteger</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,elem=None)</span>:</span></div><div class="line">        <span class="keyword">pass</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(self , a)</span>:</span></div><div class="line">        <span class="keyword">pass</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">deserialize</span><span class="params">(self, s)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type s: str</div><div class="line">        :rtype: NestedInteger</div><div class="line">        """</div><div class="line">        lst = []</div><div class="line">        last_ic_ix = <span class="number">0</span></div><div class="line">        <span class="keyword">if</span> s[<span class="number">0</span>] != <span class="string">'['</span>:</div><div class="line">            <span class="keyword">return</span> NestedInteger(int(s))</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(s)):</div><div class="line">            <span class="keyword">if</span> s[i] == <span class="string">'['</span>:</div><div class="line">                ns = NestedInteger()</div><div class="line">                lst.append(ns)</div><div class="line">                last_ic_ix = i</div><div class="line">            <span class="keyword">elif</span> s[i] == <span class="string">','</span> <span class="keyword">or</span> s[i] == <span class="string">']'</span>:</div><div class="line">                ss = s[last_ic_ix+<span class="number">1</span>:i]</div><div class="line">                <span class="keyword">if</span> ss != <span class="string">''</span>:</div><div class="line">                    tmp = int(ss)</div><div class="line">                    lst[len(lst)<span class="number">-1</span>].add(NestedInteger(tmp))</div><div class="line">                last_ic_ix = i</div><div class="line">                <span class="keyword">if</span> s[i] == <span class="string">']'</span>:</div><div class="line">                    top = lst.pop()</div><div class="line">                    <span class="keyword">if</span> len(lst) == <span class="number">0</span>:</div><div class="line">                        <span class="keyword">return</span> top</div><div class="line">                    lst[len(lst)<span class="number">-1</span>].add(top)</div><div class="line">        <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:</div><div class="line">    ns = Solution()</div><div class="line">    <span class="keyword">print</span> ns.deserialize(<span class="string">"[123,3,[32,2,[33,24],3]]"</span>);</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;Mini-Parser&quot;&gt;&lt;a href=&quot;#Mini-Parser&quot; class=&quot;headerlink&quot; title=&quot;Mini Parser&quot;&gt;&lt;/a&gt;Mini Parser&lt;/h4&gt;&lt;p&gt;Given a nested list of integers re
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://blog.nofile.cc/categories/leetcode/"/>
+    
+    
+      <category term="算法" scheme="https://blog.nofile.cc/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="leetcode" scheme="https://blog.nofile.cc/tags/leetcode/"/>
+    
+      <category term="stack" scheme="https://blog.nofile.cc/tags/stack/"/>
+    
+      <category term="python" scheme="https://blog.nofile.cc/tags/python/"/>
+    
+      <category term="数据结构" scheme="https://blog.nofile.cc/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mysql笔记</title>
+    <link href="https://blog.nofile.cc/posts/%E5%AD%98%E5%82%A8/2016/08/17/note-mysql.html"/>
+    <id>https://blog.nofile.cc/posts/存储/2016/08/17/note-mysql.html</id>
+    <published>2016-08-17T10:24:30.000Z</published>
+    <updated>2016-08-17T10:24:30.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="mysql-性能测试工具"><a href="#mysql-性能测试工具" class="headerlink" title="mysql 性能测试工具."></a>mysql 性能测试工具.</h4><p><a href="http://www.ha97.com/5182.html" target="_blank" rel="external">Mysql 自带的性能测试工具.</a></p>
+<h4 id="Mysql-索引"><a href="#Mysql-索引" class="headerlink" title="Mysql 索引"></a>Mysql 索引</h4><p>Mysql 索引</p>
+<p>Mysql 复合索引</p>
+<p><a href="http://tech.meituan.com/mysql-index.html" target="_blank" rel="external">http://tech.meituan.com/mysql-index.html</a><br>现在只会创建单索引,但是很多情况下,复合索引更有效.<br>一个表只能使用一个索引,如果单键索引和复合索引都会生效,那么mysql会选择哪个索引.<br>mysql 索引的最左选择的原则.</p>
+<p>有些情况下,优化的作用是很有限的,最好还是不要写太复杂的sql.<br>但是有一个情景,就是需要更具字表的条件去筛选结果,做分页,这种情况如何处理.<br>可以内存排序.让排序在mysql中排序比较困难.那么这个分页逻辑如何处理. </p>
+<p>Mysql join 之后的索引使用情况是怎么样的.</p>
+<p>order by 的字段是否有必要增加一个索引,如果有必要,是不是所有需要排序的字段都需要增加<br>上索引. </p>
+<p>索引是在数据库表或者视图上创建的对象，目的是为了加快对表或视图的查询的速度。<br>按照存储方式分为：聚集与非聚集索引和B树B+树的关系还是差别挺密切的,需要认真理解一下B树和B+树.</p>
+<p>MySQL如何利用索引优化ORDER BY排序语句<br>MySQL索引通常是被用于提高WHERE条件的数据行匹配或者执行联结操作时匹配其它表的数据行的搜索速度。<br>MySQL也能利用索引来快速地执行ORDER BY和GROUP BY语句的排序和分组操作。</p>
+<p>mysql一次查询只能使用一个索引。如果要对多个字段使用索引，建立复合索引。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">create table blog_pool</div><div class="line">(</div><div class="line">id bigint(20) not null auto_increment,</div><div class="line">account_id bigint(20) not null default 0 comment &apos;user id&apos;,</div><div class="line">blog_id bigint(20) not null default 0 comment &apos;blog_id&apos;,</div><div class="line">content varchar(1024) not null default 0 comment &apos;blog内容&apos;,</div><div class="line">status tinyint(2) not null default 1 comment &apos;1: 正常 -1: 删除&apos;,</div><div class="line">primary key (id),</div><div class="line">index list_blog_index (account_id,status),</div><div class="line">index single_index (account_id)</div><div class="line">)engine = Innodb , charset=utf8 , auto_increment=1;</div><div class="line"></div><div class="line">insert into blog_pool (account_id, blog_id, content) values (923232323, );</div></pre></td></tr></table></figure>
+<p>explain 显示mysql如何处理select语句以及连接表,可以帮助写出更好的查询语句和建立更好的索引.</p>
+<p>select type<br>simple 表示是简单的select ,<br>primary 表示最外面的select .<br>union 表示union语句的第二个.</p>
+<p>rows 表示mysql执行查询的行数,数值越大说明效果越不好,说明没有用好索引.</p>
+<p>using where  ,<br>要想使查询尽可能的快, 应尽可能得找出 using filesort , using temporary 的extra的值.<br>我觉这在业务重没有必要禁止连表查询，在不会带来什么压力的情况下，并没有什么必要。<br>如果两个表，都比较简单，连表也没什么不可以。什么事情都应该分开来看待，没有什么是绝对的。</p>
+<h4 id="select-按指定顺序排"><a href="#select-按指定顺序排" class="headerlink" title="select 按指定顺序排"></a>select 按指定顺序排</h4><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">select * from xxx where id in (3,1,5) order by find_in_set(id,&apos;3,1,5&apos;)</div></pre></td></tr></table></figure>
+<p>order by substring_index和order by find_in_set都可以</p>
+<h4 id="mysql-中创建用户。"><a href="#mysql-中创建用户。" class="headerlink" title="mysql 中创建用户。"></a>mysql 中创建用户。</h4><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">CREATE USER &apos;username&apos;@&apos;host&apos; IDENTIFIED BY &apos;password&apos;</div><div class="line">GRANT privileges ON databasename.tablename TO &apos;username&apos;@&apos;host&apos; </div><div class="line">GRANT ALL ON *.* TO &apos;pig&apos;@&apos;%&apos;; </div><div class="line">SET PASSWORD FOR &apos;username&apos;@&apos;host&apos; = PASSWORD(&apos;newpassword&apos;);</div><div class="line">SET PASSWORD = PASSWORD(&quot;newpassword&quot;);  如果是当前登陆用户</div></pre></td></tr></table></figure>
+<p>more detailed info see this link.  <a href="http://www.jb51.net/article/31850.htm" target="_blank" rel="external">http://www.jb51.net/article/31850.htm</a></p>
+<h4 id="mysql-中的数据类型"><a href="#mysql-中的数据类型" class="headerlink" title="mysql 中的数据类型"></a>mysql 中的数据类型</h4><pre><code>tinyint   1 字节    -128 ~ 128
+smallint  2 字节   -32768 ~ 32767
+mediumint 3字节  
+int       4字节  int(11)
+bigint    8字节
+
+unsigned   int   0～4294967295   
+int   2147483648～2147483647 
+unsigned long 0～4294967295
+long   2147483648～2147483647
+long long的最大值：9223372036854775807
+long long的最小值：-9223372036854775808
+unsigned long long的最大值：18446744073709551615
+
+__int64的最大值：9223372036854775807
+__int64的最小值：-9223372036854775808
+unsigned __int64的最大值：18446744073709551615
+</code></pre><h4 id="Mysql-decimal"><a href="#Mysql-decimal" class="headerlink" title="Mysql decimal"></a>Mysql decimal</h4><p>对于精度比较高的东西，比如money，我会用decimal类型，不会考虑float,double,因为他们容易产生误<br>差，numeric和decimal同义，numeric将自动转成decimal。<br>DECIMAL从MySQL 5.1引入，列的声明语法是DECIMAL(M,D)。在MySQL 5.1中，参量的取值范围如下：<br>·M是数字的最大数（精度）。其范围为1～65（在较旧的MySQL版本中，允许的范围是1～254），<br>M 的默认值是10。<br>·D是小数点右侧数字的数目（标度）。其范围是0～30，但不得超过M。<br>说明：float占4个字节，double占8个字节，decimail(M,D)占M+2个字节。</p>
+<p>关于decimal范围的判断，下面这是一个不错的解释。</p>
+<pre><code>Although the answers above seems correct, just a simple explanation to give you an idea of how it works.
+Suppose that your column is set to be DECIMAL(13,4). This means that the column will have a total size of 13 
+digits where 4 of these will be used for precision representation.
+So, in summary, for that column you would have a max value of: 999999999,9999
+</code></pre><p>引申 为什么floa 和 double 会丢失精度。<br>1 字节 = 8 bit。 int 一般认为是32位。最长是10位。<br>float 为4byte。<br>double 为8btye。<br>IEEE 754 标准，数的存法。</p>
+<h4 id="datetime-和-timestamp-的区别。"><a href="#datetime-和-timestamp-的区别。" class="headerlink" title="datetime 和 timestamp 的区别。"></a>datetime 和 timestamp 的区别。</h4><pre><code>ctime  datetime =&gt; now()  4字节
+mtime  timestamp ==&gt; CURRENT_TIMESTAMP  8字节
+1970 ~ 2037
+</code></pre><h4 id="MYsql-几个常用关键字"><a href="#MYsql-几个常用关键字" class="headerlink" title="MYsql 几个常用关键字"></a>MYsql 几个常用关键字</h4><p>in ，not in，exists 和 not exists 关键字。</p>
+<h4 id="Mysql-表间元素复制"><a href="#Mysql-表间元素复制" class="headerlink" title="Mysql 表间元素复制"></a>Mysql 表间元素复制</h4><figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> newtable <span class="keyword">select</span> * <span class="keyword">from</span> oldtable;</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> newTable <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> oldTable;</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> newTable (col1,col2,…….) <span class="keyword">SELECT</span> col1,col2,…… <span class="keyword">FROM</span> old_table</div></pre></td></tr></table></figure>
+<h4 id="insert-into-on-duplicate"><a href="#insert-into-on-duplicate" class="headerlink" title="insert into on duplicate"></a>insert into on duplicate</h4><figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> myblog (<span class="keyword">id</span>,title,ctime) <span class="keyword">values</span>(<span class="number">123</span>,<span class="string">'hello'</span>,<span class="keyword">now</span>()) <span class="keyword">on</span> <span class="keyword">duplicate</span> <span class="keyword">key</span> <span class="keyword">update</span> title=<span class="keyword">values</span>(title),ctime=<span class="keyword">values</span>(ctime);</div><div class="line">//将 blog_bak 表中的所有数据导入到myblog 中，表 blog 和 blog_bak 应该有同样的表结构</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> myblog( blog,ctime) <span class="keyword">select</span> * <span class="keyword">from</span> blog_bak;</div></pre></td></tr></table></figure>
+<h4 id="Mysql连表update"><a href="#Mysql连表update" class="headerlink" title="Mysql连表update"></a>Mysql连表update</h4><p>这样可以将 table_b 的 状态同步到 table_a, 本质上和 多表查询是类似的。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">update</span> table_a a , table_b b <span class="keyword">set</span> a.shop_status = b.group_status <span class="keyword">where</span> a.shop_id = b.shop_id;</div></pre></td></tr></table></figure>
+<h4 id="Mysql-索引操作-mysqldump-数据导出和数据恢复"><a href="#Mysql-索引操作-mysqldump-数据导出和数据恢复" class="headerlink" title="Mysql 索引操作 mysqldump 数据导出和数据恢复"></a>Mysql 索引操作 mysqldump 数据导出和数据恢复</h4><figure class="highlight"><table><tr><td class="code"><pre><div class="line">create index index_name on table_name (column_list);</div><div class="line">alter table table_name add index index_name (column_list);</div><div class="line"></div><div class="line">对应的，删除索引。</div><div class="line">drop index index_name on table;</div><div class="line">alter table table_name drop index index_name;</div><div class="line">清空表中的数据，包括 auto_increment 的字段都会被重置。</div><div class="line">truncate table_name;</div><div class="line"></div><div class="line"></div><div class="line">mysqldump -h localhost -ppasswd  -uroot -d database &gt; dump.sql ;            // 只导出数据库的结构</div><div class="line">mysqldump -h localhost -ppasswd  -uroot  database  &gt; dump.sql ;             // 导出数据库的结构和所有的数据</div><div class="line">mysqldump -h localhost -ppasswd  -uroot -d database tablename &gt; dump.sql ;  // 只导出表结构</div><div class="line">mysqldump -h localhost -ppasswd  -uroot  database tablename &gt; dump.sql ;    // 导出表结构和表中的数据</div><div class="line">mysql -u root -p yourpasswd -h localhost yourdb &lt; dump.sql                  // 将dump.sql 导出入到你的数据库</div></pre></td></tr></table></figure>
+<p>mysql 中的test 表的使用方法。如果你在数据表中没有数据的到处权限，但是一般的数据库中，test库中的权限你都是<br>有的，所有可以将需要的数据先导入到test中的临时表中，然后再从临时表中导出去。这样可以绕开权限控制，到处你<br>需要的数据。sql如下<br>create table xxx as select * from <code>you_target_table</code> where xxx=xxx;<br>这样 一张 test 中的临时表就创建好了，你可以用mysqldump将这个表中的数据导出去。</p>
+<h4 id="mysql时间处理函数"><a href="#mysql时间处理函数" class="headerlink" title="mysql时间处理函数"></a>mysql时间处理函数</h4><figure class="highlight"><table><tr><td class="code"><pre><div class="line">select date_format(now(),"%Y-%m-%d %H:%i:%s") now;</div><div class="line">select date_sub(now(), interval 10 day) as yesterday;       // 请不要吧 day 写成 days ，month , hour 同理。</div><div class="line">group by 多个字段 从 col_a -&gt; col_b -&gt; col_c 优先级依次降低。</div><div class="line">select * from test_table where status = 1 order by col_a desc, col_b desc, col_c asc limit 100;</div><div class="line">set @a = 100;</div><div class="line">select @a:=300;  #可以通过 select 给变量赋值,这个变量只在这个链接周期中有效。</div></pre></td></tr></table></figure>
+<h4 id="mysql-存储过程"><a href="#mysql-存储过程" class="headerlink" title="mysql 存储过程"></a>mysql 存储过程</h4><p>下面是一个简单的存储过程的例子。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">delimiter $     # 因为 mysql 默认的 终止符是; 而这个正好是存储过程的语法，所以在编写存储过程之前，先将 delimiter 改成 $</div><div class="line">create procedure p()    # 创建存储过程</div><div class="line">begin</div><div class="line">select * from ttt;</div><div class="line">end;</div><div class="line">$</div><div class="line">delimiter ;     # 将 delimiter 改成默认的; 这样符合我们的习惯</div><div class="line">call p();       # 调用这个存储过程</div></pre></td></tr></table></figure>
+<h4 id="mysql-if"><a href="#mysql-if" class="headerlink" title="mysql if"></a>mysql if</h4><figure class="highlight sql"><table><tr><td class="code"><pre><div class="line">if(tb2.shop_click is null, 0,tb2.shop_click)</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;mysql-性能测试工具&quot;&gt;&lt;a href=&quot;#mysql-性能测试工具&quot; class=&quot;headerlink&quot; title=&quot;mysql 性能测试工具.&quot;&gt;&lt;/a&gt;mysql 性能测试工具.&lt;/h4&gt;&lt;p&gt;&lt;a href=&quot;http://www.ha97.com
+    
+    </summary>
+    
+      <category term="存储" scheme="https://blog.nofile.cc/categories/%E5%AD%98%E5%82%A8/"/>
+    
+    
+      <category term="Mysql" scheme="https://blog.nofile.cc/tags/Mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>前端笔记</title>
+    <link href="https://blog.nofile.cc/posts/%E5%89%8D%E7%AB%AF/2016/08/17/note-web.html"/>
+    <id>https://blog.nofile.cc/posts/前端/2016/08/17/note-web.html</id>
+    <published>2016-08-17T09:55:18.000Z</published>
+    <updated>2016-08-17T09:55:18.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="margin"><a href="#margin" class="headerlink" title="margin"></a>margin</h4><p>margin: 的4个参数。up ,right, down , left;<br>如果只有一个参数，那么表示4个都是n px。可以是1–4个参数。</p>
+<h4 id="some-input-type"><a href="#some-input-type" class="headerlink" title="some input type"></a>some input type</h4><p>radio, checkbox , button, 他们都有对应的时间，可以在里面添加对应的 函数。可以带参数的。<br>checkbox 也可以写成数组。<br>name=’chk[]’  $_REQUEST [‘chk’] 取值的方式是这样的。</p>
+<h4 id="fontawesome"><a href="#fontawesome" class="headerlink" title="fontawesome"></a>fontawesome</h4><p>学习两个前端页面会使用到的js.</p>
+<p><a href="https://www.woothemes.com/flexslider/" target="_blank" rel="external">https://www.woothemes.com/flexslider/</a>  这个是用来做轮播图的js。<br><a href="http://fontawesome.dashgame.com/" target="_blank" rel="external">http://fontawesome.dashgame.com/</a><br>这个是用来给页面中显示一些字体用的。还有一些常用的图标，用法也很简单，</p>
+<p>####<br>304 错误. 强制不从本地设备读取内容.</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"pragma"</span> <span class="attr">content</span>=<span class="string">"no-cache"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"cache-control"</span> <span class="attr">content</span>=<span class="string">"no-cache"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"expires"</span> <span class="attr">content</span>=<span class="string">"0"</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="Node基础"><a href="#Node基础" class="headerlink" title="Node基础"></a>Node基础</h4><p><a href="http://npm.taobao.org/" target="_blank" rel="external">http://npm.taobao.org/</a><br>首先是npm， node package manager, 这个还相对好理解。可以用淘宝的镜像，速度会快一点。<br>换一个淘宝镜像。<br>例外是nvm，这个是node version manager。node 的版本太多了，所以也有了一个manager。<br>nvm 可以选择安装 node 的版本，也很方便。<br>nvm可以从这里下载。<br><a href="https://raw.githubusercontent.com/creationix/nvm/v0.4.0/install.sh" target="_blank" rel="external">https://raw.githubusercontent.com/creationix/nvm/v0.4.0/install.sh</a></p>
+<p>在一个node的项目里，可以通过<code>cnpm install</code>来安装项目依赖。<br>这里推荐一个node的应用[hexo]<a href="https://hexo.io/" target="_blank" rel="external">https://hexo.io/</a>.我的blog就是基于这个做的。</p>
+<h4 id="在lavarel中使用静态图片。"><a href="#在lavarel中使用静态图片。" class="headerlink" title="在lavarel中使用静态图片。"></a>在lavarel中使用静态图片。</h4><p>q1: 在页面中中使让一段字体在一个div中垂直居中？<br><a href="http://stackoverflow.com/questions/79461/vertical-alignment-of-elements-in-a-div" target="_blank" rel="external">http://stackoverflow.com/questions/79461/vertical-alignment-of-elements-in-a-div</a></p>
+<h4 id="几个常用的-搜索引擎"><a href="#几个常用的-搜索引擎" class="headerlink" title="几个常用的 搜索引擎"></a>几个常用的 搜索引擎</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">搜索引擎</th>
+<th style="text-align:center">地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">百度</td>
+<td style="text-align:center"><a href="http://zhanzhang.baidu.com/sitesubmit/index" target="_blank" rel="external">http://zhanzhang.baidu.com/sitesubmit/index</a></td>
+</tr>
+<tr>
+<td style="text-align:center">谷歌</td>
+<td style="text-align:center"><a href="http://www.sogou.com/feedback/urlfeedback.php" target="_blank" rel="external">http://www.sogou.com/feedback/urlfeedback.php</a></td>
+</tr>
+<tr>
+<td style="text-align:center">谷歌</td>
+<td style="text-align:center"><a href="http://www.google.com/intl/zh-CN/add_url.html" target="_blank" rel="external">http://www.google.com/intl/zh-CN/add_url.html</a></td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;margin&quot;&gt;&lt;a href=&quot;#margin&quot; class=&quot;headerlink&quot; title=&quot;margin&quot;&gt;&lt;/a&gt;margin&lt;/h4&gt;&lt;p&gt;margin: 的4个参数。up ,right, down , left;&lt;br&gt;如果只有一个参数，那么表示
+    
+    </summary>
+    
+      <category term="前端" scheme="https://blog.nofile.cc/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="html" scheme="https://blog.nofile.cc/tags/html/"/>
+    
+      <category term="css" scheme="https://blog.nofile.cc/tags/css/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux VPN 配置</title>
+    <link href="https://blog.nofile.cc/posts/VPN/2016/08/17/note-vpn.html"/>
+    <id>https://blog.nofile.cc/posts/VPN/2016/08/17/note-vpn.html</id>
+    <published>2016-08-17T09:55:17.000Z</published>
+    <updated>2016-08-17T09:55:17.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="ubuntu14-04-安装vpn"><a href="#ubuntu14-04-安装vpn" class="headerlink" title="ubuntu14.04 安装vpn"></a>ubuntu14.04 安装vpn</h4><p>这个是最正确的教程，没有之一。<br><a href="http://mad-scientist.us/juniper.html" target="_blank" rel="external">http://mad-scientist.us/juniper.html</a><br>下面是一个简单的总结</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo apt-get install libstdc++6:i386 lib32z1 lib32ncurses5 libxext6:i386 libxrender1:i386 libxtst6:i386 libxi6:i386</div><div class="line">sudo apt-get install openjdk-7-jre icedtea-7-plugin openjdk-7-jre:i386</div><div class="line">sudo apt-get install  icedtea-plugin</div><div class="line">sudo apt-get install libc6-i386 lib32nss-mdns</div><div class="line">sudo apt-get install libgtk2-perl libwww-perl</div><div class="line">wget -q -O /tmp/msjnc https://raw.github.com/madscientist/msjnc/master/msjnc</div><div class="line">chmod 755 /tmp/msjnc</div><div class="line">sudo cp /tmp/msjnc /usr/bin</div></pre></td></tr></table></figure>
+<p><a href="http://www.scc.kit.edu/scc/net/juniper-vpn/linux/" target="_blank" rel="external">http://www.scc.kit.edu/scc/net/juniper-vpn/linux/</a></p>
+<p>还可以参考这个帖子。需要得到realm这个东西，这个东西，去你公司的vpn网站爬一下就可以了。<br>搜索一下realm这个字，就可以看到这个内容的值。<br>最终推荐使用哪个客户端,比mac的客户端还好用。<br>不过如果没有特别的爱好，还是用mac吧,折腾起来，还是有点麻烦的。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;ubuntu14-04-安装vpn&quot;&gt;&lt;a href=&quot;#ubuntu14-04-安装vpn&quot; class=&quot;headerlink&quot; title=&quot;ubuntu14.04 安装vpn&quot;&gt;&lt;/a&gt;ubuntu14.04 安装vpn&lt;/h4&gt;&lt;p&gt;这个是最正确的教程，
+    
+    </summary>
+    
+      <category term="VPN" scheme="https://blog.nofile.cc/categories/VPN/"/>
+    
+    
+      <category term="VPN MSJNC" scheme="https://blog.nofile.cc/tags/VPN-MSJNC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vim 学习笔记</title>
+    <link href="https://blog.nofile.cc/posts/VIM/2016/08/17/note-vim.html"/>
+    <id>https://blog.nofile.cc/posts/VIM/2016/08/17/note-vim.html</id>
+    <published>2016-08-17T09:55:16.000Z</published>
+    <updated>2016-08-17T09:55:16.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="vim的几个常用的插件。"><a href="#vim的几个常用的插件。" class="headerlink" title="vim的几个常用的插件。"></a>vim的几个常用的插件。</h4><table>
+<thead>
+<tr>
+<th>插件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ctags</td>
+<td>tags 的标签</td>
+</tr>
+<tr>
+<td>vim-ariline</td>
+<td>彩色 的状态栏</td>
+</tr>
+<tr>
+<td>nerdtree</td>
+<td>一个文件管理器</td>
+</tr>
+<tr>
+<td>gittur</td>
+<td>git集成插件,可以显示修改了的内容</td>
+</tr>
+<tr>
+<td>bundle</td>
+<td>插件管理</td>
+</tr>
+<tr>
+<td>vim-markdown</td>
+<td>支持markdown的语法</td>
+</tr>
+</tbody>
+</table>
+<h4 id="VIMSCRIPT"><a href="#VIMSCRIPT" class="headerlink" title="VIMSCRIPT"></a>VIMSCRIPT</h4><p>下面是一些简单的vimscript内容。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">vim 中定义变量要用</div><div class="line"></div><div class="line">let a=123  空格并不能影响效果，这一点和shell并不一样.</div><div class="line">echo a</div><div class="line">这样就可以看到效果。</div><div class="line"></div><div class="line">在 vimrc 中可以写简单函数，来做一些想做的事情，比如</div><div class="line">根据文件后缀，自动执行脚本程序。</div><div class="line"></div><div class="line">:echo %    这个是获得当前文件的全名，包括后缀的。</div><div class="line">:echo %&lt;   和下面的一行作用一样。</div><div class="line">:echo %:r  这个是获取当前文件的文件名，除去扩展后缀</div></pre></td></tr></table></figure>
+<p>插入模式下的 vim ， ctrl + j 可以将文本内容下移一行。ctrl + m 我也不知道具体是什么，<br>我只是通过实验尝试出来的。</p>
+<h4 id="VIM-启动速度慢-slowstart"><a href="#VIM-启动速度慢-slowstart" class="headerlink" title="VIM 启动速度慢 slowstart"></a>VIM 启动速度慢 slowstart</h4><p>vim –startuptime vim.log -c q<br>sudo vim 启动速度超级慢。<br>vim 启动速度变慢.在终端中可以这样启动 vim -X 这样是不需要和X挂上勾的,所以会变慢.修改了一下之后<br>瞬间感觉电脑变快了.vimariline这个插件会明显增加启动时间，加之没什么用，后面就从我的vim插件里面去掉了。</p>
+<h4 id="sudo-vim-启动速度超级慢"><a href="#sudo-vim-启动速度超级慢" class="headerlink" title="sudo vim 启动速度超级慢"></a>sudo vim 启动速度超级慢</h4><p>调查之后，发现是我把系统的hosts文件删除了，touch了一个空文件。<br>后面，总是提示unresolve host 的提示。<br>在增加了我的hostname在host中之后，sudo vim 速度就快了。开来和这个也有关系。</p>
+<h4 id="vim-记录上次编辑位置。"><a href="#vim-记录上次编辑位置。" class="headerlink" title="vim 记录上次编辑位置。"></a>vim 记录上次编辑位置。</h4><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">au BufReadPost * if line(&quot;&apos;\&quot;&quot;) &gt; 0|if line(&quot;&apos;\&quot;&quot;) &lt;= line(&quot;$&quot;)|exe(&quot;norm &apos;\&quot;&quot;)|else|exe &quot;norm $&quot;|endif|endif</div></pre></td></tr></table></figure>
+<h4 id="vim-删除重复行"><a href="#vim-删除重复行" class="headerlink" title="vim 删除重复行"></a>vim 删除重复行</h4><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sort</div><div class="line">g/^\(.\+\)$\n\1/d</div></pre></td></tr></table></figure>
+<h4 id="vim-插入当前时间"><a href="#vim-插入当前时间" class="headerlink" title="vim 插入当前时间"></a>vim 插入当前时间</h4><p>插入时间，这个应该说是很方便的，但是我并不懂这个命令是怎么实现的。<br>在vimrc中加入这个map，在normal模式下，输入,dt就可以在当前位置插入时间了。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">map ,dt a&lt;C-R&gt;=strftime(&apos;%Y-%m-%d %H:%M&apos;)&lt;CR&gt;</div></pre></td></tr></table></figure>
+<h4 id="vim-find"><a href="#vim-find" class="headerlink" title="vim find"></a>vim find</h4><p>天刚学到的是 find 命令，这个是用来打开文件用的，可以智能补全。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">set path=/home/yourpath</div></pre></td></tr></table></figure></p>
+<h4 id="vim-导入其他文件内容"><a href="#vim-导入其他文件内容" class="headerlink" title="vim 导入其他文件内容"></a>vim 导入其他文件内容</h4><p>将当前文件的部分内容导入到其他文件<br>1,20 w&gt;&gt; /path/otherfile.txt<br>1,20 w /path/otherfile.txt<br>具体命令就是这样。</p>
+<p>同样的，也可以将其他文件的内容读入到当前文件来。命令是这个<br>r: /path/file.txt</p>
+<p>同时，这个命令也可以将外部程序的输出读入到当前文件中。<br>r !date<br>这样也是可以插入时间的。将这个命令用map命令映射一下，就可以得到和那个实现的同样的功能<br>了。</p>
+<h4 id="VIM和系统共享剪切板"><a href="#VIM和系统共享剪切板" class="headerlink" title="VIM和系统共享剪切板"></a>VIM和系统共享剪切板</h4><p>首先需要补充的一点是，+寄存器是只有vim-gtk 或者 vim-gnome 才会有的，不要只安装了<br>vim，这是不够的啦，在安装的时候需要注意一下，不然是无法使用系统剪切板的啦。<br>复制单个字符， nyl n 是数字，l和vim的方向键一样，表示向后，就是向后复制n个字符。<br>同理，nyh 表示向前复制n个字符。这样就可以很自由的复制了。<br>复制单词 ynw 其中n是数字，表示要复制的单词的个数。<br>按行为单位复制：<br>nyy 表示复制n 行，和上面的命令差不多。应该是向下取的。<br>p 表示粘贴，注意小写，这个是代表粘贴在下面。<br>P 也表示粘贴，这次是大写啊，这个是代表粘贴在前面。<br>估计对于字符复制粘贴的内容也是同样的规则啊。<br>“+y 表示复制到系统剪切板去。这个应该忘不了吧。</p>
+<p>vim 有很多的粘贴板，这些东西的用处你自己应该可以理解，一般情况下，都是只用一个粘贴板<br>的，但是粘贴板多一点也是没有坏处的啊。vim中的复制是用y来完成的，在这之前，你当然可以<br>决定你的内容是存放在那个粘贴办中，你可以用reg来查看这些粘贴板中都存了什么内容，同时<br>p是用来复制的，你也可以在复制之前决定你从哪个粘贴板中复制内容，例如”4p表示是从4好粘<br>贴板中拿东西。如果4好粘贴板中有你存下的内容的话，那么他就可以复制出来了，结合上面的<br>命令，你当然可以做成你想做的。<br>复制到第n 个粘贴板的命令: 先选择要复制的内容，然后”ny 就可以将这些内容放到粘贴板了。<br>然后在你想复制的地方”+p 就可以了。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;vim的几个常用的插件。&quot;&gt;&lt;a href=&quot;#vim的几个常用的插件。&quot; class=&quot;headerlink&quot; title=&quot;vim的几个常用的插件。&quot;&gt;&lt;/a&gt;vim的几个常用的插件。&lt;/h4&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;插件&lt;/th&gt;
+
+    
+    </summary>
+    
+      <category term="VIM" scheme="https://blog.nofile.cc/categories/VIM/"/>
+    
+    
+      <category term="VIM" scheme="https://blog.nofile.cc/tags/VIM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu学习笔记</title>
+    <link href="https://blog.nofile.cc/posts/Linux/2016/08/17/note-ubuntu.html"/>
+    <id>https://blog.nofile.cc/posts/Linux/2016/08/17/note-ubuntu.html</id>
+    <published>2016-08-17T09:55:15.000Z</published>
+    <updated>2016-08-17T09:55:15.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="制作-ubuntu-镜像"><a href="#制作-ubuntu-镜像" class="headerlink" title="制作 ubuntu 镜像"></a>制作 ubuntu 镜像</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo dd if=/home/your.iso of=/dev/sdb</div></pre></td></tr></table></figure>
+<p>安装 fcitx 搜狗输入法。</p>
+<ol>
+<li>确保你的语言包是全的。</li>
+<li>安装这个语言包。<a href="http://pinyin.sogou.com/linux/" target="_blank" rel="external">http://pinyin.sogou.com/linux/</a></li>
+<li>按照这个做 <a href="http://jingyan.baidu.com/article/adc815134f4b92f722bf7350.html" target="_blank" rel="external">http://jingyan.baidu.com/article/adc815134f4b92f722bf7350.html</a></li>
+</ol>
+<p>安装firefox 插件<br>json, vimperator, firebug.</p>
+<p>安装 nginx ， php ， mysql ， php-redis 扩展。<br>nginx <a href="http://nginx.org/en/download.html" target="_blank" rel="external">http://nginx.org/en/download.html</a><br>php <a href="http://php.net/get/php-5.6.15.tar.gz/from/a/mirror" target="_blank" rel="external">http://php.net/get/php-5.6.15.tar.gz/from/a/mirror</a></p>
+<p>php 编译参数.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo apt-get install libcurl4-openssl-dev</div><div class="line">sudo apt-get install libssl-dev</div><div class="line">sudo apt-get install libxml2-dev</div><div class="line"></div><div class="line">./configure --prefix=/home/faith/blackh/server/php --with-config-file-path=/home/faith/blackh/server/php/etc --with-mysql=/usr/ --with-iconv-dir=/usr/ --with-freetype-dir --with-jpeg-dir --with-png-dir --with-zlib --with-libxml-dir=/usr --enable-xml --disable-rpath  --enable-bcmath --enable-shmop --enable-sysvsem --enable-inline-optimization --with-curl --enable-mbregex --enable-fpm --enable-mbstring --with-mcrypt --with-gd --enable-gd-native-ttf --with-openssl --with-mhash --enable-pcntl --enable-sockets --with-xmlrpc --enable-zip --enable-soap --without-pear --with-zlib --enable-pdo --with-pdo-mysql --with-mysql=shared,mysqlnd</div></pre></td></tr></table></figure>
+<p>安装php-redis 扩展。<a href="http://pecl.php.net/package/redis" target="_blank" rel="external">http://pecl.php.net/package/redis</a><br>php nginx 配置,这些也很重要。</p>
+<h4 id="tmux-vim-slowstart"><a href="#tmux-vim-slowstart" class="headerlink" title="tmux vim slowstart"></a>tmux vim slowstart</h4><p>tmux 中vim slow start 的原因,就是因为开了多个tmux,启动速度就变慢了.<br>查看了slowlog,发现是因为xsmp消耗了大概1s的时间.只要保证一个tmux运行就可以了.</p>
+<p>grub customer<br>sudo add-apt-repository ppa:danielrichter2007/grub-customizer<br>sudo apt-get install grub-customizer</p>
+<p>让你的ubuntu文件夹变成彩色的.<br>可以添加下面的ppa,添加这个<br>sudo add-apt-repository ppa:costales/folder-color<br>然后安装下面这个 folder-color 就可以了.<br>sudo apt-get install folder-color</p>
+<h4 id="ubuntu安装更新版本的软件"><a href="#ubuntu安装更新版本的软件" class="headerlink" title="ubuntu安装更新版本的软件"></a>ubuntu安装更新版本的软件</h4><p>在linux中,我想升级gedit,比如说我的是 ubuntu14.04, 但是在 ubuntu15.10 里面,gedit 的版本是比<br>我的新的.但是在14.04里面我确用不了最新的gedit .<br>这个时候,我可以从官网下载最新的gedit ,安装,然而安装的时候会出现一些问题.这时候怎么办呢.可以这样.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo apt-get build-deb gedit</div><div class="line">sudo apt-get build-deb libreoffice5.0</div></pre></td></tr></table></figure>
+<p>然后执行安装命令就可以了.安装应该不会出错了.<br>下面解释一下这个命令究竟是做什么的.</p>
+<h4 id="ubuntu-get-source-code"><a href="#ubuntu-get-source-code" class="headerlink" title="ubuntu get source code"></a>ubuntu get source code</h4><p>如何获取ubuntu的源码<br>你可以获取任何一个你所使用的源码包.这就是开源的系统.<br>只要你的系统的源里有dep-src 这个选项,那么就可以随便获得系统源码.<br>就像下面这样.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">deb-src http://archive.canonical.com/ubuntu trusty partner</div><div class="line">deb-src http://cn.archive.ubuntu.com/ubuntu/ trusty main restricted</div><div class="line">deb-src http://cn.archive.ubuntu.com/ubuntu/ trusty multiverse</div><div class="line">deb-src http://cn.archive.ubuntu.com/ubuntu/ trusty universe</div><div class="line">deb-src http://cn.archive.ubuntu.com/ubuntu/ trusty-backports main restricted universe multiverse</div><div class="line">deb-src http://cn.archive.ubuntu.com/ubuntu/ trusty-updates main restricted</div><div class="line">deb-src http://cn.archive.ubuntu.com/ubuntu/ trusty-updates multiverse</div><div class="line">deb-src http://cn.archive.ubuntu.com/ubuntu/ trusty-updates universe</div><div class="line">deb-src http://extras.ubuntu.com/ubuntu trusty main</div><div class="line">deb-src http://security.ubuntu.com/ubuntu trusty-security main restricted</div><div class="line">deb-src http://security.ubuntu.com/ubuntu trusty-security multiverse</div><div class="line">deb-src http://security.ubuntu.com/ubuntu trusty-security universe</div><div class="line"></div><div class="line">使用下面的命令.</div><div class="line"></div><div class="line">sudo apt-cache showsrc gedit <span class="comment">#showsrc 可以用来查询有没有你需要的源码包</span></div><div class="line">sudo apt-cache <span class="built_in">source</span> gedit  <span class="comment">#source 命令用来获取你需要的源码包</span></div></pre></td></tr></table></figure>
+<h4 id="ubuntu自己编译出deb"><a href="#ubuntu自己编译出deb" class="headerlink" title="ubuntu自己编译出deb"></a>ubuntu自己编译出deb</h4><p>当然在这些工作之前,我们需要确保安装一些基本的工具.<br>dpkg-dev 先安装这个.</p>
+<p>在编译源码包之前,需要安装具有依赖关系的软件包,可以使用这个命令,就是上面的那个.<br>build-dep 命令.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo apt-get build-dep xxx</div><div class="line">#通过上面两个命令,就可以得到自己的源码包了.然后利用</div><div class="line">cd yoursrc</div><div class="line">sudo dpkg-buildpackage</div></pre></td></tr></table></figure>
+<p>这样就可以得到你的dep文件了.<br>可以使用下面的命令来安装deb文件.<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo dpkg -i *.deb</div></pre></td></tr></table></figure></p>
+<p>有了上面的知识,你就可以利用自己的系统,学习各种工具的源码了,包括vim , emacs.<br>加油吧.^_^</p>
+<h4 id="关于ubuntu-的dash-残留应用的问题"><a href="#关于ubuntu-的dash-残留应用的问题" class="headerlink" title="关于ubuntu 的dash 残留应用的问题"></a>关于ubuntu 的dash 残留应用的问题</h4><p>在你的本地文件里面. .local/share/applications/ 里面把对应的删除,重新登陆就可以<br>看到你讨厌的那个东西不见了.<br>下面是我的 ubuntu dash 中的eclipse的快捷方式.可以很明显的看到是我的路径出了问题. 我需要修改一下路径就可以了.</p>
+<h4 id="ubuntu-安装中文字体"><a href="#ubuntu-安装中文字体" class="headerlink" title="ubuntu 安装中文字体"></a>ubuntu 安装中文字体</h4><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo apt-get install mysql-workbench</div><div class="line"></div><div class="line">sudo apt-get install ttf-wqy-microhei  </div><div class="line">sudo apt-get install ttf-wqy-zenhei  </div><div class="line"></div><div class="line">nmap 具体的参数还需要进一步阅读手册。</div><div class="line"></div><div class="line">nmap -PS 192.168.0.102  #扫描一个主机所有开启的端口。</div><div class="line">nmap -sP 192.168.0.*  #扫描一个网段下的所有活动的主机。</div></pre></td></tr></table></figure>
+<h4 id="Ubuntu-create-launcher"><a href="#Ubuntu-create-launcher" class="headerlink" title="Ubuntu create launcher"></a>Ubuntu create launcher</h4><p>ubuntu launcher.  alacarte<br>ubuntu 创建快捷方式．用这个软件．<br>在mate桌面上安装创建自己的启动方式．要给我的zendstudio 创建．<br>sudo apt-get install gnome-panel</p>
+<p>linux rm hidden files<br>rm -rf <em> 是不会删除隐藏文件的.<br>rm -rf .</em><br>这个命令会过滤调. .. ,这两个目录是无法删除的.</p>
+<h4 id="Ubuntu-关闭-crash-report"><a href="#Ubuntu-关闭-crash-report" class="headerlink" title="Ubuntu 关闭 crash report"></a>Ubuntu 关闭 crash report</h4><p>ubuntu 关闭没用的 crash report。<br>sudo vim /etc/default/apport</p>
+<h4 id="Ubuntu-N卡驱动"><a href="#Ubuntu-N卡驱动" class="headerlink" title="Ubuntu N卡驱动"></a>Ubuntu N卡驱动</h4><p>对硬件的了解是我的最大的弱点。<br>电脑的什么显卡驱动啊，什么网卡驱动，我都没有搞清楚。</p>
+<p>I installed latest nvidia drivers by this method:</p>
+<p>幸好是可以上网，如果不能上网，我真是有点没招了。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">glxinfo | head</div><div class="line">http://askubuntu.com/questions/319671/how-to-change-the-graphics-card-driver-via-terminal</div><div class="line">ubuntu-drivers devices</div><div class="line">to get a list of your devices and identify the one you want. My output looked like this:</div><div class="line"></div><div class="line">ubuntu-drivers devices</div><div class="line">== /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0 ==</div><div class="line">modalias : pci:v000010DEd00000391sv00001462sd00000630bc03sc00i00</div><div class="line">vendor : NVIDIA Corporation</div><div class="line">model : G73 [GeForce 7600 GT]</div><div class="line">driver : nvidia-304 - distro non-free recommended</div><div class="line">driver : nvidia-173 - distro non-free</div><div class="line">driver : xserver-xorg-video-nouveau - distro free builtin</div><div class="line">driver : nvidia-304-updates - distro non-free</div><div class="line">I wanted nvidia-304 so I typed:</div><div class="line"></div><div class="line">apt-get install nvidia-304</div></pre></td></tr></table></figure></p>
+<p>Then I rebooted and confirmed using the desktop appliaction Additional Drivers that I was indeed using the driver I had chosen.</p>
+<p>我遇到的最本质的问题是，我不会在命令行下安装显卡驱动，切换显卡驱动。所以导致各种问题。<br>上面的命令正好是教会这个。</p>
+<h4 id="ubuntu重启gui"><a href="#ubuntu重启gui" class="headerlink" title="ubuntu重启gui"></a>ubuntu重启gui</h4><p>执行完上面的安装命令，然后</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">startx sudo service start lightdm</div></pre></td></tr></table></figure>
+<p>就可以启动了图形界面了，回到原来的样子。</p>
+<h4 id="ag"><a href="#ag" class="headerlink" title="ag"></a>ag</h4><p>like ack but faster.</p>
+<p>lspci </p>
+<p>glxinfo | head  如果显卡驱动有问题，这个命令会不正常。<br>正常的话，会列出来一些相关的东西。</p>
+<p>modinfo<br>系统默认安装的驱动是这个。<br>xserver-xorg-video-intel<br>modprobe -r nouveau  用这个命令来卸载这个模块，从内核中卸载这个模块。</p>
+<h4 id="ubuntu-enable-sudo-for-work"><a href="#ubuntu-enable-sudo-for-work" class="headerlink" title="ubuntu enable sudo for work"></a>ubuntu enable sudo for work</h4><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># provided their password</div><div class="line"># (Note that later entries override this, so you might need to move</div><div class="line"># it further down)</div><div class="line">%sudo ALL=(ALL) ALL</div></pre></td></tr></table></figure>
+<h4 id="then-add-the-sudo-group-just-like-this"><a href="#then-add-the-sudo-group-just-like-this" class="headerlink" title="then add the sudo group just like this;"></a>then add the sudo group just like this;</h4><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">groupadd sudo</div><div class="line">sudo usermod -aG sudo work</div></pre></td></tr></table></figure>
+<p><a href="http://www.cnblogs.com/xd502djj/archive/2011/11/23/2260094.html" target="_blank" rel="external">http://www.cnblogs.com/xd502djj/archive/2011/11/23/2260094.html</a></p>
+<h4 id="ubuntu-firefox-flash"><a href="#ubuntu-firefox-flash" class="headerlink" title="ubuntu firefox flash"></a>ubuntu firefox flash</h4><p>遇到的问题是 firefox has prevented the outdated flashplugin from xxx website.<br>我从官网下载 tar.gz 之后，安装还是没有解决问题。<br>貌似要用 apt-cache 来搜索才行，现在貌似好了，问题就是这样解决的。<br>sudo apt-get install flashplugin-downloader<br>貌似真得好了。</p>
+<h4 id="Linux-更新时间"><a href="#Linux-更新时间" class="headerlink" title="Linux 更新时间"></a>Linux 更新时间</h4><p>Linux 更新时间.主要的就是这个命令.<br>ntpdate cn.pool.ntp.org<br>好像 windows 时间 和 Linux 时间一定会又一个出问题.现在有点没有办法.<br>将时间写入到 cmos</p>
+<p>主要是系统时间写入 硬件时间 和 硬件时间写入系统的区别.<br>sudo hwclock –systohc<br>sudo hwclock –hctosys</p>
+<h4 id="允许程序没有sudo权限执行"><a href="#允许程序没有sudo权限执行" class="headerlink" title="允许程序没有sudo权限执行"></a>允许程序没有sudo权限执行</h4><p>sudo chmod +s /usr/sbin/hddtemp<br>这样就可以让 hddtemp 在没有 sudo 权限的情况下运行了。</p>
+<h4 id="xargs"><a href="#xargs" class="headerlink" title="xargs"></a>xargs</h4><p>ok, today I learned about xargs command. this solve the problem like this.<br>rm -rf <code>ls</code><br>now you can do like this;<br>ls | xargs rm -rf</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;制作-ubuntu-镜像&quot;&gt;&lt;a href=&quot;#制作-ubuntu-镜像&quot; class=&quot;headerlink&quot; title=&quot;制作 ubuntu 镜像&quot;&gt;&lt;/a&gt;制作 ubuntu 镜像&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://blog.nofile.cc/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="https://blog.nofile.cc/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>sphinx学习笔记</title>
+    <link href="https://blog.nofile.cc/posts/sphinx/2016/08/17/note-sphinx.html"/>
+    <id>https://blog.nofile.cc/posts/sphinx/2016/08/17/note-sphinx.html</id>
+    <published>2016-08-17T09:55:14.000Z</published>
+    <updated>2016-08-17T09:55:14.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="sphinx实践"><a href="#sphinx实践" class="headerlink" title="sphinx实践"></a>sphinx实践</h4><p>用shpinx实现一个搜索相关的小项目</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;sphinx实践&quot;&gt;&lt;a href=&quot;#sphinx实践&quot; class=&quot;headerlink&quot; title=&quot;sphinx实践&quot;&gt;&lt;/a&gt;sphinx实践&lt;/h4&gt;&lt;p&gt;用shpinx实现一个搜索相关的小项目&lt;/p&gt;
+
+    
+    </summary>
+    
+      <category term="sphinx" scheme="https://blog.nofile.cc/categories/sphinx/"/>
+    
+    
+      <category term="搜索" scheme="https://blog.nofile.cc/tags/%E6%90%9C%E7%B4%A2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mac常用软件</title>
+    <link href="https://blog.nofile.cc/posts/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/2016/08/17/note-software.html"/>
+    <id>https://blog.nofile.cc/posts/开发工具/2016/08/17/note-software.html</id>
+    <published>2016-08-17T09:55:12.000Z</published>
+    <updated>2016-08-17T09:55:12.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="charles-APP代理软件"><a href="#charles-APP代理软件" class="headerlink" title="charles APP代理软件"></a>charles APP代理软件</h4><p>charles 破解。我的link。 <a href="http://pan.baidu.com/s/1i4UUbOh" target="_blank" rel="external">http://pan.baidu.com/s/1i4UUbOh</a></p>
+<h4 id="Dash"><a href="#Dash" class="headerlink" title="Dash"></a>Dash</h4><p>非常便捷的API手册，方便查询。</p>
+<h4 id="PhpStorm"><a href="#PhpStorm" class="headerlink" title="PhpStorm"></a>PhpStorm</h4><p>PHP 开发的好帮手，可以帮你避免一些低级错误。</p>
+<h4 id="WebStorm"><a href="#WebStorm" class="headerlink" title="WebStorm"></a>WebStorm</h4><p>和Phpstorm是同一个公司开发的，使用上和PhpStorm 差不多,用于偏前端的开发<br>工作场景。</p>
+<h4 id="ipython"><a href="#ipython" class="headerlink" title="ipython"></a>ipython</h4><p>Python 命令行工具，和Python不同的是，这个可以进行命令提示，方便初学者。</p>
+<h4 id="Postman"><a href="#Postman" class="headerlink" title="Postman"></a>Postman</h4><p>管理接口，方便重用，经常和一堆接口打交道的话，这个会很方便。</p>
+<pre><code>以上貌似除了postman，其他的都是付费的。不过买起来确实很贵，但破解都
+相对容易，需要的话，请自行百度，都很简单。
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;charles-APP代理软件&quot;&gt;&lt;a href=&quot;#charles-APP代理软件&quot; class=&quot;headerlink&quot; title=&quot;charles APP代理软件&quot;&gt;&lt;/a&gt;charles APP代理软件&lt;/h4&gt;&lt;p&gt;charles 破解。我的link。
+    
+    </summary>
+    
+      <category term="开发工具" scheme="https://blog.nofile.cc/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="开发工具" scheme="https://blog.nofile.cc/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="工程效率" scheme="https://blog.nofile.cc/tags/%E5%B7%A5%E7%A8%8B%E6%95%88%E7%8E%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>shell 学习笔记</title>
+    <link href="https://blog.nofile.cc/posts/shell/2016/08/17/note-shell.html"/>
+    <id>https://blog.nofile.cc/posts/shell/2016/08/17/note-shell.html</id>
+    <published>2016-08-17T09:55:11.000Z</published>
+    <updated>2016-08-17T09:55:11.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>awk</p>
+<p>simple awk skill is necessary.</p>
+<p>the follow command can be used to restart php-fpm in server.</p>
+<p>ps aux | grep ‘php-fpm’ | awk ‘{print $1}’ | xargs kill -USR2 </p>
+<p>-F option 是用来改变默认的分隔符的。<br>awk -F ‘:’ ‘{print $3}’</p>
+<p>awk 的 BEGIN 和 END 语句的功能。<br>BEGIN 是最开始的部分执行的，然后AWK开始读取文件内容，进行处理。<br>END 是最后面结束执行的.</p>
+<p>sed </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sed &apos;s/xx/ds/&apos; note</div><div class="line"></div><div class="line">[ ! -x result ] &amp;&amp; mkdir result</div><div class="line">for i in `ls *.grb`</div><div class="line">do</div><div class="line">    out=`echo $i | sed &apos;s/GLDAS_NOAH10_M.A//&apos; | sed &apos;s/\..*[[:graph:]]//&apos;`</div><div class="line">    wgrib $i &gt; result/$out&quot;.out&quot;</div><div class="line">done</div></pre></td></tr></table></figure>
+<p>d 表示是删除的意思。用新文件覆盖旧文件。<br>sed ‘/vim/d’ ~/.bashrc &gt; ~/.bashrc<br>刚才才发现原来 shell 的字符串判断相等是 = 左右两天加个空格就可以了。如果不加空格就是赋值。<br>这种语法还是有点诡异的啊。<br>并且现在很少写 if 这个东西了，自从我发现了 if 语句可以简写之后。<br>字符串操作还是又必要掌握一下的。<br>果然shell python 相比来说直截了当多了。正事因为 shell 在字符串处理上的缺陷，所以才有了sed这样<br>的工具来补充吧。<br>当然还有awk。</p>
+<p>sed<br>sed 用得最多的就是替换了。很多时候，grep就足够了。</p>
+<p>sed -i “This command to use replace the input file”<br>just a simple example.<br>sed -i ‘s/–/-/‘</p>
+<p>grep</p>
+<p>find</p>
+<h4 id="shell重定向"><a href="#shell重定向" class="headerlink" title="shell重定向"></a>shell重定向</h4><p>来自这个链接 <a href="http://www.cnblogs.com/yangyongzhi/p/3364939.html" target="_blank" rel="external">http://www.cnblogs.com/yangyongzhi/p/3364939.html</a></p>
+<p>./Test.py 1&gt;normal 2&gt;error 3&gt;&amp;2 2&gt;&amp;1 1&gt;&amp;3<br>./Test.py 3&gt;&amp;2 2&gt;&amp;1 1&gt;&amp;3 1&gt;normal 2&gt;error  </p>
+<p>可以通过这两个命令看出差别,其实就是从右向左执行的.</p>
+<p>具体的执行过程是这样的,一个完整的shell指令的执行是从右往左的.<br>先执行 1&gt;&amp;3 , 然后执行 2&gt;&amp;1 , 3&gt;&amp;2</p>
+<h4 id="git-跨源合并"><a href="#git-跨源合并" class="headerlink" title="git 跨源合并"></a>git 跨源合并</h4><p>一个项目可以添加多个源,origin是默认的一个源.并且也可以跨源合并.这是比较高级的用法.<br>如果要跨项目合并. git 跨项目合并.</p>
+<p>git remote add code “url”<br>git push code master</p>
+<h4 id="shell-get-your-ip"><a href="#shell-get-your-ip" class="headerlink" title="shell get your ip"></a>shell get your ip</h4><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">ifconfig | grep -E -o &quot;inet ([0-9]&#123;1,3&#125;.)&#123;3&#125;([0-9]&#123;1,3&#125;)&quot; |  grep -E  -o &quot;([0-9]&#123;1,3&#125;.)&#123;3&#125;([0-9]&#123;1,3&#125;)&quot; | tail -n 1</div><div class="line">ip a| grep -E -o &quot;inet addr:([0-9]&#123;1,3&#125;.)&#123;3&#125;([0-9]&#123;1,3&#125;)&quot; |  grep -E  -o &quot;([0-9]&#123;1,3&#125;.)&#123;3&#125;([0-9]&#123;1,3&#125;)&quot; | tail -n 1</div></pre></td></tr></table></figure>
+<p>linux 下 ifconfig | grep ‘inet ‘ | awk ‘{split($2, ip_cntr, “:”); print ip_cntr[2];}’</p>
+<p>tmux.conf<br>想在tmux.conf中添加一些shell脚本,可以获取到我自己的IP地址.<br>这样我在连接代理的时候,就不用是自己查了.我把自己的tmux的status line 搞成了1s刷新一次.用了这个命令.</p>
+<p>egrep grep -E<br>fgrep grep -F 只支持简单的全部匹配,部支持正则匹配.</p>
+<p>nohup command &gt; out.txt 2&gt;&amp;1 &amp; 这样是将所有的输出,包括错误都重定向到out.txt中.</p>
+<p>grep 输出匹配内容的上下两行内容,输出上下文,记得这个参数.<br>grep -C 2 ‘linux’<br>是用nohup命令,完了这个命令就没有办法停止了,就会一直运行,除非用kill命令讲这些命令kill调.</p>
+<h4 id="git-push-–force"><a href="#git-push-–force" class="headerlink" title="git push –force"></a>git push –force</h4><p>git remote add.</p>
+<p>将一个远端的项目添加到新的分支上,然后可以合并。<br>git remote add name git@gitlabserver.meiliworks.com:higo/api.git<br>删除这个分支。<br>git remote rm old_pandora<br>git 将某个分支强制覆盖。比如我想用newpush  的代码完全覆盖 master 的代码。<br>可以这样做。<br>git push origin newpush:master -f</p>
+<p>git remote add origin url  #这样可以讲自己的git目录添加到远端仓库.很方便.<br>同一个项目可以添加多个远端仓库,可以一起使用.</p>
+<h4 id="shell-functions"><a href="#shell-functions" class="headerlink" title="shell functions"></a>shell functions</h4><p>函数的返回值,函数的参数.<br><a href="http://www.jb51.net/article/33895.htm" target="_blank" rel="external">http://www.jb51.net/article/33895.htm</a><br>这里看到了一些参考,主要是这两个参数, $@ 和 $* 是一样的,可以将函数的参数当做一个字符串.<br>如果你仍然利用$1,$#,$0这些而参数,那么你可能得不到你想要的结果.<br>并且,我在shell下添加了一些常用的颜色的变量,只要. ~/.colorful 就可以使用这些变量了.<br>可以进行一些彩色的输出,是得程序更加明确.<br>其他的就是对shell更加熟悉了,大小的比较,相等的比较.还有if else elif 这样的语句,也好多了.<br>我的那个启动脚本更加明确了.</p>
+<h3 id="mount-命令-fstab"><a href="#mount-命令-fstab" class="headerlink" title="mount 命令  fstab"></a>mount 命令  fstab</h3><p>Linux mount 可以讲一块磁盘挂在一个目录下.挂载之后,这个目录原来的内容就不存在了.<br>如果umount 之后,这个目录下面的空间就出现了,这一定和底层的实现有关系.操作系统究竟<br>是如何管理存储空间的,这些问题都是需要研究的.目前,所指导的可以解决这些基本问题了,<br>我可以很好的扩展我的系统空间不足的问题,但是我觉着对于</p>
+<p>如果要解决这个问题,还需要一些挂载的知识,我需要讲自己的磁盘挂在系统上,让系统启动的时候自动<br>帮我挂上.而不是每次都让我自己去挂.<br>mount 里面也有很多.</p>
+<p>fstab 的编写,其实还可以,就是将最前面的盘符换成具体的磁盘设备就可以了.<br>可以像下面这样,把你的磁盘随便挂上去.这就是 home分区分开使用的好处,单独挂载一个<br>磁盘之后,就具备比较好的扩展性了.只要内容没有损坏,就可以随便安装到任何一个新系统<br>上去.大部分内容都是放在/home里面的,或者可以把自己常用的软件都安装在一个指定的目录<br>下,这个目录可以</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">UUID=684e471c-215b-4520-b3d6-09c6e5316ee2 /               ext4    errors=remount-ro 0       1</div><div class="line"># swap was on /dev/sda6 during installation</div><div class="line">UUID=08488fed-d6f4-4fa2-b935-dd599851d98d none            swap    sw                0       0</div><div class="line">/dev/sda5                               /home             ext4    defaults,noatime  0       0</div></pre></td></tr></table></figure>
+<p>刚才遇到的问题好奇怪</p>
+<ol>
+<li>挂在分区之后,输入密码进不来系统,我发现是我的新的home目录没有权限,把owner 改成我自己,然后就可以<br>利用图形界面进来了.</li>
+<li>我进来之后,发现我的steam 用不了了,我拷贝了所有的文件,发现还是不行,再后来发现是我的home中的所有<br>的二进制文件都没有办法执行,上网找,发现是我的挂在参数有问题,用了defaults,noatime 之后就好了.真是神奇.</li>
+</ol>
+<h4 id="数据库支持utf8mb4，支持emoj"><a href="#数据库支持utf8mb4，支持emoj" class="headerlink" title="数据库支持utf8mb4，支持emoj"></a>数据库支持utf8mb4，支持emoj</h4><pre><code>utf8mb4 兼容 utf8 如果数据库报这个错误，应该尝试将字段改成utf8mb4.
+General error: 1366 Incorrect string value: &apos;\xF0\x9F\x8F\xBC&apos; for column &apos;nick_name&apos; at row 1
+</code></pre><p>ssh-agent<br>to start your ssh-agent, you need to eval this command.<br>eval <code>ssh-agent -s</code></p>
+<p>又是一个贪婪匹配的故事。这次是 grep，本来想用sed搞定的，但是发现用grep就非常足够了。<br>我还会继续优化这一结果。在这方面，我还可以做的更好。有时候真得不知道打游戏能有什么作用。</p>
+<p>我一共想出了2个shell，<br>一个是利用sed的版本。<br><code>cat bookmarks_4_27_15.html | sed &#39;s/ADD_DATE=\&quot;.*\&quot;//g&#39;</code><br>另一个是利用grep的版本，但是grep的并没有达到我想实现的目的。sed的这个基本上是我想要的样子了。<br><code>grep -i -Po &quot;HREF=\&quot;.*?\&quot;&quot; bookmarks_4_27_15.html</code></p>
+<p>sudo ntpdate 202.120.2.101<br>sudo ntpdate 210.72.145.44<br>这是两个时间服务器，可以调整自己的时间。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">shell 执行字符串命令。可以这样。</div><div class="line">eval $cmd</div><div class="line"></div><div class="line">date &apos;+%Y-%m-%d&apos;</div><div class="line">httpd -S</div><div class="line"></div><div class="line">shell 脚本中的 空变量。可能是你的程序报错，所以写判断的时候需要考虑变量为空的情况。</div><div class="line">如果出现这样的情况，报的错误可能是这个。</div><div class="line">&quot;[: =: unary operator expected&quot;</div><div class="line"></div><div class="line">a=$(($i + 1))</div><div class="line"></div><div class="line">同时满足2各条件</div><div class="line"></div><div class="line">if test &quot;$dev&quot; = &quot;0&quot; -a &quot;$devok&quot; = &quot;0&quot; ; then</div><div class="line">	echo &quot;your comment&quot;</div><div class="line">	echo &quot;your comment&quot;</div><div class="line">exit 1</div><div class="line">fi</div></pre></td></tr></table></figure>
+<p>如何调试shell。<br>bash -x your.sh 就可以看你的shell的执行过程了。<br>或者在shell的开始部分增加一行，set -x。</p>
+<h4 id="crontab"><a href="#crontab" class="headerlink" title="crontab"></a>crontab</h4><p>crontab l 列出当前的任务。分 时 日 月 星期  执行命令,* 表示任意的变量;<br>在linux 下，你当前用户的crontab文件存放在 /var/spool/cron/ 目录下，这个文件以你的用户身份命名。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">00 23 * * * run-your script  每天23:00 执行你的脚本。其实我需要做的就是一行命令。</div><div class="line">10 1 * * 6,0 /usr/local/etc/rc.d/lighttpd restart  这个任务表示每周6和周日的1:10重启服务器。注意逗号，表示多个的意思。再看下面一个。</div><div class="line">* */1 * * * /usr/local/etc/rc.d/lighttpd restart  注意这个符号/ 表示每个一个小时重启一下服务器。</div></pre></td></tr></table></figure>
+<p>netstat –tunlp |grep 90</p>
+<h4 id="Linux-守护进程"><a href="#Linux-守护进程" class="headerlink" title="Linux 守护进程"></a>Linux 守护进程</h4><p>set_time_limit(0); 设置程序的执行时间,如果是0说明永久执行下去.<br>学习写守护进程,用PHP实现.或这其他的也行.<br>每个进程都有一个父进程,子进程退出,父进程能得到子进程退出的状态.<br>进程组, 每个进程都属于一个进程组,这个号码等于该进程组组长的pid.</p>
+<h4 id="配置VIM为编辑器"><a href="#配置VIM为编辑器" class="headerlink" title="配置VIM为编辑器"></a>配置VIM为编辑器</h4><p>export VISUAL=vim<br>export EDITOR=”$VISUAL”<br>git config –global core.editor “vim”</p>
+<p>函数的返回值貌似可以用 $? 变量拿到。<br>但是 return 是不支持返回非数字类型的。这是不是一个新的约束条件。<br>对于数值运算，可以实用 expr 这个工具，其实这是另一个简单的工具，可以用 man 手册来查看帮助文档。<br>shell 中有几个比较特殊的变量。<br>$0 表示当前脚本的名字<br>$1 $2 … $i  第 i 个参数<br>$# 参数的个数。<br>$?</p>
+<h4 id="git-fileMode"><a href="#git-fileMode" class="headerlink" title="git fileMode"></a>git fileMode</h4><p>这样你的git就不会官 fileMode 的变化了，默认的模式是 true 的。<br>git config core.fileMode false</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;awk&lt;/p&gt;
+&lt;p&gt;simple awk skill is necessary.&lt;/p&gt;
+&lt;p&gt;the follow command can be used to restart php-fpm in server.&lt;/p&gt;
+&lt;p&gt;ps aux | grep ‘php-f
+    
+    </summary>
+    
+      <category term="shell" scheme="https://blog.nofile.cc/categories/shell/"/>
+    
+    
+      <category term="awk" scheme="https://blog.nofile.cc/tags/awk/"/>
+    
+      <category term="sed" scheme="https://blog.nofile.cc/tags/sed/"/>
+    
+      <category term="grep" scheme="https://blog.nofile.cc/tags/grep/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>读书笔记</title>
+    <link href="https://blog.nofile.cc/posts/%E7%94%9F%E6%B4%BB/2016/08/17/note-read.html"/>
+    <id>https://blog.nofile.cc/posts/生活/2016/08/17/note-read.html</id>
+    <published>2016-08-17T09:55:10.000Z</published>
+    <updated>2016-08-17T09:55:10.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="关于阅读"><a href="#关于阅读" class="headerlink" title="关于阅读"></a>关于阅读</h4><p>如果我一直以没有时间为理由，不去读书，是不是会越来越蠢。</p>
+<h4 id="Kindle资源"><a href="#Kindle资源" class="headerlink" title="Kindle资源"></a>Kindle资源</h4><ol>
+<li>这个是一个不错的kindle资源网站。目前还比较好用。 <a href="https://www.jiumodiary.com/" target="_blank" rel="external">https://www.jiumodiary.com/</a></li>
+<li>我的百度云里面也有不少书，想要的朋友可以从这里拿。<a href="https://pan.baidu.com/s/1i4TEMsH" target="_blank" rel="external">https://pan.baidu.com/s/1i4TEMsH</a> </li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;关于阅读&quot;&gt;&lt;a href=&quot;#关于阅读&quot; class=&quot;headerlink&quot; title=&quot;关于阅读&quot;&gt;&lt;/a&gt;关于阅读&lt;/h4&gt;&lt;p&gt;如果我一直以没有时间为理由，不去读书，是不是会越来越蠢。&lt;/p&gt;
+&lt;h4 id=&quot;Kindle资源&quot;&gt;&lt;a href=&quot;#K
+    
+    </summary>
+    
+      <category term="生活" scheme="https://blog.nofile.cc/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+      <category term="阅读" scheme="https://blog.nofile.cc/tags/%E9%98%85%E8%AF%BB/"/>
+    
+      <category term="感悟" scheme="https://blog.nofile.cc/tags/%E6%84%9F%E6%82%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python 学习笔记</title>
+    <link href="https://blog.nofile.cc/posts/programming/2016/08/17/note-python.html"/>
+    <id>https://blog.nofile.cc/posts/programming/2016/08/17/note-python.html</id>
+    <published>2016-08-17T09:55:09.000Z</published>
+    <updated>2016-08-17T09:55:09.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="Python-内置函数"><a href="#Python-内置函数" class="headerlink" title="Python 内置函数"></a>Python 内置函数</h4><p><code>__call__  __getattr__</code>这两个内置函数是非常有用的,首先这两个函数是可以给类定义的.<br>只有在class中才能实现这两个函数.<code>__call__</code> 这个方法,可以让对象的实例作为一个无名函数被使用.<br>实际上是给class重定义了<code>()</code>运算符.</p>
+<p>每次通过实例访问属性,都要经过 <code>__getattributge__()</code> 如果属性没有定义,还需要访问 <code>__get_attr__()</code></p>
+<p><code>__getitem__, __setitem__, __delitem__</code> 这几个方法比较容易理解,就是对一个类的实例,<br>可以按照下标的方式进行访问. 无需过多解释.</p>
+<p>参考资料 <a href="http://www.cnblogs.com/btchenguang/archive/2012/09/17/2689146.html" target="_blank" rel="external">http://www.cnblogs.com/btchenguang/archive/2012/09/17/2689146.html</a></p>
+<p>####创建一个类的静态方法,</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">A</span><span class="params">(object)</span>:</span></div><div class="line"><span class="meta">@staticmethod</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">return</span> <span class="string">"hello world"</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">world</span><span class="params">(self)</span>:</span></div><div class="line">    <span class="keyword">return</span> <span class="string">"class instance method"</span></div></pre></td></tr></table></figure>
+<p>####静态方法</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span><span class="params">(object)</span>:</span></div><div class="line"><span class="meta">@classmethod</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">(cls)</span>:</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'class name is'</span>,cls.__name__</div><div class="line"><span class="function"><span class="keyword">def</span></span></div></pre></td></tr></table></figure>
+<h4 id="python-REGULAR-EXPRESSIOn"><a href="#python-REGULAR-EXPRESSIOn" class="headerlink" title="python REGULAR EXPRESSIOn"></a>python REGULAR EXPRESSIOn</h4><p>正则中的正向引用的问题，其实还是有一定的问题的。<br>我发现下面的引用并不能成功,不知道是为什么。所以只能放弃\1的写法，重复写前面的那个。<br>期望可以匹配出字符串中的日期。<br>这个正向引用的问题，希望以后可以有机会解决。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line">regex= <span class="string">r"[\d]&#123;4&#125;(-)[\d]&#123;1,2&#125;\1[\d]&#123;1,2&#125;"</span></div><div class="line">ans = re.findall(regex , origin_str)</div><div class="line">str = [<span class="string">'nasdfasfd2015-12-31'</span> , <span class="string">'asdlasdff2015-12-11'</span>]</div><div class="line"></div><div class="line">regex= <span class="string">r"[\d]&#123;4&#125;[-|\/|\.][\d]&#123;1,2&#125;[-|\/|\.][\d]&#123;1,2&#125;"</span></div><div class="line">ans = re.findall(regex , origin_str)</div></pre></td></tr></table></figure>
+<p><strong>file</strong> 你不知到的。</p>
+<p>如果脚本是以相对路径被执行的，返回的是“” ， 并不会返回脚本当前目录。<br>只有脚本是以绝对路径执行的时候，才会有对应的目录，这个问题需要注意。</p>
+<p>shutil 可以操作文件目录，包括复制，移动，删除。比较常用。<br>os.getcwd() 可以替代 os.path.dirname(<strong>file</strong>) ,   这种方式有时候不如前者可靠。</p>
+<p>python 变量不定义之前就使用是会报错的。</p>
+<p>我发现上面的说法并不一定正确,getcwd 这个东西要小心使用,应该认真阅读一下这个方法的文档.<br>它可能并不适用你的场景.在本质上,我需要的事这个东西.</p>
+<h4 id="Python-获取当前脚本文件路径目录"><a href="#Python-获取当前脚本文件路径目录" class="headerlink" title="Python 获取当前脚本文件路径目录"></a>Python 获取当前脚本文件路径目录</h4><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># -*- coding: cp936 -*-</div><div class="line">import sys,os</div><div class="line">#获取脚本文件的当前路径</div><div class="line">def cur_file_dir():</div><div class="line">#获取脚本路径</div><div class="line">    path = sys.path[0]</div><div class="line">    #判断为脚本文件还是py2exe编译后的文件，如果是脚本文件，则返回的是脚本的目录，如果是py2exe编译后的文件，则返回的是编译后的文件路径</div><div class="line">    if os.path.isdir(path):</div><div class="line">        return path</div><div class="line">    elif os.path.isfile(path):</div><div class="line">        return os.path.dirname(path)</div><div class="line">        #打印结果</div><div class="line">print cur_file_dir()</div></pre></td></tr></table></figure>
+<h3 id="python-excel-操作"><a href="#python-excel-操作" class="headerlink" title="python excel 操作."></a>python excel 操作.</h3><p>完成了一个python 导入到处数据的功能.用到了这两个module</p>
+<p>xlwt, xlrd .  这个仅支持 xls 类型的excel. xlsx部支持.<br>首先是安装 pip . </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo apt-get install python-dev</div><div class="line">sudo apt-get install libmysqlclient-dev</div><div class="line">sudo apt-get install python-pip</div><div class="line">pip install mysql-python</div><div class="line">pip install xlwt </div><div class="line">pip install xlrd</div></pre></td></tr></table></figure>
+<p>数据库操作记得 commit .<br>插入数据和写入数据的时候注意 转义.<br>python MySQLdb 也可以绑定变量,这样可以不用关心特殊字符. 类似PHP.</p>
+<p>全局变量的引用,应该使用global字段.<br>python 从数据库中取出中文内容乱码.<br>unicode  需要decode成utf8 的才可以,还需要其他的设置,完了需要一一验证.</p>
+<p>下面是示例代码:</p>
+<p>今天想到了python的爬虫框架。刚才查了一下，发现了scrappy这个东西。后面要找时间了解一下。<br><a href="http://www.jianshu.com/p/078ad2067419" target="_blank" rel="external">http://www.jianshu.com/p/078ad2067419</a></p>
+<h4 id="python2-7的字符编码问题"><a href="#python2-7的字符编码问题" class="headerlink" title="python2.7的字符编码问题"></a>python2.7的字符编码问题</h4><figure class="highlight"><table><tr><td class="code"><pre><div class="line">unicodedecodeerror: 'ascii' codec can't decode byte 0xef in position 0: ordinal not in range(128)</div><div class="line">import sys</div><div class="line">sys.reload()</div><div class="line">sys.setdefaultencoding("utf-8")</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;Python-内置函数&quot;&gt;&lt;a href=&quot;#Python-内置函数&quot; class=&quot;headerlink&quot; title=&quot;Python 内置函数&quot;&gt;&lt;/a&gt;Python 内置函数&lt;/h4&gt;&lt;p&gt;&lt;code&gt;__call__  __getattr__&lt;/code&gt;
+    
+    </summary>
+    
+      <category term="programming" scheme="https://blog.nofile.cc/categories/programming/"/>
+    
+    
+      <category term="Python" scheme="https://blog.nofile.cc/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PHP 学习笔记</title>
+    <link href="https://blog.nofile.cc/posts/programming/2016/08/17/note-php.html"/>
+    <id>https://blog.nofile.cc/posts/programming/2016/08/17/note-php.html</id>
+    <published>2016-08-17T09:55:08.000Z</published>
+    <updated>2016-08-17T09:55:08.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="PHP-回掉函数的使用。"><a href="#PHP-回掉函数的使用。" class="headerlink" title="PHP 回掉函数的使用。"></a>PHP 回掉函数的使用。</h4><p>这是最基本的回掉方法。<br>call_user_func_array(‘your function’,array());<br>array() is your params.</p>
+<p>刚才在文档里发现了好多东西，原来还是要自己编译才是最好的。才能够了解更多的特性。<br>./configure –help<br>其实已经包含了很多信息，只是你还不了解。<br>要编译安装，这个是很重要的一步。</p>
+<p>编译php常见的20个错误。<br><a href="http://crybit.com/20-common-php-compilation-errors-and-fix-unix/" target="_blank" rel="external">http://crybit.com/20-common-php-compilation-errors-and-fix-unix/</a></p>
+<h4 id="PHP-扩展安装-PECL"><a href="#PHP-扩展安装-PECL" class="headerlink" title="PHP 扩展安装 PECL"></a>PHP 扩展安装 PECL</h4><p>PECL is a repository for PHP Extensions, providing a directory of all known extensions<br>and hosting facilities for downloading and development of PHP extensions.<br>PECL is very important.</p>
+<p>PHP 断言的使用。需要进行一些基本都的设置才可以。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><div class="line">assert_options(ASSERT_ACTIVE, <span class="number">1</span>);</div><div class="line">assert_options(ASSERT_BAIL, <span class="number">1</span>);</div><div class="line">$a = <span class="string">'i1.23'</span>;</div><div class="line">assert(is_numeric($a));</div><div class="line"><span class="keyword">echo</span> $a;</div></pre></td></tr></table></figure>
+<h4 id="PHP-正则表达式"><a href="#PHP-正则表达式" class="headerlink" title="PHP 正则表达式."></a>PHP 正则表达式.</h4><p>preg_match 有几个关键词需要注意,一个是<br>界定符 # / 这个可以自己设置的.<br>preg_match 如果判断整个字符串的话,就要断言. 用 ^$.<br>可以带 result 参数，将匹配的内容都放在这个result数组中。这个数组的参数应该是应用类型的。<br>说到引用类型，我对这个还不是太清楚，没怎么使用过，应该熟悉一下。<br>类似的函数还有 preg_match_all() , 返回值表示是否匹配.<br><figure class="highlight php"><table><tr><td class="code"><pre><div class="line">$name = <span class="string">"hello\\\\\\\\\\\\\\\\\\\\\\\\'sas"</span>;</div><div class="line">var_dump($name);</div><div class="line">$new_name = preg_replace(<span class="string">"/\\\*/"</span>,<span class="string">""</span>,$name);</div><div class="line">var_dump($name);</div><div class="line">var_dump($new_name);</div></pre></td></tr></table></figure></p>
+<h4 id="PHP-urlencode-urldecode-rawurlencode-rawurldecode"><a href="#PHP-urlencode-urldecode-rawurlencode-rawurldecode" class="headerlink" title="PHP urlencode, urldecode, rawurlencode, rawurldecode"></a>PHP urlencode, urldecode, rawurlencode, rawurldecode</h4><p>他们之间的差别还是比较小的,差别就是对+号的处理,我建议使用 rawurldecode, 而不是<br>urldecode. 但这个改动不可以贸然,可能一起bug.<br>在最初的时候设计的时候,就要考虑这一点.</p>
+<h4 id="curl-参数"><a href="#curl-参数" class="headerlink" title="curl 参数"></a>curl 参数</h4><p>curl 带json参数,需要加上-d 参数.没有这个参数是无法访问的.<br>curl -d {goods_id:123123} “<a href="http://sss.ss.xx" target="_blank" rel="external">http://sss.ss.xx</a>“</p>
+<h4 id="PHP-array系列函数"><a href="#PHP-array系列函数" class="headerlink" title="PHP array系列函数"></a>PHP array系列函数</h4><p>下面这个函数里面包含两种用法，一种是array_walk(), 还有一种是 变量的引用。这个和c语言是很相似的。<br><figure class="highlight php"><table><tr><td class="code"><pre><div class="line">$test = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>];</div><div class="line">array_walk($test , <span class="function"><span class="keyword">function</span><span class="params">(&amp;$i)</span> </span>&#123; $i++; &#125;);</div><div class="line">var_dump($test);</div></pre></td></tr></table></figure></p>
+<h5 id="PHP魔术方法"><a href="#PHP魔术方法" class="headerlink" title="PHP魔术方法"></a>PHP魔术方法</h5><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">__construct()   构造方法,生命类对象的时候就会调用.</div><div class="line">__desctruct()   析构方法,在类对象的生命周期结束之后. 这个和垃圾回收有什么关系吗.</div><div class="line">__call()        must be public method.</div><div class="line">__callStatic()  for static class method.</div><div class="line">get_called_class()  一般是在基类中用到.基础类库中用这个方法.</div><div class="line">get_class().  得到当前类的名称.</div><div class="line">__autoload().</div><div class="line"></div><div class="line">static::class   和上面的得到同样的结果.</div><div class="line">PHP_EOL. 提高代码的可移植性. 换行符. mac windows, linux 下是不一样的.</div><div class="line">user_call_func()    这个方法是写自定义函数,利用这个方法,调用的函数会变成一个变量,所以非常灵活.</div><div class="line">user_call_func_array()  和上面的额方法类似,区别在于这里的方法的参数是数组.</div><div class="line"></div><div class="line">这些东西被统称为魔术常亮.</div><div class="line">__METHOD__    return the name of the function alongwith the class name.</div><div class="line">__FUNCTION__  just return the name of the function.</div><div class="line">__CLASS__</div><div class="line">__FILE__      return filename of current file.</div><div class="line">__LINE__      return current line number.</div><div class="line">__DIR__       equal dirname(__FILE__).</div></pre></td></tr></table></figure>
+<h4 id="PHP-SPL-方法-STANDARD-PHP-LIBRARY"><a href="#PHP-SPL-方法-STANDARD-PHP-LIBRARY" class="headerlink" title="PHP SPL 方法 STANDARD PHP LIBRARY"></a>PHP SPL 方法 STANDARD PHP LIBRARY</h4><p>PHP 中spl 开头的一些方法是做什么的,比如spl_autoload_register.<br>类似的方法还有不少,都是用来做什么的额.刚才调查了一下,确实有好多东西,这些都是PHP的高级语法,应该认真研究下,<br>用好了,可以写出高效的代码.  对这门语言,我的了解还是不够,还需要认真研究.PHP SPL ==&gt; standard PHP library.</p>
+<h3 id="PHP-XHPROF"><a href="#PHP-XHPROF" class="headerlink" title="PHP XHPROF"></a>PHP XHPROF</h3><p>XHProf是一个分层PHP性能分析工具。它报告函数级别的请求次数和各种指标，包括阻塞时间，CPU时间和内存使用情况。一个函数的开销，可细分成调用者和被调用者的开销，XHProf数据收集阶段，它记录调用次数的追踪和包容性的指标弧在动态callgraph的一个程序。它独有的数据计算的报告/后处理阶段。在数据收集时，XHProfd通过检测循环来处理递归的函数调用，并通过给递归调用中每个深度的调用一个有用的命名来避开死循环。XHProf分析报告有助于理解被执行的代码的结构，它有一个简单的HTML的用户界面（ PHP写成的）。基于浏览器的性能分析用户界面能更容易查看，或是与同行们分享成果。也能绘制调用关系图。</p>
+<h4 id="PHP-composer"><a href="#PHP-composer" class="headerlink" title="PHP composer"></a>PHP composer</h4><p><a href="http://pkg.phpcomposer.com/" target="_blank" rel="external">http://pkg.phpcomposer.com/</a></p>
+<h4 id="PHP-图像操作"><a href="#PHP-图像操作" class="headerlink" title="PHP 图像操作"></a>PHP 图像操作</h4><figure class="highlight php"><table><tr><td class="code"><pre><div class="line">session_start();</div><div class="line">header(<span class="string">"Content-type:image/png"</span>); </div><div class="line">$img_width=<span class="number">100</span>;</div><div class="line">$img_height=<span class="number">20</span>;</div><div class="line"></div><div class="line">srand(microtime()*<span class="number">100000</span>);</div><div class="line"><span class="keyword">for</span>($i=<span class="number">0</span>;$i&lt;<span class="number">4</span>;$i++)</div><div class="line">&#123;</div><div class="line">     $new_number.=dechex(rand(<span class="number">0</span>,<span class="number">15</span>));</div><div class="line">&#125;</div><div class="line"></div><div class="line">$_SESSION[check_auth]=$new_number;</div><div class="line">$new_number=imageCreate($img_width,$img_height);<span class="comment">//创建图象</span></div><div class="line">ImageColorAllocate($new_number,<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>);  <span class="comment">//设置背景色为白色</span></div><div class="line"></div><div class="line"><span class="keyword">for</span>($i=<span class="number">0</span>;$i&lt;strlen($_SESSION[check_auth]);$i++)</div><div class="line">&#123;</div><div class="line">    $font=mt_rand(<span class="number">3</span>,<span class="number">5</span>);</div><div class="line">    $x=mt_rand(<span class="number">1</span>,<span class="number">8</span>) + $img_width*$i/<span class="number">4</span>;</div><div class="line">    $y=mt_rand(<span class="number">1</span>,$img_height/<span class="number">4</span>);</div><div class="line">    $color=imageColorAllocate($new_number,mt_rand(<span class="number">0</span>,<span class="number">100</span>),mt_rand(<span class="number">0</span>,<span class="number">150</span>),mt_rand(<span class="number">0</span>,<span class="number">200</span>));<span class="comment">//设置字符颜色</span></div><div class="line">    imageString($new_number,$font,$x,$y,$_SESSION[check_auth][$i],$color);<span class="comment">//输出字符</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">ImagePng($new_number);</div><div class="line">ImageDestroy($new_number);</div></pre></td></tr></table></figure>
+<h4 id="PHP-echo-和-print的区别。"><a href="#PHP-echo-和-print的区别。" class="headerlink" title="PHP echo 和 print的区别。"></a>PHP echo 和 print的区别。</h4><p>主要掌握echo的下面这两个特性。print更多的是一个函数。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><div class="line"><span class="keyword">echo</span> <span class="string">"hello"</span>, <span class="string">"world"</span>;</div><div class="line"><span class="keyword">echo</span> <span class="string">&lt;&lt;&lt;EOT</span></div><div class="line">test</div><div class="line">EOT;</div></pre></td></tr></table></figure>
+<h4 id="PHP-SERVER-变量"><a href="#PHP-SERVER-变量" class="headerlink" title="PHP $_SERVER 变量"></a>PHP $_SERVER 变量</h4><p>PHP在命令行模式下的 $_SERVER 变量中的变量可以在shell 中 export 来设置.shell 中的变量会出现在<br>SERVER 变量中.在web环境中,要通过在服务器中设置才可以. nginx 在 fastcgi_params 中设置.</p>
+<h4 id="PHP-session-和-cookie"><a href="#PHP-session-和-cookie" class="headerlink" title="PHP session 和 cookie"></a>PHP session 和 cookie</h4><h4 id="PHP-配置"><a href="#PHP-配置" class="headerlink" title="PHP 配置"></a>PHP 配置</h4><p>那天发现我本地环境速度很慢的原因是 php-fpm.conf 中的maxchildren 数量太少了。<br>我改成static 的，然后把最大数量变成128； 一下子就不用排队了。<br>当时的现象是这样的。我看network，显示网络请求在排队，但是我完了单独访问每一个排队排<br>了很久的接口，速度都很快，所以很疑惑。</p>
+<h4 id="PHP-显示slowlog"><a href="#PHP-显示slowlog" class="headerlink" title="PHP 显示slowlog"></a>PHP 显示slowlog</h4><p>我开了php的slowlog，但是并没有出现slowlog。貌似php的slowlog并不是我理解的那样。<br>并且slowlog，我自己写了一个sleep都不会打印出slowlog。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;PHP-回掉函数的使用。&quot;&gt;&lt;a href=&quot;#PHP-回掉函数的使用。&quot; class=&quot;headerlink&quot; title=&quot;PHP 回掉函数的使用。&quot;&gt;&lt;/a&gt;PHP 回掉函数的使用。&lt;/h4&gt;&lt;p&gt;这是最基本的回掉方法。&lt;br&gt;call_user_func_
+    
+    </summary>
+    
+      <category term="programming" scheme="https://blog.nofile.cc/categories/programming/"/>
+    
+    
+      <category term="web" scheme="https://blog.nofile.cc/tags/web/"/>
+    
+      <category term="php" scheme="https://blog.nofile.cc/tags/php/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>nginx 学习笔记</title>
+    <link href="https://blog.nofile.cc/posts/nginx/2016/08/17/note-ng.html"/>
+    <id>https://blog.nofile.cc/posts/nginx/2016/08/17/note-ng.html</id>
+    <published>2016-08-17T09:55:07.000Z</published>
+    <updated>2016-08-17T09:55:07.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="nginx编译参数"><a href="#nginx编译参数" class="headerlink" title="nginx编译参数"></a>nginx编译参数</h4><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">./configure \</div><div class="line">    --prefix=/home/service/nginx \</div><div class="line">    --with-http_ssl_module \</div><div class="line">    --with-http_spdy_module \</div><div class="line">    --with-http_realip_module \</div><div class="line">    --with-http_addition_module \</div><div class="line">    --with-http_xslt_module \</div><div class="line">    --with-http_image_filter_module \</div><div class="line">    --with-http_sub_module \</div><div class="line">    --with-http_dav_module \</div><div class="line">    --with-http_flv_module \</div><div class="line">    --with-http_mp4_module \</div><div class="line">    --with-http_gunzip_module \</div><div class="line">    --with-http_gzip_static_module \</div><div class="line">    --with-http_auth_request_module \</div><div class="line">    --with-http_random_index_module \</div><div class="line">    --with-http_secure_link_module \</div><div class="line">    --with-http_degradation_module \</div><div class="line">    --with-http_stub_status_module \</div><div class="line">    --with-pcre=/root/src/pcre-8.37 \</div><div class="line">    --with-zlib=/root/src/zlib-1.2.8 \</div><div class="line">    --with-openssl=/root/src/openssl-OpenSSL_1_0_2d \</div><div class="line">    --add-module=/root/src/naxsi-0.54/naxsi_src \</div><div class="line">    --add-module=/root/src/headers-more-nginx-module-0.27 \</div><div class="line">    --add-module=/root/src/echo-nginx-module-0.58 \</div><div class="line">    --add-module=/root/src/lua-nginx-module-0.9.18rc1 \</div><div class="line">    --add-module=/root/src/redis2-nginx-module-0.12</div></pre></td></tr></table></figure>
+<h4 id="nginx-中加环境变量"><a href="#nginx-中加环境变量" class="headerlink" title="nginx 中加环境变量."></a>nginx 中加环境变量.</h4><p>fastcgi_params define_params hhh</p>
+<h4 id="nginx-配置规则"><a href="#nginx-配置规则" class="headerlink" title="nginx 配置规则"></a>nginx 配置规则</h4><ol>
+<li><p>location 写法。</p>
+</li>
+<li><p>log_format<br> nginx 的log_format , log 需要几下post参数。记得上次查问题，我只能定位到url，并不能定位<br> 到参数，这导致有些问题没有办法追查。</p>
+</li>
+</ol>
+<h4 id="nginx-和php-fpm"><a href="#nginx-和php-fpm" class="headerlink" title="nginx 和php-fpm"></a>nginx 和php-fpm</h4><h4 id="nginx-启动和重启"><a href="#nginx-启动和重启" class="headerlink" title="nginx 启动和重启"></a>nginx 启动和重启</h4><p>检测配置文件的正确性，不要加载一个又明显错误的配置文件<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">nginx -t -c /usr/nginx/conf/nginx.conf</div><div class="line">#启动  停止  或者重启 nginx 。</div><div class="line">nginx  -s reload  nginx  #重新加载配置文件</div><div class="line">pkill nginx     #停止nginx</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;nginx编译参数&quot;&gt;&lt;a href=&quot;#nginx编译参数&quot; class=&quot;headerlink&quot; title=&quot;nginx编译参数&quot;&gt;&lt;/a&gt;nginx编译参数&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;t
+    
+    </summary>
+    
+      <category term="nginx" scheme="https://blog.nofile.cc/categories/nginx/"/>
+    
+    
+      <category term="nginx" scheme="https://blog.nofile.cc/tags/nginx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MAC 使用心得</title>
+    <link href="https://blog.nofile.cc/posts/Mac/2016/08/17/note-mac.html"/>
+    <id>https://blog.nofile.cc/posts/Mac/2016/08/17/note-mac.html</id>
+    <published>2016-08-17T09:55:04.000Z</published>
+    <updated>2016-08-17T09:55:04.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="MAC-使用心得"><a href="#MAC-使用心得" class="headerlink" title="MAC 使用心得"></a>MAC 使用心得</h4><p>安装vim</p>
+<p>默认情况下，mac terminal中是带了vim 的。但是vim –version 看一下，发现是7.3版本的。<br>这个版本的vim，和mac系统的clipboard交互有点困难。如果想将vim中的内容复制出来的话，会有点<br>麻烦，这又是一个很常用的操作，所以很麻烦。查资料可以知道，7.4的vim可以支持。所以我们通过<br>安装7.4版本的vim来解决这个问题。安装方式如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">brew install vim -clipboard -xterm_clipboard --with-client-server</div><div class="line"><span class="comment">#上面的命令不能成功，出一个很奇怪的错误，所以就没有太纠结。</span></div><div class="line">brew install vim --override-system-vim</div><div class="line"><span class="comment">#通过提示可以知道，安装后的vim在下面这这个路径,我们可以通过一个简单的alias搞定。</span></div><div class="line"><span class="built_in">alias</span> v=<span class="string">'/usr/local/Cellar/vim/7.4.2152/bin/vim'</span></div></pre></td></tr></table></figure>
+<p>然后再试一下，发现不管是terminal中的vim，还是tmux中都可以看到*寄存器了。有了这个寄存器，就说明<br>我们的vim剪切板可以和clipboard之间交互了。</p>
+<p>vim backspace不能删除内容的解决方案</p>
+<p>可以通过增加配置来解决。</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><div class="line"><span class="keyword">set</span> nocompatible</div><div class="line"><span class="keyword">set</span> backspace=<span class="built_in">indent</span>,eol,start</div></pre></td></tr></table></figure>
+<h4 id="MAC编译安装php-nginx"><a href="#MAC编译安装php-nginx" class="headerlink" title="MAC编译安装php nginx"></a>MAC编译安装php nginx</h4><p>编译的过程中，很可能遇到这个问题。<br>找不到openssl的header files。<br>其实解决办法就是安装openssl。brew install openssl 。</p>
+<p>但是只是安装了也可能报这个错误。找到了下面这个帖子。来自 stackoverflow。<br>核心的是这个 </p>
+<p>brew install openssl<br>brew link openssl –force</p>
+<p>遇到其他的报错，卡主了 confiture ，基本上用brew 安装那个就可以过关了。<br>configure 过了之后，就可以make &amp;&amp; make install 了。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">If you are on Mac OS X El Capitan, Apple doesn&apos;t include openssl any more because of security problems openssl had, I have similar problem installing Passenger. brew just installs openssl itself without development headers.</div><div class="line"></div><div class="line">If you are on an older version of Mac OS X than El Capitan, you can use: xcode-select --install which installs openssl development headers as well.</div><div class="line"></div><div class="line">EDIT:</div><div class="line"></div><div class="line">Updating brew and installing openssl and force linking openssl to brew version solved my problem:</div><div class="line"></div><div class="line">$ brew update </div><div class="line">$ which openssl  </div><div class="line">/usr/bin/openssl </div><div class="line">$ brew install openssl</div><div class="line">$ brew link openssl --force </div><div class="line">$ which openssl </div><div class="line">/usr/local/bin/openssl</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;MAC-使用心得&quot;&gt;&lt;a href=&quot;#MAC-使用心得&quot; class=&quot;headerlink&quot; title=&quot;MAC 使用心得&quot;&gt;&lt;/a&gt;MAC 使用心得&lt;/h4&gt;&lt;p&gt;安装vim&lt;/p&gt;
+&lt;p&gt;默认情况下，mac terminal中是带了vim 的。但是vim
+    
+    </summary>
+    
+      <category term="Mac" scheme="https://blog.nofile.cc/categories/Mac/"/>
+    
+    
+      <category term="开发工具" scheme="https://blog.nofile.cc/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
+  
+</feed>

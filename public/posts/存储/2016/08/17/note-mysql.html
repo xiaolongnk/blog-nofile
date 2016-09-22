@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="技术笔记，leetcode学习">
+    <meta name="keyword"  content="mysql , leetcode , php , nginx , linux ,shell , python , mac , mysql索引,https,programming, awk,sed,vim,阅读,kindle,dfs,算法">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#60090">
+    <link rel="shortcut icon" href="/img/coffee.png">
+
+    <title>
+        
+          Mysql笔记｜faith&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="https://blog.nofile.cc/posts/存储/2016/08/17/note-mysql.html">
+    <link href="https://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<style>
+
+    header.intro-header{
+        background-image: url('https://img.nofile.cc/banner.jpg')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                <span class="brand-logo">
+                    faith
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/tags/">tags</a>
+                        </li>
+                        
+                    
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!--only post-->
+
+    
+        <img class="wechat-title-img" src="https://img.nofile.cc/banner.jpg">
+    
+
+<style>
+
+    header.intro-header{
+        background-image: url('https://img.nofile.cc/banner.jpg')
+    }
+
+</style>
+
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>Mysql笔记</h1>
+                    
+                    <span class="meta">
+                         作者: faith
+                         <span>
+                          日期: 2016-08-17
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#Mysql" title="Mysql">Mysql</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            Mysql笔记
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+                <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+
+                <h4 id="mysql-性能测试工具"><a href="#mysql-性能测试工具" class="headerlink" title="mysql 性能测试工具."></a>mysql 性能测试工具.</h4><p><a href="http://www.ha97.com/5182.html" target="_blank" rel="external">Mysql 自带的性能测试工具.</a></p>
+<h4 id="Mysql-索引"><a href="#Mysql-索引" class="headerlink" title="Mysql 索引"></a>Mysql 索引</h4><p>Mysql 索引</p>
+<p>Mysql 复合索引</p>
+<p><a href="http://tech.meituan.com/mysql-index.html" target="_blank" rel="external">http://tech.meituan.com/mysql-index.html</a><br>现在只会创建单索引,但是很多情况下,复合索引更有效.<br>一个表只能使用一个索引,如果单键索引和复合索引都会生效,那么mysql会选择哪个索引.<br>mysql 索引的最左选择的原则.</p>
+<p>有些情况下,优化的作用是很有限的,最好还是不要写太复杂的sql.<br>但是有一个情景,就是需要更具字表的条件去筛选结果,做分页,这种情况如何处理.<br>可以内存排序.让排序在mysql中排序比较困难.那么这个分页逻辑如何处理. </p>
+<p>Mysql join 之后的索引使用情况是怎么样的.</p>
+<p>order by 的字段是否有必要增加一个索引,如果有必要,是不是所有需要排序的字段都需要增加<br>上索引. </p>
+<p>索引是在数据库表或者视图上创建的对象，目的是为了加快对表或视图的查询的速度。<br>按照存储方式分为：聚集与非聚集索引和B树B+树的关系还是差别挺密切的,需要认真理解一下B树和B+树.</p>
+<p>MySQL如何利用索引优化ORDER BY排序语句<br>MySQL索引通常是被用于提高WHERE条件的数据行匹配或者执行联结操作时匹配其它表的数据行的搜索速度。<br>MySQL也能利用索引来快速地执行ORDER BY和GROUP BY语句的排序和分组操作。</p>
+<p>mysql一次查询只能使用一个索引。如果要对多个字段使用索引，建立复合索引。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">create table blog_pool</div><div class="line">(</div><div class="line">id bigint(20) not null auto_increment,</div><div class="line">account_id bigint(20) not null default 0 comment &apos;user id&apos;,</div><div class="line">blog_id bigint(20) not null default 0 comment &apos;blog_id&apos;,</div><div class="line">content varchar(1024) not null default 0 comment &apos;blog内容&apos;,</div><div class="line">status tinyint(2) not null default 1 comment &apos;1: 正常 -1: 删除&apos;,</div><div class="line">primary key (id),</div><div class="line">index list_blog_index (account_id,status),</div><div class="line">index single_index (account_id)</div><div class="line">)engine = Innodb , charset=utf8 , auto_increment=1;</div><div class="line"></div><div class="line">insert into blog_pool (account_id, blog_id, content) values (923232323, );</div></pre></td></tr></table></figure>
+<p>explain 显示mysql如何处理select语句以及连接表,可以帮助写出更好的查询语句和建立更好的索引.</p>
+<p>select type<br>simple 表示是简单的select ,<br>primary 表示最外面的select .<br>union 表示union语句的第二个.</p>
+<p>rows 表示mysql执行查询的行数,数值越大说明效果越不好,说明没有用好索引.</p>
+<p>using where  ,<br>要想使查询尽可能的快, 应尽可能得找出 using filesort , using temporary 的extra的值.<br>我觉这在业务重没有必要禁止连表查询，在不会带来什么压力的情况下，并没有什么必要。<br>如果两个表，都比较简单，连表也没什么不可以。什么事情都应该分开来看待，没有什么是绝对的。</p>
+<h4 id="select-按指定顺序排"><a href="#select-按指定顺序排" class="headerlink" title="select 按指定顺序排"></a>select 按指定顺序排</h4><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">select * from xxx where id in (3,1,5) order by find_in_set(id,&apos;3,1,5&apos;)</div></pre></td></tr></table></figure>
+<p>order by substring_index和order by find_in_set都可以</p>
+<h4 id="mysql-中创建用户。"><a href="#mysql-中创建用户。" class="headerlink" title="mysql 中创建用户。"></a>mysql 中创建用户。</h4><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">CREATE USER &apos;username&apos;@&apos;host&apos; IDENTIFIED BY &apos;password&apos;</div><div class="line">GRANT privileges ON databasename.tablename TO &apos;username&apos;@&apos;host&apos; </div><div class="line">GRANT ALL ON *.* TO &apos;pig&apos;@&apos;%&apos;; </div><div class="line">SET PASSWORD FOR &apos;username&apos;@&apos;host&apos; = PASSWORD(&apos;newpassword&apos;);</div><div class="line">SET PASSWORD = PASSWORD(&quot;newpassword&quot;);  如果是当前登陆用户</div></pre></td></tr></table></figure>
+<p>more detailed info see this link.  <a href="http://www.jb51.net/article/31850.htm" target="_blank" rel="external">http://www.jb51.net/article/31850.htm</a></p>
+<h4 id="mysql-中的数据类型"><a href="#mysql-中的数据类型" class="headerlink" title="mysql 中的数据类型"></a>mysql 中的数据类型</h4><pre><code>tinyint   1 字节    -128 ~ 128
+smallint  2 字节   -32768 ~ 32767
+mediumint 3字节  
+int       4字节  int(11)
+bigint    8字节
+
+unsigned   int   0～4294967295   
+int   2147483648～2147483647 
+unsigned long 0～4294967295
+long   2147483648～2147483647
+long long的最大值：9223372036854775807
+long long的最小值：-9223372036854775808
+unsigned long long的最大值：18446744073709551615
+
+__int64的最大值：9223372036854775807
+__int64的最小值：-9223372036854775808
+unsigned __int64的最大值：18446744073709551615
+</code></pre><h4 id="Mysql-decimal"><a href="#Mysql-decimal" class="headerlink" title="Mysql decimal"></a>Mysql decimal</h4><p>对于精度比较高的东西，比如money，我会用decimal类型，不会考虑float,double,因为他们容易产生误<br>差，numeric和decimal同义，numeric将自动转成decimal。<br>DECIMAL从MySQL 5.1引入，列的声明语法是DECIMAL(M,D)。在MySQL 5.1中，参量的取值范围如下：<br>·M是数字的最大数（精度）。其范围为1～65（在较旧的MySQL版本中，允许的范围是1～254），<br>M 的默认值是10。<br>·D是小数点右侧数字的数目（标度）。其范围是0～30，但不得超过M。<br>说明：float占4个字节，double占8个字节，decimail(M,D)占M+2个字节。</p>
+<p>关于decimal范围的判断，下面这是一个不错的解释。</p>
+<pre><code>Although the answers above seems correct, just a simple explanation to give you an idea of how it works.
+Suppose that your column is set to be DECIMAL(13,4). This means that the column will have a total size of 13 
+digits where 4 of these will be used for precision representation.
+So, in summary, for that column you would have a max value of: 999999999,9999
+</code></pre><p>引申 为什么floa 和 double 会丢失精度。<br>1 字节 = 8 bit。 int 一般认为是32位。最长是10位。<br>float 为4byte。<br>double 为8btye。<br>IEEE 754 标准，数的存法。</p>
+<h4 id="datetime-和-timestamp-的区别。"><a href="#datetime-和-timestamp-的区别。" class="headerlink" title="datetime 和 timestamp 的区别。"></a>datetime 和 timestamp 的区别。</h4><pre><code>ctime  datetime =&gt; now()  4字节
+mtime  timestamp ==&gt; CURRENT_TIMESTAMP  8字节
+1970 ~ 2037
+</code></pre><h4 id="MYsql-几个常用关键字"><a href="#MYsql-几个常用关键字" class="headerlink" title="MYsql 几个常用关键字"></a>MYsql 几个常用关键字</h4><p>in ，not in，exists 和 not exists 关键字。</p>
+<h4 id="Mysql-表间元素复制"><a href="#Mysql-表间元素复制" class="headerlink" title="Mysql 表间元素复制"></a>Mysql 表间元素复制</h4><figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> newtable <span class="keyword">select</span> * <span class="keyword">from</span> oldtable;</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> newTable <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> oldTable;</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> newTable (col1,col2,…….) <span class="keyword">SELECT</span> col1,col2,…… <span class="keyword">FROM</span> old_table</div></pre></td></tr></table></figure>
+<h4 id="insert-into-on-duplicate"><a href="#insert-into-on-duplicate" class="headerlink" title="insert into on duplicate"></a>insert into on duplicate</h4><figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> myblog (<span class="keyword">id</span>,title,ctime) <span class="keyword">values</span>(<span class="number">123</span>,<span class="string">'hello'</span>,<span class="keyword">now</span>()) <span class="keyword">on</span> <span class="keyword">duplicate</span> <span class="keyword">key</span> <span class="keyword">update</span> title=<span class="keyword">values</span>(title),ctime=<span class="keyword">values</span>(ctime);</div><div class="line">//将 blog_bak 表中的所有数据导入到myblog 中，表 blog 和 blog_bak 应该有同样的表结构</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> myblog( blog,ctime) <span class="keyword">select</span> * <span class="keyword">from</span> blog_bak;</div></pre></td></tr></table></figure>
+<h4 id="Mysql连表update"><a href="#Mysql连表update" class="headerlink" title="Mysql连表update"></a>Mysql连表update</h4><p>这样可以将 table_b 的 状态同步到 table_a, 本质上和 多表查询是类似的。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">update</span> table_a a , table_b b <span class="keyword">set</span> a.shop_status = b.group_status <span class="keyword">where</span> a.shop_id = b.shop_id;</div></pre></td></tr></table></figure>
+<h4 id="Mysql-索引操作-mysqldump-数据导出和数据恢复"><a href="#Mysql-索引操作-mysqldump-数据导出和数据恢复" class="headerlink" title="Mysql 索引操作 mysqldump 数据导出和数据恢复"></a>Mysql 索引操作 mysqldump 数据导出和数据恢复</h4><figure class="highlight"><table><tr><td class="code"><pre><div class="line">create index index_name on table_name (column_list);</div><div class="line">alter table table_name add index index_name (column_list);</div><div class="line"></div><div class="line">对应的，删除索引。</div><div class="line">drop index index_name on table;</div><div class="line">alter table table_name drop index index_name;</div><div class="line">清空表中的数据，包括 auto_increment 的字段都会被重置。</div><div class="line">truncate table_name;</div><div class="line"></div><div class="line"></div><div class="line">mysqldump -h localhost -ppasswd  -uroot -d database &gt; dump.sql ;            // 只导出数据库的结构</div><div class="line">mysqldump -h localhost -ppasswd  -uroot  database  &gt; dump.sql ;             // 导出数据库的结构和所有的数据</div><div class="line">mysqldump -h localhost -ppasswd  -uroot -d database tablename &gt; dump.sql ;  // 只导出表结构</div><div class="line">mysqldump -h localhost -ppasswd  -uroot  database tablename &gt; dump.sql ;    // 导出表结构和表中的数据</div><div class="line">mysql -u root -p yourpasswd -h localhost yourdb &lt; dump.sql                  // 将dump.sql 导出入到你的数据库</div></pre></td></tr></table></figure>
+<p>mysql 中的test 表的使用方法。如果你在数据表中没有数据的到处权限，但是一般的数据库中，test库中的权限你都是<br>有的，所有可以将需要的数据先导入到test中的临时表中，然后再从临时表中导出去。这样可以绕开权限控制，到处你<br>需要的数据。sql如下<br>create table xxx as select * from <code>you_target_table</code> where xxx=xxx;<br>这样 一张 test 中的临时表就创建好了，你可以用mysqldump将这个表中的数据导出去。</p>
+<h4 id="mysql时间处理函数"><a href="#mysql时间处理函数" class="headerlink" title="mysql时间处理函数"></a>mysql时间处理函数</h4><figure class="highlight"><table><tr><td class="code"><pre><div class="line">select date_format(now(),"%Y-%m-%d %H:%i:%s") now;</div><div class="line">select date_sub(now(), interval 10 day) as yesterday;       // 请不要吧 day 写成 days ，month , hour 同理。</div><div class="line">group by 多个字段 从 col_a -&gt; col_b -&gt; col_c 优先级依次降低。</div><div class="line">select * from test_table where status = 1 order by col_a desc, col_b desc, col_c asc limit 100;</div><div class="line">set @a = 100;</div><div class="line">select @a:=300;  #可以通过 select 给变量赋值,这个变量只在这个链接周期中有效。</div></pre></td></tr></table></figure>
+<h4 id="mysql-存储过程"><a href="#mysql-存储过程" class="headerlink" title="mysql 存储过程"></a>mysql 存储过程</h4><p>下面是一个简单的存储过程的例子。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><div class="line">delimiter $     # 因为 mysql 默认的 终止符是; 而这个正好是存储过程的语法，所以在编写存储过程之前，先将 delimiter 改成 $</div><div class="line">create procedure p()    # 创建存储过程</div><div class="line">begin</div><div class="line">select * from ttt;</div><div class="line">end;</div><div class="line">$</div><div class="line">delimiter ;     # 将 delimiter 改成默认的; 这样符合我们的习惯</div><div class="line">call p();       # 调用这个存储过程</div></pre></td></tr></table></figure>
+<h4 id="mysql-if"><a href="#mysql-if" class="headerlink" title="mysql if"></a>mysql if</h4><figure class="highlight sql"><table><tr><td class="code"><pre><div class="line">if(tb2.shop_click is null, 0,tb2.shop_click)</div></pre></td></tr></table></figure>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/posts/leetcode/2016/08/18/ag-385.html" data-toggle="tooltip" data-placement="top" title="leetcode Mini Parser">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/posts/前端/2016/08/17/note-web.html" data-toggle="tooltip" data-placement="top" title="前端笔记">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="posts/存储/2016/08/17/note-mysql.html"
+                        data-title="Mysql笔记"
+                        data-url="https://blog.nofile.cc/posts/存储/2016/08/17/note-mysql.html" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col" >
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#mysql-性能测试工具"><span class="toc-text">mysql 性能测试工具.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mysql-索引"><span class="toc-text">Mysql 索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#select-按指定顺序排"><span class="toc-text">select 按指定顺序排</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mysql-中创建用户。"><span class="toc-text">mysql 中创建用户。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mysql-中的数据类型"><span class="toc-text">mysql 中的数据类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mysql-decimal"><span class="toc-text">Mysql decimal</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#datetime-和-timestamp-的区别。"><span class="toc-text">datetime 和 timestamp 的区别。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MYsql-几个常用关键字"><span class="toc-text">MYsql 几个常用关键字</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mysql-表间元素复制"><span class="toc-text">Mysql 表间元素复制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#insert-into-on-duplicate"><span class="toc-text">insert into on duplicate</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mysql连表update"><span class="toc-text">Mysql连表update</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mysql-索引操作-mysqldump-数据导出和数据恢复"><span class="toc-text">Mysql 索引操作 mysqldump 数据导出和数据恢复</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mysql时间处理函数"><span class="toc-text">mysql时间处理函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mysql-存储过程"><span class="toc-text">mysql 存储过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mysql-if"><span class="toc-text">mysql if</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                <h5 class="text-center">
+                    <a href="/tags/">FEATURED TAGS</a>
+                </h5>
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Mysql" title="Mysql">Mysql</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'nofile';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <span class="text-muted"style="font-size: 14px">双击导航条返回顶部</span>
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/ou-xiao-long-89">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/5369993110">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/xiaolongnk">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; faith 2016
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://blog.nofile.cc/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    var _baId = 'b98900c3864b32c37d696546d1911856';
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?" + _baId;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- swiftype -->
+<!--<script type="text/javascript">-->
+  <!--(function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){-->
+  <!--(w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);-->
+  <!--e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);-->
+  <!--})(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');-->
+  <!--_st('install','undefined','2.0.0');-->
+<!--</script>-->
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <!--wechat title img-->
+    <img class="wechat-title-img" src="https://img.nofile.cc/icon.jpg">
+</body>
+
+</html>

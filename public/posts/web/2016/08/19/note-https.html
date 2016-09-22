@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="技术笔记，leetcode学习">
+    <meta name="keyword"  content="mysql , leetcode , php , nginx , linux ,shell , python , mac , mysql索引,https,programming, awk,sed,vim,阅读,kindle,dfs,算法">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#60090">
+    <link rel="shortcut icon" href="/img/coffee.png">
+
+    <title>
+        
+          HTTPS Your site｜faith&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="https://blog.nofile.cc/posts/web/2016/08/19/note-https.html">
+    <link href="https://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<style>
+
+    header.intro-header{
+        background-image: url('https://img.nofile.cc/banner.jpg')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                <span class="brand-logo">
+                    faith
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/tags/">tags</a>
+                        </li>
+                        
+                    
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!--only post-->
+
+    
+        <img class="wechat-title-img" src="https://img.nofile.cc/banner.jpg">
+    
+
+<style>
+
+    header.intro-header{
+        background-image: url('https://img.nofile.cc/banner.jpg')
+    }
+
+</style>
+
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>HTTPS Your site</h1>
+                    
+                    <span class="meta">
+                         作者: faith
+                         <span>
+                          日期: 2016-08-19
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#https" title="https">https</a>
+                        
+                        <a class="tag" href="/tags/#nginx" title="nginx">nginx</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            HTTPS Your site
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+                <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+
+                <h4 id="让NGINX支持SSL"><a href="#让NGINX支持SSL" class="headerlink" title="让NGINX支持SSL"></a>让NGINX支持SSL</h4><p>需要编译时支持ssl，可以sbin/nginx -V 来查看confiture参数，如果当时没有支持，那么需要重新编译安装。 编译参数前面已经有一篇文章了。<a href="https://blog.nofile.cc/posts/nginx/2016/08/17/note-ng.html">nginx编译参数</a>,也不用全加，用<code>--with-http_ssl_module</code> 就可以了。</p>
+<h4 id="生成证书"><a href="#生成证书" class="headerlink" title="生成证书"></a>生成证书</h4><p>主要参考这个<a href="https://letsencrypt.org/getting-started/" target="_blank" rel="external">letsencrypty</a>，可以生成免费证书。 生成方式也很简单，读上面的文章基本就能明白。<a href="https://certbot.eff.org/#ubuntutrusty-nginx" target="_blank" rel="external">ubuntu+nginx</a>.</p>
+<p>大致步骤如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">wget https://dl.eff.org/certbot-auto</div><div class="line">chmod a+x certbot-auto</div><div class="line">./certbot-auto</div><div class="line">./path/to/certbot-auto certonly --webroot -w /var/www/example -d example.com -d www.example.com -w /var/www/thing -d thing.is -d m.thing.is</div></pre></td></tr></table></figure>
+<p>执行完之后系统中会生成这些文件。<img src="https://img.nofile.cc/cert.jpg" alt="系统中生成的文件"></p>
+<pre><code>This command will obtain a single cert for example.com, www.example.com, thing.is, and m.thing.is; it will place files below /var/www/example to prove control of the first two domains, and under /var/www/thing for the second pair.
+</code></pre><h4 id="Automating-renewal"><a href="#Automating-renewal" class="headerlink" title="Automating renewal"></a>Automating renewal</h4><p>上面生成的证书，有效期好像是1个月，所以需要到期自己重新renewal一下。方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">./path/to/certbot-auto renew --dry-run</div><div class="line">./path/to/certbot-auto renew --quiet --no-self-upgrade</div></pre></td></tr></table></figure>
+<h4 id="配置NGINX"><a href="#配置NGINX" class="headerlink" title="配置NGINX"></a>配置NGINX</h4><p>配置就不多说了.首先需要配置2个server，监听2个端口。这样可以强制将80端口的请求重定向至443端口。https本身监听的是443端口。最主要的是ssl中间那3行。将步骤2中生成的对应key写在nginx的配置文件里。注意改成你的具体路径。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">server &#123;</div><div class="line"></div><div class="line">    listen       443;</div><div class="line">    server_name  blog.nofile.cc;</div><div class="line"></div><div class="line">    ssl                  on;</div><div class="line">    ssl_certificate      /xxxx/letsencrypt/live/yoursite/fullchain.pem;</div><div class="line">    ssl_certificate_key  /xxxx/letsencrypt/live/yoursite/privkey.pem;</div><div class="line">   </div><div class="line">     location / &#123;</div><div class="line">        #这个地方指定被访问的文件夹位置</div><div class="line">        root   /your/webroot/;</div><div class="line">        index  index.html;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">server &#123;</div><div class="line">    listen      80;</div><div class="line">    server_name blog.nofile.cc;</div><div class="line">    return 301 https://blog.nofile.cc$request_uri;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>配置好之后，重启nginx，应该就可以看到绿色的锁了。</p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/posts/leetcode/2016/08/20/ag-282.html" data-toggle="tooltip" data-placement="top" title="Expression Add Operators">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/posts/leetcode/2016/08/19/ag-08.html" data-toggle="tooltip" data-placement="top" title="String to Integer (atoi)">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="posts/web/2016/08/19/note-https.html"
+                        data-title="HTTPS Your site"
+                        data-url="https://blog.nofile.cc/posts/web/2016/08/19/note-https.html" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col" >
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#让NGINX支持SSL"><span class="toc-text">让NGINX支持SSL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#生成证书"><span class="toc-text">生成证书</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Automating-renewal"><span class="toc-text">Automating renewal</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置NGINX"><span class="toc-text">配置NGINX</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                <h5 class="text-center">
+                    <a href="/tags/">FEATURED TAGS</a>
+                </h5>
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#https" title="https">https</a>
+                        
+                          <a class="tag" href="/tags/#nginx" title="nginx">nginx</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'nofile';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <span class="text-muted"style="font-size: 14px">双击导航条返回顶部</span>
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/ou-xiao-long-89">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/5369993110">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/xiaolongnk">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; faith 2016
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://blog.nofile.cc/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    var _baId = 'b98900c3864b32c37d696546d1911856';
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?" + _baId;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- swiftype -->
+<!--<script type="text/javascript">-->
+  <!--(function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){-->
+  <!--(w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);-->
+  <!--e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);-->
+  <!--})(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');-->
+  <!--_st('install','undefined','2.0.0');-->
+<!--</script>-->
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <!--wechat title img-->
+    <img class="wechat-title-img" src="https://img.nofile.cc/icon.jpg">
+</body>
+
+</html>

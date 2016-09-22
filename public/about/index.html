@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="技术笔记，leetcode学习">
+    <meta name="keyword"  content="mysql , leetcode , php , nginx , linux ,shell , python , mac , mysql索引,https,programming, awk,sed,vim,阅读,kindle,dfs,算法">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#60090">
+    <link rel="shortcut icon" href="/img/coffee.png">
+
+    <title>
+        
+          About｜faith&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="https://blog.nofile.cc/about/">
+    <link href="https://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<style>
+
+    header.intro-header{
+        background-image: url('https://img.nofile.cc/banner.jpg')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "false" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                <span class="brand-logo">
+                    faith
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/tags/">tags</a>
+                        </li>
+                        
+                    
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+    <!-- Main Content -->
+    
+
+<!-- Page Header -->
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
+    <div class="row">
+        <header class="intro-header">
+            <div class="container">
+                <div class="site-heading text-center">
+                    <div class="about-me">
+                        <!--移动端头部显示-->
+                        <img src="https://img.nofile.cc/icon.jpg" />
+                        <h5><a href="/about/">faith</a></h5>
+                        <p>不忘初心,方能始终</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+    </div>
+<!-- Main Content -->
+<div class="container custom-haojen-container">
+    <!-- Post Container -->
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
+            <h4 id="经历"><a href="#经历" class="headerlink" title="经历"></a>经历</h4><p>2014年毕业,在美丽说,一直在HIGO这个部门，后面HIGO独立，随HIGO一起到新HIGO。 本科期间，喜欢打魔兽， 经常逃课去打游戏，学习成绩一般，能勉强过关的那种。</p>
+<p>大二接触linux，之后就再也没有丢开过，花了很多时间去折腾。从桌面开始，从fedora, 到ubuntu，到arch， 再到ubuntu。在这方面花了不少时间。</p>
+<p>觉着linux的命令行才是真正的命令行，linux桌面才是真正的桌面，虽然很不稳定，经常 崩溃又从头再来，并 且很容易出各种奇怪的问题，但当时觉着也没什么，遇到什么问题，就 去找那个问题，知道那个问题解决。比如， 有时候我折腾了一晚上，就是为了让我的 linux系统可以识别我的U盘。经常更新下显卡驱动，就搞得进不去桌面系 统，当时不太会，干脆 重装，于是又来一遍。总之，各种各样的问题，花了好多时间，但那时候的我，好像并不觉 得烦， 一遍一遍得重复，似乎还有不少乐趣。</p>
+<p>一遍遍的重复，对linux也慢慢了解了，重装系统的次数也越来越少。意识到和系统折腾其实也意义不大。 于是将更多的精力放在了写cpp上。初次见面，就是从写cpp开始的。发现写一个cpp竟然不用建工程。写一个 文件就可以了。和windows上vc6.0臃肿工程相比，在linux上竟然如此简洁，给我的那种惊喜，在哪个瞬间就 将我的兴趣俘虏了。之后，写cpp基本就在linux上了。 大学期间的算法和数据结构，基本都是在linux写的。</p>
+<p>大四的实习，宣布着我程序员职业生涯的开始。</p>
+<p>刚开始的工作，就给我分到了后端组。发现学校里的学习还是帮了我不少。 短暂的实习结束，从天津来到北京，进 入HIGO。同样是做后端，除了没怎么用过PHP，但对服务器和mysql这些 东西我基本都是熟悉的，所以进入状态也很快， 大概过了一周，我就可以熟练的写业务代码了。 在框架中编写代码，有一个缺点就是大部分代码都是模仿，所以并不 难。也没有什么挑战。 后面，需要做运营后台。和接口不同的是，这里要求界面，需要用web前端相关的。被迫要写一 些前端页面相关 的东西，刚开始做的那段时间，有一些界面，确实是不小的挑战，然后就是各种补，各种查，各种加班， 磕磕绊 绊搞出来的东西，一来长得其丑无比，二来烂的就像一坨..，三来写法落后的一逼，但是那时候我们团队没有人 擅长啊，我做出来的东西，我也觉着不太行，就勉强可以用,  当时大家的心思都在集中在客户端，后台的东西， 差不多 能用就可以了,大家也表示可以理解。 后面，有反馈，说整个页面刷新极大的影响运营效率，我才学会了ajax局部更新数 据，将一些要紧的地方更新了下。 慢慢的，我也跟着了解着，学习着前端。</p>
+<p>几乎同时，我还负责了我们推送系统的构建。当时，邻居团队的项目已经有了，直接送给了我们，因为是python做的。 我之前懂一点，于是这个项目就给我了。但其实我的当时的python水平就比helloworld水平高一点呀。但我还是很自信 的接过 来了，没关系，不会可以学吗。代码都有了，看不懂查查不就懂了。 就这样，我接手了我们的push系统。</p>
+<p>这个项目，我一直维护到今年3月份。期间除了不少问题。主要我们的APP内有聊天系统。一方面是推送系统要和聊天系统 对接，他们之间有的较多的环节,这些环节的设计上有一些误差。另一方面，大概是因为我写代码的能力不够，当时还没 有能力构建一个健壮的应用，这应该也是主要原因吧。我的推送程序经常跑着跑着自己就挂了。不过迭代了几个版本之后， 也基本趋于稳定了。</p>
+<p>其他的时间，几乎就一直是客户端发版，写一些临时的为大促准备的接口,和修bug。其实技术方面的挑战，真没什么。最大 的挑战我觉着就是事情太多，虽然都没什么技术含量，但是事情多呀，多到让你没有周末，周末在家里也不能安宁，一会又 问题，在群里@你，你就不能不看。那时候的周末，应该只比工作日好一点，好的地方就是可以在家办公。 </p>
+<p>就这样过了大概2年。7月中旬，决定辞职。2016年8月10号，离职。</p>
+<h4 id="感悟"><a href="#感悟" class="headerlink" title="感悟"></a>感悟</h4><p>最近面试，有一个感觉就是，工作了2年，其实并不一直都是成长的。前面1年感觉还好，但是第二年就很马虎了。在面试的时候，发现好多知识都很零散，没有系统，没有一个纲领，所以后面一年中，自己出了问题，自己也不怎么感觉得到，日子就是在划水。</p>
+<p>受此启发，前连天整理了下自己的<a href="http://img.nofile.cc/cs.png" target="_blank" rel="external">知识体系</a>(图一) 它并不表明我掌握了面列举的所有，但我学习的时间，基本上都是和他们有关，从另一方面来看，这也是以后发展的一个方向。不管做什么样的业务，在什么样的公司，希望自己不再迷芒,实在不知道该干什么时，可以从这个图上一点点来突破。</p>
+<p><img src="https://img.nofile.cc/cs.png" alt="图一"></p>
+
+        </div>
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-3 col-lg-offset-0
+                col-md-3 col-md-offset-0
+                col-sm-12
+                col-xs-12
+                sidebar-container
+            ">
+
+                <!-- About Me -->
+                <section class="visible-md visible-lg" style="padding: 0 18px">
+                    <div class="short-about">
+                        <!--侧边栏头像-->
+                        
+                            <img src="https://img.nofile.cc/icon.jpg" />
+                        
+                        <h5><a href="/about/">faith</a></h5>
+                        
+                            <p>不忘初心,方能始终</p>
+                        
+                        <a href="mailto:xiaolongnk@126.com">xiaolongnk@126.com</a>
+                        <hr>
+                        <!-- SNS Link 社交 -->
+                        <ul class="list-inline">
+                            
+                            
+                            
+                                <li>
+                                    <a target="_blank" href="https://www.zhihu.com/people/ou-xiao-long-89">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa  fa-stack-1x fa-inverse">知</i>
+                                        </span>
+                                    </a>
+                                </li>
+                            
+
+                            
+                                <li>
+                                    <a target="_blank" href="http://weibo.com/5369993110">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                            
+
+                            
+
+                            
+                                <li>
+                                    <a target="_blank"  href="https://github.com/xiaolongnk">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                            
+
+
+                            
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Featured Tags  标签 -->
+                
+                <section>
+                    <div class="tags">
+                        
+                        
+                        <a href="/tags/#字符串" title="字符串" rel="1">字符串</a>
+                        
+                        
+                        
+                        <a href="/tags/#算法" title="算法" rel="3">算法</a>
+                        
+                        
+                        
+                        <a href="/tags/#leetcode" title="leetcode" rel="5">leetcode</a>
+                        
+                        
+                        
+                        <a href="/tags/#atoi" title="atoi" rel="1">atoi</a>
+                        
+                        
+                        
+                        <a href="/tags/#LRU" title="LRU" rel="1">LRU</a>
+                        
+                        
+                        
+                        <a href="/tags/#有序字典" title="有序字典" rel="1">有序字典</a>
+                        
+                        
+                        
+                        <a href="/tags/#OrderedDict" title="OrderedDict" rel="1">OrderedDict</a>
+                        
+                        
+                        
+                        <a href="/tags/#dfs" title="dfs" rel="1">dfs</a>
+                        
+                        
+                        
+                        <a href="/tags/#random" title="random" rel="1">random</a>
+                        
+                        
+                        
+                        <a href="/tags/#概率" title="概率" rel="1">概率</a>
+                        
+                        
+                        
+                        <a href="/tags/#stack" title="stack" rel="1">stack</a>
+                        
+                        
+                        
+                        <a href="/tags/#python" title="python" rel="1">python</a>
+                        
+                        
+                        
+                        <a href="/tags/#数据结构" title="数据结构" rel="1">数据结构</a>
+                        
+                        
+                        
+                        <a href="/tags/#c/c++" title="c/c++" rel="1">c/c++</a>
+                        
+                        
+                        
+                        <a href="/tags/#https" title="https" rel="1">https</a>
+                        
+                        
+                        
+                        <a href="/tags/#nginx" title="nginx" rel="2">nginx</a>
+                        
+                        
+                        
+                        <a href="/tags/#programming" title="programming" rel="1">programming</a>
+                        
+                        
+                        
+                        <a href="/tags/#javascript" title="javascript" rel="1">javascript</a>
+                        
+                        
+                        
+                        <a href="/tags/#web" title="web" rel="2">web</a>
+                        
+                        
+                        
+                        <a href="/tags/#开发工具" title="开发工具" rel="2">开发工具</a>
+                        
+                        
+                        
+                        <a href="/tags/#Mysql" title="Mysql" rel="1">Mysql</a>
+                        
+                        
+                        
+                        <a href="/tags/#php" title="php" rel="1">php</a>
+                        
+                        
+                        
+                        <a href="/tags/#Python" title="Python" rel="1">Python</a>
+                        
+                        
+                        
+                        <a href="/tags/#阅读" title="阅读" rel="1">阅读</a>
+                        
+                        
+                        
+                        <a href="/tags/#感悟" title="感悟" rel="1">感悟</a>
+                        
+                        
+                        
+                        <a href="/tags/#awk" title="awk" rel="1">awk</a>
+                        
+                        
+                        
+                        <a href="/tags/#sed" title="sed" rel="1">sed</a>
+                        
+                        
+                        
+                        <a href="/tags/#grep" title="grep" rel="1">grep</a>
+                        
+                        
+                        
+                        <a href="/tags/#工程效率" title="工程效率" rel="1">工程效率</a>
+                        
+                        
+                        
+                        <a href="/tags/#Linux" title="Linux" rel="1">Linux</a>
+                        
+                        
+                        
+                        <a href="/tags/#搜索" title="搜索" rel="1">搜索</a>
+                        
+                        
+                        
+                        <a href="/tags/#VIM" title="VIM" rel="1">VIM</a>
+                        
+                        
+                        
+                        <a href="/tags/#VPN MSJNC" title="VPN MSJNC" rel="1">VPN MSJNC</a>
+                        
+                        
+                        
+                        <a href="/tags/#html" title="html" rel="1">html</a>
+                        
+                        
+                        
+                        <a href="/tags/#css" title="css" rel="1">css</a>
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+
+            </div>
+    </div>
+</div>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <span class="text-muted"style="font-size: 14px">双击导航条返回顶部</span>
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/ou-xiao-long-89">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/5369993110">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/xiaolongnk">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; faith 2016
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://blog.nofile.cc/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    var _baId = 'b98900c3864b32c37d696546d1911856';
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?" + _baId;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- swiftype -->
+<!--<script type="text/javascript">-->
+  <!--(function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){-->
+  <!--(w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);-->
+  <!--e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);-->
+  <!--})(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');-->
+  <!--_st('install','undefined','2.0.0');-->
+<!--</script>-->
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <!--wechat title img-->
+    <img class="wechat-title-img" src="https://img.nofile.cc/icon.jpg">
+</body>
+
+</html>
