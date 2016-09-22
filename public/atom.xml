@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>faith</title>
-  <subtitle>leetcode学习</subtitle>
+  <subtitle>leetcode学习笔记</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.nofile.cc/"/>
@@ -10,7 +10,7 @@
   
   <author>
     <name>faith</name>
-    <email>xiaolongnk@126.com</email>
+    
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
