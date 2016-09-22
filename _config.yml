@@ -1,5 +1,5 @@
 title: faith
-subtitle: leetcode学习
+subtitle: leetcode学习笔记
 description: 技术笔记，leetcode学习
 author: faith
 language: zh-CN
@@ -11,32 +11,6 @@ url: https://blog.nofile.cc
 root: ''
 permalink: posts/:category/:year/:month/:day/:title.html
 permalink_defaults:
-
-# custom Site settings
-# more detail check out docs
-SEOTitle: faith's blog
-#cdn: 'header-off'
-header-img: https://img.nofile.cc/banner.jpg
-email: xiaolongnk@126.com
-keyword: mysql , leetcode , php , nginx , linux ,shell , python , mac , mysql索引,https,programming, awk,sed,vim,阅读,kindle,dfs,算法
-
-# SNS settings
-# RSS:
-weibo_username: 5369993110
-zhihu_username: ou-xiao-long-89
-github_username: xiaolongnk
-facebook_username:
-linkedin_username:
-
-# Duoshuo settings
-duoshuo_username:  nofile
-# Share component is depend on Comment so we can NOT use share only.
-duoshuo_share: false                     # set to false if you want to use Comment without Sharing
-
-
-# Analytics settings
-# Baidu Analytics
-ba_track_id: b98900c3864b32c37d696546d1911856
 
 # friends
 friends:  # 友链
