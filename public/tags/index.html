@@ -1,1072 +1,246 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<!-- Head tag -->
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="技术笔记，leetcode学习">
-    <meta name="keyword"  content="mysql , leetcode , php , nginx , linux ,shell , python , mac , mysql索引,https,programming, awk,sed,vim,阅读,kindle,dfs,算法">
-    <meta name="theme-color" content="#600090">
-    <meta name="msapplication-navbutton-color" content="#600090">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#60090">
-    <link rel="shortcut icon" href="/img/coffee.png">
-
-    <title>
-        
-          tags｜faith&#39;s blog
-        
-    </title>
-
-    <link rel="canonical" href="https://blog.nofile.cc/tags/">
-    <link href="https://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/blog-style.css">
-
-    <!-- Pygments Github CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
-
-    <!-- Custom Fonts -->
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <!-- ga & ba script hoook -->
-    <script></script>
+  <meta charset="utf-8">
+  
+  <title>tags | faith | leetcode学习</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="undefined">
+  <meta name="description" content="技术笔记，leetcode学习">
+<meta property="og:type" content="website">
+<meta property="og:title" content="tags">
+<meta property="og:url" content="https://blog.nofile.cc/tags/index.html">
+<meta property="og:site_name" content="faith">
+<meta property="og:description" content="技术笔记，leetcode学习">
+<meta property="og:updated_time" content="2016-08-17T06:17:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="tags">
+<meta name="twitter:description" content="技术笔记，leetcode学习">
+  
+    <link rel="alternative" href="/atom.xml" title="faith" type="application/atom+xml">
+  
+  <meta name="summary" content="技术笔记，leetcode学习">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<style>
+<body>
+  <div id="loading" class="active"></div>
 
-    header.intro-header{
-        background-image: url('https://img.nofile.cc/banner.jpg')
-    }
-</style>
-<!-- hack iOS CSS :active style -->
-<body ontouchstart="">
-<!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "false" data-istags="false
-" data-ishome = "false" >
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">
-                <span class="brand-logo">
-                    faith
-                </span>
-                's Blog
+  <nav id="menu"  >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">faith</h5>
+        <a href="mailto:xiaolongnk@126.com" title="xiaolongnk@126.com" class="mail">xiaolongnk@126.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
+      
+          <li class="waves-block waves-effect">
+            <a href="/"  >
+              <i class="icon icon-lg icon-home"></i>
+              主页
             </a>
-        </div>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/archives"  >
+              <i class="icon icon-lg icon-archives"></i>
+              Archives
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect active">
+            <a href="/tags"  >
+              <i class="icon icon-lg icon-tags"></i>
+              Tags
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/about"  >
+              <i class="icon icon-lg icon-about"></i>
+              About
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/xiaolongnk" target="_blank" >
+              <i class="icon icon-lg icon-github"></i>
+              Github
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="http://www.weibo.com/5369993110" target="_blank" >
+              <i class="icon icon-lg icon-weibo"></i>
+              Weibo
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://nofile.cc"  >
+              <i class="icon icon-lg icon-link"></i>
+              nofile
+            </a>
+          </li>
+      
+    </ul>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <!-- Known Issue, found by Hux:
-            <nav>'s height woule be hold on by its content.
-            so, when navbar scale out, the <nav> will cover tags.
-            also mask any touch event of tags, unfortunately.
-        -->
-        <!-- /.navbar-collapse -->
-        <div id="huxblog_navbar">
-            <div class="navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="/">Home</a>
-                    </li>
-
-                    
-                        
-                        <li>
-                            <a href="/about/">About</a>
-                        </li>
-                        
-                    
-                        
-                        <li>
-                            <a href="/tags/">tags</a>
-                        </li>
-                        
-                    
-
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!-- /.container -->
-</nav>
-<script>
-    // Drop Bootstarp low-performance Navbar
-    // Use customize navbar with high-quality material design animation
-    // in high-perf jank-free CSS3 implementation
-    var $body   = document.body;
-    var $toggle = document.querySelector('.navbar-toggle');
-    var $navbar = document.querySelector('#huxblog_navbar');
-    var $collapse = document.querySelector('.navbar-collapse');
-
-    $toggle.addEventListener('click', handleMagic)
-    function handleMagic(e){
-        if ($navbar.className.indexOf('in') > 0) {
-        // CLOSE
-            $navbar.className = " ";
-            // wait until animation end.
-            setTimeout(function(){
-                // prevent frequently toggle
-                if($navbar.className.indexOf('in') < 0) {
-                    $collapse.style.height = "0px"
-                }
-            },400)
-        }else{
-        // OPEN
-            $collapse.style.height = "auto"
-            $navbar.className += " in";
-        }
-    }
-</script>
-
-    <!-- Main Content -->
-    <style>
-    .intro-header .site-heading{
-        margin:50px;
-    }
-</style>
-
-<!-- Page Header -->
-<header class="intro-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading text-center">
-                    <h1>tags</h1>
-                    <span class="subheading">leetcode学习</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <!-- 标签云 -->
-            <div id='tag_cloud' class="tags">
-                
-                    <a href="#字符串" title="字符串" rel="1">字符串</a>
-                
-                    <a href="#算法" title="算法" rel="3">算法</a>
-                
-                    <a href="#leetcode" title="leetcode" rel="5">leetcode</a>
-                
-                    <a href="#atoi" title="atoi" rel="1">atoi</a>
-                
-                    <a href="#LRU" title="LRU" rel="1">LRU</a>
-                
-                    <a href="#有序字典" title="有序字典" rel="1">有序字典</a>
-                
-                    <a href="#OrderedDict" title="OrderedDict" rel="1">OrderedDict</a>
-                
-                    <a href="#dfs" title="dfs" rel="1">dfs</a>
-                
-                    <a href="#random" title="random" rel="1">random</a>
-                
-                    <a href="#概率" title="概率" rel="1">概率</a>
-                
-                    <a href="#stack" title="stack" rel="1">stack</a>
-                
-                    <a href="#python" title="python" rel="1">python</a>
-                
-                    <a href="#数据结构" title="数据结构" rel="1">数据结构</a>
-                
-                    <a href="#c/c++" title="c/c++" rel="1">c/c++</a>
-                
-                    <a href="#https" title="https" rel="1">https</a>
-                
-                    <a href="#nginx" title="nginx" rel="2">nginx</a>
-                
-                    <a href="#programming" title="programming" rel="1">programming</a>
-                
-                    <a href="#javascript" title="javascript" rel="1">javascript</a>
-                
-                    <a href="#web" title="web" rel="2">web</a>
-                
-                    <a href="#开发工具" title="开发工具" rel="2">开发工具</a>
-                
-                    <a href="#Mysql" title="Mysql" rel="1">Mysql</a>
-                
-                    <a href="#php" title="php" rel="1">php</a>
-                
-                    <a href="#Python" title="Python" rel="1">Python</a>
-                
-                    <a href="#阅读" title="阅读" rel="1">阅读</a>
-                
-                    <a href="#感悟" title="感悟" rel="1">感悟</a>
-                
-                    <a href="#awk" title="awk" rel="1">awk</a>
-                
-                    <a href="#sed" title="sed" rel="1">sed</a>
-                
-                    <a href="#grep" title="grep" rel="1">grep</a>
-                
-                    <a href="#工程效率" title="工程效率" rel="1">工程效率</a>
-                
-                    <a href="#Linux" title="Linux" rel="1">Linux</a>
-                
-                    <a href="#搜索" title="搜索" rel="1">搜索</a>
-                
-                    <a href="#VIM" title="VIM" rel="1">VIM</a>
-                
-                    <a href="#VPN MSJNC" title="VPN MSJNC" rel="1">VPN MSJNC</a>
-                
-                    <a href="#html" title="html" rel="1">html</a>
-                
-                    <a href="#css" title="css" rel="1">css</a>
-                
-            </div>
-
-            <!-- 标签列表 -->
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="字符串">
-                    <span class="tag-text">字符串</span>
-                </span>
-                
-                 <div class="post-preview">
-                     <a href="/posts/leetcode/2016/08/20/ag-05.html">
-                        <h2 class="post-title">
-                            Longest Palindromic Substring
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="算法">
-                    <span class="tag-text">算法</span>
-                </span>
-                
-                 <div class="post-preview">
-                     <a href="/posts/leetcode/2016/08/20/ag-05.html">
-                        <h2 class="post-title">
-                            Longest Palindromic Substring
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                 <div class="post-preview">
-                     <a href="/posts/leetcode/2016/08/18/ag-146.html">
-                        <h2 class="post-title">
-                            leetcode LRU Cache
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                 <div class="post-preview">
-                     <a href="/posts/leetcode/2016/08/18/ag-385.html">
-                        <h2 class="post-title">
-                            leetcode Mini Parser
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="leetcode">
-                    <span class="tag-text">leetcode</span>
-                </span>
-                
-                 <div class="post-preview">
-                     <a href="/posts/leetcode/2016/08/20/ag-05.html">
-                        <h2 class="post-title">
-                            Longest Palindromic Substring
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                 <div class="post-preview">
-                     <a href="/posts/leetcode/2016/08/19/ag-08.html">
-                        <h2 class="post-title">
-                            String to Integer (atoi)
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                 <div class="post-preview">
-                     <a href="/posts/leetcode/2016/08/20/ag-282.html">
-                        <h2 class="post-title">
-                            Expression Add Operators
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                 <div class="post-preview">
-                     <a href="/posts/leetcode/2016/08/20/ag-382.html">
-                        <h2 class="post-title">
-                            382. Linked List Random Node
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                 <div class="post-preview">
-                     <a href="/posts/leetcode/2016/08/18/ag-385.html">
-                        <h2 class="post-title">
-                            leetcode Mini Parser
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="atoi">
-                    <span class="tag-text">atoi</span>
-                </span>
-                
-                 <div class="post-preview">
-                     <a href="/posts/leetcode/2016/08/19/ag-08.html">
-                        <h2 class="post-title">
-                            String to Integer (atoi)
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="LRU">
-                    <span class="tag-text">LRU</span>
-                </span>
-                
-                 <div class="post-preview">
-                     <a href="/posts/leetcode/2016/08/18/ag-146.html">
-                        <h2 class="post-title">
-                            leetcode LRU Cache
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="有序字典">
-                    <span class="tag-text">有序字典</span>
-                </span>
-                
-                 <div class="post-preview">
-                     <a href="/posts/leetcode/2016/08/18/ag-146.html">
-                        <h2 class="post-title">
-                            leetcode LRU Cache
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="OrderedDict">
-                    <span class="tag-text">OrderedDict</span>
-                </span>
-                
-                 <div class="post-preview">
-                     <a href="/posts/leetcode/2016/08/18/ag-146.html">
-                        <h2 class="post-title">
-                            leetcode LRU Cache
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="dfs">
-                    <span class="tag-text">dfs</span>
-                </span>
-                
-                 <div class="post-preview">
-                     <a href="/posts/leetcode/2016/08/20/ag-282.html">
-                        <h2 class="post-title">
-                            Expression Add Operators
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="random">
-                    <span class="tag-text">random</span>
-                </span>
-                
-                 <div class="post-preview">
-                     <a href="/posts/leetcode/2016/08/20/ag-382.html">
-                        <h2 class="post-title">
-                            382. Linked List Random Node
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="概率">
-                    <span class="tag-text">概率</span>
-                </span>
-                
-                 <div class="post-preview">
-                     <a href="/posts/leetcode/2016/08/20/ag-382.html">
-                        <h2 class="post-title">
-                            382. Linked List Random Node
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="stack">
-                    <span class="tag-text">stack</span>
-                </span>
-                
-                 <div class="post-preview">
-                     <a href="/posts/leetcode/2016/08/18/ag-385.html">
-                        <h2 class="post-title">
-                            leetcode Mini Parser
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="python">
-                    <span class="tag-text">python</span>
-                </span>
-                
-                 <div class="post-preview">
-                     <a href="/posts/leetcode/2016/08/18/ag-385.html">
-                        <h2 class="post-title">
-                            leetcode Mini Parser
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="数据结构">
-                    <span class="tag-text">数据结构</span>
-                </span>
-                
-                 <div class="post-preview">
-                     <a href="/posts/leetcode/2016/08/18/ag-385.html">
-                        <h2 class="post-title">
-                            leetcode Mini Parser
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="c/c++">
-                    <span class="tag-text">c/c++</span>
-                </span>
-                
-                 <div class="post-preview">
-                     <a href="/posts/c/2016/08/17/note-c.html">
-                        <h2 class="post-title">
-                            C/C++ 学习笔记
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="https">
-                    <span class="tag-text">https</span>
-                </span>
-                
-                 <div class="post-preview">
-                     <a href="/posts/web/2016/08/19/note-https.html">
-                        <h2 class="post-title">
-                            HTTPS Your site
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="nginx">
-                    <span class="tag-text">nginx</span>
-                </span>
-                
-                 <div class="post-preview">
-                     <a href="/posts/web/2016/08/19/note-https.html">
-                        <h2 class="post-title">
-                            HTTPS Your site
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                 <div class="post-preview">
-                     <a href="/posts/nginx/2016/08/17/note-ng.html">
-                        <h2 class="post-title">
-                            nginx 学习笔记
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="programming">
-                    <span class="tag-text">programming</span>
-                </span>
-                
-                 <div class="post-preview">
-                     <a href="/posts/javascript/2016/08/17/note-js.html">
-                        <h2 class="post-title">
-                            javascript 学习笔记
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="javascript">
-                    <span class="tag-text">javascript</span>
-                </span>
-                
-                 <div class="post-preview">
-                     <a href="/posts/javascript/2016/08/17/note-js.html">
-                        <h2 class="post-title">
-                            javascript 学习笔记
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="web">
-                    <span class="tag-text">web</span>
-                </span>
-                
-                 <div class="post-preview">
-                     <a href="/posts/javascript/2016/08/17/note-js.html">
-                        <h2 class="post-title">
-                            javascript 学习笔记
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                 <div class="post-preview">
-                     <a href="/posts/programming/2016/08/17/note-php.html">
-                        <h2 class="post-title">
-                            PHP 学习笔记
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="开发工具">
-                    <span class="tag-text">开发工具</span>
-                </span>
-                
-                 <div class="post-preview">
-                     <a href="/posts/Mac/2016/08/17/note-mac.html">
-                        <h2 class="post-title">
-                            MAC 使用心得
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                 <div class="post-preview">
-                     <a href="/posts/开发工具/2016/08/17/note-software.html">
-                        <h2 class="post-title">
-                            mac常用软件
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="Mysql">
-                    <span class="tag-text">Mysql</span>
-                </span>
-                
-                 <div class="post-preview">
-                     <a href="/posts/存储/2016/08/17/note-mysql.html">
-                        <h2 class="post-title">
-                            Mysql笔记
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="php">
-                    <span class="tag-text">php</span>
-                </span>
-                
-                 <div class="post-preview">
-                     <a href="/posts/programming/2016/08/17/note-php.html">
-                        <h2 class="post-title">
-                            PHP 学习笔记
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="Python">
-                    <span class="tag-text">Python</span>
-                </span>
-                
-                 <div class="post-preview">
-                     <a href="/posts/programming/2016/08/17/note-python.html">
-                        <h2 class="post-title">
-                            Python 学习笔记
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="阅读">
-                    <span class="tag-text">阅读</span>
-                </span>
-                
-                 <div class="post-preview">
-                     <a href="/posts/生活/2016/08/17/note-read.html">
-                        <h2 class="post-title">
-                            读书笔记
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="感悟">
-                    <span class="tag-text">感悟</span>
-                </span>
-                
-                 <div class="post-preview">
-                     <a href="/posts/生活/2016/08/17/note-read.html">
-                        <h2 class="post-title">
-                            读书笔记
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="awk">
-                    <span class="tag-text">awk</span>
-                </span>
-                
-                 <div class="post-preview">
-                     <a href="/posts/shell/2016/08/17/note-shell.html">
-                        <h2 class="post-title">
-                            shell 学习笔记
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="sed">
-                    <span class="tag-text">sed</span>
-                </span>
-                
-                 <div class="post-preview">
-                     <a href="/posts/shell/2016/08/17/note-shell.html">
-                        <h2 class="post-title">
-                            shell 学习笔记
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="grep">
-                    <span class="tag-text">grep</span>
-                </span>
-                
-                 <div class="post-preview">
-                     <a href="/posts/shell/2016/08/17/note-shell.html">
-                        <h2 class="post-title">
-                            shell 学习笔记
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="工程效率">
-                    <span class="tag-text">工程效率</span>
-                </span>
-                
-                 <div class="post-preview">
-                     <a href="/posts/开发工具/2016/08/17/note-software.html">
-                        <h2 class="post-title">
-                            mac常用软件
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="Linux">
-                    <span class="tag-text">Linux</span>
-                </span>
-                
-                 <div class="post-preview">
-                     <a href="/posts/Linux/2016/08/17/note-ubuntu.html">
-                        <h2 class="post-title">
-                            Ubuntu学习笔记
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="搜索">
-                    <span class="tag-text">搜索</span>
-                </span>
-                
-                 <div class="post-preview">
-                     <a href="/posts/sphinx/2016/08/17/note-sphinx.html">
-                        <h2 class="post-title">
-                            sphinx学习笔记
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="VIM">
-                    <span class="tag-text">VIM</span>
-                </span>
-                
-                 <div class="post-preview">
-                     <a href="/posts/VIM/2016/08/17/note-vim.html">
-                        <h2 class="post-title">
-                            vim 学习笔记
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="VPN MSJNC">
-                    <span class="tag-text">VPN MSJNC</span>
-                </span>
-                
-                 <div class="post-preview">
-                     <a href="/posts/VPN/2016/08/17/note-vpn.html">
-                        <h2 class="post-title">
-                            Linux VPN 配置
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="html">
-                    <span class="tag-text">html</span>
-                </span>
-                
-                 <div class="post-preview">
-                     <a href="/posts/前端/2016/08/17/note-web.html">
-                        <h2 class="post-title">
-                            前端笔记
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="css">
-                    <span class="tag-text">css</span>
-                </span>
-                
-                 <div class="post-preview">
-                     <a href="/posts/前端/2016/08/17/note-web.html">
-                        <h2 class="post-title">
-                            前端笔记
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-
-
-        </div>
-    </div>
-</div>
-
-    <!-- Footer -->
-    <!-- Footer -->
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
-                <span class="text-muted"style="font-size: 14px">双击导航条返回顶部</span>
-                <br>
-                <ul class="list-inline text-center">
-                
-                
-                
-                    <li>
-                        <a target="_blank" href="https://www.zhihu.com/people/ou-xiao-long-89">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa  fa-stack-1x fa-inverse">知</i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-                    <li>
-                        <a target="_blank" href="http://weibo.com/5369993110">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-
-                
-                    <li>
-                        <a target="_blank"  href="https://github.com/xiaolongnk">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-
-                </ul>
-                <p class="copyright text-muted">
-                    Copyright &copy; faith 2016
-                    <br>
-                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
-                    <br>
-                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
-                </p>
-
-            </div>
-        </div>
-    </div>
+    <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>faith &copy; 2016</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
 </footer>
 
-<!-- jQuery -->
-<script src="/js/jquery.min.js"></script>
+  </div>
+</div>
 
-<!-- Bootstrap Core JavaScript -->
-<script src="/js/bootstrap.min.js"></script>
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">tags</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">tags</h1>
+    <h5 class="subtitle">
+        
+            <time datetime="2016-08-17T06:15:40.000Z" itemprop="datePublished" class="page-time">
+  2016-08-17
+</time>
 
-<!-- Custom Theme JavaScript -->
-<script src="/js/blog.js"></script>
 
+        
+    </h5>
+  </div>
+</header>
 
-<!-- async load function -->
+    <div class="container body-wrap">
+      <section class="tags-wrap">
+  <h2 class="tags-title">标签</h2>
+  <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/LRU/">#LRU</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">#Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">#Mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OrderedDict/">#OrderedDict</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">#Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VIM/">#VIM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VPN-MSJNC/">#VPN MSJNC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/atoi/">#atoi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/awk/">#awk</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c-c/">#c/c++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">#css</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dfs/">#dfs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grep/">#grep</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">#html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/https/">#https</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">#javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">#leetcode</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">#nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">#php</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/programming/">#programming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">#python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/random/">#random</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sed/">#sed</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stack/">#stack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">#web</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/字符串/">#字符串</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工程效率/">#工程效率</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开发工具/">#开发工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感悟/">#感悟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/搜索/">#搜索</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">#数据结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/有序字典/">#有序字典</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/概率/">#概率</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">#算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/阅读/">#阅读</a><span class="tag-list-count">1</span></li></ul>  
+</section>
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
 <script>
-    function async(u, c) {
-      var d = document, t = 'script',
-          o = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-      o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-      s.parentNode.insertBefore(o, s);
-    }
+var BLOG_SHARE = {
+    title: "tags",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "https://blog.nofile.cc/tags/index.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
 </script>
 
-<!-- jquery.tagcloud.js -->
-<script>
-    // only load tagcloud.js in tag.html
-    if($('#tag_cloud').length !== 0){
-        async("https://blog.nofile.cc/js/jquery.tagcloud.js",function(){
-            $.fn.tagcloud.defaults = {
-                //size: {start: 1, end: 1, unit: 'em'},
-                color: {start: '#bbbbee', end: '#0085a1'},
-            };
-            $('#tag_cloud a').tagcloud();
-        })
-    }
-</script>
-
-<!--fastClick.js -->
-<script>
-    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
-        var $nav = document.querySelector("nav");
-        if($nav) FastClick.attach($nav);
-    })
-</script>
-
-<!-- Google Analytics -->
+<script src="/js/search.js"></script>
 
 
 
-<!-- Baidu Tongji -->
-
-<script>
-    var _baId = 'b98900c3864b32c37d696546d1911856';
-    // Originial
-    var _hmt = _hmt || [];
-    (function() {
-        var hm = document.createElement("script");
-        hm.src = "//hm.baidu.com/hm.js?" + _baId;
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
-</script>
 
 
-<!-- swiftype -->
-<!--<script type="text/javascript">-->
-  <!--(function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){-->
-  <!--(w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);-->
-  <!--e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);-->
-  <!--})(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');-->
-  <!--_st('install','undefined','2.0.0');-->
-<!--</script>-->
 
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-    <!--wechat title img-->
-    <img class="wechat-title-img" src="https://img.nofile.cc/icon.jpg">
+
+
 </body>
-
 </html>

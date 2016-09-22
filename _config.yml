@@ -20,9 +20,6 @@ header-img: https://img.nofile.cc/banner.jpg
 email: xiaolongnk@126.com
 keyword: mysql , leetcode , php , nginx , linux ,shell , python , mac , mysql索引,https,programming, awk,sed,vim,阅读,kindle,dfs,算法
 
-# custom end
-
-
 # SNS settings
 # RSS:
 weibo_username: 5369993110
@@ -30,13 +27,6 @@ zhihu_username: ou-xiao-long-89
 github_username: xiaolongnk
 facebook_username:
 linkedin_username:
-
-# Build settings
-anchorjs: false                        # if you want to customize anchor. check out line:181 of `post.html`
-
-
-# Disqus settings
-disqus_username:
 
 # Duoshuo settings
 duoshuo_username:  nofile
@@ -47,19 +37,6 @@ duoshuo_share: false                     # set to false if you want to use Comme
 # Analytics settings
 # Baidu Analytics
 ba_track_id: b98900c3864b32c37d696546d1911856
-# Google Analytics
-#ga_track_id:       # Format: UA-xxxxxx-xx
-#ga_domain:
-
-# Sidebar settings
-sidebar: true
-sidebar-about-description: 不忘初心,方能始终
-sidebar-avatar: https://img.nofile.cc/icon.jpg
-
-
-# Featured Tags
-featured-tags: true                     # whether or not using Feature-Tags
-featured-condition-size: 0           # A tag will be featured if the size of it is more than this condition value
 
 # friends
 friends:  # 友链
@@ -107,35 +84,4 @@ time_format: HH:mm:ss
 per_page: 20
 pagination_dir: page
 
-# Extensions
-## Plugins: https://hexo.io/plugins/
-## Themes: https://hexo.io/themes/
-theme: Anisina
-
-# Deployment
-## Docs: https://hexo.io/docs/deployment.html
-deploy:
-  type:
-  repo:
-  branch:
-
-
-# img CDN path
-#cdn-url:  # 你的CDN地址
-# Qiniu imageView2 API
-# More info http://developer.qiniu.com/code/v6/api/kodo-api/image/imageview2.html
-#clip-content: http://blog.nofile.cc/css/images/banner.jpg
-#"?imageView2/1/w/1400/h/400/interlace/1/q/90"
-#clip-avatar: http://blog.nofile.cc/css/images/banner.jpg
-#"?imageView2/2/w/300/h/300/interlace/1/q/90"
-#clip-home-post-bg: http://blog.nofile.cc/css/images/banner.jpg
-#"?imageView2/1/w/800/h/300/interlace/1/q/70"
-
-# post default images
-post-default-img: https://img.nofile.cc/banner.jpg
-post-default-img-mobile: https://img.nofile.cc/banner.jpg
-#移动端显示的图片
-
-# search api , set your custom key
-#swiftype_key:
-
+theme: indigo

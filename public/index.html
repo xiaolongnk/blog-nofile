@@ -1,1144 +1,1196 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<!-- Head tag -->
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="技术笔记，leetcode学习">
-    <meta name="keyword"  content="mysql , leetcode , php , nginx , linux ,shell , python , mac , mysql索引,https,programming, awk,sed,vim,阅读,kindle,dfs,算法">
-    <meta name="theme-color" content="#600090">
-    <meta name="msapplication-navbutton-color" content="#600090">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#60090">
-    <link rel="shortcut icon" href="/img/coffee.png">
-
-    <title>
-        
-          faith&#39;s blog
-        
-    </title>
-
-    <link rel="canonical" href="https://blog.nofile.cc/">
-    <link href="https://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/blog-style.css">
-
-    <!-- Pygments Github CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
-
-    <!-- Custom Fonts -->
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <!-- ga & ba script hoook -->
-    <script></script>
+  <meta charset="utf-8">
+  
+  <title>faith | leetcode学习</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="undefined">
+  <meta name="description" content="技术笔记，leetcode学习">
+<meta property="og:type" content="website">
+<meta property="og:title" content="faith">
+<meta property="og:url" content="https://blog.nofile.cc/index.html">
+<meta property="og:site_name" content="faith">
+<meta property="og:description" content="技术笔记，leetcode学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="faith">
+<meta name="twitter:description" content="技术笔记，leetcode学习">
+  
+    <link rel="alternative" href="/atom.xml" title="faith" type="application/atom+xml">
+  
+  <meta name="summary" content="技术笔记，leetcode学习">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<style>
+<body>
+  <div id="loading" class="active"></div>
 
-    header.intro-header{
-        background-image: url('https://img.nofile.cc/banner.jpg')
-    }
-</style>
-<!-- hack iOS CSS :active style -->
-<body ontouchstart="">
-<!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "false" data-istags="false
-" data-ishome = "true" >
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">
-                <span class="brand-logo">
-                    faith
-                </span>
-                's Blog
+  <nav id="menu"  >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">faith</h5>
+        <a href="mailto:xiaolongnk@126.com" title="xiaolongnk@126.com" class="mail">xiaolongnk@126.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
+      
+          <li class="waves-block waves-effect active">
+            <a href="/"  >
+              <i class="icon icon-lg icon-home"></i>
+              主页
             </a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <!-- Known Issue, found by Hux:
-            <nav>'s height woule be hold on by its content.
-            so, when navbar scale out, the <nav> will cover tags.
-            also mask any touch event of tags, unfortunately.
-        -->
-        <!-- /.navbar-collapse -->
-        <div id="huxblog_navbar">
-            <div class="navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="/">Home</a>
-                    </li>
-
-                    
-                        
-                        <li>
-                            <a href="/about/">About</a>
-                        </li>
-                        
-                    
-                        
-                        <li>
-                            <a href="/tags/">tags</a>
-                        </li>
-                        
-                    
-
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!-- /.container -->
-</nav>
-<script>
-    // Drop Bootstarp low-performance Navbar
-    // Use customize navbar with high-quality material design animation
-    // in high-perf jank-free CSS3 implementation
-    var $body   = document.body;
-    var $toggle = document.querySelector('.navbar-toggle');
-    var $navbar = document.querySelector('#huxblog_navbar');
-    var $collapse = document.querySelector('.navbar-collapse');
-
-    $toggle.addEventListener('click', handleMagic)
-    function handleMagic(e){
-        if ($navbar.className.indexOf('in') > 0) {
-        // CLOSE
-            $navbar.className = " ";
-            // wait until animation end.
-            setTimeout(function(){
-                // prevent frequently toggle
-                if($navbar.className.indexOf('in') < 0) {
-                    $collapse.style.height = "0px"
-                }
-            },400)
-        }else{
-        // OPEN
-            $collapse.style.height = "auto"
-            $navbar.className += " in";
-        }
-    }
-</script>
-
-    <!-- Main Content -->
-    
-
-    <style>
-
-        .custom-haojen-container .post-preview:nth-of-type(1),
-        .custom-haojen-container .post-preview-poetry:nth-of-type(1){
-            text-align: center;
-            background-repeat: no-repeat;
-            border-radius: 3px;
-            background-size: cover;
-            padding:0;
-            height: 300px;
-            display: table;
-            width: 100%;
-            background-color: rgba(0, 0, 0, 0.16);
-        }
-        /*去掉诗歌的背景图片*/
-        .custom-haojen-container .post-preview-poetry:nth-of-type(1){
-            background-image: none!important;
-            background-color: rgba(255, 248, 220, 0.5);
-        }
-
-        .custom-haojen-container .post-preview:nth-child(1) h2,
-        .custom-haojen-container .post-preview:nth-child(1) .post-meta,
-        .custom-haojen-container .post-preview:nth-child(1) .post-subtitle {
-            text-shadow: 0 0 40px rgba(0, 0, 0, 1);
-            letter-spacing: 1px;
-            color: #fff;
-            font-family: unset;
-            font-weight: 500;
-            margin-top: 0;
-            padding-left: 60px;
-            padding-right: 60px;
-        }
-
-        .custom-haojen-container .post-preview:nth-child(1) .post-meta{
-            font-size: .9em;
-            font-weight: 300;
-            margin-top: 0;
-        }
-        .custom-haojen-container .post-preview-poetry:nth-child(1) .post-subtitle{
-            letter-spacing: 6px;
-            font-size: 18px;
-            font-family: unset;
-            font-weight: 400;
-            color: rgba(0,0,0,.75)
-        }
-        /*不显示摘要*/
-        .custom-haojen-container .post-preview:nth-child(1) .post-content-preview{display: none}
-        /*只第一个显示背景图片*/
-        .custom-haojen-container .post-preview:not(:nth-child(1)){
-            background-image: none!important;
-        }
-        /*第一个分界线去掉*/
-        .custom-haojen-container hr:nth-of-type(1){
-            display: none;
-        }
-        /*主题*/
-        .custom-haojen-container .post-preview:nth-of-type(1)>a{
-            display: table-cell;
-            vertical-align: middle;
-        }
-        /*诗词标题*/
-        .custom-haojen-container .post-preview-poetry:nth-child(1) h2{
-            font-size: 35px;
-            font-family:  STKaiti;
-            color: rgba(0,0,0,.8);
-        }
-        .custom-haojen-container .post-preview-poetry:nth-of-type(1) .post-meta{
-            color: #0e2231;
-        }
-        @media (max-width: 768px)  {
-            .custom-haojen-container .post-preview:nth-child(1) {
-                height: 240px;
-            }
-            .custom-haojen-container .post-preview-poetry:nth-child(1) h2{
-                font-size: 28px!important;
-                margin-top: 0;
-            }
-            .custom-haojen-container .post-preview:nth-child(1) .post-subtitle{
-                font-size: 18px;
-                font-weight:400;
-                padding-left: 0;padding-right: 0;
-            }
-            .custom-haojen-container .post-preview:nth-of-type(1) > a{padding: 20px}
-        }
-
-        /*手机屏幕*/
-        @media (max-width: 400px){
-            .custom-haojen-container .post-preview:nth-child(1){
-                height: 195px;
-            }
-            .custom-haojen-container .post-preview-poetry:nth-child(1) h2{
-                font-size: 20px!important;
-            }
-            .custom-haojen-container .post-preview:nth-child(1) .post-subtitle{
-                font-size: 16px;
-            }
-            .custom-haojen-container .post-preview:nth-child(1) a{
-                padding: 30px 20px;
-            }
-        }
-    </style>
-
-<!-- Page Header -->
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
-    <div class="row">
-        <header class="intro-header">
-            <div class="container">
-                <div class="site-heading text-center">
-                    <div class="about-me">
-                        <!--移动端头部显示-->
-                        <img src="https://img.nofile.cc/icon.jpg" />
-                        <h5><a href="/about/">faith</a></h5>
-                        <p>不忘初心,方能始终</p>
-                    </div>
-                </div>
-            </div>
-        </header>
-    </div>
-    </div>
-<!-- Main Content -->
-<div class="container custom-haojen-container">
-    <!-- Post Container -->
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
-            <!-- Main Content -->
-
-
-    
-        <div class="post-preview " style="background-image: url('https://img.nofile.cc/banner.jpg')">
-    <a href="/posts/leetcode/2016/08/20/ag-382.html">
-        <h2 class="post-title">
-            382. Linked List Random Node
-        </h2>
-        <p class="post-meta">
-            2016-08-20
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                382. Linked List Random NodeGiven a singly linked list, return a random node&apos;s value from the linked list. Each node must have the same probab...
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-    
-        <div class="post-preview " style="background-image: url('https://img.nofile.cc/banner.jpg')">
-    <a href="/posts/leetcode/2016/08/20/ag-05.html">
-        <h2 class="post-title">
-            Longest Palindromic Substring
-        </h2>
-        <p class="post-meta">
-            2016-08-20
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                Longest Palindromic SubstringGiven a string S, find the longest palindromic substring in S. You may assume that the maximum length of S is 1000, an...
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-    
-        <div class="post-preview " style="background-image: url('https://img.nofile.cc/banner.jpg')">
-    <a href="/posts/leetcode/2016/08/20/ag-282.html">
-        <h2 class="post-title">
-            Expression Add Operators
-        </h2>
-        <p class="post-meta">
-            2016-08-20
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                282. Expression Add OperatorsGiven a string that contains only digits 0-9 and a target value, return all possibilities to add binary operators (not...
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-    
-        <div class="post-preview " style="background-image: url('https://img.nofile.cc/banner.jpg')">
-    <a href="/posts/web/2016/08/19/note-https.html">
-        <h2 class="post-title">
-            HTTPS Your site
-        </h2>
-        <p class="post-meta">
-            2016-08-19
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                让NGINX支持SSL需要编译时支持ssl，可以sbin/nginx -V 来查看confiture参数，如果当时没有支持，那么需要重新编译安装。 编译参数前面已经有一篇文章了。nginx编译参数,也不用全加，用--with-http_ssl_module 就可以了。
-生成证书主要参考这个le...
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-    
-        <div class="post-preview " style="background-image: url('https://img.nofile.cc/banner.jpg')">
-    <a href="/posts/leetcode/2016/08/19/ag-08.html">
-        <h2 class="post-title">
-            String to Integer (atoi)
-        </h2>
-        <p class="post-meta">
-            2016-08-19
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                String to Integer (atoi)implement atoi to convert a string to an integer.
-Hint: Carefully consider all possible input cases. If you want a challeng...
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-    
-        <div class="post-preview " style="background-image: url('https://img.nofile.cc/banner.jpg')">
-    <a href="/posts/leetcode/2016/08/18/ag-146.html">
-        <h2 class="post-title">
-            leetcode LRU Cache
-        </h2>
-        <p class="post-meta">
-            2016-08-18
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                LRU CacheDesign and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: get and set.
-get(ke...
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-    
-        <div class="post-preview " style="background-image: url('https://img.nofile.cc/banner.jpg')">
-    <a href="/posts/leetcode/2016/08/18/ag-385.html">
-        <h2 class="post-title">
-            leetcode Mini Parser
-        </h2>
-        <p class="post-meta">
-            2016-08-18
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                Mini ParserGiven a nested list of integers represented as a string, implement a parser to deserialize it.
-Each element is either an integer, or a l...
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-    
-        <div class="post-preview " style="background-image: url('https://img.nofile.cc/banner.jpg')">
-    <a href="/posts/存储/2016/08/17/note-mysql.html">
-        <h2 class="post-title">
-            Mysql笔记
-        </h2>
-        <p class="post-meta">
-            2016-08-17
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                mysql 性能测试工具.Mysql 自带的性能测试工具.
-Mysql 索引Mysql 索引
-Mysql 复合索引
-http://tech.meituan.com/mysql-index.html现在只会创建单索引,但是很多情况下,复合索引更有效.一个表只能使用一个索引,如果单键索引和复合索引...
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-    
-        <div class="post-preview " style="background-image: url('https://img.nofile.cc/banner.jpg')">
-    <a href="/posts/前端/2016/08/17/note-web.html">
-        <h2 class="post-title">
-            前端笔记
-        </h2>
-        <p class="post-meta">
-            2016-08-17
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                marginmargin: 的4个参数。up ,right, down , left;如果只有一个参数，那么表示4个都是n px。可以是1–4个参数。
-some input typeradio, checkbox , button, 他们都有对应的时间，可以在里面添加对应的 函数。可以带参数的...
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-    
-        <div class="post-preview " style="background-image: url('https://img.nofile.cc/banner.jpg')">
-    <a href="/posts/VPN/2016/08/17/note-vpn.html">
-        <h2 class="post-title">
-            Linux VPN 配置
-        </h2>
-        <p class="post-meta">
-            2016-08-17
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                ubuntu14.04 安装vpn这个是最正确的教程，没有之一。http://mad-scientist.us/juniper.html下面是一个简单的总结
-sudo apt-get install libstdc++6:i386 lib32z1 lib32ncurses5 libxext6:...
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-    
-        <div class="post-preview " style="background-image: url('https://img.nofile.cc/banner.jpg')">
-    <a href="/posts/VIM/2016/08/17/note-vim.html">
-        <h2 class="post-title">
-            vim 学习笔记
-        </h2>
-        <p class="post-meta">
-            2016-08-17
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                vim的几个常用的插件。
-
-
-插件
-说明
-
-
-
-
-ctags
-tags 的标签
-
-
-vim-ariline
-彩色 的状态栏
-
-
-nerdtree
-一个文件管理器
-
-
-gittur
-git集成插件,可以显示修改了的内容
-
-
-bundle
-插件管理
-
-
-vim-markdown
-支持markdow...
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-    
-        <div class="post-preview " style="background-image: url('https://img.nofile.cc/banner.jpg')">
-    <a href="/posts/Linux/2016/08/17/note-ubuntu.html">
-        <h2 class="post-title">
-            Ubuntu学习笔记
-        </h2>
-        <p class="post-meta">
-            2016-08-17
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                制作 ubuntu 镜像sudo dd if=/home/your.iso of=/dev/sdb
-安装 fcitx 搜狗输入法。
-
-确保你的语言包是全的。
-安装这个语言包。http://pinyin.sogou.com/linux/
-按照这个做 http://jingyan.baidu.co...
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-    
-        <div class="post-preview " style="background-image: url('https://img.nofile.cc/banner.jpg')">
-    <a href="/posts/sphinx/2016/08/17/note-sphinx.html">
-        <h2 class="post-title">
-            sphinx学习笔记
-        </h2>
-        <p class="post-meta">
-            2016-08-17
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                sphinx实践用shpinx实现一个搜索相关的小项目
-
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-    
-        <div class="post-preview " style="background-image: url('https://img.nofile.cc/banner.jpg')">
-    <a href="/posts/开发工具/2016/08/17/note-software.html">
-        <h2 class="post-title">
-            mac常用软件
-        </h2>
-        <p class="post-meta">
-            2016-08-17
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                charles APP代理软件charles 破解。我的link。 http://pan.baidu.com/s/1i4UUbOh
-Dash非常便捷的API手册，方便查询。
-PhpStormPHP 开发的好帮手，可以帮你避免一些低级错误。
-WebStorm和Phpstorm是同一个公司开发的，...
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-    
-        <div class="post-preview " style="background-image: url('https://img.nofile.cc/banner.jpg')">
-    <a href="/posts/shell/2016/08/17/note-shell.html">
-        <h2 class="post-title">
-            shell 学习笔记
-        </h2>
-        <p class="post-meta">
-            2016-08-17
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                awk
-simple awk skill is necessary.
-the follow command can be used to restart php-fpm in server.
-ps aux | grep ‘php-fpm’ | awk ‘{print $1}’ | xargs ...
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-    
-        <div class="post-preview " style="background-image: url('https://img.nofile.cc/banner.jpg')">
-    <a href="/posts/生活/2016/08/17/note-read.html">
-        <h2 class="post-title">
-            读书笔记
-        </h2>
-        <p class="post-meta">
-            2016-08-17
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                关于阅读如果我一直以没有时间为理由，不去读书，是不是会越来越蠢。
-Kindle资源
-这个是一个不错的kindle资源网站。目前还比较好用。 https://www.jiumodiary.com/
-我的百度云里面也有不少书，想要的朋友可以从这里拿。https://pan.baidu.com/s/...
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-    
-        <div class="post-preview " style="background-image: url('https://img.nofile.cc/banner.jpg')">
-    <a href="/posts/programming/2016/08/17/note-python.html">
-        <h2 class="post-title">
-            Python 学习笔记
-        </h2>
-        <p class="post-meta">
-            2016-08-17
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                Python 内置函数__call__  __getattr__这两个内置函数是非常有用的,首先这两个函数是可以给类定义的.只有在class中才能实现这两个函数.__call__ 这个方法,可以让对象的实例作为一个无名函数被使用.实际上是给class重定义了()运算符.
-每次通过实例访问属性,...
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-    
-        <div class="post-preview " style="background-image: url('https://img.nofile.cc/banner.jpg')">
-    <a href="/posts/programming/2016/08/17/note-php.html">
-        <h2 class="post-title">
-            PHP 学习笔记
-        </h2>
-        <p class="post-meta">
-            2016-08-17
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                PHP 回掉函数的使用。这是最基本的回掉方法。call_user_func_array(‘your function’,array());array() is your params.
-刚才在文档里发现了好多东西，原来还是要自己编译才是最好的。才能够了解更多的特性。./configure –h...
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-    
-        <div class="post-preview " style="background-image: url('https://img.nofile.cc/banner.jpg')">
-    <a href="/posts/nginx/2016/08/17/note-ng.html">
-        <h2 class="post-title">
-            nginx 学习笔记
-        </h2>
-        <p class="post-meta">
-            2016-08-17
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                nginx编译参数./configure \    --prefix=/home/service/nginx \    --with-http_ssl_module \    --with-http_spdy_module \    --with-http_realip_module \   ...
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-    
-        <div class="post-preview " style="background-image: url('https://img.nofile.cc/banner.jpg')">
-    <a href="/posts/Mac/2016/08/17/note-mac.html">
-        <h2 class="post-title">
-            MAC 使用心得
-        </h2>
-        <p class="post-meta">
-            2016-08-17
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                MAC 使用心得安装vim
-默认情况下，mac terminal中是带了vim 的。但是vim –version 看一下，发现是7.3版本的。这个版本的vim，和mac系统的clipboard交互有点困难。如果想将vim中的内容复制出来的话，会有点麻烦，这又是一个很常用的操作，所以很麻烦。查资...
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-
-<!-- 翻页 pager -->
-
-<ul class="pager">
-    
-    
-        <li class="next">
-            <a href="/page/2/">Older Posts &rarr;</a>
-        </li>
-    
-</ul>
-
-
-        </div>
-    <!-- Sidebar Container -->
-            <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
-
-                <!-- About Me -->
-                <section class="visible-md visible-lg" style="padding: 0 18px">
-                    <div class="short-about">
-                        <!--侧边栏头像-->
-                        
-                            <img src="https://img.nofile.cc/icon.jpg" />
-                        
-                        <h5><a href="/about/">faith</a></h5>
-                        
-                            <p>不忘初心,方能始终</p>
-                        
-                        <a href="mailto:xiaolongnk@126.com">xiaolongnk@126.com</a>
-                        <hr>
-                        <!-- SNS Link 社交 -->
-                        <ul class="list-inline">
-                            
-                            
-                            
-                                <li>
-                                    <a target="_blank" href="https://www.zhihu.com/people/ou-xiao-long-89">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa  fa-stack-1x fa-inverse">知</i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-
-                            
-                                <li>
-                                    <a target="_blank" href="http://weibo.com/5369993110">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-
-                            
-
-                            
-                                <li>
-                                    <a target="_blank"  href="https://github.com/xiaolongnk">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-
-
-                            
-                        </ul>
-                    </div>
-                </section>
-
-                <!-- Featured Tags  标签 -->
-                
-                <section>
-                    <div class="tags">
-                        
-                        
-                        <a href="/tags/#字符串" title="字符串" rel="1">字符串</a>
-                        
-                        
-                        
-                        <a href="/tags/#算法" title="算法" rel="3">算法</a>
-                        
-                        
-                        
-                        <a href="/tags/#leetcode" title="leetcode" rel="5">leetcode</a>
-                        
-                        
-                        
-                        <a href="/tags/#atoi" title="atoi" rel="1">atoi</a>
-                        
-                        
-                        
-                        <a href="/tags/#LRU" title="LRU" rel="1">LRU</a>
-                        
-                        
-                        
-                        <a href="/tags/#有序字典" title="有序字典" rel="1">有序字典</a>
-                        
-                        
-                        
-                        <a href="/tags/#OrderedDict" title="OrderedDict" rel="1">OrderedDict</a>
-                        
-                        
-                        
-                        <a href="/tags/#dfs" title="dfs" rel="1">dfs</a>
-                        
-                        
-                        
-                        <a href="/tags/#random" title="random" rel="1">random</a>
-                        
-                        
-                        
-                        <a href="/tags/#概率" title="概率" rel="1">概率</a>
-                        
-                        
-                        
-                        <a href="/tags/#stack" title="stack" rel="1">stack</a>
-                        
-                        
-                        
-                        <a href="/tags/#python" title="python" rel="1">python</a>
-                        
-                        
-                        
-                        <a href="/tags/#数据结构" title="数据结构" rel="1">数据结构</a>
-                        
-                        
-                        
-                        <a href="/tags/#c/c++" title="c/c++" rel="1">c/c++</a>
-                        
-                        
-                        
-                        <a href="/tags/#https" title="https" rel="1">https</a>
-                        
-                        
-                        
-                        <a href="/tags/#nginx" title="nginx" rel="2">nginx</a>
-                        
-                        
-                        
-                        <a href="/tags/#programming" title="programming" rel="1">programming</a>
-                        
-                        
-                        
-                        <a href="/tags/#javascript" title="javascript" rel="1">javascript</a>
-                        
-                        
-                        
-                        <a href="/tags/#web" title="web" rel="2">web</a>
-                        
-                        
-                        
-                        <a href="/tags/#开发工具" title="开发工具" rel="2">开发工具</a>
-                        
-                        
-                        
-                        <a href="/tags/#Mysql" title="Mysql" rel="1">Mysql</a>
-                        
-                        
-                        
-                        <a href="/tags/#php" title="php" rel="1">php</a>
-                        
-                        
-                        
-                        <a href="/tags/#Python" title="Python" rel="1">Python</a>
-                        
-                        
-                        
-                        <a href="/tags/#阅读" title="阅读" rel="1">阅读</a>
-                        
-                        
-                        
-                        <a href="/tags/#感悟" title="感悟" rel="1">感悟</a>
-                        
-                        
-                        
-                        <a href="/tags/#awk" title="awk" rel="1">awk</a>
-                        
-                        
-                        
-                        <a href="/tags/#sed" title="sed" rel="1">sed</a>
-                        
-                        
-                        
-                        <a href="/tags/#grep" title="grep" rel="1">grep</a>
-                        
-                        
-                        
-                        <a href="/tags/#工程效率" title="工程效率" rel="1">工程效率</a>
-                        
-                        
-                        
-                        <a href="/tags/#Linux" title="Linux" rel="1">Linux</a>
-                        
-                        
-                        
-                        <a href="/tags/#搜索" title="搜索" rel="1">搜索</a>
-                        
-                        
-                        
-                        <a href="/tags/#VIM" title="VIM" rel="1">VIM</a>
-                        
-                        
-                        
-                        <a href="/tags/#VPN MSJNC" title="VPN MSJNC" rel="1">VPN MSJNC</a>
-                        
-                        
-                        
-                        <a href="/tags/#html" title="html" rel="1">html</a>
-                        
-                        
-                        
-                        <a href="/tags/#css" title="css" rel="1">css</a>
-                        
-                        
-                    </div>
-                </section>
-                
-
-                
-
-            </div>
-    </div>
-</div>
-
-
-    <!-- Footer -->
-    <!-- Footer -->
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
-                <span class="text-muted"style="font-size: 14px">双击导航条返回顶部</span>
-                <br>
-                <ul class="list-inline text-center">
-                
-                
-                
-                    <li>
-                        <a target="_blank" href="https://www.zhihu.com/people/ou-xiao-long-89">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa  fa-stack-1x fa-inverse">知</i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-                    <li>
-                        <a target="_blank" href="http://weibo.com/5369993110">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-
-                
-                    <li>
-                        <a target="_blank"  href="https://github.com/xiaolongnk">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-
-                </ul>
-                <p class="copyright text-muted">
-                    Copyright &copy; faith 2016
-                    <br>
-                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
-                    <br>
-                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
-                </p>
-
-            </div>
-        </div>
-    </div>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/archives"  >
+              <i class="icon icon-lg icon-archives"></i>
+              Archives
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/tags"  >
+              <i class="icon icon-lg icon-tags"></i>
+              Tags
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/about"  >
+              <i class="icon icon-lg icon-about"></i>
+              About
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/xiaolongnk" target="_blank" >
+              <i class="icon icon-lg icon-github"></i>
+              Github
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="http://www.weibo.com/5369993110" target="_blank" >
+              <i class="icon icon-lg icon-weibo"></i>
+              Weibo
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://nofile.cc"  >
+              <i class="icon icon-lg icon-link"></i>
+              nofile
+            </a>
+          </li>
+      
+    </ul>
+
+    <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>faith &copy; 2016</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
 </footer>
 
-<!-- jQuery -->
-<script src="/js/jquery.min.js"></script>
+  </div>
+</div>
 
-<!-- Bootstrap Core JavaScript -->
-<script src="/js/bootstrap.min.js"></script>
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">faith</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">faith</h1>
+    <h5 class="subtitle">
+        
+        leetcode学习
+        
+    </h5>
+  </div>
+</header>
 
-<!-- Custom Theme JavaScript -->
-<script src="/js/blog.js"></script>
+    <div class="container body-wrap">
+      <ul class="post-list">
+  
+    <li class="post-list-item">
+        <article id="post-ag-382"
+  class="article article-type-post" itemprop="blogPost">
+     
 
 
-<!-- async load function -->
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/leetcode/2016/08/20/ag-382.html">382. Linked List Random Node</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-08-20T11:07:00.000Z" itemprop="datePublished" class="post-time">
+  2016-08-20
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/leetcode/">leetcode</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+            382. Linked List Random Node    Given a singly linked list, return a random node&apos;s value from the linked list. Each node must have the same probability of being chosen.
+Follow up:
+What if the linked list is extremely large and its length is unknown to you? Could you solve this efficiently w
+    
+    
+        <a href="/posts/leetcode/2016/08/20/ag-382.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/random/">random</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/概率/">概率</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-ag-05"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/leetcode/2016/08/20/ag-05.html">Longest Palindromic Substring</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-08-20T11:06:00.000Z" itemprop="datePublished" class="post-time">
+  2016-08-20
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/leetcode/">leetcode</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+            Longest Palindromic Substring    Given a string S, find the longest palindromic substring in S. You may assume that the maximum length of S is 1000, and there exists one unique longest palindromic substring.
+     分析  看到了将先将原字符串处理成带 # 的方式，觉着这样处理方便一些。这样处理之后，最长的回文子串一定是关于 # 中心对称的。所以在我们的算法中，只要对每一个字符j
+    
+    
+        <a href="/posts/leetcode/2016/08/20/ag-05.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串/">字符串</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-ag-282"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/leetcode/2016/08/20/ag-282.html">Expression Add Operators</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-08-20T11:06:00.000Z" itemprop="datePublished" class="post-time">
+  2016-08-20
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/leetcode/">leetcode</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+            282. Expression Add Operators    Given a string that contains only digits 0-9 and a target value, return all possibilities to add binary operators (not unary) +, -, or * between the digits so they evaluate to the target value.
+
+Examples: 
+&quot;123&quot;, 6 -&gt; [&quot;1+2+3&quot;, &quot;1*2*3&
+    
+    
+        <a href="/posts/leetcode/2016/08/20/ag-282.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dfs/">dfs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-note-https"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/web/2016/08/19/note-https.html">HTTPS Your site</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-08-19T08:54:00.000Z" itemprop="datePublished" class="post-time">
+  2016-08-19
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/web/">web</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           让NGINX支持SSL  需要编译时支持ssl，可以sbin/nginx -V 来查看confiture参数，如果当时没有支持，那么需要重新编译安装。 编译参数前面已经有一篇文章了。 nginx编译参数 ,也不用全加，用 --with-http_ssl_module  就可以了。 
+   生成证书  主要参考这个 letsencrypty ，可以生成免费证书。 生成方式也很简单，读上面的文章基本就能明白。 ubuntu+nginx . 
+ 大致步骤如下： 
+      wget https://dl.eff.org/certbot-auto  chmod a+x certbot-auto
+    
+    
+        <a href="/posts/web/2016/08/19/note-https.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/https/">https</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-ag-08"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/leetcode/2016/08/19/ag-08.html">String to Integer (atoi)</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-08-19T03:27:00.000Z" itemprop="datePublished" class="post-time">
+  2016-08-19
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/leetcode/">leetcode</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           String to Integer (atoi)  implement atoi to convert a string to an integer. 
+  Hint : Carefully consider all possible input cases. If you want a challenge, please do not see below and ask yourself what are the possible input cases. 
+  Notes : It is intended for this problem to be specified vaguel
+    
+    
+        <a href="/posts/leetcode/2016/08/19/ag-08.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/atoi/">atoi</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-ag-146"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/leetcode/2016/08/18/ag-146.html">leetcode LRU Cache</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-08-18T15:29:00.000Z" itemprop="datePublished" class="post-time">
+  2016-08-18
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/leetcode/">leetcode</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           LRU Cache  Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: get and set. 
+ get(key) - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1. set(key, value) - Set or insert the v
+    
+    
+        <a href="/posts/leetcode/2016/08/18/ag-146.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LRU/">LRU</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OrderedDict/">OrderedDict</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/有序字典/">有序字典</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-ag-385"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/leetcode/2016/08/18/ag-385.html">leetcode Mini Parser</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-08-18T15:03:00.000Z" itemprop="datePublished" class="post-time">
+  2016-08-18
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/leetcode/">leetcode</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           Mini Parser  Given a nested list of integers represented as a string, implement a parser to deserialize it. 
+ Each element is either an integer, or a list – whose elements may also be integers or other lists. 
+ Note: You may assume that the string is well-formed: 
+ String is non-empty. String doe
+    
+    
+        <a href="/posts/leetcode/2016/08/18/ag-385.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/stack/">stack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-note-mysql"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/存储/2016/08/17/note-mysql.html">Mysql笔记</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-08-17T10:24:30.000Z" itemprop="datePublished" class="post-time">
+  2016-08-17
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/存储/">存储</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           mysql 性能测试工具.   Mysql 自带的性能测试工具.  
+   Mysql 索引  Mysql 索引 
+ Mysql 复合索引 
+  http://tech.meituan.com/mysql-index.html  现在只会创建单索引,但是很多情况下,复合索引更有效. 一个表只能使用一个索引,如果单键索引和复合索引都会生效,那么mysql会选择哪个索引. mysql 索引的最左选择的原则. 
+ 有些情况下,优化的作用是很有限的,最好还是不要写太复杂的sql. 但是有一个情景,就是需要更具字表的条件去筛选结果,做分页,这种情况如何处理. 可以内存排序.让排序在mysql中排序
+    
+    
+        <a href="/posts/存储/2016/08/17/note-mysql.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mysql/">Mysql</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-note-web"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/前端/2016/08/17/note-web.html">前端笔记</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-08-17T09:55:18.000Z" itemprop="datePublished" class="post-time">
+  2016-08-17
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           margin  margin: 的4个参数。up ,right, down , left; 如果只有一个参数，那么表示4个都是n px。可以是1–4个参数。 
+   some input type  radio, checkbox , button, 他们都有对应的时间，可以在里面添加对应的 函数。可以带参数的。 checkbox 也可以写成数组。 name=’chk[]’  $_REQUEST [‘chk’] 取值的方式是这样的。 
+   fontawesome  学习两个前端页面会使用到的js. 
+  https://www.woothemes.com/flexslider/   这
+    
+    
+        <a href="/posts/前端/2016/08/17/note-web.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html/">html</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-note-vpn"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/VPN/2016/08/17/note-vpn.html">Linux VPN 配置</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-08-17T09:55:17.000Z" itemprop="datePublished" class="post-time">
+  2016-08-17
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/VPN/">VPN</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           ubuntu14.04 安装vpn  这个是最正确的教程，没有之一。  http://mad-scientist.us/juniper.html  下面是一个简单的总结 
+      sudo apt-get install libstdc++6:i386 lib32z1 lib32ncurses5 libxext6:i386 libxrender1:i386 libxtst6:i386 libxi6:i386  sudo apt-get install openjdk-7-jre icedtea-7-plugin openjdk-7-jre:i386  sudo apt-get ins
+    
+    
+        <a href="/posts/VPN/2016/08/17/note-vpn.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VPN-MSJNC/">VPN MSJNC</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-note-vim"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/VIM/2016/08/17/note-vim.html">vim 学习笔记</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-08-17T09:55:16.000Z" itemprop="datePublished" class="post-time">
+  2016-08-17
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/VIM/">VIM</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           vim的几个常用的插件。  
+ 
+ 
+ 插件 
+ 说明 
+ 
+ 
+ 
+ 
+ ctags 
+ tags 的标签 
+ 
+ 
+ vim-ariline 
+ 彩色 的状态栏 
+ 
+ 
+ nerdtree 
+ 一个文件管理器 
+ 
+ 
+ gittur 
+ git集成插件,可以显示修改了的内容 
+ 
+ 
+ bundle 
+ 插件管理 
+ 
+ 
+ vim-markdown 
+ 支持markdown的语法 
+ 
+ 
+ 
+   VIMSCRIPT  下面是一些简单的vimscript内容。 
+      vim 中定义变量要用    let a=123  空格并不能影响效果，这一点和shell并不一样. 
+    
+    
+        <a href="/posts/VIM/2016/08/17/note-vim.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VIM/">VIM</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-note-ubuntu"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/Linux/2016/08/17/note-ubuntu.html">Ubuntu学习笔记</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-08-17T09:55:15.000Z" itemprop="datePublished" class="post-time">
+  2016-08-17
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           制作 ubuntu 镜像       sudo dd if=/home/your.iso of=/dev/sdb      
+ 安装 fcitx 搜狗输入法。 
+ 
+ 确保你的语言包是全的。 
+ 安装这个语言包。 http://pinyin.sogou.com/linux/  
+ 按照这个做  http://jingyan.baidu.com/article/adc815134f4b92f722bf7350.html  
+ 
+ 安装firefox 插件 json, vimperator, firebug. 
+ 安装 nginx ， php ， mysql ， php-redis 扩展。 
+    
+    
+        <a href="/posts/Linux/2016/08/17/note-ubuntu.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-note-sphinx"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/sphinx/2016/08/17/note-sphinx.html">sphinx学习笔记</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-08-17T09:55:14.000Z" itemprop="datePublished" class="post-time">
+  2016-08-17
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/sphinx/">sphinx</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           sphinx实践  用shpinx实现一个搜索相关的小项目 
+
+    
+    
+        <a href="/posts/sphinx/2016/08/17/note-sphinx.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/搜索/">搜索</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-note-software"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/开发工具/2016/08/17/note-software.html">mac常用软件</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-08-17T09:55:12.000Z" itemprop="datePublished" class="post-time">
+  2016-08-17
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/开发工具/">开发工具</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           charles APP代理软件  charles 破解。我的link。  http://pan.baidu.com/s/1i4UUbOh  
+   Dash  非常便捷的API手册，方便查询。 
+   PhpStorm  PHP 开发的好帮手，可以帮你避免一些低级错误。 
+   WebStorm  和Phpstorm是同一个公司开发的，使用上和PhpStorm 差不多,用于偏前端的开发 工作场景。 
+   ipython  Python 命令行工具，和Python不同的是，这个可以进行命令提示，方便初学者。 
+   Postman  管理接口，方便重用，经常和一堆接口打交道的话，这个会很
+    
+    
+        <a href="/posts/开发工具/2016/08/17/note-software.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工程效率/">工程效率</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/开发工具/">开发工具</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-note-shell"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/shell/2016/08/17/note-shell.html">shell 学习笔记</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-08-17T09:55:11.000Z" itemprop="datePublished" class="post-time">
+  2016-08-17
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/shell/">shell</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+         awk 
+ simple awk skill is necessary. 
+ the follow command can be used to restart php-fpm in server. 
+ ps aux | grep ‘php-fpm’ | awk ‘{print $1}’ | xargs kill -USR2  
+ -F option 是用来改变默认的分隔符的。 awk -F ‘:’ ‘{print $3}’ 
+ awk 的 BEGIN 和 END 语句的功能。 BEGIN 是最开始的部分执行的，然后AWK开始读取文件内容，进行处理。 END 是最后面结束执行的. 
+ sed
+    
+    
+        <a href="/posts/shell/2016/08/17/note-shell.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/awk/">awk</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grep/">grep</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sed/">sed</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-note-read"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/生活/2016/08/17/note-read.html">读书笔记</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-08-17T09:55:10.000Z" itemprop="datePublished" class="post-time">
+  2016-08-17
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/生活/">生活</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           关于阅读  如果我一直以没有时间为理由，不去读书，是不是会越来越蠢。 
+   Kindle资源  
+ 这个是一个不错的kindle资源网站。目前还比较好用。  https://www.jiumodiary.com/  
+ 我的百度云里面也有不少书，想要的朋友可以从这里拿。 https://pan.baidu.com/s/1i4TEMsH   
+ 
+
+    
+    
+        <a href="/posts/生活/2016/08/17/note-read.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/感悟/">感悟</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/阅读/">阅读</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-note-python"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/programming/2016/08/17/note-python.html">Python 学习笔记</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-08-17T09:55:09.000Z" itemprop="datePublished" class="post-time">
+  2016-08-17
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/programming/">programming</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           Python 内置函数   __call__  __getattr__ 这两个内置函数是非常有用的,首先这两个函数是可以给类定义的. 只有在class中才能实现这两个函数. __call__  这个方法,可以让对象的实例作为一个无名函数被使用. 实际上是给class重定义了 () 运算符. 
+ 每次通过实例访问属性,都要经过  __getattributge__()  如果属性没有定义,还需要访问  __get_attr__()  
+  __getitem__, __setitem__, __delitem__  这几个方法比较容易理解,就是对一个类的实例, 可以按照下标的方式进行访问.
+    
+    
+        <a href="/posts/programming/2016/08/17/note-python.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-note-php"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/programming/2016/08/17/note-php.html">PHP 学习笔记</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-08-17T09:55:08.000Z" itemprop="datePublished" class="post-time">
+  2016-08-17
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/programming/">programming</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           PHP 回掉函数的使用。  这是最基本的回掉方法。 call_user_func_array(‘your function’,array()); array() is your params. 
+ 刚才在文档里发现了好多东西，原来还是要自己编译才是最好的。才能够了解更多的特性。 ./configure –help 其实已经包含了很多信息，只是你还不了解。 要编译安装，这个是很重要的一步。 
+ 编译php常见的20个错误。  http://crybit.com/20-common-php-compilation-errors-and-fix-unix/  
+   PHP 扩展安装 PECL
+    
+    
+        <a href="/posts/programming/2016/08/17/note-php.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-note-ng"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/nginx/2016/08/17/note-ng.html">nginx 学习笔记</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-08-17T09:55:07.000Z" itemprop="datePublished" class="post-time">
+  2016-08-17
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/nginx/">nginx</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           nginx编译参数       ./configure \      --prefix=/home/service/nginx \      --with-http_ssl_module \      --with-http_spdy_module \      --with-http_realip_module \      --with-http_addition_module \      --with-http_xslt_module \      --with-http_image_filter_module \      --with-http_sub_module \   
+    
+    
+        <a href="/posts/nginx/2016/08/17/note-ng.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-note-mac"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/Mac/2016/08/17/note-mac.html">MAC 使用心得</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-08-17T09:55:04.000Z" itemprop="datePublished" class="post-time">
+  2016-08-17
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Mac/">Mac</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           MAC 使用心得  安装vim 
+ 默认情况下，mac terminal中是带了vim 的。但是vim –version 看一下，发现是7.3版本的。 这个版本的vim，和mac系统的clipboard交互有点困难。如果想将vim中的内容复制出来的话，会有点 麻烦，这又是一个很常用的操作，所以很麻烦。查资料可以知道，7.4的vim可以支持。所以我们通过 安装7.4版本的vim来解决这个问题。安装方式如下： 
+      brew install vim -clipboard -xterm_clipboard --with-client-server   #上面的命令不能成功，出一个很奇怪
+    
+    
+        <a href="/posts/Mac/2016/08/17/note-mac.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/开发工具/">开发工具</a></li></ul>
+
+</article>
+
+    </li>
+  
+</ul>
+
+<nav id="page-nav">
+    <div class="inner">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+    </div>
+</nav>
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
 <script>
-    function async(u, c) {
-      var d = document, t = 'script',
-          o = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-      o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-      s.parentNode.insertBefore(o, s);
-    }
+var BLOG_SHARE = {
+    title: "faith",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "https://blog.nofile.cc/index.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
 </script>
 
-<!-- jquery.tagcloud.js -->
-<script>
-    // only load tagcloud.js in tag.html
-    if($('#tag_cloud').length !== 0){
-        async("https://blog.nofile.cc/js/jquery.tagcloud.js",function(){
-            $.fn.tagcloud.defaults = {
-                //size: {start: 1, end: 1, unit: 'em'},
-                color: {start: '#bbbbee', end: '#0085a1'},
-            };
-            $('#tag_cloud a').tagcloud();
-        })
-    }
-</script>
-
-<!--fastClick.js -->
-<script>
-    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
-        var $nav = document.querySelector("nav");
-        if($nav) FastClick.attach($nav);
-    })
-</script>
-
-<!-- Google Analytics -->
+<script src="/js/search.js"></script>
 
 
 
-<!-- Baidu Tongji -->
-
-<script>
-    var _baId = 'b98900c3864b32c37d696546d1911856';
-    // Originial
-    var _hmt = _hmt || [];
-    (function() {
-        var hm = document.createElement("script");
-        hm.src = "//hm.baidu.com/hm.js?" + _baId;
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
-</script>
 
 
-<!-- swiftype -->
-<!--<script type="text/javascript">-->
-  <!--(function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){-->
-  <!--(w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);-->
-  <!--e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);-->
-  <!--})(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');-->
-  <!--_st('install','undefined','2.0.0');-->
-<!--</script>-->
 
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-    <!--wechat title img-->
-    <img class="wechat-title-img" src="https://img.nofile.cc/icon.jpg">
+
+
 </body>
-
 </html>

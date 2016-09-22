@@ -1,195 +1,231 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<!-- Head tag -->
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="技术笔记，leetcode学习">
-    <meta name="keyword"  content="mysql , leetcode , php , nginx , linux ,shell , python , mac , mysql索引,https,programming, awk,sed,vim,阅读,kindle,dfs,算法">
-    <meta name="theme-color" content="#600090">
-    <meta name="msapplication-navbutton-color" content="#600090">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#60090">
-    <link rel="shortcut icon" href="/img/coffee.png">
-
-    <title>
-        
-          Mysql笔记｜faith&#39;s blog
-        
-    </title>
-
-    <link rel="canonical" href="https://blog.nofile.cc/posts/存储/2016/08/17/note-mysql.html">
-    <link href="https://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/blog-style.css">
-
-    <!-- Pygments Github CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
-
-    <!-- Custom Fonts -->
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <!-- ga & ba script hoook -->
-    <script></script>
+  <meta charset="utf-8">
+  
+  <title>Mysql笔记 | faith | leetcode学习</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="Mysql">
+  <meta name="description" content="mysql 性能测试工具.Mysql 自带的性能测试工具.
+Mysql 索引Mysql 索引
+Mysql 复合索引
+http://tech.meituan.com/mysql-index.html现在只会创建单索引,但是很多情况下,复合索引更有效.一个表只能使用一个索引,如果单键索引和复合索引都会生效,那么mysql会选择哪个索引.mysql 索引的最左选择的原则.
+有些情况下,优化的作用是很有限">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql笔记">
+<meta property="og:url" content="https://blog.nofile.cc/posts/存储/2016/08/17/note-mysql.html">
+<meta property="og:site_name" content="faith">
+<meta property="og:description" content="mysql 性能测试工具.Mysql 自带的性能测试工具.
+Mysql 索引Mysql 索引
+Mysql 复合索引
+http://tech.meituan.com/mysql-index.html现在只会创建单索引,但是很多情况下,复合索引更有效.一个表只能使用一个索引,如果单键索引和复合索引都会生效,那么mysql会选择哪个索引.mysql 索引的最左选择的原则.
+有些情况下,优化的作用是很有限">
+<meta property="og:updated_time" content="2016-08-17T10:24:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mysql笔记">
+<meta name="twitter:description" content="mysql 性能测试工具.Mysql 自带的性能测试工具.
+Mysql 索引Mysql 索引
+Mysql 复合索引
+http://tech.meituan.com/mysql-index.html现在只会创建单索引,但是很多情况下,复合索引更有效.一个表只能使用一个索引,如果单键索引和复合索引都会生效,那么mysql会选择哪个索引.mysql 索引的最左选择的原则.
+有些情况下,优化的作用是很有限">
+  
+    <link rel="alternative" href="/atom.xml" title="faith" type="application/atom+xml">
+  
+  <meta name="summary" content="技术笔记，leetcode学习">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<style>
+<body>
+  <div id="loading" class="active"></div>
 
-    header.intro-header{
-        background-image: url('https://img.nofile.cc/banner.jpg')
-    }
-</style>
-<!-- hack iOS CSS :active style -->
-<body ontouchstart="">
-<!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
-" data-ishome = "false" >
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">
-                <span class="brand-logo">
-                    faith
-                </span>
-                's Blog
+  <nav id="menu"  >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">faith</h5>
+        <a href="mailto:xiaolongnk@126.com" title="xiaolongnk@126.com" class="mail">xiaolongnk@126.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
+      
+          <li class="waves-block waves-effect">
+            <a href="/"  >
+              <i class="icon icon-lg icon-home"></i>
+              主页
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/archives"  >
+              <i class="icon icon-lg icon-archives"></i>
+              Archives
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/tags"  >
+              <i class="icon icon-lg icon-tags"></i>
+              Tags
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/about"  >
+              <i class="icon icon-lg icon-about"></i>
+              About
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/xiaolongnk" target="_blank" >
+              <i class="icon icon-lg icon-github"></i>
+              Github
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="http://www.weibo.com/5369993110" target="_blank" >
+              <i class="icon icon-lg icon-weibo"></i>
+              Weibo
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://nofile.cc"  >
+              <i class="icon icon-lg icon-link"></i>
+              nofile
+            </a>
+          </li>
+      
+    </ul>
+
+    <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>faith &copy; 2016</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+  </div>
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Mysql笔记</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
             </a>
         </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <!-- Known Issue, found by Hux:
-            <nav>'s height woule be hold on by its content.
-            so, when navbar scale out, the <nav> will cover tags.
-            also mask any touch event of tags, unfortunately.
-        -->
-        <!-- /.navbar-collapse -->
-        <div id="huxblog_navbar">
-            <div class="navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="/">Home</a>
-                    </li>
-
-                    
-                        
-                        <li>
-                            <a href="/about/">About</a>
-                        </li>
-                        
-                    
-                        
-                        <li>
-                            <a href="/tags/">tags</a>
-                        </li>
-                        
-                    
-
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!-- /.container -->
-</nav>
-<script>
-    // Drop Bootstarp low-performance Navbar
-    // Use customize navbar with high-quality material design animation
-    // in high-perf jank-free CSS3 implementation
-    var $body   = document.body;
-    var $toggle = document.querySelector('.navbar-toggle');
-    var $navbar = document.querySelector('#huxblog_navbar');
-    var $collapse = document.querySelector('.navbar-collapse');
-
-    $toggle.addEventListener('click', handleMagic)
-    function handleMagic(e){
-        if ($navbar.className.indexOf('in') > 0) {
-        // CLOSE
-            $navbar.className = " ";
-            // wait until animation end.
-            setTimeout(function(){
-                // prevent frequently toggle
-                if($navbar.className.indexOf('in') < 0) {
-                    $collapse.style.height = "0px"
-                }
-            },400)
-        }else{
-        // OPEN
-            $collapse.style.height = "auto"
-            $navbar.className += " in";
-        }
-    }
-</script>
-
-    <!-- Main Content -->
-    
-<!-- Image to hack wechat -->
-<!--only post-->
-
-    
-        <img class="wechat-title-img" src="https://img.nofile.cc/banner.jpg">
-    
-
-<style>
-
-    header.intro-header{
-        background-image: url('https://img.nofile.cc/banner.jpg')
-    }
-
-</style>
-
-<header class="intro-header" >
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
-                <div class="post-heading">
-                    <h1>Mysql笔记</h1>
-                    
-                    <span class="meta">
-                         作者: faith
-                         <span>
-                          日期: 2016-08-17
-                         </span>
-                    </span>
-                    <div class="tags text-center">
-                        
-                        <a class="tag" href="/tags/#Mysql" title="Mysql">Mysql</a>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="post-title-haojen">
-        <span>
-            Mysql笔记
-        </span>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
     </div>
 </header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">Mysql笔记</h1>
+    <h5 class="subtitle">
+        
+            <time datetime="2016-08-17T10:24:30.000Z" itemprop="datePublished" class="page-time">
+  2016-08-17
+</time>
 
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
-                <!-- Post Container -->
-            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
 
-                <h4 id="mysql-性能测试工具"><a href="#mysql-性能测试工具" class="headerlink" title="mysql 性能测试工具."></a>mysql 性能测试工具.</h4><p><a href="http://www.ha97.com/5182.html" target="_blank" rel="external">Mysql 自带的性能测试工具.</a></p>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/存储/">存储</a></li></ul>
+
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-note-mysql" 
+  class="article article-type-post" itemprop="blogPost">
+    <div class="post-meta flex-row">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mysql/">Mysql</a></li></ul>
+
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#mysql-性能测试工具"><span class="post-toc-text">mysql 性能测试工具.</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Mysql-索引"><span class="post-toc-text">Mysql 索引</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#select-按指定顺序排"><span class="post-toc-text">select 按指定顺序排</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#mysql-中创建用户。"><span class="post-toc-text">mysql 中创建用户。</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#mysql-中的数据类型"><span class="post-toc-text">mysql 中的数据类型</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Mysql-decimal"><span class="post-toc-text">Mysql decimal</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#datetime-和-timestamp-的区别。"><span class="post-toc-text">datetime 和 timestamp 的区别。</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#MYsql-几个常用关键字"><span class="post-toc-text">MYsql 几个常用关键字</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Mysql-表间元素复制"><span class="post-toc-text">Mysql 表间元素复制</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#insert-into-on-duplicate"><span class="post-toc-text">insert into on duplicate</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Mysql连表update"><span class="post-toc-text">Mysql连表update</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Mysql-索引操作-mysqldump-数据导出和数据恢复"><span class="post-toc-text">Mysql 索引操作 mysqldump 数据导出和数据恢复</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#mysql时间处理函数"><span class="post-toc-text">mysql时间处理函数</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#mysql-存储过程"><span class="post-toc-text">mysql 存储过程</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#mysql-if"><span class="post-toc-text">mysql if</span></a></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <h4 id="mysql-性能测试工具"><a href="#mysql-性能测试工具" class="headerlink" title="mysql 性能测试工具."></a>mysql 性能测试工具.</h4><p><a href="http://www.ha97.com/5182.html" target="_blank" rel="external">Mysql 自带的性能测试工具.</a></p>
 <h4 id="Mysql-索引"><a href="#Mysql-索引" class="headerlink" title="Mysql 索引"></a>Mysql 索引</h4><p>Mysql 索引</p>
 <p>Mysql 复合索引</p>
 <p><a href="http://tech.meituan.com/mysql-index.html" target="_blank" rel="external">http://tech.meituan.com/mysql-index.html</a><br>现在只会创建单索引,但是很多情况下,复合索引更有效.<br>一个表只能使用一个索引,如果单键索引和复合索引都会生效,那么mysql会选择哪个索引.<br>mysql 索引的最左选择的原则.</p>
@@ -248,240 +284,178 @@ mtime  timestamp ==&gt; CURRENT_TIMESTAMP  8字节
 <h4 id="mysql-if"><a href="#mysql-if" class="headerlink" title="mysql if"></a>mysql if</h4><figure class="highlight sql"><table><tr><td class="code"><pre><div class="line">if(tb2.shop_click is null, 0,tb2.shop_click)</div></pre></td></tr></table></figure>
 
 
-                <hr>
-
-                
-
-                <ul class="pager">
-                    
-                        <li class="previous">
-                            <a href="/posts/leetcode/2016/08/18/ag-385.html" data-toggle="tooltip" data-placement="top" title="leetcode Mini Parser">&larr; Previous Post</a>
-                        </li>
-                    
-                    
-                        <li class="next">
-                            <a href="/posts/前端/2016/08/17/note-web.html" data-toggle="tooltip" data-placement="top" title="前端笔记">Next Post &rarr;</a>
-                        </li>
-                    
-                </ul>
-
-                
-                <!-- 多说评论框 start -->
-                <div class="comment">
-                    <div class="ds-thread"
-                        data-thread-key="posts/存储/2016/08/17/note-mysql.html"
-                        data-title="Mysql笔记"
-                        data-url="https://blog.nofile.cc/posts/存储/2016/08/17/note-mysql.html" >
-                    </div>
-                </div>
-                <!-- 多说评论框 end -->
-                
-
-                
-
+            
+            <div class="post-reward">
+                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
             </div>
-
-            <div class="hidden-xs col-sm-3 toc-col" >
-                <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#mysql-性能测试工具"><span class="toc-text">mysql 性能测试工具.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mysql-索引"><span class="toc-text">Mysql 索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#select-按指定顺序排"><span class="toc-text">select 按指定顺序排</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mysql-中创建用户。"><span class="toc-text">mysql 中创建用户。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mysql-中的数据类型"><span class="toc-text">mysql 中的数据类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mysql-decimal"><span class="toc-text">Mysql decimal</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#datetime-和-timestamp-的区别。"><span class="toc-text">datetime 和 timestamp 的区别。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MYsql-几个常用关键字"><span class="toc-text">MYsql 几个常用关键字</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mysql-表间元素复制"><span class="toc-text">Mysql 表间元素复制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#insert-into-on-duplicate"><span class="toc-text">insert into on duplicate</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mysql连表update"><span class="toc-text">Mysql连表update</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mysql-索引操作-mysqldump-数据导出和数据恢复"><span class="toc-text">Mysql 索引操作 mysqldump 数据导出和数据恢复</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mysql时间处理函数"><span class="toc-text">mysql时间处理函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mysql-存储过程"><span class="toc-text">mysql 存储过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mysql-if"><span class="toc-text">mysql if</span></a></li></ol>
-                </div>
+            
+            
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="https://blog.nofile.cc/posts/存储/2016/08/17/note-mysql.html" target="_blank" rel="external">https://blog.nofile.cc/posts/存储/2016/08/17/note-mysql.html</a>
+                </p>
+                <footer><cite><a href="https://blog.nofile.cc">@faith</a></cite></footer>
+            </blockquote>
             </div>
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/posts/leetcode/2016/08/18/ag-385.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">leetcode Mini Parser</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/posts/前端/2016/08/17/note-web.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">前端笔记</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="note-mysql" data-title="Mysql笔记" data-url="https://blog.nofile.cc/posts/存储/2016/08/17/note-mysql.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"nofile"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
         </div>
-
-        <div class="row">
-            <!-- Sidebar Container -->
-
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
-                <!-- Featured Tags -->
-                
-                <section>
-                    <!-- no hr -->
-                <h5 class="text-center">
-                    <a href="/tags/">FEATURED TAGS</a>
-                </h5>
-                    <div class="tags">
-                        
-                          <a class="tag" href="/tags/#Mysql" title="Mysql">Mysql</a>
-                        
-                    </div>
-                </section>
-                
-
-                <!-- Friends Blog -->
-                
-            </div>
-        </div>
-
     </div>
 </article>
-
-
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-    // dynamic User by Hux
-    var _user = 'nofile';
-
-    // duoshuo comment query.
-    var duoshuoQuery = {short_name: _user };
-    (function() {
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';ds.async = true;
-        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-        ds.charset = 'UTF-8';
-        (document.getElementsByTagName('head')[0]
-         || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-</script>
-<!-- 多说公共JS代码 end -->
-
-
-
-
-
-
-
-    <!-- Footer -->
-    <!-- Footer -->
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
-                <span class="text-muted"style="font-size: 14px">双击导航条返回顶部</span>
-                <br>
-                <ul class="list-inline text-center">
-                
-                
-                
-                    <li>
-                        <a target="_blank" href="https://www.zhihu.com/people/ou-xiao-long-89">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa  fa-stack-1x fa-inverse">知</i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-                    <li>
-                        <a target="_blank" href="http://weibo.com/5369993110">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-
-                
-                    <li>
-                        <a target="_blank"  href="https://github.com/xiaolongnk">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-
-                </ul>
-                <p class="copyright text-muted">
-                    Copyright &copy; faith 2016
-                    <br>
-                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
-                    <br>
-                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
-                </p>
-
-            </div>
-        </div>
     </div>
-</footer>
-
-<!-- jQuery -->
-<script src="/js/jquery.min.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="/js/bootstrap.min.js"></script>
-
-<!-- Custom Theme JavaScript -->
-<script src="/js/blog.js"></script>
-
-
-<!-- async load function -->
-<script>
-    function async(u, c) {
-      var d = document, t = 'script',
-          o = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-      o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-      s.parentNode.insertBefore(o, s);
-    }
-</script>
-
-<!-- jquery.tagcloud.js -->
-<script>
-    // only load tagcloud.js in tag.html
-    if($('#tag_cloud').length !== 0){
-        async("https://blog.nofile.cc/js/jquery.tagcloud.js",function(){
-            $.fn.tagcloud.defaults = {
-                //size: {start: 1, end: 1, unit: 'em'},
-                color: {start: '#bbbbee', end: '#0085a1'},
-            };
-            $('#tag_cloud a').tagcloud();
-        })
-    }
-</script>
-
-<!--fastClick.js -->
-<script>
-    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
-        var $nav = document.querySelector("nav");
-        if($nav) FastClick.attach($nav);
-    })
-</script>
-
-<!-- Google Analytics -->
-
-
-
-<!-- Baidu Tongji -->
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
 <script>
-    var _baId = 'b98900c3864b32c37d696546d1911856';
-    // Originial
-    var _hmt = _hmt || [];
-    (function() {
-        var hm = document.createElement("script");
-        hm.src = "//hm.baidu.com/hm.js?" + _baId;
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
+var BLOG_SHARE = {
+    title: "Mysql笔记",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "https://blog.nofile.cc/posts/存储/2016/08/17/note-mysql.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
 </script>
 
+<script src="/js/search.js"></script>
 
-<!-- swiftype -->
-<!--<script type="text/javascript">-->
-  <!--(function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){-->
-  <!--(w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);-->
-  <!--e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);-->
-  <!--})(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');-->
-  <!--_st('install','undefined','2.0.0');-->
-<!--</script>-->
 
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-    <!--wechat title img-->
-    <img class="wechat-title-img" src="https://img.nofile.cc/icon.jpg">
+
+
+
+
+
+
 </body>
-
 </html>
