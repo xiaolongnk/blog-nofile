@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>faith</title>
-  <subtitle>势力纷华，不近者为洁，近之而不染者尤洁；智械机巧，不知者为高，知而不用者为尤高。---《菜根谭》</subtitle>
+  <title>faith技术博客</title>
+  <subtitle>我们一起快乐吧...</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.nofile.cc/"/>
