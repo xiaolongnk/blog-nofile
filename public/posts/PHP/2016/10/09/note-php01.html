@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>PHP 源码学习 | faith | leetcode学习笔记</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="PHP源码">
+  <meta name="description" content="PHP弱类型的实现原理PHP是弱类型，动态的语言脚本。在申明一个变量的时候，并不需要指明它保存的数据类型。例如：动态变量，在运行期间是可以改变的，并且在使用前无需声明变量类型。
+&amp;lt;?php  $var = 1;  $var = &quot;variable&quot;;  $var = 1.00;  $var = array();  $var = new Object();
+
+问题一、Zend引擎是如何用C实现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP 源码学习">
+<meta property="og:url" content="https://blog.nofile.cc/posts/PHP/2016/10/09/note-php01.html">
+<meta property="og:site_name" content="faith">
+<meta property="og:description" content="PHP弱类型的实现原理PHP是弱类型，动态的语言脚本。在申明一个变量的时候，并不需要指明它保存的数据类型。例如：动态变量，在运行期间是可以改变的，并且在使用前无需声明变量类型。
+&amp;lt;?php  $var = 1;  $var = &quot;variable&quot;;  $var = 1.00;  $var = array();  $var = new Object();
+
+问题一、Zend引擎是如何用C实现">
+<meta property="og:updated_time" content="2016-10-09T05:40:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP 源码学习">
+<meta name="twitter:description" content="PHP弱类型的实现原理PHP是弱类型，动态的语言脚本。在申明一个变量的时候，并不需要指明它保存的数据类型。例如：动态变量，在运行期间是可以改变的，并且在使用前无需声明变量类型。
+&amp;lt;?php  $var = 1;  $var = &quot;variable&quot;;  $var = 1.00;  $var = array();  $var = new Object();
+
+问题一、Zend引擎是如何用C实现">
+  
+    <link rel="alternative" href="/atom.xml" title="faith" type="application/atom+xml">
+  
+  <meta name="summary" content="技术笔记，leetcode学习">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu"  >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">faith</h5>
+        <a href="mailto:xiaolongnk@126.com" title="xiaolongnk@126.com" class="mail">xiaolongnk@126.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
+      
+          <li class="waves-block waves-effect">
+            <a href="/"  >
+              <i class="icon icon-lg icon-home"></i>
+              主页
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/archives"  >
+              <i class="icon icon-lg icon-archives"></i>
+              Archives
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/tags"  >
+              <i class="icon icon-lg icon-tags"></i>
+              Tags
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/about"  >
+              <i class="icon icon-lg icon-about"></i>
+              About
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/xiaolongnk" target="_blank" >
+              <i class="icon icon-lg icon-github"></i>
+              Github
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="http://www.weibo.com/5369993110" target="_blank" >
+              <i class="icon icon-lg icon-weibo"></i>
+              Weibo
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="http://nofile.cc"  >
+              <i class="icon icon-lg icon-link"></i>
+              nofile
+            </a>
+          </li>
+      
+    </ul>
+
+    <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>faith &copy; 2016</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+  </div>
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">PHP 源码学习</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">PHP 源码学习</h1>
+    <h5 class="subtitle">
+        
+            <time datetime="2016-10-09T05:40:24.000Z" itemprop="datePublished" class="page-time">
+  2016-10-09
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/PHP/">PHP</a></li></ul>
+
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-note-php01" 
+  class="article article-type-post" itemprop="blogPost">
+    <div class="post-meta flex-row">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP源码/">PHP源码</a></li></ul>
+
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#PHP弱类型的实现原理"><span class="post-toc-text">PHP弱类型的实现原理</span></a></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <h4 id="PHP弱类型的实现原理"><a href="#PHP弱类型的实现原理" class="headerlink" title="PHP弱类型的实现原理"></a>PHP弱类型的实现原理</h4><p>PHP是弱类型，动态的语言脚本。在申明一个变量的时候，并不需要指明它保存的数据类型。例如：动态变量，在运行期间是可以改变的，并且在使用前无需声明变量类型。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span>  </div><div class="line">$var = <span class="number">1</span>;  </div><div class="line">$var = <span class="string">"variable"</span>;  </div><div class="line">$var = <span class="number">1.00</span>;  </div><div class="line">$var = <span class="keyword">array</span>();  </div><div class="line">$var = <span class="keyword">new</span> Object();</div></pre></td></tr></table></figure>
+<ol>
+<li>问题一、Zend引擎是如何用C实现这种弱类型的呢？<figure class="highlight c"><table><tr><td class="code"><pre><div class="line">Zend/zend.h</div><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> _zval_struct zval;  </div><div class="line">   </div><div class="line"><span class="keyword">struct</span> _zval_struct &#123;  </div><div class="line">    <span class="comment">/* Variable information */</span>  </div><div class="line">    zvalue_value value;     <span class="comment">/* value */</span>  </div><div class="line">    zend_uint refcount__gc;  </div><div class="line">    zend_uchar type;    <span class="comment">/* active type */</span>  </div><div class="line">    zend_uchar is_ref__gc;  </div><div class="line">&#125;;  </div><div class="line">   </div><div class="line"><span class="keyword">typedef</span> <span class="keyword">union</span> _zvalue_value &#123;  </div><div class="line">    <span class="keyword">long</span> lval;  	<span class="comment">/* long value */</span>  </div><div class="line">    <span class="keyword">double</span> dval;    <span class="comment">/* double value */</span>  </div><div class="line">    <span class="keyword">struct</span> &#123;  </div><div class="line">        <span class="keyword">char</span> *val;  </div><div class="line">        <span class="keyword">int</span> len;  </div><div class="line">    &#125; str;  </div><div class="line">    HashTable *ht;  <span class="comment">/* hash table value */</span>  </div><div class="line">    zend_object_value obj;  </div><div class="line">&#125; zvalue_value;</div><div class="line"></div><div class="line">Zend/zend_types.h：</div><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> zend_bool;  </div><div class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> zend_uchar;  </div><div class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> zend_uint;  </div><div class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> zend_ulong;  </div><div class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">short</span> zend_ushort;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>从上述代码中，可以看到_zvalue_value是真正保存数据的关键部分。通过共用体实现的弱类型变量声明</p>
+<ol>
+<li>问题二、Zend引擎是如何判别、存储PHP中的多种数据类型的呢？</li>
+</ol>
+<p><code>_zval_struct.type</code>中存储着一个变量的真正类型，根据type来选择如何获取zvalue_value的值。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IS_NULL     0  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IS_LONG     1  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IS_DOUBLE   2  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IS_BOOL     3  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IS_ARRAY    4  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IS_OBJECT   5  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IS_STRING   6  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IS_RESOURCE 7  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IS_CONSTANT 8  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IS_CONSTANT_ARRAY   9</span></div></pre></td></tr></table></figure>
+<p>来看一个简单的例子：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span>  </div><div class="line">$a = <span class="number">1</span>;  </div><div class="line"><span class="comment">//此时zval.type = IS_LONG,那么zval.value就去取lval.  </span></div><div class="line">$a = <span class="keyword">array</span>();  </div><div class="line"><span class="comment">//此时zval.type = IS_ARRAY,那么zval.value就去取ht.</span></div></pre></td></tr></table></figure>
+<p>这其中最复杂的，并且在开发第三方扩展中经常需要用到的是”资源类型”.<br>在PHP中，任何不属于PHP的内建的变量类型的变量，都会被看作资源来进行保存。<br>比如：数据库句柄、打开的文件句柄、打开的socket句柄。<br>资源类型，会用lval，此时它是一个整型指示器， 然后PHP会再根据这个指示器在PHP内建的一个资源列表中查询相对应的资源。<br>正是因为ZE这样的处理方式，使PHP就实现了弱类型，而对于ZE的来说，它所面对的永远都是同一种类型zval。</p>
+<p><a href="http://www.pythontab.com/html/2015/php_0513/950.html" target="_blank" rel="external">原文链接</a></p>
+<ol>
+<li>PHP中的排序函数有好多</li>
+</ol>
+<p>asort<br>usort<br>ksort<br>rsort<br>arsort<br>krsort<br>uasort<br>uksort</p>
+
+
+            
+            <div class="post-reward">
+                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+            </div>
+            
+            
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="https://blog.nofile.cc/posts/PHP/2016/10/09/note-php01.html" target="_blank" rel="external">https://blog.nofile.cc/posts/PHP/2016/10/09/note-php01.html</a>
+                </p>
+                <footer><cite><a href="https://blog.nofile.cc">@faith</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/posts/programming/2016/10/09/note-python.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Python 学习笔记</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/posts/programming/2016/10/09/note-php.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">PHP 学习笔记</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="note-php01" data-title="PHP 源码学习" data-url="https://blog.nofile.cc/posts/PHP/2016/10/09/note-php01.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"nofile"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "PHP 源码学习",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "https://blog.nofile.cc/posts/PHP/2016/10/09/note-php01.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        大爷的，太感谢了~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+
+
+<script>
+    var _baId = 'b98900c3864b32c37d696546d1911856';
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?" + _baId;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+</body>
+</html>

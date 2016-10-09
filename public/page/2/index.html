@@ -150,26 +150,26 @@
       <ul class="post-list">
   
     <li class="post-list-item">
-        <article id="post-note-js"
+        <article id="post-note-phpfpm"
   class="article article-type-post" itemprop="blogPost">
      
 
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/posts/javascript/2016/08/17/note-js.html">javascript 学习笔记</a>
+      <a class="post-title-link" href="/posts/PHP/2016/08/25/note-phpfpm.html">PHP 与 FPM 的区别</a>
     </h3>
   
 
 
 
     <div class="post-meta">
-        <time datetime="2016-08-17T09:55:02.000Z" itemprop="datePublished" class="post-time">
-  2016-08-17
+        <time datetime="2016-08-25T15:47:00.000Z" itemprop="datePublished" class="post-time">
+  2016-08-25
 </time>
 
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/javascript/">javascript</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/PHP/">PHP</a></li></ul>
 
 
 
@@ -178,43 +178,42 @@
     <div class="post-content" id="post-content" itemprop="postContent" >
 
     
-           jquery常识  如果 $()  里面的 () 里面是一个dom元素的话，这个东西就是一个jquery对象。 jquery 的方法，on ，可以绑定事件，each可以循环遍历数组。 同事js自己的array也是一个对象，有foreach方法。要注意和jquery的each 方法区分。 js 几个常用的事件。  keyup onchange click  
- js 的闭包函数，这几天php中也用了不少，一个是array_walk, usort() 有些场景中用这些函数是很方便的，这些函数都有自己适合的场景，要在 合适场景使用,才能体现出这些函数的作用。 
-   js 正则.    js 
+           PHP与FPM的区别  nginx , fastcgi , php-fpm , php-cgi , cgi , php.ini , master process , work process , php kernel. 这个 问答 写得很好,推荐参考。 
+ 首先nginx处理不了php这类的脚本程序，只能扔给php去做。 最早的时候，php并没有php-fpm这个东西，后面php把fpm收进了内核，编译的时候，只需要enablefpm就可以了。php-fpm是一个实现了fastcgi的程序，后来被php收了。 cgi 是一个协议，php-fpm 实现了这个协议。就可以和nginx通信了。
     
     
-        <a href="/posts/javascript/2016/08/17/note-js.html" class="post-more waves-effect waves-button">
+        <a href="/posts/PHP/2016/08/25/note-phpfpm.html" class="post-more waves-effect waves-button">
             阅读全文...
         </a>
     </div>
     
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/fastcgi/">fastcgi</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php-fpm/">php-fpm</a></li></ul>
 
 </article>
 
     </li>
   
     <li class="post-list-item">
-        <article id="post-note-c"
+        <article id="post-note-mysql-emoj"
   class="article article-type-post" itemprop="blogPost">
      
 
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/posts/c/2016/08/17/note-c.html">C/C++ 学习笔记</a>
+      <a class="post-title-link" href="/posts/mysql/2016/08/24/note-mysql-emoj.html">mysql enable emoj</a>
     </h3>
   
 
 
 
     <div class="post-meta">
-        <time datetime="2016-08-17T09:55:01.000Z" itemprop="datePublished" class="post-time">
-  2016-08-17
+        <time datetime="2016-08-24T02:47:00.000Z" itemprop="datePublished" class="post-time">
+  2016-08-24
 </time>
 
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/c/">c++</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/mysql/">mysql</a></li></ul>
 
 
 
@@ -223,28 +222,417 @@
     <div class="post-content" id="post-content" itemprop="postContent" >
 
     
-           C文件的编译过程  编译一个c文件，产生一个可执行文件，这个过程分为四个步骤 
- 
- .c 文件到 .i 文件，  --&gt;  .s 文件  --&gt;  .o 文件  --&gt;  可执行文件 分别是预处理， 编译， 汇编， 链接 
- 
- 预处理所做的事情。 
- gcc -o helloworld.i helloworld.c -E 
- 
- 将 include 变成真实的东西 
- 宏替换。  
- 宏函数的优点。比一些函数要方便， 
- 条件编译，对于程序的移植和调试，非常有用。 
- 
-   typedef 和 宏不一样的地方。  给自己自定义的数据类型起一个别名。自定义的数据类型
+           Laravel Mysql 支持emoj    1 确保mysql-server是5.5.4+  utf8mb4的最低mysql版本支持版本为5.5.3+，若不是，请升级到较新版本。 用mysql客户端连接进去，最上面会提示你当前的mysql的版本，确保是5.5.3以上的就可以了。 
+   2 修改database、table和column字符集  参考以下语句： 
+      ALTER DATABASE database_name CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;  ALTER TABLE table_name
     
     
-        <a href="/posts/c/2016/08/17/note-c.html" class="post-more waves-effect waves-button">
+        <a href="/posts/mysql/2016/08/24/note-mysql-emoj.html" class="post-more waves-effect waves-button">
             阅读全文...
         </a>
     </div>
     
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c-c/">c/c++</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/emoj/">emoj</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
 
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-note-laravel"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/uncategorized/2016/08/23/note-laravel.html">Laravel 学习笔记</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-08-22T16:41:00.000Z" itemprop="datePublished" class="post-time">
+  2016-08-23
+</time>
+
+        
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           视图  在laravel中，controller和view都不可避免的要使用多级目录，controller中使用多级目录的时候，要注意在路由中的写法。在路由中的写法 Route::get(&quot;/test&quot;,&#39;Test/TestController@index&#39;) ,要设置resource，view中的多级目录，在controller中对应的目录结构的写法应该这样的 return view(test.test.test) 。laravel也用了namespace，这些和其他的框架基本都是一致的。 
+   laravel phphub5时间笔记   lara
+    
+    
+        <a href="/posts/uncategorized/2016/08/23/note-laravel.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-ag-382"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/leetcode/2016/08/20/ag-382.html">382. Linked List Random Node</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-08-20T11:07:00.000Z" itemprop="datePublished" class="post-time">
+  2016-08-20
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/leetcode/">leetcode</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+            382. Linked List Random Node    Given a singly linked list, return a random node&apos;s value from the linked list. Each node must have the same probability of being chosen.
+Follow up:
+What if the linked list is extremely large and its length is unknown to you? Could you solve this efficiently w
+    
+    
+        <a href="/posts/leetcode/2016/08/20/ag-382.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/random/">random</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/概率/">概率</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-ag-282"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/leetcode/2016/08/20/ag-282.html">Expression Add Operators</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-08-20T11:06:00.000Z" itemprop="datePublished" class="post-time">
+  2016-08-20
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/leetcode/">leetcode</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+            282. Expression Add Operators    Given a string that contains only digits 0-9 and a target value, return all possibilities to add binary operators (not unary) +, -, or * between the digits so they evaluate to the target value.
+
+Examples: 
+&quot;123&quot;, 6 -&gt; [&quot;1+2+3&quot;, &quot;1*2*3&
+    
+    
+        <a href="/posts/leetcode/2016/08/20/ag-282.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dfs/">dfs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-ag-05"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/leetcode/2016/08/20/ag-05.html">Longest Palindromic Substring</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-08-20T11:06:00.000Z" itemprop="datePublished" class="post-time">
+  2016-08-20
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/leetcode/">leetcode</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+            Longest Palindromic Substring    Given a string S, find the longest palindromic substring in S. You may assume that the maximum length of S is 1000, and there exists one unique longest palindromic substring.
+     分析  看到了将先将原字符串处理成带 # 的方式，觉着这样处理方便一些。这样处理之后，最长的回文子串一定是关于 # 中心对称的。所以在我们的算法中，只要对每一个字符j
+    
+    
+        <a href="/posts/leetcode/2016/08/20/ag-05.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串/">字符串</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-note-https"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/web/2016/08/19/note-https.html">HTTPS Your site</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-08-19T08:54:00.000Z" itemprop="datePublished" class="post-time">
+  2016-08-19
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/web/">web</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           让NGINX支持SSL  需要编译时支持ssl，可以sbin/nginx -V 来查看confiture参数，如果当时没有支持，那么需要重新编译安装。 编译参数前面已经有一篇文章了。 nginx编译参数 ,也不用全加，用 --with-http_ssl_module  就可以了。 
+   生成证书  主要参考这个 letsencrypty ，可以生成免费证书。 生成方式也很简单，读上面的文章基本就能明白。 ubuntu+nginx . 
+ 大致步骤如下： 
+      wget https://dl.eff.org/certbot-auto  chmod a+x certbot-auto
+    
+    
+        <a href="/posts/web/2016/08/19/note-https.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/https/">https</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-ag-08"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/leetcode/2016/08/19/ag-08.html">String to Integer (atoi)</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-08-19T03:27:00.000Z" itemprop="datePublished" class="post-time">
+  2016-08-19
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/leetcode/">leetcode</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           String to Integer (atoi)  implement atoi to convert a string to an integer. 
+  Hint : Carefully consider all possible input cases. If you want a challenge, please do not see below and ask yourself what are the possible input cases. 
+  Notes : It is intended for this problem to be specified vaguel
+    
+    
+        <a href="/posts/leetcode/2016/08/19/ag-08.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/atoi/">atoi</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/math/">math</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-ag-146"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/leetcode/2016/08/18/ag-146.html">leetcode LRU Cache</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-08-18T15:29:00.000Z" itemprop="datePublished" class="post-time">
+  2016-08-18
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/leetcode/">leetcode</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           LRU Cache  Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: get and set. 
+ get(key) - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1. set(key, value) - Set or insert the v
+    
+    
+        <a href="/posts/leetcode/2016/08/18/ag-146.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LRU/">LRU</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OrderedDict/">OrderedDict</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/有序字典/">有序字典</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-ag-385"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/leetcode/2016/08/18/ag-385.html">leetcode Mini Parser</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-08-18T15:03:00.000Z" itemprop="datePublished" class="post-time">
+  2016-08-18
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/leetcode/">leetcode</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           Mini Parser  Given a nested list of integers represented as a string, implement a parser to deserialize it. 
+ Each element is either an integer, or a list – whose elements may also be integers or other lists. 
+ Note: You may assume that the string is well-formed: 
+ String is non-empty. String doe
+    
+    
+        <a href="/posts/leetcode/2016/08/18/ag-385.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/stack/">stack</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="page-about-me"
+  class="article article-type-page" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/uncategorized/2016/08/15/about-me.html">About me</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-08-15T11:59:07.000Z" itemprop="datePublished" class="post-time">
+  2016-08-15
+</time>
+
+        
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           经历  2014年毕业,在美丽说,一直在HIGO这个部门，后面HIGO独立，随HIGO一起到新HIGO。本科期间，喜欢打魔兽，经常逃课去打游戏，学习成绩一般，能勉强过关的那种。 
+ 大二接触linux，之后就再也没有丢开过，花了很多时间去折腾。从桌面开始，从fedora, 到ubuntu，到arch，再到ubuntu。在这方面花了不少时间。 
+ 觉着linux的命令行才是真正的命令行，linux桌面才是真正的桌面，虽然很不稳定，经常崩溃又从头再来，并且很容易出各种奇怪的问题，但当时觉着也没什么，遇到什么问题，就去找那个问题，知道那个问题解决。比如，有时候我折腾了一晚上，就是为了让我的li
+    
+    
+        <a href="/posts/uncategorized/2016/08/15/about-me.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
 </article>
 
     </li>

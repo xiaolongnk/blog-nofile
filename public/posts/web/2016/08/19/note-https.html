@@ -18,13 +18,13 @@
 <meta property="og:site_name" content="faith">
 <meta property="og:description" content="让NGINX支持SSL需要编译时支持ssl，可以sbin/nginx -V 来查看confiture参数，如果当时没有支持，那么需要重新编译安装。 编译参数前面已经有一篇文章了。nginx编译参数,也不用全加，用--with-http_ssl_module 就可以了。
 生成证书主要参考这个letsencrypty，可以生成免费证书。 生成方式也很简单，读上面的文章基本就能明白。ubuntu+ngi">
-<meta property="og:image" content="https://img.nofile.cc/cert.jpg">
-<meta property="og:updated_time" content="2016-08-23T14:07:23.000Z">
+<meta property="og:image" content="http://img.nofile.cc/cert.jpg">
+<meta property="og:updated_time" content="2016-10-09T05:40:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTTPS Your site">
 <meta name="twitter:description" content="让NGINX支持SSL需要编译时支持ssl，可以sbin/nginx -V 来查看confiture参数，如果当时没有支持，那么需要重新编译安装。 编译参数前面已经有一篇文章了。nginx编译参数,也不用全加，用--with-http_ssl_module 就可以了。
 生成证书主要参考这个letsencrypty，可以生成免费证书。 生成方式也很简单，读上面的文章基本就能明白。ubuntu+ngi">
-<meta name="twitter:image" content="https://img.nofile.cc/cert.jpg">
+<meta name="twitter:image" content="http://img.nofile.cc/cert.jpg">
   
     <link rel="alternative" href="/atom.xml" title="faith" type="application/atom+xml">
   
@@ -222,7 +222,7 @@
 <h4 id="生成证书"><a href="#生成证书" class="headerlink" title="生成证书"></a>生成证书</h4><p>主要参考这个<a href="https://letsencrypt.org/getting-started/" target="_blank" rel="external">letsencrypty</a>，可以生成免费证书。 生成方式也很简单，读上面的文章基本就能明白。<a href="https://certbot.eff.org/#ubuntutrusty-nginx" target="_blank" rel="external">ubuntu+nginx</a>.</p>
 <p>大致步骤如下：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">wget https://dl.eff.org/certbot-auto</div><div class="line">chmod a+x certbot-auto</div><div class="line">./certbot-auto</div><div class="line">./path/to/certbot-auto certonly --webroot -w /var/www/example -d example.com -d www.example.com -w /var/www/thing -d thing.is -d m.thing.is</div></pre></td></tr></table></figure>
-<p>执行完之后系统中会生成这些文件。<img src="https://img.nofile.cc/cert.jpg" alt="系统中生成的文件"></p>
+<p>执行完之后系统中会生成这些文件。<img src="http://img.nofile.cc/cert.jpg" alt="系统中生成的文件"></p>
 <pre><code>This command will obtain a single cert for example.com, www.example.com, thing.is, and m.thing.is; it will place files below /var/www/example to prove control of the first two domains, and under /var/www/thing for the second pair.
 </code></pre><h4 id="Automating-renewal"><a href="#Automating-renewal" class="headerlink" title="Automating renewal"></a>Automating renewal</h4><p>上面生成的证书，有效期好像是1个月，所以需要到期自己重新renewal一下。方法如下：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">./path/to/certbot-auto renew --dry-run</div><div class="line">./path/to/certbot-auto renew --quiet --no-self-upgrade</div></pre></td></tr></table></figure>
@@ -249,9 +249,9 @@
 <nav class="post-nav">
   
     <div class="waves-block waves-effect prev fl">
-      <a href="/posts/leetcode/2016/08/20/ag-282.html" id="post-prev" class="post-nav-link">
+      <a href="/posts/leetcode/2016/08/20/ag-05.html" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">Expression Add Operators</h4>
+        <h4 class="title">Longest Palindromic Substring</h4>
       </a>
     </div>
   
