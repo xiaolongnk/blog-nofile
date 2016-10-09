@@ -150,50 +150,6 @@
       <ul class="post-list">
   
     <li class="post-list-item">
-        <article id="post-note-phpfpm"
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/posts/PHP/2016/08/25/note-phpfpm.html">PHP 与 FPM 的区别</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2016-08-25T15:47:00.000Z" itemprop="datePublished" class="post-time">
-  2016-08-25
-</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/PHP/">PHP</a></li></ul>
-
-
-
-    </div>
-
-    <div class="post-content" id="post-content" itemprop="postContent" >
-
-    
-           PHP与FPM的区别  nginx , fastcgi , php-fpm , php-cgi , cgi , php.ini , master process , work process , php kernel. 这个 问答 写得很好,推荐参考。 
- 首先nginx处理不了php这类的脚本程序，只能扔给php去做。 最早的时候，php并没有php-fpm这个东西，后面php把fpm收进了内核，编译的时候，只需要enablefpm就可以了。php-fpm是一个实现了fastcgi的程序，后来被php收了。 cgi 是一个协议，php-fpm 实现了这个协议。就可以和nginx通信了。
-    
-    
-        <a href="/posts/PHP/2016/08/25/note-phpfpm.html" class="post-more waves-effect waves-button">
-            阅读全文...
-        </a>
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/fastcgi/">fastcgi</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php-fpm/">php-fpm</a></li></ul>
-
-</article>
-
-    </li>
-  
-    <li class="post-list-item">
         <article id="post-note-mysql-emoj"
   class="article article-type-post" itemprop="blogPost">
      
@@ -201,7 +157,7 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/posts/mysql/2016/08/24/note-mysql-emoj.html">mysql enable emoj</a>
+      <a class="post-title-link" href="/posts/2016/08/24/note-mysql-emoj.html">mysql enable emoj</a>
     </h3>
   
 
@@ -213,8 +169,6 @@
 </time>
 
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/mysql/">mysql</a></li></ul>
-
 
 
     </div>
@@ -227,12 +181,55 @@
       ALTER DATABASE database_name CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;  ALTER TABLE table_name
     
     
-        <a href="/posts/mysql/2016/08/24/note-mysql-emoj.html" class="post-more waves-effect waves-button">
+        <a href="/posts/2016/08/24/note-mysql-emoj.html" class="post-more waves-effect waves-button">
             阅读全文...
         </a>
     </div>
     
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/emoj/">emoj</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-note-mac"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/2016/08/23/note-mac.html">MAC 使用心得</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-08-23T06:40:00.000Z" itemprop="datePublished" class="post-time">
+  2016-08-23
+</time>
+
+        
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           MAC 使用心得  安装vim 
+ 默认情况下，mac terminal中是带了vim 的。但是vim –version 看一下，发现是7.3版本的。 这个版本的vim，和mac系统的clipboard交互有点困难。如果想将vim中的内容复制出来的话，会有点 麻烦，这又是一个很常用的操作，所以很麻烦。查资料可以知道，7.4的vim可以支持。所以我们通过 安装7.4版本的vim来解决这个问题。安装方式如下： 
+      brew install vim -clipboard -xterm_clipboard --with-client-server   #上面的命令不能成功，出一个很奇怪
+    
+    
+        <a href="/posts/2016/08/23/note-mac.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mac/">mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/开发工具/">开发工具</a></li></ul>
 
 </article>
 
@@ -246,7 +243,7 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/posts/uncategorized/2016/08/23/note-laravel.html">Laravel 学习笔记</a>
+      <a class="post-title-link" href="/posts/2016/08/23/note-laravel.html">Laravel 学习笔记</a>
     </h3>
   
 
@@ -269,7 +266,7 @@
    laravel phphub5时间笔记   lara
     
     
-        <a href="/posts/uncategorized/2016/08/23/note-laravel.html" class="post-more waves-effect waves-button">
+        <a href="/posts/2016/08/23/note-laravel.html" class="post-more waves-effect waves-button">
             阅读全文...
         </a>
     </div>
@@ -288,7 +285,7 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/posts/leetcode/2016/08/20/ag-382.html">382. Linked List Random Node</a>
+      <a class="post-title-link" href="/posts/2016/08/20/ag-382.html">382. Linked List Random Node</a>
     </h3>
   
 
@@ -300,8 +297,6 @@
 </time>
 
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/leetcode/">leetcode</a></li></ul>
-
 
 
     </div>
@@ -314,58 +309,12 @@ Follow up:
 What if the linked list is extremely large and its length is unknown to you? Could you solve this efficiently w
     
     
-        <a href="/posts/leetcode/2016/08/20/ag-382.html" class="post-more waves-effect waves-button">
+        <a href="/posts/2016/08/20/ag-382.html" class="post-more waves-effect waves-button">
             阅读全文...
         </a>
     </div>
     
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/random/">random</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/概率/">概率</a></li></ul>
-
-</article>
-
-    </li>
-  
-    <li class="post-list-item">
-        <article id="post-ag-282"
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/posts/leetcode/2016/08/20/ag-282.html">Expression Add Operators</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2016-08-20T11:06:00.000Z" itemprop="datePublished" class="post-time">
-  2016-08-20
-</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/leetcode/">leetcode</a></li></ul>
-
-
-
-    </div>
-
-    <div class="post-content" id="post-content" itemprop="postContent" >
-
-    
-            282. Expression Add Operators    Given a string that contains only digits 0-9 and a target value, return all possibilities to add binary operators (not unary) +, -, or * between the digits so they evaluate to the target value.
-
-Examples: 
-&quot;123&quot;, 6 -&gt; [&quot;1+2+3&quot;, &quot;1*2*3&
-    
-    
-        <a href="/posts/leetcode/2016/08/20/ag-282.html" class="post-more waves-effect waves-button">
-            阅读全文...
-        </a>
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dfs/">dfs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/random/">random</a></li></ul>
 
 </article>
 
@@ -379,7 +328,7 @@ Examples:
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/posts/leetcode/2016/08/20/ag-05.html">Longest Palindromic Substring</a>
+      <a class="post-title-link" href="/posts/2016/08/20/ag-05.html">Longest Palindromic Substring</a>
     </h3>
   
 
@@ -391,8 +340,6 @@ Examples:
 </time>
 
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/leetcode/">leetcode</a></li></ul>
-
 
 
     </div>
@@ -404,12 +351,55 @@ Examples:
      分析  看到了将先将原字符串处理成带 # 的方式，觉着这样处理方便一些。这样处理之后，最长的回文子串一定是关于 # 中心对称的。所以在我们的算法中，只要对每一个字符j
     
     
-        <a href="/posts/leetcode/2016/08/20/ag-05.html" class="post-more waves-effect waves-button">
+        <a href="/posts/2016/08/20/ag-05.html" class="post-more waves-effect waves-button">
             阅读全文...
         </a>
     </div>
     
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串/">字符串</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/string/">string</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-ag-282"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/2016/08/20/ag-282.html">Expression Add Operators</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-08-20T11:06:00.000Z" itemprop="datePublished" class="post-time">
+  2016-08-20
+</time>
+
+        
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+            282. Expression Add Operators   Given a string that contains only digits 0-9 and a target value, return all possibilities to add binary operators (not unary) +, -, or * between the digits so they evaluate to the target value. 
+  Examples: 
+&quot;123&quot;, 6 -&gt; [&quot;1+2+3&quot;, &quot;1*2*3
+    
+    
+        <a href="/posts/2016/08/20/ag-282.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dfs/">dfs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
 
 </article>
 
@@ -423,7 +413,7 @@ Examples:
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/posts/web/2016/08/19/note-https.html">HTTPS Your site</a>
+      <a class="post-title-link" href="/posts/2016/08/19/note-https.html">HTTPS Your site</a>
     </h3>
   
 
@@ -450,7 +440,7 @@ Examples:
       wget https://dl.eff.org/certbot-auto  chmod a+x certbot-auto
     
     
-        <a href="/posts/web/2016/08/19/note-https.html" class="post-more waves-effect waves-button">
+        <a href="/posts/2016/08/19/note-https.html" class="post-more waves-effect waves-button">
             阅读全文...
         </a>
     </div>
@@ -469,7 +459,7 @@ Examples:
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/posts/leetcode/2016/08/19/ag-08.html">String to Integer (atoi)</a>
+      <a class="post-title-link" href="/posts/2016/08/19/ag-08.html">String to Integer (atoi)</a>
     </h3>
   
 
@@ -481,8 +471,6 @@ Examples:
 </time>
 
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/leetcode/">leetcode</a></li></ul>
-
 
 
     </div>
@@ -495,12 +483,12 @@ Examples:
   Notes : It is intended for this problem to be specified vaguel
     
     
-        <a href="/posts/leetcode/2016/08/19/ag-08.html" class="post-more waves-effect waves-button">
+        <a href="/posts/2016/08/19/ag-08.html" class="post-more waves-effect waves-button">
             阅读全文...
         </a>
     </div>
     
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/atoi/">atoi</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/math/">math</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/atoi/">atoi</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/math/">math</a></li></ul>
 
 </article>
 
@@ -514,7 +502,7 @@ Examples:
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/posts/leetcode/2016/08/18/ag-146.html">leetcode LRU Cache</a>
+      <a class="post-title-link" href="/posts/2016/08/18/ag-146.html">leetcode LRU Cache</a>
     </h3>
   
 
@@ -526,8 +514,6 @@ Examples:
 </time>
 
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/leetcode/">leetcode</a></li></ul>
-
 
 
     </div>
@@ -539,12 +525,12 @@ Examples:
  get(key) - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1. set(key, value) - Set or insert the v
     
     
-        <a href="/posts/leetcode/2016/08/18/ag-146.html" class="post-more waves-effect waves-button">
+        <a href="/posts/2016/08/18/ag-146.html" class="post-more waves-effect waves-button">
             阅读全文...
         </a>
     </div>
     
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LRU/">LRU</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OrderedDict/">OrderedDict</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/有序字典/">有序字典</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lru/">lru</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ordereddict/">ordereddict</a></li></ul>
 
 </article>
 
@@ -558,7 +544,7 @@ Examples:
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/posts/leetcode/2016/08/18/ag-385.html">leetcode Mini Parser</a>
+      <a class="post-title-link" href="/posts/2016/08/18/ag-385.html">leetcode Mini Parser</a>
     </h3>
   
 
@@ -570,8 +556,6 @@ Examples:
 </time>
 
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/leetcode/">leetcode</a></li></ul>
-
 
 
     </div>
@@ -585,54 +569,13 @@ Examples:
  String is non-empty. String doe
     
     
-        <a href="/posts/leetcode/2016/08/18/ag-385.html" class="post-more waves-effect waves-button">
+        <a href="/posts/2016/08/18/ag-385.html" class="post-more waves-effect waves-button">
             阅读全文...
         </a>
     </div>
     
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/stack/">stack</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/stack/">stack</a></li></ul>
 
-</article>
-
-    </li>
-  
-    <li class="post-list-item">
-        <article id="page-about-me"
-  class="article article-type-page" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/posts/uncategorized/2016/08/15/about-me.html">About me</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2016-08-15T11:59:07.000Z" itemprop="datePublished" class="post-time">
-  2016-08-15
-</time>
-
-        
-
-
-    </div>
-
-    <div class="post-content" id="post-content" itemprop="postContent" >
-
-    
-           经历  2014年毕业,在美丽说,一直在HIGO这个部门，后面HIGO独立，随HIGO一起到新HIGO。本科期间，喜欢打魔兽，经常逃课去打游戏，学习成绩一般，能勉强过关的那种。 
- 大二接触linux，之后就再也没有丢开过，花了很多时间去折腾。从桌面开始，从fedora, 到ubuntu，到arch，再到ubuntu。在这方面花了不少时间。 
- 觉着linux的命令行才是真正的命令行，linux桌面才是真正的桌面，虽然很不稳定，经常崩溃又从头再来，并且很容易出各种奇怪的问题，但当时觉着也没什么，遇到什么问题，就去找那个问题，知道那个问题解决。比如，有时候我折腾了一晚上，就是为了让我的li
-    
-    
-        <a href="/posts/uncategorized/2016/08/15/about-me.html" class="post-more waves-effect waves-button">
-            阅读全文...
-        </a>
-    </div>
-    
 </article>
 
     </li>

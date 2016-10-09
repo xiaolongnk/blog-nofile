@@ -4,12 +4,12 @@
 
     
   <url>
-    <loc>https://blog.nofile.cc/posts/%E5%89%8D%E7%AB%AF/2016/10/09/note-web.html</loc>
-    <lastmod>2016-10-09T05:40:37.000Z</lastmod>
+    <loc>https://blog.nofile.cc/posts/2016/09/09/note-web.html</loc>
+    <lastmod>2016-10-09T07:23:30.000Z</lastmod>
     <data>
         <display>
         <title>前端笔记</title>
-        <pubTime>2016-10-09T05:40:37.000Z</pubTime>
+        <pubTime>2016-09-09T06:43:00.000Z</pubTime>
         
         <tag>html</tag>
          
@@ -17,101 +17,90 @@
          
          
            
-             
-              <breadCrumb title="前端" url="https://blog.nofile.cc/categories/%E5%89%8D%E7%AB%AF/"/>
-          
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>https://blog.nofile.cc/posts/VPN/2016/10/09/note-vpn.html</loc>
-    <lastmod>2016-10-09T05:40:36.000Z</lastmod>
+    <loc>https://blog.nofile.cc/posts/2016/08/29/note-vpn.html</loc>
+    <lastmod>2016-10-09T07:23:29.000Z</lastmod>
     <data>
         <display>
         <title>Linux VPN 配置</title>
-        <pubTime>2016-10-09T05:40:36.000Z</pubTime>
+        <pubTime>2016-08-29T06:43:00.000Z</pubTime>
         
-        <tag>VPN MSJNC</tag>
+        <tag>vpn msjnc</tag>
          
          
            
-             
-              <breadCrumb title="VPN" url="https://blog.nofile.cc/categories/VPN/"/>
-          
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>https://blog.nofile.cc/posts/VIM/2016/10/09/note-vim.html</loc>
-    <lastmod>2016-10-09T05:40:35.000Z</lastmod>
+    <loc>https://blog.nofile.cc/posts/2016/08/28/note-vim.html</loc>
+    <lastmod>2016-10-09T07:23:28.000Z</lastmod>
     <data>
         <display>
         <title>vim 学习笔记</title>
-        <pubTime>2016-10-09T05:40:35.000Z</pubTime>
+        <pubTime>2016-08-28T06:43:00.000Z</pubTime>
         
-        <tag>VIM</tag>
+        <tag>vim</tag>
          
          
            
-             
-              <breadCrumb title="VIM" url="https://blog.nofile.cc/categories/VIM/"/>
-          
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>https://blog.nofile.cc/posts/Linux/2016/10/09/note-ubuntu.html</loc>
-    <lastmod>2016-10-09T05:40:34.000Z</lastmod>
+    <loc>https://blog.nofile.cc/posts/2016/09/09/note-ubuntu.html</loc>
+    <lastmod>2016-10-09T07:23:27.000Z</lastmod>
     <data>
         <display>
         <title>Ubuntu学习笔记</title>
-        <pubTime>2016-10-09T05:40:34.000Z</pubTime>
+        <pubTime>2016-09-09T06:42:00.000Z</pubTime>
         
-        <tag>Linux</tag>
+        <tag>linux</tag>
+         
+        <tag>ubuntu</tag>
          
          
            
-             
-              <breadCrumb title="Linux" url="https://blog.nofile.cc/categories/Linux/"/>
-          
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>https://blog.nofile.cc/posts/sphinx/2016/10/09/note-sphinx.html</loc>
-    <lastmod>2016-10-09T05:40:32.000Z</lastmod>
+    <loc>https://blog.nofile.cc/posts/2016/09/09/note-sphinx.html</loc>
+    <lastmod>2016-10-09T07:23:25.000Z</lastmod>
     <data>
         <display>
         <title>sphinx学习笔记</title>
-        <pubTime>2016-10-09T05:40:32.000Z</pubTime>
+        <pubTime>2016-09-09T06:42:00.000Z</pubTime>
         
+        <tag>sphinx</tag>
+         
         <tag>搜索</tag>
          
          
            
-             
-              <breadCrumb title="sphinx" url="https://blog.nofile.cc/categories/sphinx/"/>
-          
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>https://blog.nofile.cc/posts/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/2016/10/09/note-software.html</loc>
-    <lastmod>2016-10-09T05:40:31.000Z</lastmod>
+    <loc>https://blog.nofile.cc/posts/2016/09/09/note-software.html</loc>
+    <lastmod>2016-10-09T07:23:24.000Z</lastmod>
     <data>
         <display>
         <title>mac常用软件</title>
-        <pubTime>2016-10-09T05:40:31.000Z</pubTime>
+        <pubTime>2016-09-09T06:42:00.000Z</pubTime>
         
         <tag>开发工具</tag>
          
@@ -119,22 +108,21 @@
          
          
            
-             
-              <breadCrumb title="开发工具" url="https://blog.nofile.cc/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
-          
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>https://blog.nofile.cc/posts/shell/2016/10/09/note-shell.html</loc>
-    <lastmod>2016-10-09T05:40:30.000Z</lastmod>
+    <loc>https://blog.nofile.cc/posts/2016/09/09/note-shell.html</loc>
+    <lastmod>2016-10-09T07:23:23.000Z</lastmod>
     <data>
         <display>
         <title>shell 学习笔记</title>
-        <pubTime>2016-10-09T05:40:30.000Z</pubTime>
+        <pubTime>2016-09-09T06:42:00.000Z</pubTime>
         
+        <tag>shell</tag>
+         
         <tag>awk</tag>
          
         <tag>sed</tag>
@@ -143,21 +131,18 @@
          
          
            
-             
-              <breadCrumb title="shell" url="https://blog.nofile.cc/categories/shell/"/>
-          
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>https://blog.nofile.cc/posts/%E7%94%9F%E6%B4%BB/2016/10/09/note-read.html</loc>
-    <lastmod>2016-10-09T05:40:28.000Z</lastmod>
+    <loc>https://blog.nofile.cc/posts/2016/10/09/note-read.html</loc>
+    <lastmod>2016-10-09T07:23:22.000Z</lastmod>
     <data>
         <display>
         <title>读书笔记</title>
-        <pubTime>2016-10-09T05:40:28.000Z</pubTime>
+        <pubTime>2016-10-09T06:38:00.000Z</pubTime>
         
         <tag>阅读</tag>
          
@@ -165,37 +150,31 @@
          
          
            
-             
-              <breadCrumb title="生活" url="https://blog.nofile.cc/categories/%E7%94%9F%E6%B4%BB/"/>
-          
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>https://blog.nofile.cc/posts/programming/2016/10/09/note-python.html</loc>
-    <lastmod>2016-10-09T05:40:27.000Z</lastmod>
+    <loc>https://blog.nofile.cc/posts/2016/08/26/note-python.html</loc>
+    <lastmod>2016-10-09T07:23:20.000Z</lastmod>
     <data>
         <display>
         <title>Python 学习笔记</title>
-        <pubTime>2016-10-09T05:40:27.000Z</pubTime>
+        <pubTime>2016-08-26T06:39:00.000Z</pubTime>
         
-        <tag>Python</tag>
+        <tag>python</tag>
          
          
            
-             
-              <breadCrumb title="programming" url="https://blog.nofile.cc/categories/programming/"/>
-          
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>https://blog.nofile.cc/posts/PHP/2016/08/25/note-phpfpm.html</loc>
-    <lastmod>2016-10-09T05:40:26.000Z</lastmod>
+    <loc>https://blog.nofile.cc/posts/2016/08/25/note-phpfpm.html</loc>
+    <lastmod>2016-10-09T07:23:19.000Z</lastmod>
     <data>
         <display>
         <title>PHP 与 FPM 的区别</title>
@@ -209,41 +188,35 @@
          
          
            
-             
-              <breadCrumb title="PHP" url="https://blog.nofile.cc/categories/PHP/"/>
-          
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>https://blog.nofile.cc/posts/PHP/2016/10/09/note-php01.html</loc>
-    <lastmod>2016-10-09T05:40:24.000Z</lastmod>
+    <loc>https://blog.nofile.cc/posts/2016/09/09/note-php01.html</loc>
+    <lastmod>2016-10-09T07:23:18.000Z</lastmod>
     <data>
         <display>
         <title>PHP 源码学习</title>
-        <pubTime>2016-10-09T05:40:24.000Z</pubTime>
+        <pubTime>2016-09-09T06:39:00.000Z</pubTime>
         
-        <tag>PHP源码</tag>
+        <tag>php源码</tag>
          
          
            
-             
-              <breadCrumb title="PHP" url="https://blog.nofile.cc/categories/PHP/"/>
-          
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>https://blog.nofile.cc/posts/programming/2016/10/09/note-php.html</loc>
-    <lastmod>2016-10-09T05:40:23.000Z</lastmod>
+    <loc>https://blog.nofile.cc/posts/2016/08/26/note-php.html</loc>
+    <lastmod>2016-10-09T07:23:17.000Z</lastmod>
     <data>
         <display>
         <title>PHP 学习笔记</title>
-        <pubTime>2016-10-09T05:40:23.000Z</pubTime>
+        <pubTime>2016-08-26T06:41:00.000Z</pubTime>
         
         <tag>web</tag>
          
@@ -251,37 +224,31 @@
          
          
            
-             
-              <breadCrumb title="programming" url="https://blog.nofile.cc/categories/programming/"/>
-          
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>https://blog.nofile.cc/posts/nginx/2016/10/09/note-ng.html</loc>
-    <lastmod>2016-10-09T05:40:22.000Z</lastmod>
+    <loc>https://blog.nofile.cc/posts/2016/08/26/note-ng.html</loc>
+    <lastmod>2016-10-09T07:23:15.000Z</lastmod>
     <data>
         <display>
         <title>nginx 学习笔记</title>
-        <pubTime>2016-10-09T05:40:22.000Z</pubTime>
+        <pubTime>2016-08-26T06:41:00.000Z</pubTime>
         
         <tag>nginx</tag>
          
          
            
-             
-              <breadCrumb title="nginx" url="https://blog.nofile.cc/categories/nginx/"/>
-          
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>https://blog.nofile.cc/posts/mysql/2016/08/24/note-mysql-emoj.html</loc>
-    <lastmod>2016-10-09T05:40:20.000Z</lastmod>
+    <loc>https://blog.nofile.cc/posts/2016/08/24/note-mysql-emoj.html</loc>
+    <lastmod>2016-10-09T07:23:14.000Z</lastmod>
     <data>
         <display>
         <title>mysql enable emoj</title>
@@ -295,79 +262,69 @@
          
          
            
-             
-              <breadCrumb title="mysql" url="https://blog.nofile.cc/categories/mysql/"/>
-          
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>https://blog.nofile.cc/posts/%E5%AD%98%E5%82%A8/2016/10/09/note-mysql.html</loc>
-    <lastmod>2016-10-09T05:40:19.000Z</lastmod>
+    <loc>https://blog.nofile.cc/posts/2016/08/24/note-mysql.html</loc>
+    <lastmod>2016-10-09T07:23:13.000Z</lastmod>
     <data>
         <display>
-        <title>Mysql笔记</title>
-        <pubTime>2016-10-09T05:40:19.000Z</pubTime>
+        <title>mysql笔记</title>
+        <pubTime>2016-08-24T06:40:00.000Z</pubTime>
         
-        <tag>Mysql</tag>
+        <tag>mysql</tag>
+         
+        <tag>存储</tag>
          
          
            
-             
-              <breadCrumb title="存储" url="https://blog.nofile.cc/categories/%E5%AD%98%E5%82%A8/"/>
-          
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>https://blog.nofile.cc/posts/Mac/2016/10/09/note-mac.html</loc>
-    <lastmod>2016-10-09T05:40:18.000Z</lastmod>
+    <loc>https://blog.nofile.cc/posts/2016/08/23/note-mac.html</loc>
+    <lastmod>2016-10-09T07:23:12.000Z</lastmod>
     <data>
         <display>
         <title>MAC 使用心得</title>
-        <pubTime>2016-10-09T05:40:18.000Z</pubTime>
+        <pubTime>2016-08-23T06:40:00.000Z</pubTime>
         
         <tag>开发工具</tag>
          
+        <tag>mac</tag>
+         
          
            
-             
-              <breadCrumb title="Mac" url="https://blog.nofile.cc/categories/Mac/"/>
-          
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>https://blog.nofile.cc/posts/leetcode/2016/10/09/note-leetcode.html</loc>
-    <lastmod>2016-10-09T05:40:16.000Z</lastmod>
+    <loc>https://blog.nofile.cc/posts/2016/08/25/note-leetcode.html</loc>
+    <lastmod>2016-10-09T07:23:10.000Z</lastmod>
     <data>
         <display>
         <title>leetcode 刷题笔记</title>
-        <pubTime>2016-10-09T05:40:16.000Z</pubTime>
+        <pubTime>2016-08-25T06:40:00.000Z</pubTime>
         
-        <tag>算法</tag>
-         
-        <tag>数据结构</tag>
+        <tag>leetcode</tag>
          
          
            
-             
-              <breadCrumb title="leetcode" url="https://blog.nofile.cc/categories/leetcode/"/>
-          
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>https://blog.nofile.cc/posts/uncategorized/2016/08/23/note-laravel.html</loc>
-    <lastmod>2016-10-09T05:40:15.000Z</lastmod>
+    <loc>https://blog.nofile.cc/posts/2016/08/23/note-laravel.html</loc>
+    <lastmod>2016-10-09T07:23:09.000Z</lastmod>
     <data>
         <display>
         <title>Laravel 学习笔记</title>
@@ -383,12 +340,12 @@
 
     
   <url>
-    <loc>https://blog.nofile.cc/posts/javascript/2016/10/09/note-js.html</loc>
-    <lastmod>2016-10-09T05:40:14.000Z</lastmod>
+    <loc>https://blog.nofile.cc/posts/2016/09/09/note-js.html</loc>
+    <lastmod>2016-10-09T07:23:08.000Z</lastmod>
     <data>
         <display>
         <title>javascript 学习笔记</title>
-        <pubTime>2016-10-09T05:40:14.000Z</pubTime>
+        <pubTime>2016-09-09T06:39:00.000Z</pubTime>
         
         <tag>programming</tag>
          
@@ -398,17 +355,14 @@
          
          
            
-             
-              <breadCrumb title="javascript" url="https://blog.nofile.cc/categories/javascript/"/>
-          
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>https://blog.nofile.cc/posts/web/2016/08/19/note-https.html</loc>
-    <lastmod>2016-10-09T05:40:13.000Z</lastmod>
+    <loc>https://blog.nofile.cc/posts/2016/08/19/note-https.html</loc>
+    <lastmod>2016-10-09T07:23:07.000Z</lastmod>
     <data>
         <display>
         <title>HTTPS Your site</title>
@@ -429,12 +383,12 @@
 
     
   <url>
-    <loc>https://blog.nofile.cc/posts/c/2016/10/09/note-c.html</loc>
-    <lastmod>2016-10-09T05:40:11.000Z</lastmod>
+    <loc>https://blog.nofile.cc/posts/2016/10/09/note-c.html</loc>
+    <lastmod>2016-10-09T07:23:05.000Z</lastmod>
     <data>
         <display>
         <title>C/C++ 学习笔记</title>
-        <pubTime>2016-10-09T05:40:11.000Z</pubTime>
+        <pubTime>2016-10-09T07:23:05.000Z</pubTime>
         
         <tag>c/c++</tag>
          
@@ -449,162 +403,149 @@
 
     
   <url>
-    <loc>https://blog.nofile.cc/posts/leetcode/2016/08/18/ag-385.html</loc>
-    <lastmod>2016-10-09T05:40:10.000Z</lastmod>
+    <loc>https://blog.nofile.cc/posts/2016/08/18/ag-385.html</loc>
+    <lastmod>2016-10-09T07:23:04.000Z</lastmod>
     <data>
         <display>
         <title>leetcode Mini Parser</title>
         <pubTime>2016-08-18T15:03:00.000Z</pubTime>
         
+        <tag>leetcode</tag>
+         
         <tag>stack</tag>
          
         <tag>python</tag>
          
          
            
-             
-              <breadCrumb title="leetcode" url="https://blog.nofile.cc/categories/leetcode/"/>
-          
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>https://blog.nofile.cc/posts/leetcode/2016/08/20/ag-382.html</loc>
-    <lastmod>2016-10-09T05:40:09.000Z</lastmod>
+    <loc>https://blog.nofile.cc/posts/2016/08/20/ag-382.html</loc>
+    <lastmod>2016-10-09T07:23:03.000Z</lastmod>
     <data>
         <display>
         <title>382. Linked List Random Node</title>
         <pubTime>2016-08-20T11:07:00.000Z</pubTime>
         
-        <tag>random</tag>
+        <tag>leetcode</tag>
          
-        <tag>概率</tag>
+        <tag>random</tag>
          
          
            
-             
-              <breadCrumb title="leetcode" url="https://blog.nofile.cc/categories/leetcode/"/>
-          
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>https://blog.nofile.cc/posts/leetcode/2016/08/20/ag-282.html</loc>
-    <lastmod>2016-10-09T05:40:08.000Z</lastmod>
+    <loc>https://blog.nofile.cc/posts/2016/08/20/ag-282.html</loc>
+    <lastmod>2016-10-09T07:23:02.000Z</lastmod>
     <data>
         <display>
         <title>Expression Add Operators</title>
         <pubTime>2016-08-20T11:06:00.000Z</pubTime>
         
-        <tag>dfs</tag>
-         
         <tag>leetcode</tag>
+         
+        <tag>dfs</tag>
          
          
            
-             
-              <breadCrumb title="leetcode" url="https://blog.nofile.cc/categories/leetcode/"/>
-          
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>https://blog.nofile.cc/posts/leetcode/2016/08/18/ag-146.html</loc>
-    <lastmod>2016-10-09T05:40:06.000Z</lastmod>
+    <loc>https://blog.nofile.cc/posts/2016/08/18/ag-146.html</loc>
+    <lastmod>2016-10-09T07:23:00.000Z</lastmod>
     <data>
         <display>
         <title>leetcode LRU Cache</title>
         <pubTime>2016-08-18T15:29:00.000Z</pubTime>
         
-        <tag>LRU</tag>
+        <tag>leetcode</tag>
          
-        <tag>有序字典</tag>
+        <tag>lru</tag>
          
-        <tag>OrderedDict</tag>
+        <tag>ordereddict</tag>
          
          
            
-             
-              <breadCrumb title="leetcode" url="https://blog.nofile.cc/categories/leetcode/"/>
-          
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>https://blog.nofile.cc/posts/leetcode/2016/10/09/ag-121.html</loc>
-    <lastmod>2016-10-09T05:40:05.000Z</lastmod>
+    <loc>https://blog.nofile.cc/posts/2016/10/09/ag-121.html</loc>
+    <lastmod>2016-10-09T07:22:59.000Z</lastmod>
     <data>
         <display>
         <title>Best Time to Buy and Sell Stock</title>
         <pubTime>2016-10-09T02:37:00.000Z</pubTime>
         
-        <tag>动态规划</tag>
+        <tag>leetcode</tag>
+         
+        <tag>dynamic programming</tag>
          
          
            
-             
-              <breadCrumb title="leetcode" url="https://blog.nofile.cc/categories/leetcode/"/>
-          
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>https://blog.nofile.cc/posts/leetcode/2016/10/09/ag-113.html</loc>
-    <lastmod>2016-10-09T05:40:04.000Z</lastmod>
+    <loc>https://blog.nofile.cc/posts/2016/10/09/ag-113.html</loc>
+    <lastmod>2016-10-09T07:22:58.000Z</lastmod>
     <data>
         <display>
         <title>Path Sum II</title>
         <pubTime>2016-10-09T04:02:00.000Z</pubTime>
         
-        <tag>Tree</tag>
+        <tag>leetcode</tag>
          
-        <tag>DFS</tag>
+        <tag>tree</tag>
+         
+        <tag>dfs</tag>
          
          
            
-             
-              <breadCrumb title="leetcode" url="https://blog.nofile.cc/categories/leetcode/"/>
-          
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>https://blog.nofile.cc/posts/leetcode/2016/10/09/ag-112.html</loc>
-    <lastmod>2016-10-09T05:40:03.000Z</lastmod>
+    <loc>https://blog.nofile.cc/posts/2016/10/09/ag-112.html</loc>
+    <lastmod>2016-10-09T07:22:56.000Z</lastmod>
     <data>
         <display>
         <title>Path Sum</title>
         <pubTime>2016-10-09T02:49:00.000Z</pubTime>
         
-        <tag>Tree</tag>
+        <tag>leetcode</tag>
          
-        <tag>DFS</tag>
+        <tag>tree</tag>
+         
+        <tag>dfs</tag>
          
          
            
-             
-              <breadCrumb title="leetcode" url="https://blog.nofile.cc/categories/leetcode/"/>
-          
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>https://blog.nofile.cc/posts/leetcode/2016/08/19/ag-08.html</loc>
-    <lastmod>2016-10-09T05:40:01.000Z</lastmod>
+    <loc>https://blog.nofile.cc/posts/2016/08/19/ag-08.html</loc>
+    <lastmod>2016-10-09T07:22:55.000Z</lastmod>
     <data>
         <display>
         <title>String to Integer (atoi)</title>
@@ -614,46 +555,27 @@
          
         <tag>math</tag>
          
+        <tag>leetcode</tag>
+         
          
            
-             
-              <breadCrumb title="leetcode" url="https://blog.nofile.cc/categories/leetcode/"/>
-          
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>https://blog.nofile.cc/posts/leetcode/2016/08/20/ag-05.html</loc>
-    <lastmod>2016-10-09T05:40:00.000Z</lastmod>
+    <loc>https://blog.nofile.cc/posts/2016/08/20/ag-05.html</loc>
+    <lastmod>2016-10-09T07:22:54.000Z</lastmod>
     <data>
         <display>
         <title>Longest Palindromic Substring</title>
         <pubTime>2016-08-20T11:06:00.000Z</pubTime>
         
-        <tag>字符串</tag>
+        <tag>leetcode</tag>
          
-        <tag>算法</tag>
+        <tag>string</tag>
          
-         
-           
-             
-              <breadCrumb title="leetcode" url="https://blog.nofile.cc/categories/leetcode/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.nofile.cc/posts/uncategorized/2016/08/15/about-me.html</loc>
-    <lastmod>2016-10-09T05:39:59.000Z</lastmod>
-    <data>
-        <display>
-        <title>About me</title>
-        <pubTime>2016-08-15T11:59:07.000Z</pubTime>
-        
          
            
         </display>

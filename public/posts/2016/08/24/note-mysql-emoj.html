@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>mysql enable emoj | faith | leetcode学习笔记</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="laravel,mysql,emoj">
+  <meta name="description" content="Laravel Mysql 支持emoj1 确保mysql-server是5.5.4+utf8mb4的最低mysql版本支持版本为5.5.3+，若不是，请升级到较新版本。用mysql客户端连接进去，最上面会提示你当前的mysql的版本，确保是5.5.3以上的就可以了。
+2 修改database、table和column字符集参考以下语句：
+ALTER DATABASE database_name">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql enable emoj">
+<meta property="og:url" content="https://blog.nofile.cc/posts/2016/08/24/note-mysql-emoj.html">
+<meta property="og:site_name" content="faith">
+<meta property="og:description" content="Laravel Mysql 支持emoj1 确保mysql-server是5.5.4+utf8mb4的最低mysql版本支持版本为5.5.3+，若不是，请升级到较新版本。用mysql客户端连接进去，最上面会提示你当前的mysql的版本，确保是5.5.3以上的就可以了。
+2 修改database、table和column字符集参考以下语句：
+ALTER DATABASE database_name">
+<meta property="og:updated_time" content="2016-10-09T07:23:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mysql enable emoj">
+<meta name="twitter:description" content="Laravel Mysql 支持emoj1 确保mysql-server是5.5.4+utf8mb4的最低mysql版本支持版本为5.5.3+，若不是，请升级到较新版本。用mysql客户端连接进去，最上面会提示你当前的mysql的版本，确保是5.5.3以上的就可以了。
+2 修改database、table和column字符集参考以下语句：
+ALTER DATABASE database_name">
+  
+    <link rel="alternative" href="/atom.xml" title="faith" type="application/atom+xml">
+  
+  <meta name="summary" content="技术笔记，leetcode学习">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu"  >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">faith</h5>
+        <a href="mailto:xiaolongnk@126.com" title="xiaolongnk@126.com" class="mail">xiaolongnk@126.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
+      
+          <li class="waves-block waves-effect">
+            <a href="/"  >
+              <i class="icon icon-lg icon-home"></i>
+              主页
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/archives"  >
+              <i class="icon icon-lg icon-archives"></i>
+              Archives
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/tags"  >
+              <i class="icon icon-lg icon-tags"></i>
+              Tags
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/about"  >
+              <i class="icon icon-lg icon-about"></i>
+              About
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/xiaolongnk" target="_blank" >
+              <i class="icon icon-lg icon-github"></i>
+              Github
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="http://www.weibo.com/5369993110" target="_blank" >
+              <i class="icon icon-lg icon-weibo"></i>
+              Weibo
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="http://nofile.cc"  >
+              <i class="icon icon-lg icon-link"></i>
+              nofile
+            </a>
+          </li>
+      
+    </ul>
+
+    <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>faith &copy; 2016</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+  </div>
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">mysql enable emoj</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">mysql enable emoj</h1>
+    <h5 class="subtitle">
+        
+            <time datetime="2016-08-24T02:47:00.000Z" itemprop="datePublished" class="page-time">
+  2016-08-24
+</time>
+
+
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-note-mysql-emoj" 
+  class="article article-type-post" itemprop="blogPost">
+    <div class="post-meta flex-row">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/emoj/">emoj</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
+
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Laravel-Mysql-支持emoj"><span class="post-toc-text">Laravel Mysql 支持emoj</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-确保mysql-server是5-5-4"><span class="post-toc-text">1 确保mysql-server是5.5.4+</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-修改database、table和column字符集"><span class="post-toc-text">2 修改database、table和column字符集</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-修改mysql配置文件my-cnf"><span class="post-toc-text">3 修改mysql配置文件my.cnf</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-重启mysql-server"><span class="post-toc-text">4. 重启mysql-server</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5-设置laravel-的配置。"><span class="post-toc-text">5. 设置laravel 的配置。</span></a></li></ol></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="Laravel-Mysql-支持emoj"><a href="#Laravel-Mysql-支持emoj" class="headerlink" title="Laravel Mysql 支持emoj"></a>Laravel Mysql 支持emoj</h3><h4 id="1-确保mysql-server是5-5-4"><a href="#1-确保mysql-server是5-5-4" class="headerlink" title="1 确保mysql-server是5.5.4+"></a>1 确保mysql-server是5.5.4+</h4><p>utf8mb4的最低mysql版本支持版本为5.5.3+，若不是，请升级到较新版本。<br>用mysql客户端连接进去，最上面会提示你当前的mysql的版本，确保是5.5.3以上的就可以了。</p>
+<h4 id="2-修改database、table和column字符集"><a href="#2-修改database、table和column字符集" class="headerlink" title="2 修改database、table和column字符集"></a>2 修改database、table和column字符集</h4><p>参考以下语句：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">ALTER DATABASE database_name CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;</div><div class="line">ALTER TABLE table_name CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;</div><div class="line">ALTER TABLE table_name modify column_name VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;</div></pre></td></tr></table></figure>
+<h4 id="3-修改mysql配置文件my-cnf"><a href="#3-修改mysql配置文件my-cnf" class="headerlink" title="3 修改mysql配置文件my.cnf"></a>3 修改mysql配置文件my.cnf</h4><p>my.cnf一般在etc/mysql/my.cnf位置。找到后请在以下三部分里添加如下内容：</p>
+<p>[client]<br>default-character-set = utf8mb4</p>
+<p>[mysql]<br>default-character-set = utf8mb4</p>
+<p>[mysqld]<br>character-set-client-handshake = FALSE<br>character-set-server = utf8mb4<br>collation-server = utf8mb4_unicode_ci<br>init_connect=’SET NAMES utf8mb4’</p>
+<h4 id="4-重启mysql-server"><a href="#4-重启mysql-server" class="headerlink" title="4. 重启mysql-server"></a>4. 重启mysql-server</h4><p>ubuntu 的话可以 <code>sudo service mysql restart</code><br>进入mysql看一下以下变量。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">SHOW VARIABLES WHERE Variable_name LIKE &apos;character_set_%&apos; OR Variable_name LIKE &apos;collation%&apos;;</div></pre></td></tr></table></figure>
+<p>+————————–+——————–+<br>| Variable_name            | Value              |<br>+————————–+——————–+<br>| character_set_client    | utf8mb4            |<br>| character_set_connection | utf8mb4            |<br>| character_set_database  | utf8mb4            |<br>| character_set_filesystem | binary            |<br>| character_set_results    | utf8mb4            |<br>| character_set_server    | utf8mb4            |<br>| character_set_system    | utf8              |<br>| collation_connection    | utf8mb4_unicode_ci |<br>| collation_database      | utf8mb4_unicode_ci |<br>| collation_server        | utf8mb4_unicode_ci |<br>+————————–+——————–+</p>
+<h4 id="5-设置laravel-的配置。"><a href="#5-设置laravel-的配置。" class="headerlink" title="5. 设置laravel 的配置。"></a>5. 设置laravel 的配置。</h4><p>app/config/database.php 中的 mysql 部分的 charset 部分改成 utf8mb4 , collation 改成 ‘utf8mb4_unicode_ci’<br><figure class="highlight php"><table><tr><td class="code"><pre><div class="line"><span class="string">'charset'</span> =&gt; <span class="string">'utf8mb4'</span>,</div><div class="line"><span class="string">'collation'</span> =&gt; <span class="string">'utf8mb4_unicode_ci'</span>,</div></pre></td></tr></table></figure></p>
+<p>上面这些之后，重新尝试以下保存emoj，应该就可以成功了。</p>
+
+
+            
+            <div class="post-reward">
+                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+            </div>
+            
+            
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="https://blog.nofile.cc/posts/2016/08/24/note-mysql-emoj.html" target="_blank" rel="external">https://blog.nofile.cc/posts/2016/08/24/note-mysql-emoj.html</a>
+                </p>
+                <footer><cite><a href="https://blog.nofile.cc">@faith</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/posts/2016/08/24/note-mysql.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">mysql笔记</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/posts/2016/08/23/note-mac.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">MAC 使用心得</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="note-mysql-emoj" data-title="mysql enable emoj" data-url="https://blog.nofile.cc/posts/2016/08/24/note-mysql-emoj.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"nofile"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "mysql enable emoj",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "https://blog.nofile.cc/posts/2016/08/24/note-mysql-emoj.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        大爷的，太感谢了~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+
+
+<script>
+    var _baId = 'b98900c3864b32c37d696546d1911856';
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?" + _baId;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+</body>
+</html>

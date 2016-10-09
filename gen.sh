@@ -1,27 +1,45 @@
 #!/bin/bash
 
-. ~/.colorful
-cleancmd='rm ./scaffolds/*'
-cleanposts='rm ./source/_posts/*'
 
-eval $cleancmd
-eval $cleanposts
+function generate()
+{
+    . ~/.colorful
+    cleancmd='rm ./scaffolds/*'
+    cleanposts='rm -rf ./source/_posts/*'
+    cleanpublic='rm -rf ./public'
 
-echo "clean finished!"
-src=('~/code/alglib/leetcode/blog/' '~/code/note/mybook/')
-for i in ${src[@]}
-do
-    cpcmd="cp $i*.md ./scaffolds/"
-    eval $cpcmd
-done
+    eval $cleancmd
+    eval $cleanposts
 
-echo "move all blog in scaffolds done!"
+    echo "clean finished!"
+    src=('~/code/alglib/leetcode/blog/' '~/code/note/mybook/')
+    for i in ${src[@]}
+    do
+        cpcmd="cp $i*.md ./scaffolds/"
+        eval $cpcmd
+    done
 
-for i in `ls scaffolds/`
-do 
-	b=`echo $i | cut -d. -f1`
-    hexo new $b $b
-done
+    echo "move all blog in scaffolds done!"
 
-echo "generage finished"
-hexo g
+    for i in `ls scaffolds/`
+    do 
+        b=`echo $i | cut -d. -f1`
+        hexo new $b $b
+    done
+
+    echo "generate finished"
+    hexo g
+}
+
+function deploy()
+{
+    scp -r ./public/* work@101.200.154.217:~/code/blog/
+    echo "deploy finished!"
+}
+
+case $1 in
+    gen    ) generate;;
+    deploy ) deploy;;
+    *        ) echo "no support args";;
+esac
+
