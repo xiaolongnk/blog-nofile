@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>faith</title>
-  <subtitle>leetcode学习笔记</subtitle>
+  <subtitle>势力纷华，不近者为洁，近之而不染者尤洁；智械机巧，不知者为高，知而不用者为尤高。---《菜根谭》</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.nofile.cc/"/>
-  <updated>2016-10-09T07:23:05.000Z</updated>
+  <updated>2016-10-09T09:54:35.000Z</updated>
   <id>https://blog.nofile.cc/</id>
   
   <author>
@@ -19,8 +19,8 @@
     <title>C/C++ 学习笔记</title>
     <link href="https://blog.nofile.cc/posts/2016/10/09/note-c.html"/>
     <id>https://blog.nofile.cc/posts/2016/10/09/note-c.html</id>
-    <published>2016-10-09T07:23:05.000Z</published>
-    <updated>2016-10-09T07:23:05.000Z</updated>
+    <published>2016-10-09T09:54:35.000Z</published>
+    <updated>2016-10-09T09:54:35.000Z</updated>
     
     <content type="html"><![CDATA[<h4 id="C文件的编译过程"><a href="#C文件的编译过程" class="headerlink" title="C文件的编译过程"></a>C文件的编译过程</h4><p>编译一个c文件，产生一个可执行文件，这个过程分为四个步骤</p>
 <ol>
@@ -71,7 +71,7 @@
     <link href="https://blog.nofile.cc/posts/2016/10/09/note-read.html"/>
     <id>https://blog.nofile.cc/posts/2016/10/09/note-read.html</id>
     <published>2016-10-09T06:38:00.000Z</published>
-    <updated>2016-10-09T07:23:22.000Z</updated>
+    <updated>2016-10-09T09:54:51.000Z</updated>
     
     <content type="html"><![CDATA[<h4 id="关于阅读"><a href="#关于阅读" class="headerlink" title="关于阅读"></a>关于阅读</h4><p>如果我一直以没有时间为理由，不去读书，是不是会越来越蠢。</p>
 <h4 id="Kindle资源"><a href="#Kindle资源" class="headerlink" title="Kindle资源"></a>Kindle资源</h4><ol>
@@ -107,7 +107,7 @@
     <link href="https://blog.nofile.cc/posts/2016/10/09/ag-113.html"/>
     <id>https://blog.nofile.cc/posts/2016/10/09/ag-113.html</id>
     <published>2016-10-09T04:02:00.000Z</published>
-    <updated>2016-10-09T07:22:58.000Z</updated>
+    <updated>2016-10-09T09:54:27.000Z</updated>
     
     <content type="html"><![CDATA[<h4 id="Path-Sum-II"><a href="#Path-Sum-II" class="headerlink" title="Path Sum II"></a>Path Sum II</h4><p>和112类似，不过这次是要求出所有的解决方案。</p>
 <p>For example:<br>Given the below binary tree and sum = 22,</p>
@@ -148,7 +148,7 @@
     <link href="https://blog.nofile.cc/posts/2016/10/09/ag-112.html"/>
     <id>https://blog.nofile.cc/posts/2016/10/09/ag-112.html</id>
     <published>2016-10-09T02:49:00.000Z</published>
-    <updated>2016-10-09T07:22:56.000Z</updated>
+    <updated>2016-10-09T09:54:26.000Z</updated>
     
     <content type="html"><![CDATA[<h4 id="Path-Sum"><a href="#Path-Sum" class="headerlink" title="Path Sum"></a>Path Sum</h4><p>Given a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum.</p>
 <p>For example:</p>
@@ -185,7 +185,7 @@
     <link href="https://blog.nofile.cc/posts/2016/10/09/ag-121.html"/>
     <id>https://blog.nofile.cc/posts/2016/10/09/ag-121.html</id>
     <published>2016-10-09T02:37:00.000Z</published>
-    <updated>2016-10-09T07:22:59.000Z</updated>
+    <updated>2016-10-09T09:54:29.000Z</updated>
     
     <content type="html"><![CDATA[<h4 id="Best-Time-to-Buy-and-Sell-Stock"><a href="#Best-Time-to-Buy-and-Sell-Stock" class="headerlink" title="Best Time to Buy and Sell Stock"></a><a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock/" target="_blank" rel="external">Best Time to Buy and Sell Stock</a></h4><p>题目要求是如何购买可以获益最大,比较简单，但还是比较有意思的。两个样例如下：</p>
 <pre><code>Example 1:
@@ -220,7 +220,7 @@ In this case, no transaction is done, i.e. max profit = 0.
     <link href="https://blog.nofile.cc/posts/2016/09/09/note-web.html"/>
     <id>https://blog.nofile.cc/posts/2016/09/09/note-web.html</id>
     <published>2016-09-09T06:43:00.000Z</published>
-    <updated>2016-10-09T07:23:30.000Z</updated>
+    <updated>2016-10-09T09:55:01.000Z</updated>
     
     <content type="html"><![CDATA[<h4 id="margin"><a href="#margin" class="headerlink" title="margin"></a>margin</h4><p>margin: 的4个参数。up ,right, down , left;<br>如果只有一个参数，那么表示4个都是n px。可以是1–4个参数。</p>
 <h4 id="some-input-type"><a href="#some-input-type" class="headerlink" title="some input type"></a>some input type</h4><p>radio, checkbox , button, 他们都有对应的时间，可以在里面添加对应的 函数。可以带参数的。<br>checkbox 也可以写成数组。<br>name=’chk[]’  $_REQUEST [‘chk’] 取值的方式是这样的。</p>
@@ -251,7 +251,7 @@ In this case, no transaction is done, i.e. max profit = 0.
     <link href="https://blog.nofile.cc/posts/2016/09/09/note-ubuntu.html"/>
     <id>https://blog.nofile.cc/posts/2016/09/09/note-ubuntu.html</id>
     <published>2016-09-09T06:42:00.000Z</published>
-    <updated>2016-10-09T07:23:27.000Z</updated>
+    <updated>2016-10-09T09:54:56.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="制作-ubuntu-镜像"><a href="#制作-ubuntu-镜像" class="headerlink" title="制作 ubuntu 镜像"></a>制作 ubuntu 镜像</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo dd if=/home/your.iso of=/dev/sdb</div></pre></td></tr></table></figure>
 <p>安装 fcitx 搜狗输入法。</p>
@@ -323,7 +323,7 @@ In this case, no transaction is done, i.e. max profit = 0.
     <link href="https://blog.nofile.cc/posts/2016/09/09/note-sphinx.html"/>
     <id>https://blog.nofile.cc/posts/2016/09/09/note-sphinx.html</id>
     <published>2016-09-09T06:42:00.000Z</published>
-    <updated>2016-10-09T07:23:25.000Z</updated>
+    <updated>2016-10-09T09:54:55.000Z</updated>
     
     <content type="html"><![CDATA[<h4 id="sphinx实践"><a href="#sphinx实践" class="headerlink" title="sphinx实践"></a>sphinx实践</h4><p>用shpinx实现一个搜索相关的小项目<br>需要安装sphinx，然后和mysql配合使用。</p>
 <h4 id="sphinx安装配置"><a href="#sphinx安装配置" class="headerlink" title="sphinx安装配置"></a>sphinx安装配置</h4><p>编译安装sphinx。</p>
@@ -348,7 +348,7 @@ In this case, no transaction is done, i.e. max profit = 0.
     <link href="https://blog.nofile.cc/posts/2016/09/09/note-software.html"/>
     <id>https://blog.nofile.cc/posts/2016/09/09/note-software.html</id>
     <published>2016-09-09T06:42:00.000Z</published>
-    <updated>2016-10-09T07:23:24.000Z</updated>
+    <updated>2016-10-09T09:54:54.000Z</updated>
     
     <content type="html"><![CDATA[<h4 id="charles-APP代理软件"><a href="#charles-APP代理软件" class="headerlink" title="charles APP代理软件"></a>charles APP代理软件</h4><p>charles 破解。我的link。 <a href="http://pan.baidu.com/s/1i4UUbOh" target="_blank" rel="external">http://pan.baidu.com/s/1i4UUbOh</a></p>
 <h4 id="Dash"><a href="#Dash" class="headerlink" title="Dash"></a>Dash</h4><p>非常便捷的API手册，方便查询。</p>
@@ -378,7 +378,7 @@ In this case, no transaction is done, i.e. max profit = 0.
     <link href="https://blog.nofile.cc/posts/2016/09/09/note-shell.html"/>
     <id>https://blog.nofile.cc/posts/2016/09/09/note-shell.html</id>
     <published>2016-09-09T06:42:00.000Z</published>
-    <updated>2016-10-09T07:23:23.000Z</updated>
+    <updated>2016-10-09T09:54:53.000Z</updated>
     
     <content type="html"><![CDATA[<h4 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h4><p>the follow command can be used to restart php-fpm in server.<br>ps aux | grep ‘php-fpm’ | awk ‘{print $1}’ | xargs kill -USR2<br>-F option 是用来改变默认的分隔符的。<br>awk -F ‘:’ ‘{print $3}’<br>awk 的 BEGIN 和 END 语句的功能。<br>BEGIN 是最开始的部分执行的，然后AWK开始读取文件内容，进行处理。<br>END 是最后面结束执行的.</p>
 <h4 id="sed的简单例子"><a href="#sed的简单例子" class="headerlink" title="sed的简单例子"></a>sed的简单例子</h4><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sed &apos;s/xx/ds/&apos; note</div><div class="line"></div><div class="line">[ ! -x result ] &amp;&amp; mkdir result</div><div class="line">for i in `ls *.grb`</div><div class="line">do</div><div class="line">    out=`echo $i | sed &apos;s/GLDAS_NOAH10_M.A//&apos; | sed &apos;s/\..*[[:graph:]]//&apos;`</div><div class="line">    wgrib $i &gt; result/$out&quot;.out&quot;</div><div class="line">done</div><div class="line"></div><div class="line">sed -i &quot;This command to use replace the input file&quot;</div><div class="line">just a simple example.</div><div class="line">sed -i &apos;s/--/-/&apos;</div></pre></td></tr></table></figure>
@@ -441,11 +441,44 @@ In this case, no transaction is done, i.e. max profit = 0.
   </entry>
   
   <entry>
+    <title>javascript 学习笔记</title>
+    <link href="https://blog.nofile.cc/posts/2016/09/09/note-js.html"/>
+    <id>https://blog.nofile.cc/posts/2016/09/09/note-js.html</id>
+    <published>2016-09-09T06:39:00.000Z</published>
+    <updated>2016-10-09T09:54:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="jquery常识"><a href="#jquery常识" class="headerlink" title="jquery常识"></a>jquery常识</h4><p>如果<code>$()</code> 的括号里面是一个dom元素的话，这个东西就是一个jquery对象。<br>jquery 的方法，on ，可以绑定事件，each可以循环遍历数组。<br>同时js自己的array也是一个对象，有foreach方法。要注意和jquery的each 方法区分。<br>js 几个常用的事件<code>keyup onchange click</code></p>
+<p>js 的闭包函数，这几天php中也用了不少，一个是array_walk, usort()<br>有些场景中用这些函数是很方便的，这些函数都有自己适合的场景，要在<br>合适场景使用,才能体现出这些函数的作用。</p>
+<h4 id="js-正则"><a href="#js-正则" class="headerlink" title="js 正则."></a>js 正则.</h4><p>正则表达式各种语言基本都是类似的，选择任一种实现都可以。<br>^匹配开头<br>$匹配结尾<br>除了一些最基本的之外，可以简单思考下下面这些问题</p>
+<p>贪婪匹配<br>跨行匹配<br>.<em> 尽可能多的匹配<br>.</em>? 匹配到一个就可以了</p>
+<h4 id="js-localstorage"><a href="#js-localstorage" class="headerlink" title="js localstorage"></a>js localstorage</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">js localStorage.</div><div class="line">localStorage.getItem();</div><div class="line">localStorage.setItem();</div></pre></td></tr></table></figure>
+<h4 id="underscore"><a href="#underscore" class="headerlink" title="underscore"></a>underscore</h4><p>Underscore提供了100多个函数,包括常用的: map, filter, invoke — 当然还有更多专业的辅助函数,如:函数绑定, JavaScript模板功能,创建快速索引, 强类型相等测试, 等等.</p>
+<p>详细的文档可以参见这里。<a href="http://www.css88.com/doc/underscore/" target="_blank" rel="external">http://www.css88.com/doc/underscore/</a></p>
+<p>####jquery on 的代理实现</p>
+<p>记得有这样一个场景。<br>一个页面里面会使用到弹层，弹层上面有一些按钮，需要给这些按钮绑定事件。<br>可以使用on方法绑定。但是在js代码执行的时候，这个坦层并没有出现，页面中并没有<br>这个dom对象。这个时候，需要用到on的另一种使用方法。在他的父元素上绑定。<br>parent.on(‘click’,’selector’,function(){})<br>是一种类似这样的用法，当时这个解决了个很重要的问题。<br>jquery 中给一个元素中追加一些属性可以用append方法来实现。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;jquery常识&quot;&gt;&lt;a href=&quot;#jquery常识&quot; class=&quot;headerlink&quot; title=&quot;jquery常识&quot;&gt;&lt;/a&gt;jquery常识&lt;/h4&gt;&lt;p&gt;如果&lt;code&gt;$()&lt;/code&gt; 的括号里面是一个dom元素的话，这个东西就是一个jqu
+    
+    </summary>
+    
+    
+      <category term="programming" scheme="https://blog.nofile.cc/tags/programming/"/>
+    
+      <category term="javascript" scheme="https://blog.nofile.cc/tags/javascript/"/>
+    
+      <category term="web" scheme="https://blog.nofile.cc/tags/web/"/>
+    
+  </entry>
+  
+  <entry>
     <title>PHP 源码学习</title>
     <link href="https://blog.nofile.cc/posts/2016/09/09/note-php01.html"/>
     <id>https://blog.nofile.cc/posts/2016/09/09/note-php01.html</id>
     <published>2016-09-09T06:39:00.000Z</published>
-    <updated>2016-10-09T07:23:18.000Z</updated>
+    <updated>2016-10-09T09:54:47.000Z</updated>
     
     <content type="html"><![CDATA[<h4 id="PHP弱类型的实现原理"><a href="#PHP弱类型的实现原理" class="headerlink" title="PHP弱类型的实现原理"></a>PHP弱类型的实现原理</h4><p>PHP是弱类型，动态的语言脚本。在申明一个变量的时候，并不需要指明它保存的数据类型。例如：动态变量，在运行期间是可以改变的，并且在使用前无需声明变量类型。</p>
 <figure class="highlight php"><table><tr><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span>  </div><div class="line">$var = <span class="number">1</span>;  </div><div class="line">$var = <span class="string">"variable"</span>;  </div><div class="line">$var = <span class="number">1.00</span>;  </div><div class="line">$var = <span class="keyword">array</span>();  </div><div class="line">$var = <span class="keyword">new</span> Object();</div></pre></td></tr></table></figure>
@@ -481,44 +514,11 @@ In this case, no transaction is done, i.e. max profit = 0.
   </entry>
   
   <entry>
-    <title>javascript 学习笔记</title>
-    <link href="https://blog.nofile.cc/posts/2016/09/09/note-js.html"/>
-    <id>https://blog.nofile.cc/posts/2016/09/09/note-js.html</id>
-    <published>2016-09-09T06:39:00.000Z</published>
-    <updated>2016-10-09T07:23:08.000Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="jquery常识"><a href="#jquery常识" class="headerlink" title="jquery常识"></a>jquery常识</h4><p>如果<code>$()</code> 的括号里面是一个dom元素的话，这个东西就是一个jquery对象。<br>jquery 的方法，on ，可以绑定事件，each可以循环遍历数组。<br>同时js自己的array也是一个对象，有foreach方法。要注意和jquery的each 方法区分。<br>js 几个常用的事件<code>keyup onchange click</code></p>
-<p>js 的闭包函数，这几天php中也用了不少，一个是array_walk, usort()<br>有些场景中用这些函数是很方便的，这些函数都有自己适合的场景，要在<br>合适场景使用,才能体现出这些函数的作用。</p>
-<h4 id="js-正则"><a href="#js-正则" class="headerlink" title="js 正则."></a>js 正则.</h4><p>正则表达式各种语言基本都是类似的，选择任一种实现都可以。<br>^匹配开头<br>$匹配结尾<br>除了一些最基本的之外，可以简单思考下下面这些问题</p>
-<p>贪婪匹配<br>跨行匹配<br>.<em> 尽可能多的匹配<br>.</em>? 匹配到一个就可以了</p>
-<h4 id="js-localstorage"><a href="#js-localstorage" class="headerlink" title="js localstorage"></a>js localstorage</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line">js localStorage.</div><div class="line">localStorage.getItem();</div><div class="line">localStorage.setItem();</div></pre></td></tr></table></figure>
-<h4 id="underscore"><a href="#underscore" class="headerlink" title="underscore"></a>underscore</h4><p>Underscore提供了100多个函数,包括常用的: map, filter, invoke — 当然还有更多专业的辅助函数,如:函数绑定, JavaScript模板功能,创建快速索引, 强类型相等测试, 等等.</p>
-<p>详细的文档可以参见这里。<a href="http://www.css88.com/doc/underscore/" target="_blank" rel="external">http://www.css88.com/doc/underscore/</a></p>
-<p>####jquery on 的代理实现</p>
-<p>记得有这样一个场景。<br>一个页面里面会使用到弹层，弹层上面有一些按钮，需要给这些按钮绑定事件。<br>可以使用on方法绑定。但是在js代码执行的时候，这个坦层并没有出现，页面中并没有<br>这个dom对象。这个时候，需要用到on的另一种使用方法。在他的父元素上绑定。<br>parent.on(‘click’,’selector’,function(){})<br>是一种类似这样的用法，当时这个解决了个很重要的问题。<br>jquery 中给一个元素中追加一些属性可以用append方法来实现。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h4 id=&quot;jquery常识&quot;&gt;&lt;a href=&quot;#jquery常识&quot; class=&quot;headerlink&quot; title=&quot;jquery常识&quot;&gt;&lt;/a&gt;jquery常识&lt;/h4&gt;&lt;p&gt;如果&lt;code&gt;$()&lt;/code&gt; 的括号里面是一个dom元素的话，这个东西就是一个jqu
-    
-    </summary>
-    
-    
-      <category term="programming" scheme="https://blog.nofile.cc/tags/programming/"/>
-    
-      <category term="javascript" scheme="https://blog.nofile.cc/tags/javascript/"/>
-    
-      <category term="web" scheme="https://blog.nofile.cc/tags/web/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Linux VPN 配置</title>
     <link href="https://blog.nofile.cc/posts/2016/08/29/note-vpn.html"/>
     <id>https://blog.nofile.cc/posts/2016/08/29/note-vpn.html</id>
     <published>2016-08-29T06:43:00.000Z</published>
-    <updated>2016-10-09T07:23:29.000Z</updated>
+    <updated>2016-10-09T09:55:00.000Z</updated>
     
     <content type="html"><![CDATA[<h4 id="ubuntu14-04-安装vpn"><a href="#ubuntu14-04-安装vpn" class="headerlink" title="ubuntu14.04 安装vpn"></a>ubuntu14.04 安装vpn</h4><p>这个是最正确的教程，没有之一。<br><a href="http://mad-scientist.us/juniper.html" target="_blank" rel="external">http://mad-scientist.us/juniper.html</a><br>下面是一个简单的总结</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo apt-get install libstdc++6:i386 lib32z1 lib32ncurses5 libxext6:i386 libxrender1:i386 libxtst6:i386 libxi6:i386</div><div class="line">sudo apt-get install openjdk-7-jre icedtea-7-plugin openjdk-7-jre:i386</div><div class="line">sudo apt-get install  icedtea-plugin</div><div class="line">sudo apt-get install libc6-i386 lib32nss-mdns</div><div class="line">sudo apt-get install libgtk2-perl libwww-perl</div><div class="line">wget -q -O /tmp/msjnc https://raw.github.com/madscientist/msjnc/master/msjnc</div><div class="line">chmod 755 /tmp/msjnc</div><div class="line">sudo cp /tmp/msjnc /usr/bin</div></pre></td></tr></table></figure>
@@ -542,7 +542,7 @@ In this case, no transaction is done, i.e. max profit = 0.
     <link href="https://blog.nofile.cc/posts/2016/08/28/note-vim.html"/>
     <id>https://blog.nofile.cc/posts/2016/08/28/note-vim.html</id>
     <published>2016-08-28T06:43:00.000Z</published>
-    <updated>2016-10-09T07:23:28.000Z</updated>
+    <updated>2016-10-09T09:54:58.000Z</updated>
     
     <content type="html"><![CDATA[<h4 id="vim的几个常用的插件。"><a href="#vim的几个常用的插件。" class="headerlink" title="vim的几个常用的插件。"></a>vim的几个常用的插件。</h4><table>
 <thead>
@@ -611,40 +611,11 @@ In this case, no transaction is done, i.e. max profit = 0.
   </entry>
   
   <entry>
-    <title>nginx 学习笔记</title>
-    <link href="https://blog.nofile.cc/posts/2016/08/26/note-ng.html"/>
-    <id>https://blog.nofile.cc/posts/2016/08/26/note-ng.html</id>
-    <published>2016-08-26T06:41:00.000Z</published>
-    <updated>2016-10-09T07:23:15.000Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="nginx编译参数"><a href="#nginx编译参数" class="headerlink" title="nginx编译参数"></a>nginx编译参数</h4><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">./configure \</div><div class="line">    --prefix=/home/service/nginx \</div><div class="line">    --with-http_ssl_module \</div><div class="line">    --with-http_spdy_module \</div><div class="line">    --with-http_realip_module \</div><div class="line">    --with-http_addition_module \</div><div class="line">    --with-http_xslt_module \</div><div class="line">    --with-http_image_filter_module \</div><div class="line">    --with-http_sub_module \</div><div class="line">    --with-http_dav_module \</div><div class="line">    --with-http_flv_module \</div><div class="line">    --with-http_mp4_module \</div><div class="line">    --with-http_gunzip_module \</div><div class="line">    --with-http_gzip_static_module \</div><div class="line">    --with-http_auth_request_module \</div><div class="line">    --with-http_random_index_module \</div><div class="line">    --with-http_secure_link_module \</div><div class="line">    --with-http_degradation_module \</div><div class="line">    --with-http_stub_status_module \</div><div class="line">    --with-pcre=/root/src/pcre-8.37 \</div><div class="line">    --with-zlib=/root/src/zlib-1.2.8 \</div><div class="line">    --with-openssl=/root/src/openssl-OpenSSL_1_0_2d \</div><div class="line">    --add-module=/root/src/naxsi-0.54/naxsi_src \</div><div class="line">    --add-module=/root/src/headers-more-nginx-module-0.27 \</div><div class="line">    --add-module=/root/src/echo-nginx-module-0.58 \</div><div class="line">    --add-module=/root/src/lua-nginx-module-0.9.18rc1 \</div><div class="line">    --add-module=/root/src/redis2-nginx-module-0.12</div></pre></td></tr></table></figure>
-<h4 id="nginx-中加环境变量"><a href="#nginx-中加环境变量" class="headerlink" title="nginx 中加环境变量."></a>nginx 中加环境变量.</h4><p>fastcgi_params define_params hhh</p>
-<h4 id="nginx-配置规则"><a href="#nginx-配置规则" class="headerlink" title="nginx 配置规则"></a>nginx 配置规则</h4><ol>
-<li><p>location 写法。</p>
-</li>
-<li><p>log_format<br> nginx 的log_format , log 需要几下post参数。记得上次查问题，我只能定位到url，并不能定位<br> 到参数，这导致有些问题没有办法追查。</p>
-</li>
-</ol>
-<h4 id="nginx-和php-fpm"><a href="#nginx-和php-fpm" class="headerlink" title="nginx 和php-fpm"></a>nginx 和php-fpm</h4><h4 id="nginx-启动和重启"><a href="#nginx-启动和重启" class="headerlink" title="nginx 启动和重启"></a>nginx 启动和重启</h4><p>检测配置文件的正确性，不要加载一个又明显错误的配置文件<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">nginx -t -c /usr/nginx/conf/nginx.conf</div><div class="line">#启动  停止  或者重启 nginx 。</div><div class="line">nginx  -s reload  nginx  #重新加载配置文件</div><div class="line">pkill nginx     #停止nginx</div></pre></td></tr></table></figure></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h4 id=&quot;nginx编译参数&quot;&gt;&lt;a href=&quot;#nginx编译参数&quot; class=&quot;headerlink&quot; title=&quot;nginx编译参数&quot;&gt;&lt;/a&gt;nginx编译参数&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;t
-    
-    </summary>
-    
-    
-      <category term="nginx" scheme="https://blog.nofile.cc/tags/nginx/"/>
-    
-  </entry>
-  
-  <entry>
     <title>PHP 学习笔记</title>
     <link href="https://blog.nofile.cc/posts/2016/08/26/note-php.html"/>
     <id>https://blog.nofile.cc/posts/2016/08/26/note-php.html</id>
     <published>2016-08-26T06:41:00.000Z</published>
-    <updated>2016-10-09T07:23:17.000Z</updated>
+    <updated>2016-10-09T09:54:46.000Z</updated>
     
     <content type="html"><![CDATA[<h4 id="PHP-回掉函数的使用。"><a href="#PHP-回掉函数的使用。" class="headerlink" title="PHP 回掉函数的使用。"></a>PHP 回掉函数的使用。</h4><p>这是最基本的回掉方法。<br>call_user_func_array(‘your function’,array());<br>array() is your params.</p>
 <p>刚才在文档里发现了好多东西，原来还是要自己编译才是最好的。才能够了解更多的特性。<br>./configure –help<br>其实已经包含了很多信息，只是你还不了解。<br>要编译安装，这个是很重要的一步。</p>
@@ -685,11 +656,40 @@ In this case, no transaction is done, i.e. max profit = 0.
   </entry>
   
   <entry>
+    <title>nginx 学习笔记</title>
+    <link href="https://blog.nofile.cc/posts/2016/08/26/note-ng.html"/>
+    <id>https://blog.nofile.cc/posts/2016/08/26/note-ng.html</id>
+    <published>2016-08-26T06:41:00.000Z</published>
+    <updated>2016-10-09T09:54:45.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="nginx编译参数"><a href="#nginx编译参数" class="headerlink" title="nginx编译参数"></a>nginx编译参数</h4><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">./configure \</div><div class="line">    --prefix=/home/service/nginx \</div><div class="line">    --with-http_ssl_module \</div><div class="line">    --with-http_spdy_module \</div><div class="line">    --with-http_realip_module \</div><div class="line">    --with-http_addition_module \</div><div class="line">    --with-http_xslt_module \</div><div class="line">    --with-http_image_filter_module \</div><div class="line">    --with-http_sub_module \</div><div class="line">    --with-http_dav_module \</div><div class="line">    --with-http_flv_module \</div><div class="line">    --with-http_mp4_module \</div><div class="line">    --with-http_gunzip_module \</div><div class="line">    --with-http_gzip_static_module \</div><div class="line">    --with-http_auth_request_module \</div><div class="line">    --with-http_random_index_module \</div><div class="line">    --with-http_secure_link_module \</div><div class="line">    --with-http_degradation_module \</div><div class="line">    --with-http_stub_status_module \</div><div class="line">    --with-pcre=/root/src/pcre-8.37 \</div><div class="line">    --with-zlib=/root/src/zlib-1.2.8 \</div><div class="line">    --with-openssl=/root/src/openssl-OpenSSL_1_0_2d \</div><div class="line">    --add-module=/root/src/naxsi-0.54/naxsi_src \</div><div class="line">    --add-module=/root/src/headers-more-nginx-module-0.27 \</div><div class="line">    --add-module=/root/src/echo-nginx-module-0.58 \</div><div class="line">    --add-module=/root/src/lua-nginx-module-0.9.18rc1 \</div><div class="line">    --add-module=/root/src/redis2-nginx-module-0.12</div></pre></td></tr></table></figure>
+<h4 id="nginx-中加环境变量"><a href="#nginx-中加环境变量" class="headerlink" title="nginx 中加环境变量."></a>nginx 中加环境变量.</h4><p>fastcgi_params define_params hhh</p>
+<h4 id="nginx-配置规则"><a href="#nginx-配置规则" class="headerlink" title="nginx 配置规则"></a>nginx 配置规则</h4><ol>
+<li><p>location 写法。</p>
+</li>
+<li><p>log_format<br> nginx 的log_format , log 需要几下post参数。记得上次查问题，我只能定位到url，并不能定位<br> 到参数，这导致有些问题没有办法追查。</p>
+</li>
+</ol>
+<h4 id="nginx-和php-fpm"><a href="#nginx-和php-fpm" class="headerlink" title="nginx 和php-fpm"></a>nginx 和php-fpm</h4><h4 id="nginx-启动和重启"><a href="#nginx-启动和重启" class="headerlink" title="nginx 启动和重启"></a>nginx 启动和重启</h4><p>检测配置文件的正确性，不要加载一个又明显错误的配置文件<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">nginx -t -c /usr/nginx/conf/nginx.conf</div><div class="line">#启动  停止  或者重启 nginx 。</div><div class="line">nginx  -s reload  nginx  #重新加载配置文件</div><div class="line">pkill nginx     #停止nginx</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;nginx编译参数&quot;&gt;&lt;a href=&quot;#nginx编译参数&quot; class=&quot;headerlink&quot; title=&quot;nginx编译参数&quot;&gt;&lt;/a&gt;nginx编译参数&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;t
+    
+    </summary>
+    
+    
+      <category term="nginx" scheme="https://blog.nofile.cc/tags/nginx/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Python 学习笔记</title>
     <link href="https://blog.nofile.cc/posts/2016/08/26/note-python.html"/>
     <id>https://blog.nofile.cc/posts/2016/08/26/note-python.html</id>
     <published>2016-08-26T06:39:00.000Z</published>
-    <updated>2016-10-09T07:23:20.000Z</updated>
+    <updated>2016-10-09T09:54:50.000Z</updated>
     
     <content type="html"><![CDATA[<h4 id="Python-内置函数"><a href="#Python-内置函数" class="headerlink" title="Python 内置函数"></a>Python 内置函数</h4><p><code>__call__  __getattr__</code>这两个内置函数是非常有用的,首先这两个函数是可以给类定义的.<br>只有在class中才能实现这两个函数.<code>__call__</code> 这个方法,可以让对象的实例作为一个无名函数被使用.<br>实际上是给class重定义了<code>()</code>运算符.</p>
 <p>每次通过实例访问属性,都要经过 <code>__getattributge__()</code> 如果属性没有定义,还需要访问 <code>__get_attr__()</code></p>
@@ -733,7 +733,7 @@ In this case, no transaction is done, i.e. max profit = 0.
     <link href="https://blog.nofile.cc/posts/2016/08/25/note-phpfpm.html"/>
     <id>https://blog.nofile.cc/posts/2016/08/25/note-phpfpm.html</id>
     <published>2016-08-25T15:47:00.000Z</published>
-    <updated>2016-10-09T07:23:19.000Z</updated>
+    <updated>2016-10-09T10:05:21.000Z</updated>
     
     <content type="html"><![CDATA[<h4 id="PHP与FPM的区别"><a href="#PHP与FPM的区别" class="headerlink" title="PHP与FPM的区别"></a>PHP与FPM的区别</h4><p>nginx , fastcgi , php-fpm , php-cgi , cgi , php.ini , master process , work process , php kernel.<br>这个<a href="https://segmentfault.com/q/1010000000256516" target="_blank" rel="external">问答</a>写得很好,推荐参考。</p>
 <p>首先nginx处理不了php这类的脚本程序，只能扔给php去做。<br>最早的时候，php并没有php-fpm这个东西，后面php把fpm收进了内核，编译的时候，只需要enablefpm就可以了。php-fpm是一个实现了fastcgi的程序，后来被php收了。<br>cgi 是一个协议，php-fpm 实现了这个协议。就可以和nginx通信了。cgi 的全写，common gateway interface 。为了保证web server 传递过来的参数都是标准格式的，方便cgi程序的编写，本质上是一个标准。</p>
@@ -765,10 +765,10 @@ In this case, no transaction is done, i.e. max profit = 0.
     <link href="https://blog.nofile.cc/posts/2016/08/25/note-leetcode.html"/>
     <id>https://blog.nofile.cc/posts/2016/08/25/note-leetcode.html</id>
     <published>2016-08-25T06:40:00.000Z</published>
-    <updated>2016-10-09T07:23:10.000Z</updated>
+    <updated>2016-10-09T09:54:40.000Z</updated>
     
     <content type="html"><![CDATA[<h4 id="LEETCODE-学习笔记"><a href="#LEETCODE-学习笔记" class="headerlink" title="LEETCODE 学习笔记"></a>LEETCODE 学习笔记</h4><p><a href="https://leetcode.com/" target="_blank" rel="external">https://leetcode.com/</a></p>
-<p>可以按照分类做题。可以先做自己感兴趣的，easy 的 货这medium 的。hard的等最后了再做。不管怎么样的题目，对于一个搞代码的来说，做一下都是很有好处的，我觉着算法联系就好比是武侠世界中的内功，多多益善，勤于练习总是会有好处的。目前做了40个题目，做得比较少，做的题目中等的偏多一点，后面会继续做，作为业余爱好吧。不然业余时间还真没什么事做。</p>
+<p>可以按照分类做题。可以先做自己感兴趣的，easy 的 货这medium 的。hard的等最后了再做。不管怎么样的题目，对于一个搞代码的来说，做一下都是很有好处的，我觉着算法练习就好比是武侠世界中的内功，多多益善，勤于练习总是会有好处的。目前做了40个题目，做得比较少，做的题目中等的偏多一点，后面会继续做，作为业余爱好吧。不然业余时间还真没什么事做。</p>
 ]]></content>
     
     <summary type="html">
@@ -787,7 +787,7 @@ In this case, no transaction is done, i.e. max profit = 0.
     <link href="https://blog.nofile.cc/posts/2016/08/24/note-mysql.html"/>
     <id>https://blog.nofile.cc/posts/2016/08/24/note-mysql.html</id>
     <published>2016-08-24T06:40:00.000Z</published>
-    <updated>2016-10-09T07:23:13.000Z</updated>
+    <updated>2016-10-09T09:54:42.000Z</updated>
     
     <content type="html"><![CDATA[<h4 id="mysql-性能测试工具"><a href="#mysql-性能测试工具" class="headerlink" title="mysql 性能测试工具."></a>mysql 性能测试工具.</h4><p><a href="http://www.ha97.com/5182.html" target="_blank" rel="external">Mysqlslap 自带的性能测试工具.</a></p>
 <h4 id="Mysql-基本知识"><a href="#Mysql-基本知识" class="headerlink" title="Mysql 基本知识"></a>Mysql 基本知识</h4><p>一些mysql基本的操作<br><figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">show</span> <span class="keyword">global</span> <span class="keyword">variables</span> <span class="keyword">like</span> <span class="string">'%%datadir%'</span> //看MySql数据库物理文件存放位置</div><div class="line"><span class="keyword">show</span> <span class="keyword">variables</span> <span class="keyword">like</span> <span class="string">'innodb_data%'</span>;</div><div class="line"><span class="keyword">set</span> autocommit = <span class="number">0</span></div><div class="line"><span class="keyword">lock</span> <span class="keyword">table</span> file_text write</div><div class="line"><span class="keyword">unlock</span> <span class="keyword">tables</span></div><div class="line"></div><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> newtable <span class="keyword">select</span> * <span class="keyword">from</span> oldtable;</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> newTable <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> oldTable;</div><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> newTable (col1,col2,…….) <span class="keyword">SELECT</span> col1,col2,…… <span class="keyword">FROM</span> old_table</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> myblog (<span class="keyword">id</span>,title,ctime) <span class="keyword">values</span>(<span class="number">123</span>,<span class="string">'hello'</span>,<span class="keyword">now</span>()) <span class="keyword">on</span> <span class="keyword">duplicate</span> <span class="keyword">key</span> <span class="keyword">update</span> title=<span class="keyword">values</span>(title),ctime=<span class="keyword">values</span>(ctime);</div><div class="line">//将 blog_bak 表中的所有数据导入到myblog 中，表 blog 和 blog_bak 应该有同样的表结构</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> myblog( blog,ctime) <span class="keyword">select</span> * <span class="keyword">from</span> blog_bak;</div><div class="line"></div><div class="line">if(tb2.shop_click is null, 0,tb2.shop_click) // mysql if</div><div class="line"><span class="keyword">update</span> table_a a , table_b b <span class="keyword">set</span> a.shop_status = b.group_status <span class="keyword">where</span> a.shop_id = b.shop_id; </div><div class="line">//这样可以将 table_b 的 状态同步到 table_a, 本质上和 多表查询是类似的。</div><div class="line"></div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> xxx <span class="keyword">where</span> <span class="keyword">id</span> <span class="keyword">in</span> (<span class="number">3</span>,<span class="number">1</span>,<span class="number">5</span>) <span class="keyword">order</span> <span class="keyword">by</span> find_in_set(<span class="keyword">id</span>,<span class="string">'3,1,5'</span>) </div><div class="line"><span class="keyword">order</span> <span class="keyword">by</span> substring_index和<span class="keyword">order</span> <span class="keyword">by</span> find_in_set都可以</div><div class="line">//<span class="keyword">select</span> 按指定顺序排</div></pre></td></tr></table></figure></p>

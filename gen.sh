@@ -1,32 +1,37 @@
 #!/bin/bash
 
+. ~/.colorful
+marg=$2
 
 function generate()
 {
-    . ~/.colorful
-    cleancmd='rm ./scaffolds/*'
-    cleanposts='rm -rf ./source/_posts/*'
-    cleanpublic='rm -rf ./public'
-
-    eval $cleancmd
-    eval $cleanposts
 
     echo "clean finished!"
-    src=('~/code/alglib/leetcode/blog/' '~/code/note/mybook/')
+    src=("$HOME/code/alglib/leetcode/blog" "$HOME/code/note/mybook")
     for i in ${src[@]}
     do
-        cpcmd="cp $i*.md ./scaffolds/"
-        eval $cpcmd
+        src_cmd=''
+        if [ $marg = 'all'  ]
+        then
+            src_cmd="find $i -name '*.md' -mtime -300 -type f"
+            #cleanposts='rm -rf ./source/_posts/*'
+            #eval $cleanposts
+        elif [ $marg = 'latest' ]
+        then
+            src_cmd="find $i -name '*.md' -mmin -60 -type f"
+        else
+            echo "invalidate parameters"
+            exit 1
+        fi
+        for j in `eval $src_cmd`
+        do
+            cp $j ./scaffolds
+            b=`echo $j | awk -F "/" '{print $NF}' | awk -F "." '{print $1}'`
+            rm_old_posts=`echo $b | sed 's/_/-/'`
+            rm -rf ./source/_posts/$rm_old_posts* > /dev/null
+            hexo new $b $b
+        done
     done
-
-    echo "move all blog in scaffolds done!"
-
-    for i in `ls scaffolds/`
-    do 
-        b=`echo $i | cut -d. -f1`
-        hexo new $b $b
-    done
-
     echo "generate finished"
     hexo g
 }
@@ -38,7 +43,7 @@ function deploy()
 }
 
 case $1 in
-    gen    ) generate;;
+    gen    ) generate $2;;
     deploy ) deploy;;
     *        ) echo "no support args";;
 esac
