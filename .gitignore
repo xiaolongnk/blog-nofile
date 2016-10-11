@@ -6,3 +6,4 @@ public/*
 node_modules/
 .deploy*/
 .idea/
+scaffolds/*.md
