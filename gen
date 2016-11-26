@@ -27,8 +27,10 @@ function generate()
         do
             cp $j ./scaffolds
             b=`echo $j | awk -F "/" '{print $NF}' | awk -F "." '{print $1}'`
-            rm_old_posts=`echo $b | sed 's/_/-/'`
+            rm_old_posts=`echo $b | sed 's/_/-/g'`
+            echo "remove old file"$rm_old_posts
             rm -rf ./source/_posts/$rm_old_posts* > /dev/null
+
             hexo new $b $b
         done
     done
@@ -38,7 +40,7 @@ function generate()
 
 function deploy()
 {
-    scp -r ./public/* work@101.200.154.217:~/code/blog/
+    scp -r ./public/* faith@101.200.154.217:~/code/blog/
     echo "deploy finished!"
 }
 
