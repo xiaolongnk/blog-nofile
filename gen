@@ -25,12 +25,15 @@ function generate()
         fi
         for j in `eval $src_cmd`
         do
+            if [ ${j:0-9} == 'README.md' ]
+            then
+                continue
+            fi 
             cp $j ./scaffolds
             b=`echo $j | awk -F "/" '{print $NF}' | awk -F "." '{print $1}'`
             rm_old_posts=`echo $b | sed 's/_/-/g'`
-            echo "remove old file"$rm_old_posts
+#            echo "remove old file "$rm_old_posts
             rm -rf ./source/_posts/$rm_old_posts* > /dev/null
-
             hexo new $b $b
         done
     done
