@@ -1,6 +1,7 @@
 #!/bin/bash
 
 . ~/.colorful
+remoteip="101.200.154.217"
 marg=$2
 
 function generate()
@@ -43,13 +44,16 @@ function generate()
 
 function deploy()
 {
-    scp -r ./public/* faith@101.200.154.217:~/code/blog/
+    cd public
+    mpo $marg
+    echo "commit finished!"
+    ssh faith@$remoteip -t 'cd ~/code/blog/ && git pull origin master'
     echo "deploy finished!"
 }
 
 case $1 in
-    gen    ) generate $2;;
-    deploy ) deploy;;
+    gen    ) generate ;;
+    deploy ) deploy ;;
     *        ) echo "no support args";;
 esac
 
