@@ -15,17 +15,29 @@ menu:
     url: /archives
   tags:
     url: /tags
-  about:
-    url: /about
   github:
     url: https://github.com/xiaolongnk
     target: _blank
-  weibo:
-    url: http://www.weibo.com/5369993110
-    target: _blank
-  link:
-    text: nofile
-    url: http://nofile.cc
+  about:
+    url: /about
+
+friends:
+  l1:
+    text: imageStore
+    url: https://utils.nofile.cc/imageStore
+#  l2:
+#    text: bbbb
+#    url : google.com
+#  l3:
+#    text: bbbb
+#    url : google.com
+#  l4:
+#    text: bbbb
+#    url : google.com
+#  l5:
+#    text: bbbb
+#    url : google.com
+
 
 rss: /atom.xml
 

@@ -27,7 +27,20 @@
               <%=(menuItem.text || _.startCase(i)) %>
             </a>
           </li>
-      <% } %>
+      <% } %> <i class="icon icon-lg icon-link" style="margin-left:20px"></i>
+      <span style="margin-left:20px">
+      <strong >Friends links:</strong>
+      </span>
+      <%
+        for(var i in theme.friends){
+          friends_link = theme.friends[i];
+      %>
+      <li>
+        <a href="<%- url_for(friends_link.url) %>" target="_blank" >
+          <%=(friends_link.text.trim()) %>
+        </a>
+      </li>
+       <% }%>
     </ul>
 
     <%- partial('footer') %>
