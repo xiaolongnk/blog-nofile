@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>mysql 入门 | faith技术博客 | 我们一起快乐吧...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="mysql">
+  <meta name="description" content="理论知识一、install mysql-server
+download your mysql-server from this link. https://cdn.mysql.com//Downloads/MySQLInstaller/mysql-installer-community-5.7.17.0.msi
+start your mysql-server , connect to your m">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql 入门">
+<meta property="og:url" content="https://blog.nofile.cc/posts/2017/05/08/note-for-mysql-tutor.html">
+<meta property="og:site_name" content="faith技术博客">
+<meta property="og:description" content="理论知识一、install mysql-server
+download your mysql-server from this link. https://cdn.mysql.com//Downloads/MySQLInstaller/mysql-installer-community-5.7.17.0.msi
+start your mysql-server , connect to your m">
+<meta property="og:updated_time" content="2017-05-08T16:15:04.591Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mysql 入门">
+<meta name="twitter:description" content="理论知识一、install mysql-server
+download your mysql-server from this link. https://cdn.mysql.com//Downloads/MySQLInstaller/mysql-installer-community-5.7.17.0.msi
+start your mysql-server , connect to your m">
+  
+    <link rel="alternative" href="/atom.xml" title="faith技术博客" type="application/atom+xml">
+  
+  <meta name="summary" content="">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu"  >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">faith</h5>
+        <a href="mailto:xiaolongnk@126.com" title="xiaolongnk@126.com" class="mail">xiaolongnk@126.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
+      
+          <li class="waves-block waves-effect">
+            <a href="/"  >
+              <i class="icon icon-lg icon-home"></i>
+              主页
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/archives"  >
+              <i class="icon icon-lg icon-archives"></i>
+              Archives
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/tags"  >
+              <i class="icon icon-lg icon-tags"></i>
+              Tags
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/xiaolongnk" target="_blank" >
+              <i class="icon icon-lg icon-github"></i>
+              Github
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/about"  >
+              <i class="icon icon-lg icon-about"></i>
+              About
+            </a>
+          </li>
+       <i class="icon icon-lg icon-link" style="margin-left:20px"></i>
+      <span style="margin-left:20px">
+      <strong >Friends links:</strong>
+      </span>
+      
+      <li>
+        <a href="https://utils.nofile.cc/imageStore" target="_blank" >
+          imageStore
+        </a>
+      </li>
+       
+    </ul>
+
+    <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>faith技术博客 &copy; 2017</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+  </div>
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">mysql 入门</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">mysql 入门</h1>
+    <h5 class="subtitle">
+        
+            <time datetime="2017-05-08T14:58:00.000Z" itemprop="datePublished" class="page-time">
+  2017-05-08
+</time>
+
+
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-note-for-mysql-tutor" 
+  class="article article-type-post" itemprop="blogPost">
+    <div class="post-meta flex-row">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
+
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#理论知识"><span class="post-toc-text">理论知识</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#一、install-mysql-server"><span class="post-toc-text">一、install mysql-server</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#二、base-class-for-mysql"><span class="post-toc-text">二、base class for mysql.</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#三、mysql-query"><span class="post-toc-text">三、mysql query:</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#四、mysql中的内置函数"><span class="post-toc-text">四、mysql中的内置函数</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数据库表结构"><span class="post-toc-text">数据库表结构</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#创建数据库和数据表"><span class="post-toc-text">创建数据库和数据表</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#SQL查询练习-习题"><span class="post-toc-text">SQL查询练习 习题</span></a></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="理论知识"><a href="#理论知识" class="headerlink" title="理论知识"></a>理论知识</h3><h4 id="一、install-mysql-server"><a href="#一、install-mysql-server" class="headerlink" title="一、install mysql-server"></a>一、install mysql-server</h4><ol>
+<li>download your mysql-server from this link. <a href="https://cdn.mysql.com//Downloads/MySQLInstaller/mysql-installer-community-5.7.17.0.msi" target="_blank" rel="external">https://cdn.mysql.com//Downloads/MySQLInstaller/mysql-installer-community-5.7.17.0.msi</a></li>
+<li>start your mysql-server , connect to your mysql server.</li>
+</ol>
+<h4 id="二、base-class-for-mysql"><a href="#二、base-class-for-mysql" class="headerlink" title="二、base class for mysql."></a>二、base class for mysql.</h4><ol>
+<li>mysql data types  <code>int , bigint , char , varchar , text , float , double , decimal , datetime ， timestamp</code></li>
+<li>some keywords ( <code>select</code>,<code>from</code>,<code>where</code>, <code>order by</code>,<code>desc</code>,<code>asc</code>,<code>group by</code>,<code>+</code>,<code>-</code>,<code>*</code>,<code>/</code>,<code>left join</code>,<code>right join</code>,<code>on</code>,<code>in</code>,<code>between</code>, <code>insert</code>,<code>drop</code>, <code>delete</code> ,<code>alter</code>….)</li>
+<li><p>show commands;</p>
+ <figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">show</span> <span class="keyword">databases</span>; </div><div class="line"><span class="keyword">show</span> <span class="keyword">tables</span>;</div><div class="line"><span class="keyword">show</span> <span class="keyword">create</span> <span class="keyword">table</span>;</div><div class="line">desc command;</div></pre></td></tr></table></figure>
+</li>
+<li><p>create database</p>
+ <figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">database</span> yourdatabase ;</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建数据库。create tables for your database;</p>
+</li>
+<li>单列插入，批量插入。 insert data for yout tables (single data , batch insert);</li>
+<li>删除操作。drop operations; drop data from tables; drop tables ; drop databases;</li>
+</ol>
+<h4 id="三、mysql-query"><a href="#三、mysql-query" class="headerlink" title="三、mysql query:"></a>三、mysql query:</h4><ol>
+<li>single table select ; (select * from table where xxx);</li>
+<li>join table select; (select * from a , b where a.xx = b.xx and a.xx = ‘123’ order by a.xx);</li>
+<li>left join table select; select * from a left join b on a.x = b.x and a.c = b.c where a.x = ‘xx’ and b.c=’eee’; left join 的原理。</li>
+<li>聚合操作： max min avg  having </li>
+<li>order by , group by , limit , count;</li>
+<li>sub query; select * from A where A.x in (select B.x from b.xxx = ‘1231’ );</li>
+<li>if (grade &gt; 70 , ‘low’ , ‘small’);  if(value,t,f);   select id,salary,if(salary&gt;300,’high’,’low’) from salary;</li>
+<li>ifnull(t,f)    select id,salary,ifnull(salary,0) from salary;</li>
+</ol>
+<h4 id="四、mysql中的内置函数"><a href="#四、mysql中的内置函数" class="headerlink" title="四、mysql中的内置函数"></a>四、mysql中的内置函数</h4><ol>
+<li>now()</li>
+<li>date_add , date_sub();  interval 8 days; select date_add(now() , interval 3 day); select date_sub(now() , interval 1 day); month;</li>
+<li>upper , lower , left (name , 3) , right (name , 3);lenght(name) , SubString</li>
+<li>CurDate() 返回当前日期</li>
+<li>CurTime() 返回当前时间</li>
+<li>DateDiff() 计算两个日期之差</li>
+<li>Date_Add() 高度灵活的日期运算函数</li>
+<li>Date_Format() 返回一个格式化的日期或时间串</li>
+<li>Day() 返回一个日期的天数部分</li>
+<li>DayOfWeek() 对于一个日期，返回对应的星期几</li>
+<li>Hour() 返回一个时间的小时部分</li>
+<li>Minute() 返回一个时间的分钟部分</li>
+<li>Month() 返回一个日期的月份部分</li>
+<li>Now() 返回当前日期和时间</li>
+<li>Second() 返回一个时间的秒部分</li>
+</ol>
+<h3 id="数据库表结构"><a href="#数据库表结构" class="headerlink" title="数据库表结构"></a>数据库表结构</h3><ol>
+<li><p>we_student</p>
+<pre><code>| Field         | Type        | Null | Key | Default             | Extra          |
+---------------|-------------|------|-----|---------------------|----------------
+| id            | bigint(20)  | NO   | PRI | NULL                | auto_increment |
+| group_id      | bigint(20)  | NO   |     | 0                   |                |
+| name          | varchar(64) | NO   |     |                     |                |
+| email         | varchar(64) | NO   |     |                     |                |
+| gender        | char(1)     | NO   |     | F                   |                |
+| address       | varchar(64) | NO   |     |                     |                |
+| parents_phone | varchar(32) | NO   |     |                     |                |
+| school_grade  | smallint(6) | NO   |     | 1                   |                |
+| birthday      | datetime    | NO   |     | 1990-01-01 00:00:00 |                |
+| ctime         | datetime    | NO   |     | CURRENT_TIMESTAMP   |                |
+| mtime         | datetime    | NO   |     | CURRENT_TIMESTAMP   |                |
+| status        | smallint(6) | NO   |     | 1                   |                |
+</code></pre></li>
+<li><p>we_class</p>
+<pre><code>| Field             | Type          | Null | Key | Default           | Extra          |
+-------------------|---------------|------|-----|-------------------|----------------|
+| id                | bigint(20)    | NO   | PRI | NULL              | auto_increment |
+| name              | varchar(64)   | NO   |     |                   |                |
+| class_description | varchar(2048) | NO   |     |                   |                |
+| price             | int(11)       | NO   |     | 3000              |                |
+| price_description | varchar(2048) | NO   |     |                   |                |
+| ctime             | datetime      | NO   |     | CURRENT_TIMESTAMP |                |
+</code></pre></li>
+<li><p>we_group</p>
+<pre><code>| Field      | Type        | Null | Key | Default           | Extra          |
+------------|-------------|------|-----|-------------------|----------------|
+| id         | bigint(20)  | NO   | PRI | NULL              | auto_increment |
+| class_id   | smallint(6) | NO   |     | 1                 |                |
+| starttime  | datetime    | NO   |     | CURRENT_TIMESTAMP |                |
+| endtime    | datetime    | NO   |     | CURRENT_TIMESTAMP |                |
+| teacher_id | bigint(20)  | NO   |     | 0                 |                |
+| status     | smallint(6) | NO   |     | 0                 |                |
+</code></pre></li>
+<li><p>we_worker</p>
+<pre><code>| Field      | Type        | Null | Key | Default           | Extra          |
+------------|-------------|------|-----|-------------------|----------------|
+| id         | bigint(20)  | NO   | PRI | NULL              | auto_increment |
+| name       | varchar(64) | NO   |     |                   |                |
+| sex        | char(1)     | NO   |     | M                 |                |
+| mobile     | varchar(32) | NO   |     |                   |                |
+| birthday   | datetime    | NO   |     | CURRENT_TIMESTAMP |                |
+| card_id    | varchar(32) | NO   |     |                   |                |
+| wage       | int(10)     | NO   |     | 0                 |                |
+| department | bigint(20)  | NO   |     | 0                 |                |
+| in_time    | datetime    | NO   |     | CURRENT_TIMESTAMP |                |
+| out_time   | datetime    | NO   |     | CURRENT_TIMESTAMP |                |
+| status     | smallint(6) | NO   |     | 1                 |                |
+</code></pre></li>
+<li><p>we_department</p>
+<pre><code>| Field       | Type          | Null | Key | Default           | Extra          |
+-------------|---------------|------|-----|-------------------|----------------|
+| id          | bigint(20)    | NO   | PRI | NULL              | auto_increment |
+| name        | varchar(32)   | NO   |     |                   |                |
+| description | varchar(2048) | NO   |     |                   |                |
+| ctime       | datetime      | NO   |     | CURRENT_TIMESTAMP |                |
+</code></pre></li>
+</ol>
+<h3 id="创建数据库和数据表"><a href="#创建数据库和数据表" class="headerlink" title="创建数据库和数据表"></a>创建数据库和数据表</h3><ol>
+<li><p>创建数据表</p>
+ <figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="comment">/**学生表**/</span></div><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> we_student (</div><div class="line">  <span class="keyword">id</span> <span class="built_in">bigint</span>(<span class="number">20</span>) auto_increment,</div><div class="line">  <span class="keyword">group_id</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="number">0</span> <span class="keyword">comment</span> <span class="string">'group_id for the student'</span>,</div><div class="line">  <span class="keyword">name</span> <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="string">''</span> <span class="keyword">comment</span> <span class="string">'name of the student'</span>,</div><div class="line">  email <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="string">''</span> <span class="keyword">comment</span> <span class="string">'email for the student'</span>,</div><div class="line">  sex <span class="built_in">char</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="string">'F'</span> <span class="keyword">comment</span> <span class="string">'sex of the student'</span>,</div><div class="line">  address <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="string">''</span> <span class="keyword">comment</span> <span class="string">'address of the student'</span>,</div><div class="line">  parents_phone <span class="built_in">varchar</span>(<span class="number">32</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="string">''</span> <span class="keyword">comment</span> <span class="string">'parents mobile'</span>,</div><div class="line">  school_grade <span class="built_in">smallint</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="number">1</span> <span class="keyword">comment</span> <span class="string">'1-6 for 初一 ~ 高三'</span>,</div><div class="line">  birthday datetime <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="string">'1990-01-01 00:00:00'</span>,</div><div class="line">  ctime datetime <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="keyword">CURRENT_TIMESTAMP</span> ,</div><div class="line">  mtime datetime <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="keyword">CURRENT_TIMESTAMP</span> ,</div><div class="line">  <span class="keyword">status</span> <span class="built_in">smallint</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="number">1</span> <span class="keyword">comment</span> <span class="string">'1:normal , -1: delete'</span>,</div><div class="line">  primary <span class="keyword">key</span> (<span class="keyword">id</span>)</div><div class="line">) <span class="keyword">engine</span> = <span class="keyword">InnoDB</span> , <span class="keyword">charset</span>=utf8 , <span class="keyword">comment</span> <span class="string">'student table'</span> ;</div><div class="line"></div><div class="line"><span class="comment">/**课程表，记录所有的课程**/</span></div><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> we_class (</div><div class="line">  <span class="keyword">id</span> <span class="built_in">bigint</span>(<span class="number">20</span>) auto_increment <span class="keyword">comment</span> <span class="string">'class id for this class'</span>,</div><div class="line">  <span class="keyword">name</span> <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="string">''</span> <span class="keyword">comment</span> <span class="string">'name for this class.'</span>,</div><div class="line">  class_description <span class="built_in">varchar</span>(<span class="number">2048</span>)  <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="string">''</span> <span class="keyword">comment</span> <span class="string">'class description'</span>,</div><div class="line">  price <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="number">3000</span> <span class="keyword">comment</span> <span class="string">'price for this class'</span>,</div><div class="line">  price_description <span class="built_in">varchar</span>(<span class="number">2048</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="string">''</span> <span class="keyword">comment</span> <span class="string">'description for price'</span>,</div><div class="line">  ctime datetime <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">comment</span> <span class="string">'create time'</span>,</div><div class="line">  primary <span class="keyword">key</span> (<span class="keyword">id</span>)</div><div class="line">) <span class="keyword">engine</span> = <span class="keyword">InnoDB</span> , <span class="keyword">charset</span>=utf8 , <span class="keyword">comment</span> <span class="string">'all class table'</span>;</div><div class="line"></div><div class="line"><span class="comment">/**table for teacher*/</span></div><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> we_worker(</div><div class="line">  <span class="keyword">id</span> <span class="built_in">bigint</span>(<span class="number">20</span>) auto_increment <span class="keyword">comment</span> <span class="string">'id for teacher'</span>,</div><div class="line">  <span class="keyword">name</span> <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="string">''</span> <span class="keyword">comment</span> <span class="string">'teacher name'</span>,</div><div class="line">  sex <span class="built_in">char</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="string">'M'</span> <span class="keyword">comment</span> <span class="string">'M for man , female for woman'</span>,</div><div class="line">  mobile <span class="built_in">varchar</span>(<span class="number">32</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="string">''</span> <span class="keyword">comment</span> <span class="string">'mobile'</span>,</div><div class="line">  birthday datetime <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="keyword">CURRENT_TIMESTAMP</span>,</div><div class="line">  card_id <span class="built_in">varchar</span>(<span class="number">32</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="string">''</span> <span class="keyword">comment</span> <span class="string">'wage card id'</span>,</div><div class="line">  wage <span class="built_in">int</span>(<span class="number">10</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="number">0</span> <span class="keyword">comment</span> <span class="string">'wage for the teacher'</span>,</div><div class="line">  department <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="number">0</span> <span class="keyword">comment</span> <span class="string">'depart id for this worker'</span>,</div><div class="line">  in_time datetime <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span>  <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">comment</span> <span class="string">'入职时间'</span>,</div><div class="line">  out_time datetime <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">comment</span> <span class="string">'离职时间'</span>,</div><div class="line">  <span class="keyword">status</span> <span class="built_in">smallint</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="number">1</span> <span class="keyword">comment</span> <span class="string">'1: 在职 , -1:离职'</span>,</div><div class="line">  primary <span class="keyword">key</span> (<span class="keyword">id</span>)</div><div class="line">) <span class="keyword">engine</span> = <span class="keyword">InnoDB</span> , <span class="keyword">charset</span>=utf8 , <span class="keyword">comment</span> <span class="string">'table for teacher'</span>;</div><div class="line"></div><div class="line"><span class="comment">/** table for departments **/</span></div><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> we_department</div><div class="line">(</div><div class="line">  <span class="keyword">id</span> <span class="built_in">bigint</span>(<span class="number">20</span>) AUTO_INCREMENT <span class="keyword">comment</span> <span class="string">''</span>,</div><div class="line">  <span class="keyword">name</span> <span class="built_in">varchar</span>(<span class="number">32</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="string">''</span> <span class="keyword">comment</span> <span class="string">'department name'</span>,</div><div class="line">  description <span class="built_in">varchar</span>(<span class="number">2048</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="string">''</span> <span class="keyword">comment</span> <span class="string">'description for this department'</span>,</div><div class="line">  ctime datetime <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="keyword">CURRENT_TIMESTAMP</span>,</div><div class="line">  primary <span class="keyword">key</span> (<span class="keyword">id</span>)</div><div class="line">) <span class="keyword">engine</span> = <span class="keyword">InnoDB</span> , <span class="keyword">charset</span> =utf8 , <span class="keyword">comment</span> <span class="string">'table for departments'</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/** table for groups: groups represents students set **/</span></div><div class="line"></div><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> we_group</div><div class="line">(</div><div class="line">  <span class="keyword">id</span> <span class="built_in">bigint</span>(<span class="number">20</span>) auto_increment <span class="keyword">comment</span> <span class="string">''</span>,</div><div class="line">  class_id <span class="built_in">smallint</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="number">1</span> <span class="keyword">comment</span> <span class="string">'class id for this group'</span>,</div><div class="line">  starttime datetime <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">comment</span> <span class="string">'start time for this group'</span>,</div><div class="line">  endtime datetime <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span>  <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">comment</span> <span class="string">'end time for this group'</span>,</div><div class="line">  teacher_id <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="number">0</span> <span class="keyword">comment</span> <span class="string">'worker id'</span>,</div><div class="line">  <span class="keyword">status</span> <span class="built_in">smallint</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">default</span> <span class="number">0</span> <span class="keyword">comment</span> <span class="string">'0: planning , 1:in process , 2: finished , -1: canceled'</span>,</div><div class="line">  primary <span class="keyword">key</span> (<span class="keyword">id</span>)</div><div class="line">) <span class="keyword">engine</span> = <span class="keyword">InnoDB</span> , <span class="keyword">charset</span> =utf8 , <span class="keyword">comment</span> <span class="string">'table for student groups'</span>;</div></pre></td></tr></table></figure>
+</li>
+<li><p>插入测试数据</p>
+ <figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> we_worker ( <span class="keyword">name</span> , sex , mobile , birthday , card_id , wage , department , in_time , out_time) <span class="keyword">values</span></div><div class="line">(<span class="string">'欧小龙'</span> , <span class="string">'M'</span> , <span class="string">'18201176525'</span> ,<span class="string">'1990-10-18'</span> , <span class="string">'18201176525'</span> ,  <span class="number">10000</span> , <span class="number">1</span> , <span class="string">'2017-07-13 00:00:00'</span> , <span class="string">'0001-01-01 00:00:00'</span>);</div><div class="line"></div><div class="line"><span class="comment">/* for we_group **/</span></div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> we_group (class_id , starttime , endtime , teacher_id) <span class="keyword">values</span> (<span class="number">1</span> , <span class="string">'2017-07-14 09:00:00'</span> , <span class="string">'2017-08-14 00:00:00'</span> , <span class="number">1</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> we_group (class_id , starttime , endtime , teacher_id) <span class="keyword">values</span> (<span class="number">1</span> , <span class="string">'2017-07-14 09:00:00'</span> , <span class="string">'2017-08-14 00:00:00'</span> , <span class="number">1</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> we_group (class_id , starttime , endtime , teacher_id) <span class="keyword">values</span> (<span class="number">1</span> , <span class="string">'2017-07-14 09:00:00'</span> , <span class="string">'2017-08-14 00:00:00'</span> , <span class="number">1</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> we_group (class_id , starttime , endtime , teacher_id) <span class="keyword">values</span> (<span class="number">1</span> , <span class="string">'2017-07-14 09:00:00'</span> , <span class="string">'2017-08-14 00:00:00'</span> , <span class="number">1</span>);</div><div class="line"></div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> we_department ( <span class="keyword">name</span> , description ) <span class="keyword">values</span> (<span class="string">'teacher'</span> , <span class="string">'教工部'</span> );</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> we_department ( <span class="keyword">name</span> , description ) <span class="keyword">values</span> (<span class="string">'adminstration'</span> , <span class="string">'行政部'</span> );</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> we_department ( <span class="keyword">name</span> , description ) <span class="keyword">values</span> (<span class="string">'finacial'</span> , <span class="string">'财务部'</span> );</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> we_department ( <span class="keyword">name</span> , description ) <span class="keyword">values</span> (<span class="string">'human resource'</span> , <span class="string">'人力资源'</span> );</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> we_class (<span class="keyword">name</span>  , class_description , price , price_description ) <span class="keyword">values</span> (<span class="string">'c语言入门'</span> , <span class="string">'test '</span> , <span class="number">30</span> , <span class="string">'test'</span>);</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="SQL查询练习-习题"><a href="#SQL查询练习-习题" class="headerlink" title="SQL查询练习 习题"></a>SQL查询练习 习题</h3><ol>
+<li><p>数据库操作，查看库和表结构</p>
+ <figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="comment">/** show database structure **/</span></div><div class="line"><span class="keyword">show</span> <span class="keyword">databases</span>;</div><div class="line"><span class="comment">/** show tables **/</span></div><div class="line"><span class="keyword">show</span> <span class="keyword">tables</span>;</div><div class="line"><span class="comment">/** select database **/</span></div><div class="line"><span class="keyword">use</span> learning_sql;</div><div class="line"><span class="comment">/** show table structure **/</span></div><div class="line">desc we_student;</div><div class="line">desc we_department;</div><div class="line">desc we_class;</div><div class="line">desc we_group;</div><div class="line">desc we_worker;</div></pre></td></tr></table></figure>
+</li>
+<li><p>工资最高的worker，输出姓名和工资，按照工资从小到大排序 <code>select</code> , <code>order by</code> , <code>limit</code></p>
+ <figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">name</span> , wage <span class="keyword">from</span> we_worker <span class="keyword">order</span> <span class="keyword">by</span> wage <span class="keyword">desc</span> <span class="keyword">limit</span> <span class="number">10</span>;  <span class="comment">/**[ offset , size] **/</span></div><div class="line"><span class="keyword">select</span> <span class="keyword">name</span> , wage <span class="keyword">from</span> we_worker <span class="keyword">order</span> <span class="keyword">by</span> wage <span class="keyword">desc</span> <span class="keyword">limit</span> <span class="number">10</span> , <span class="number">10</span>;</div><div class="line"><span class="keyword">select</span> <span class="keyword">name</span> , wage <span class="keyword">from</span> we_worker <span class="keyword">where</span> wage = (<span class="keyword">select</span> <span class="keyword">max</span>(wage) <span class="keyword">from</span> we_worker);</div></pre></td></tr></table></figure>
+</li>
+<li><p>找出所有的员工的部门名称，输出 老师姓名和部门名称 <code>left join</code></p>
+ <figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">select</span> a.name  <span class="keyword">as</span> teacher_name , b.name <span class="keyword">as</span> department_name </div><div class="line">       <span class="keyword">from</span> we_worker <span class="keyword">as</span> a  <span class="keyword">left</span> <span class="keyword">join</span> we_department b <span class="keyword">on</span> a.department = b.id;</div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> we_worker a <span class="keyword">left</span> <span class="keyword">join</span> we_department b  <span class="keyword">on</span> a.department = b.id;</div></pre></td></tr></table></figure>
+</li>
+<li><p>找出每个老师带课的数量 <code>group by</code> , <code>count</code></p>
+ <figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">select</span> teacher_id , <span class="keyword">count</span>(*) <span class="keyword">as</span> class_num <span class="keyword">from</span> we_group <span class="keyword">group</span> <span class="keyword">by</span> teacher_id <span class="keyword">order</span> <span class="keyword">by</span> class_num <span class="keyword">desc</span>;</div></pre></td></tr></table></figure>
+</li>
+<li><p>每个老师的id,工资， 带课数量 <code>left join</code></p>
+ <figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">select</span> a.name , a.id , b.class_num </div><div class="line">       <span class="keyword">from</span> we_worker a </div><div class="line">       <span class="keyword">left</span> <span class="keyword">join</span> </div><div class="line">           (<span class="keyword">select</span> teacher_id , <span class="keyword">count</span>(*) <span class="keyword">as</span> class_num <span class="keyword">from</span> we_group <span class="keyword">group</span> <span class="keyword">by</span> teacher_id) b </div><div class="line">       <span class="keyword">on</span> a.id = b.teacher_id  <span class="keyword">where</span> a.department = <span class="number">1</span>;</div></pre></td></tr></table></figure>
+</li>
+<li><p>还没带班级的老师, 以及所有带班的老师 <code>子查询</code>，聚合函数 <code>count</code>，<code>exists</code></p>
+ <figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> we_worker </div><div class="line">        <span class="keyword">where</span> department = <span class="number">1</span> <span class="keyword">and</span> <span class="keyword">id</span> <span class="keyword">not</span> <span class="keyword">in</span> </div><div class="line">            (<span class="keyword">select</span> <span class="keyword">distinct</span> teacher_id <span class="keyword">from</span> we_group);</div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> we_worker </div><div class="line">        <span class="keyword">where</span> department = <span class="number">1</span> <span class="keyword">and</span> <span class="keyword">id</span> <span class="keyword">in</span> </div><div class="line">            (<span class="keyword">select</span> <span class="keyword">distinct</span> teacher_id <span class="keyword">from</span> we_group);</div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> we_worker </div><div class="line">        <span class="keyword">where</span> department = <span class="number">1</span> <span class="keyword">and</span> <span class="keyword">not</span> <span class="keyword">exists</span> </div><div class="line">        (<span class="keyword">select</span> * <span class="keyword">from</span> we_group <span class="keyword">where</span> teacher_id = we_worker.id);</div><div class="line"></div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> we_worker </div><div class="line">	<span class="keyword">where</span> department = <span class="number">1</span> </div><div class="line">			<span class="keyword">and</span> <span class="keyword">exists</span> </div><div class="line">			(<span class="keyword">select</span> * <span class="keyword">from</span> we_group <span class="keyword">where</span> teacher_id = we_worker.id);</div></pre></td></tr></table></figure>
+</li>
+<li><p>mysql 内置函数 <code>date_add</code> and <code>date_sub</code>, 以及数据 <code>update</code></p>
+ <figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">update</span> we_worker <span class="keyword">set</span> in_time=<span class="keyword">date_add</span>(in_time , <span class="built_in">interval</span> <span class="number">2</span> <span class="keyword">day</span>) <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">1</span>;</div><div class="line"><span class="keyword">update</span> we_worker <span class="keyword">set</span> in_time=<span class="keyword">date_sub</span>(in_time , <span class="built_in">interval</span> <span class="number">3</span> <span class="keyword">month</span>) <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">10</span>;</div></pre></td></tr></table></figure>
+</li>
+<li><p>入职满一年的员工</p>
+ <figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> we_worker <span class="keyword">where</span> in_time &lt;= <span class="keyword">date_sub</span>(<span class="keyword">now</span>() , <span class="built_in">interval</span> <span class="number">1</span> <span class="keyword">year</span>) ;</div></pre></td></tr></table></figure>
+</li>
+<li><p>每个课程的开课数量</p>
+ <figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">select</span> class_id , <span class="keyword">count</span>(*) <span class="keyword">as</span> <span class="keyword">count</span> <span class="keyword">from</span> we_group <span class="keyword">group</span> <span class="keyword">by</span> class_id;</div></pre></td></tr></table></figure>
+</li>
+<li><p>每门课程的 课程id , 开课数量，课程名称</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">select</span> a.id , r.total, a.name , a.class_description  </div><div class="line">       <span class="keyword">from</span> we_class <span class="keyword">as</span> a <span class="keyword">left</span> <span class="keyword">join</span> </div><div class="line">           (<span class="keyword">select</span> class_id , <span class="keyword">count</span>(*) <span class="keyword">as</span> total <span class="keyword">from</span> we_group <span class="keyword">group</span> <span class="keyword">by</span> class_id) r </div><div class="line">       <span class="keyword">on</span> a.id  = r.class_id;</div><div class="line"></div><div class="line"><span class="keyword">select</span> a.id , r.total, a.name , a.class_description </div><div class="line">       <span class="keyword">from</span> we_class <span class="keyword">as</span> a <span class="keyword">left</span> <span class="keyword">join</span> </div><div class="line">       (<span class="keyword">select</span> class_id , <span class="keyword">count</span>(*) <span class="keyword">as</span> total <span class="keyword">from</span> we_group <span class="keyword">group</span> <span class="keyword">by</span> class_id) r </div><div class="line">       <span class="keyword">on</span> a.id  = r.class_id <span class="keyword">where</span> r.total <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">null</span>;</div></pre></td></tr></table></figure>
+</li>
+<li><p>找出还没开班的课程 , 多表 <code>left join</code> , 4 个表</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">select</span> a.id </div><div class="line">    <span class="keyword">from</span> we_class a </div><div class="line">    <span class="keyword">left</span> <span class="keyword">join</span> </div><div class="line">    we_group b </div><div class="line">    <span class="keyword">on</span> a.id = b.class_id </div><div class="line">    <span class="keyword">where</span> b.id <span class="keyword">is</span> <span class="literal">null</span>;</div><div class="line">    </div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> we_class a , we_group b <span class="keyword">where</span> a.id = b.class_id;</div></pre></td></tr></table></figure>
+</li>
+<li><p>这出一个  学生的姓名,班级开课时间,班级节课时间,课程名称，带课老师名称,下面是输出示例</p>
+<pre><code>|name      | starttime           | endtime             | name    | class_description   | teacher_name |
+|----------|---------------------|---------------------|---------|---------------------|--------------|
+|张一凡    | 2017-07-14 09:00:00 | 2017-08-14 00:00:00 | c语言   | 基本c语言语法       | 000          |
+|王鑫      | 2017-07-14 09:00:00 | 2017-08-14 00:00:00 | c语言   | 基本c语言语法       | 000          |
+</code></pre><figure class="highlight sql"><table><tr><td class="code"><pre><div class="line"><span class="keyword">select</span> a.name , b.id <span class="keyword">as</span> <span class="keyword">group_id</span>  , c.name, c.class_description , d.name  </div><div class="line">    <span class="keyword">from</span> we_student a </div><div class="line">    <span class="keyword">left</span> <span class="keyword">join</span> we_group b <span class="keyword">on</span> a.group_id = b.id </div><div class="line">    <span class="keyword">left</span> <span class="keyword">join</span> we_class c <span class="keyword">on</span> b.class_id = c.id </div><div class="line">    <span class="keyword">left</span> <span class="keyword">join</span> we_worker d <span class="keyword">on</span> b.teacher_id = d.id;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+
+
+            
+            <div class="post-reward">
+                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+            </div>
+            
+            
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="https://blog.nofile.cc/posts/2017/05/08/note-for-mysql-tutor.html" target="_blank" rel="external">https://blog.nofile.cc/posts/2017/05/08/note-for-mysql-tutor.html</a>
+                </p>
+                <footer><cite><a href="https://blog.nofile.cc">@faith技术博客</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/posts/2017/03/06/note-node.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">npm update npm</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="note-for-mysql-tutor" data-title="mysql 入门" data-url="https://blog.nofile.cc/posts/2017/05/08/note-for-mysql-tutor.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"nofile"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+        ds.src = "https://img.nofile.cc/embed.js";
+		//ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "mysql 入门",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "https://blog.nofile.cc/posts/2017/05/08/note-for-mysql-tutor.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        大爷的，太感谢了~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+
+
+<script>
+    var _baId = 'b98900c3864b32c37d696546d1911856';
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?" + _baId;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+</body>
+</html>

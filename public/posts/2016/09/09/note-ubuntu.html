@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Ubuntu学习笔记 | faith技术博客 | 我们一起快乐吧...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="linux,ubuntu">
+  <meta name="description" content="tmux vim slowstarttmux 中vim slow start 的原因,就是因为开了多个tmux,启动速度就变慢了.查看了slowlog,发现是因为xsmp消耗了大概1s的时间.只要保证一个tmux运行就可以了.
+让你的ubuntu文件夹变成彩色的.可以添加下面的ppa,添加这个sudo add-apt-repository ppa:costales/folder-color然后安装">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu学习笔记">
+<meta property="og:url" content="https://blog.nofile.cc/posts/2016/09/09/note-ubuntu.html">
+<meta property="og:site_name" content="faith技术博客">
+<meta property="og:description" content="tmux vim slowstarttmux 中vim slow start 的原因,就是因为开了多个tmux,启动速度就变慢了.查看了slowlog,发现是因为xsmp消耗了大概1s的时间.只要保证一个tmux运行就可以了.
+让你的ubuntu文件夹变成彩色的.可以添加下面的ppa,添加这个sudo add-apt-repository ppa:costales/folder-color然后安装">
+<meta property="og:updated_time" content="2017-05-08T15:38:18.654Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ubuntu学习笔记">
+<meta name="twitter:description" content="tmux vim slowstarttmux 中vim slow start 的原因,就是因为开了多个tmux,启动速度就变慢了.查看了slowlog,发现是因为xsmp消耗了大概1s的时间.只要保证一个tmux运行就可以了.
+让你的ubuntu文件夹变成彩色的.可以添加下面的ppa,添加这个sudo add-apt-repository ppa:costales/folder-color然后安装">
+  
+    <link rel="alternative" href="/atom.xml" title="faith技术博客" type="application/atom+xml">
+  
+  <meta name="summary" content="">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu"  >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">faith</h5>
+        <a href="mailto:xiaolongnk@126.com" title="xiaolongnk@126.com" class="mail">xiaolongnk@126.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
+      
+          <li class="waves-block waves-effect">
+            <a href="/"  >
+              <i class="icon icon-lg icon-home"></i>
+              主页
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/archives"  >
+              <i class="icon icon-lg icon-archives"></i>
+              Archives
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/tags"  >
+              <i class="icon icon-lg icon-tags"></i>
+              Tags
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/xiaolongnk" target="_blank" >
+              <i class="icon icon-lg icon-github"></i>
+              Github
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/about"  >
+              <i class="icon icon-lg icon-about"></i>
+              About
+            </a>
+          </li>
+       <i class="icon icon-lg icon-link" style="margin-left:20px"></i>
+      <span style="margin-left:20px">
+      <strong >Friends links:</strong>
+      </span>
+      
+      <li>
+        <a href="https://utils.nofile.cc/imageStore" target="_blank" >
+          imageStore
+        </a>
+      </li>
+       
+    </ul>
+
+    <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>faith技术博客 &copy; 2017</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+  </div>
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Ubuntu学习笔记</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">Ubuntu学习笔记</h1>
+    <h5 class="subtitle">
+        
+            <time datetime="2016-09-09T06:42:00.000Z" itemprop="datePublished" class="page-time">
+  2016-09-09
+</time>
+
+
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-note-ubuntu" 
+  class="article article-type-post" itemprop="blogPost">
+    <div class="post-meta flex-row">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li></ul>
+
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#tmux-vim-slowstart"><span class="post-toc-text">tmux vim slowstart</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ubuntu-get-source-code"><span class="post-toc-text">ubuntu get source code</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ubuntu自己编译出deb"><span class="post-toc-text">ubuntu自己编译出deb</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ubuntu-desktop"><span class="post-toc-text">ubuntu desktop</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#linux-权限管理"><span class="post-toc-text">linux 权限管理</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Linux-更新时间"><span class="post-toc-text">Linux 更新时间</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ubuntu-常用命令"><span class="post-toc-text">ubuntu 常用命令</span></a></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <h4 id="tmux-vim-slowstart"><a href="#tmux-vim-slowstart" class="headerlink" title="tmux vim slowstart"></a>tmux vim slowstart</h4><p>tmux 中vim slow start 的原因,就是因为开了多个tmux,启动速度就变慢了.<br>查看了slowlog,发现是因为xsmp消耗了大概1s的时间.只要保证一个tmux运行就可以了.</p>
+<p>让你的ubuntu文件夹变成彩色的.<br>可以添加下面的ppa,添加这个<br>sudo add-apt-repository ppa:costales/folder-color<br>然后安装下面这个 folder-color 就可以了.<br>sudo apt-get install folder-color</p>
+<h4 id="ubuntu-get-source-code"><a href="#ubuntu-get-source-code" class="headerlink" title="ubuntu get source code"></a>ubuntu get source code</h4><p>如何获取ubuntu的源码<br>你可以获取任何一个你所使用的源码包.这就是开源的系统.<br>只要你的系统的源里有dep-src 这个选项,那么就可以随便获得系统源码.<br>就像下面这样.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">deb-src http://archive.canonical.com/ubuntu trusty partner</div><div class="line">deb-src http://cn.archive.ubuntu.com/ubuntu/ trusty main restricted</div><div class="line">deb-src http://cn.archive.ubuntu.com/ubuntu/ trusty multiverse</div><div class="line">deb-src http://cn.archive.ubuntu.com/ubuntu/ trusty universe</div><div class="line">deb-src http://cn.archive.ubuntu.com/ubuntu/ trusty-backports main restricted universe multiverse</div><div class="line">deb-src http://cn.archive.ubuntu.com/ubuntu/ trusty-updates main restricted</div><div class="line">deb-src http://cn.archive.ubuntu.com/ubuntu/ trusty-updates multiverse</div><div class="line">deb-src http://cn.archive.ubuntu.com/ubuntu/ trusty-updates universe</div><div class="line">deb-src http://extras.ubuntu.com/ubuntu trusty main</div><div class="line">deb-src http://security.ubuntu.com/ubuntu trusty-security main restricted</div><div class="line">deb-src http://security.ubuntu.com/ubuntu trusty-security multiverse</div><div class="line">deb-src http://security.ubuntu.com/ubuntu trusty-security universe</div><div class="line"></div><div class="line">使用下面的命令.</div><div class="line"></div><div class="line">sudo apt-cache showsrc gedit <span class="comment">#showsrc 可以用来查询有没有你需要的源码包</span></div><div class="line">sudo apt-cache <span class="built_in">source</span> gedit  <span class="comment">#source 命令用来获取你需要的源码包</span></div></pre></td></tr></table></figure>
+<h4 id="ubuntu自己编译出deb"><a href="#ubuntu自己编译出deb" class="headerlink" title="ubuntu自己编译出deb"></a>ubuntu自己编译出deb</h4><p>当然在这些工作之前,我们需要确保安装一些基本的工具.<br>dpkg-dev 先安装这个.</p>
+<p>在编译源码包之前,需要安装具有依赖关系的软件包,可以使用这个命令,就是上面的那个.<br>build-dep 命令.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo apt-get build-dep xxx</div><div class="line">#通过上面两个命令,就可以得到自己的源码包了.然后利用</div><div class="line">cd yoursrc</div><div class="line">sudo dpkg-buildpackage</div></pre></td></tr></table></figure>
+<p>这样就可以得到你的dep文件了.<br>可以使用下面的命令来安装deb文件.<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo dpkg -i *.deb</div></pre></td></tr></table></figure></p>
+<p>有了上面的知识,你就可以利用自己的系统,学习各种工具的源码了,包括vim , emacs.<br>加油吧.^_^</p>
+<h4 id="ubuntu-desktop"><a href="#ubuntu-desktop" class="headerlink" title="ubuntu desktop"></a>ubuntu desktop</h4><p>firefox 插件 <code>json</code>, <code>vimperator</code>, <code>firebug</code>.<br>chrome插件 <code>json</code> , <code>vimium</code> , 登录自己的账号之后，可以同步chrome插件和书签，很方便</p>
+<p>ubuntu 关闭没用的 crash report。<br>执行<code>sudo vim /etc/default/apport</code> 把那个1 改成0<br>ubuntu 上换显卡驱动要谨慎，很容易就重登陆之后就进不去系统了。如果进不去系统了，那就去认真google吧。我曾经折腾过，这里就不记录了，<br>总之不建议在在ubuntu上折腾太多桌面的东西，linux是用来做server的，好多经典的软件都是no gui的。所以应当将精力放在server这边来，桌面的话，<br>简单玩玩就可以了。</p>
+<p>在你的本地文件里面. .local/share/applications/ 里面把对应的删除,重新登陆就可以看到你讨厌的那个东西不见了.</p>
+<p>重启linux的图形界面<code>startx sudo service start lightdm</code><br><code>lspci</code> 和 <code>glxinfo | head</code>  如果显卡驱动有问题，这个命令会不正常。<br>正常的话，会列出来一些相关的东西。</p>
+<p>modinfo<br>系统默认安装的驱动是这个。<br>xserver-xorg-video-intel<br>modprobe -r nouveau  用这个命令来卸载这个模块，从内核中卸载这个模块。</p>
+<p>ubuntu firefox flash <code>sudo apt-get install flashplugin-downloader</code></p>
+<p>在linux中,我想升级gedit,比如说我的是 ubuntu14.04, 但是在 ubuntu15.10 里面,gedit 的版本是比<br>我的新的.但是在14.04里面我确用不了最新的gedit .<br>这个时候,我可以从官网下载最新的gedit ,安装,然而安装的时候会出现一些问题.这时候怎么办呢.可以这样.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo apt-get build-deb gedit</div></pre></td></tr></table></figure>
+<p>然后执行安装命令就可以了.安装应该不会出错了.</p>
+<p>ubuntu 创建自定义的快捷方式launcher。<br>ubuntu launcher.  alacarte<br>在mate桌面上安装创建自己的启动方式．要给我的zendstudio 创建．</p>
+<p><code>rm -rf *</code>是不会删除隐藏文件的.  linux rm hidden files <code>rm -rf .*</code><br>这个命令会过滤调. .. ,这两个目录是无法删除的.</p>
+<p>ubuntu 安装中文字体<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo apt-get install mysql-workbench</div><div class="line">sudo apt-get install ttf-wqy-microhei  </div><div class="line">sudo apt-get install ttf-wqy-zenhei</div></pre></td></tr></table></figure></p>
+<p>ubuntu 16.04 默认启动命令行<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">关闭</div><div class="line">sudo systemctl set-default multi-user.target</div><div class="line"></div><div class="line">启动lightdm</div><div class="line">sudo systemctl start lightdm</div><div class="line"></div><div class="line">恢复</div><div class="line">systemctl set-default graphical.target</div></pre></td></tr></table></figure></p>
+<h4 id="linux-权限管理"><a href="#linux-权限管理" class="headerlink" title="linux 权限管理"></a>linux 权限管理</h4><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># provided their password</div><div class="line"># (Note that later entries override this, so you might need to move</div><div class="line"># it further down)</div><div class="line">%sudo ALL=(ALL) ALL</div><div class="line"></div><div class="line">groupadd sudo</div><div class="line">sudo usermod -aG sudo work</div></pre></td></tr></table></figure>
+<p><a href="http://www.cnblogs.com/xd502djj/archive/2011/11/23/2260094.html" target="_blank" rel="external">http://www.cnblogs.com/xd502djj/archive/2011/11/23/2260094.html</a></p>
+<p>允许程序没有sudo权限执行<br>sudo chmod +s /usr/sbin/hddtemp<br>这样就可以让 hddtemp 在没有 sudo 权限的情况下运行了。</p>
+<h4 id="Linux-更新时间"><a href="#Linux-更新时间" class="headerlink" title="Linux 更新时间"></a>Linux 更新时间</h4><p>Linux 更新时间.主要的就是这个命令.<br>ntpdate cn.pool.ntp.org<br>好像 windows 时间 和 Linux 时间一定会又一个出问题.现在有点没有办法.<br>将时间写入到 cmos</p>
+<p>主要是系统时间写入 硬件时间 和 硬件时间写入系统的区别.<br>sudo hwclock –systohc<br>sudo hwclock –hctosys</p>
+<h4 id="ubuntu-常用命令"><a href="#ubuntu-常用命令" class="headerlink" title="ubuntu 常用命令"></a>ubuntu 常用命令</h4><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>apt-cache search</code></td>
+<td>ubuntu 在source里查找某个软件包</td>
+</tr>
+<tr>
+<td><code>apt-cache install</code></td>
+<td>安装指定的软件包</td>
+</tr>
+<tr>
+<td><code>dpkg -i your.deb</code></td>
+<td>安装一个deb文件</td>
+</tr>
+<tr>
+<td><code>sudo dd if=/home/your.iso of=/dev/sdb</code></td>
+<td>用U盘烧镜像</td>
+</tr>
+<tr>
+<td><code>groups faith</code></td>
+<td>查看faith的用户详情</td>
+</tr>
+</tbody>
+</table>
+<p><code>ls | xargs rm -rf *</code>这个命令比较调皮，markdown的表格里写不进去，单独拿出来伺候。<code>删除文件，主要是xargs，可以将管道传过来的内容交给后面的命令，作为它的输入</code></p>
+
+
+            
+            <div class="post-reward">
+                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+            </div>
+            
+            
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="https://blog.nofile.cc/posts/2016/09/09/note-ubuntu.html" target="_blank" rel="external">https://blog.nofile.cc/posts/2016/09/09/note-ubuntu.html</a>
+                </p>
+                <footer><cite><a href="https://blog.nofile.cc">@faith技术博客</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/posts/2016/09/09/note-web.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">前端笔记</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/posts/2016/09/09/note-sphinx.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">sphinx学习笔记</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="note-ubuntu" data-title="Ubuntu学习笔记" data-url="https://blog.nofile.cc/posts/2016/09/09/note-ubuntu.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"nofile"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+        ds.src = "https://img.nofile.cc/embed.js";
+		//ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "Ubuntu学习笔记",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "https://blog.nofile.cc/posts/2016/09/09/note-ubuntu.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        大爷的，太感谢了~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+
+
+<script>
+    var _baId = 'b98900c3864b32c37d696546d1911856';
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?" + _baId;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+</body>
+</html>

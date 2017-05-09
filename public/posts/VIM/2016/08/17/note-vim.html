@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="技术笔记，leetcode学习">
+    <meta name="keyword"  content="mysql , leetcode , php , nginx , linux ,shell , python , mac , mysql索引,https,programming, awk,sed,vim,阅读,kindle,dfs,算法">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#60090">
+    <link rel="shortcut icon" href="/img/coffee.png">
+
+    <title>
+        
+          vim 学习笔记｜faith&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="https://blog.nofile.cc/posts/VIM/2016/08/17/note-vim.html">
+    <link href="https://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<style>
+
+    header.intro-header{
+        background-image: url('https://img.nofile.cc/banner.jpg')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                <span class="brand-logo">
+                    faith
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+                        
+                        <li>
+                            <a href="/tags/">tags</a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/search/">search</a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!--only post-->
+
+    
+        <img class="wechat-title-img" src="https://img.nofile.cc/banner.jpg">
+    
+
+<style>
+
+    header.intro-header{
+        background-image: url('https://img.nofile.cc/banner.jpg')
+    }
+
+</style>
+
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>vim 学习笔记</h1>
+                    
+                    <span class="meta">
+                         作者: faith
+                         <span>
+                          日期: 2016-08-17
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#VIM" title="VIM">VIM</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            vim 学习笔记
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+                <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+
+                <h4 id="vim的几个常用的插件。"><a href="#vim的几个常用的插件。" class="headerlink" title="vim的几个常用的插件。"></a>vim的几个常用的插件。</h4><table>
+<thead>
+<tr>
+<th>插件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ctags</td>
+<td>tags 的标签</td>
+</tr>
+<tr>
+<td>vim-ariline</td>
+<td>彩色 的状态栏</td>
+</tr>
+<tr>
+<td>nerdtree</td>
+<td>一个文件管理器</td>
+</tr>
+<tr>
+<td>gittur</td>
+<td>git集成插件,可以显示修改了的内容</td>
+</tr>
+<tr>
+<td>bundle</td>
+<td>插件管理</td>
+</tr>
+<tr>
+<td>vim-markdown</td>
+<td>支持markdown的语法</td>
+</tr>
+</tbody>
+</table>
+<h4 id="VIMSCRIPT"><a href="#VIMSCRIPT" class="headerlink" title="VIMSCRIPT"></a>VIMSCRIPT</h4><p>下面是一些简单的vimscript内容。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">vim 中定义变量要用</div><div class="line"></div><div class="line">let a=123  空格并不能影响效果，这一点和shell并不一样.</div><div class="line">echo a</div><div class="line">这样就可以看到效果。</div><div class="line"></div><div class="line">在 vimrc 中可以写简单函数，来做一些想做的事情，比如</div><div class="line">根据文件后缀，自动执行脚本程序。</div><div class="line"></div><div class="line">:echo %    这个是获得当前文件的全名，包括后缀的。</div><div class="line">:echo %&lt;   和下面的一行作用一样。</div><div class="line">:echo %:r  这个是获取当前文件的文件名，除去扩展后缀</div></pre></td></tr></table></figure>
+<p>插入模式下的 vim ， ctrl + j 可以将文本内容下移一行。ctrl + m 我也不知道具体是什么，<br>我只是通过实验尝试出来的。</p>
+<h4 id="VIM-启动速度慢-slowstart"><a href="#VIM-启动速度慢-slowstart" class="headerlink" title="VIM 启动速度慢 slowstart"></a>VIM 启动速度慢 slowstart</h4><p>vim –startuptime vim.log -c q<br>sudo vim 启动速度超级慢。<br>vim 启动速度变慢.在终端中可以这样启动 vim -X 这样是不需要和X挂上勾的,所以会变慢.修改了一下之后<br>瞬间感觉电脑变快了.vimariline这个插件会明显增加启动时间，加之没什么用，后面就从我的vim插件里面去掉了。</p>
+<h4 id="sudo-vim-启动速度超级慢"><a href="#sudo-vim-启动速度超级慢" class="headerlink" title="sudo vim 启动速度超级慢"></a>sudo vim 启动速度超级慢</h4><p>调查之后，发现是我把系统的hosts文件删除了，touch了一个空文件。<br>后面，总是提示unresolve host 的提示。<br>在增加了我的hostname在host中之后，sudo vim 速度就快了。开来和这个也有关系。</p>
+<h4 id="vim-记录上次编辑位置。"><a href="#vim-记录上次编辑位置。" class="headerlink" title="vim 记录上次编辑位置。"></a>vim 记录上次编辑位置。</h4><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">au BufReadPost * if line(&quot;&apos;\&quot;&quot;) &gt; 0|if line(&quot;&apos;\&quot;&quot;) &lt;= line(&quot;$&quot;)|exe(&quot;norm &apos;\&quot;&quot;)|else|exe &quot;norm $&quot;|endif|endif</div></pre></td></tr></table></figure>
+<h4 id="vim-删除重复行"><a href="#vim-删除重复行" class="headerlink" title="vim 删除重复行"></a>vim 删除重复行</h4><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sort</div><div class="line">g/^\(.\+\)$\n\1/d</div></pre></td></tr></table></figure>
+<h4 id="vim-插入当前时间"><a href="#vim-插入当前时间" class="headerlink" title="vim 插入当前时间"></a>vim 插入当前时间</h4><p>插入时间，这个应该说是很方便的，但是我并不懂这个命令是怎么实现的。<br>在vimrc中加入这个map，在normal模式下，输入,dt就可以在当前位置插入时间了。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">map ,dt a&lt;C-R&gt;=strftime(&apos;%Y-%m-%d %H:%M&apos;)&lt;CR&gt;</div></pre></td></tr></table></figure>
+<h4 id="vim-find"><a href="#vim-find" class="headerlink" title="vim find"></a>vim find</h4><p>天刚学到的是 find 命令，这个是用来打开文件用的，可以智能补全。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">set path=/home/yourpath</div></pre></td></tr></table></figure></p>
+<h4 id="vim-导入其他文件内容"><a href="#vim-导入其他文件内容" class="headerlink" title="vim 导入其他文件内容"></a>vim 导入其他文件内容</h4><p>将当前文件的部分内容导入到其他文件<br>1,20 w&gt;&gt; /path/otherfile.txt<br>1,20 w /path/otherfile.txt<br>具体命令就是这样。</p>
+<p>同样的，也可以将其他文件的内容读入到当前文件来。命令是这个<br>r: /path/file.txt</p>
+<p>同时，这个命令也可以将外部程序的输出读入到当前文件中。<br>r !date<br>这样也是可以插入时间的。将这个命令用map命令映射一下，就可以得到和那个实现的同样的功能<br>了。</p>
+<h4 id="VIM和系统共享剪切板"><a href="#VIM和系统共享剪切板" class="headerlink" title="VIM和系统共享剪切板"></a>VIM和系统共享剪切板</h4><p>首先需要补充的一点是，+寄存器是只有vim-gtk 或者 vim-gnome 才会有的，不要只安装了<br>vim，这是不够的啦，在安装的时候需要注意一下，不然是无法使用系统剪切板的啦。<br>复制单个字符， nyl n 是数字，l和vim的方向键一样，表示向后，就是向后复制n个字符。<br>同理，nyh 表示向前复制n个字符。这样就可以很自由的复制了。<br>复制单词 ynw 其中n是数字，表示要复制的单词的个数。<br>按行为单位复制：<br>nyy 表示复制n 行，和上面的命令差不多。应该是向下取的。<br>p 表示粘贴，注意小写，这个是代表粘贴在下面。<br>P 也表示粘贴，这次是大写啊，这个是代表粘贴在前面。<br>估计对于字符复制粘贴的内容也是同样的规则啊。<br>“+y 表示复制到系统剪切板去。这个应该忘不了吧。</p>
+<p>vim 有很多的粘贴板，这些东西的用处你自己应该可以理解，一般情况下，都是只用一个粘贴板<br>的，但是粘贴板多一点也是没有坏处的啊。vim中的复制是用y来完成的，在这之前，你当然可以<br>决定你的内容是存放在那个粘贴办中，你可以用reg来查看这些粘贴板中都存了什么内容，同时<br>p是用来复制的，你也可以在复制之前决定你从哪个粘贴板中复制内容，例如”4p表示是从4好粘<br>贴板中拿东西。如果4好粘贴板中有你存下的内容的话，那么他就可以复制出来了，结合上面的<br>命令，你当然可以做成你想做的。<br>复制到第n 个粘贴板的命令: 先选择要复制的内容，然后”ny 就可以将这些内容放到粘贴板了。<br>然后在你想复制的地方”+p 就可以了。</p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/posts/VPN/2016/08/17/note-vpn.html" data-toggle="tooltip" data-placement="top" title="Linux VPN 配置">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/posts/Linux/2016/08/17/note-ubuntu.html" data-toggle="tooltip" data-placement="top" title="Ubuntu学习笔记">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="posts/VIM/2016/08/17/note-vim.html"
+                        data-title="vim 学习笔记"
+                        data-url="https://blog.nofile.cc/posts/VIM/2016/08/17/note-vim.html" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col" >
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#vim的几个常用的插件。"><span class="toc-text">vim的几个常用的插件。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#VIMSCRIPT"><span class="toc-text">VIMSCRIPT</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#VIM-启动速度慢-slowstart"><span class="toc-text">VIM 启动速度慢 slowstart</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sudo-vim-启动速度超级慢"><span class="toc-text">sudo vim 启动速度超级慢</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vim-记录上次编辑位置。"><span class="toc-text">vim 记录上次编辑位置。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vim-删除重复行"><span class="toc-text">vim 删除重复行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vim-插入当前时间"><span class="toc-text">vim 插入当前时间</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vim-find"><span class="toc-text">vim find</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vim-导入其他文件内容"><span class="toc-text">vim 导入其他文件内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#VIM和系统共享剪切板"><span class="toc-text">VIM和系统共享剪切板</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                <h5 class="text-center">
+                    <a href="/tags/">FEATURED TAGS</a>
+                </h5>
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#VIM" title="VIM">VIM</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'nofile';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <span class="text-muted"style="font-size: 14px">双击导航条返回顶部</span>
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/ou-xiao-long-89">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/5369993110">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/xiaolongnk">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; faith 2016
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://blog.nofile.cc/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    var _baId = 'b98900c3864b32c37d696546d1911856';
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?" + _baId;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- swiftype -->
+<!--<script type="text/javascript">-->
+  <!--(function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){-->
+  <!--(w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);-->
+  <!--e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);-->
+  <!--})(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');-->
+  <!--_st('install','undefined','2.0.0');-->
+<!--</script>-->
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <!--wechat title img-->
+    <img class="wechat-title-img" src="https://img.nofile.cc/icon.jpg">
+</body>
+
+</html>

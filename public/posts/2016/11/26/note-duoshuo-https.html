@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>多说插件支持站点https | faith技术博客 | 我们一起快乐吧...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="https,多说,javascript,web">
+  <meta name="description" content="问题hexo 集成多说插件之后，对站点做了https 。https之后，要求页面里所有的引用资源都是htts协议的。但是多说的的官方js中的第三三方平台的头像没有做https，现在多说官方貌似没怎么维护了，去论坛逛了几圈，有人提问，但是官方没有回应。大概2个月前做了https改造的时候就发现这个问题了，当时没找到解决方案。当时简单尝试了一下，没有成功，加上我的blog也没设么评论，于是就放弃了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多说插件支持站点https">
+<meta property="og:url" content="https://blog.nofile.cc/posts/2016/11/26/note-duoshuo-https.html">
+<meta property="og:site_name" content="faith技术博客">
+<meta property="og:description" content="问题hexo 集成多说插件之后，对站点做了https 。https之后，要求页面里所有的引用资源都是htts协议的。但是多说的的官方js中的第三三方平台的头像没有做https，现在多说官方貌似没怎么维护了，去论坛逛了几圈，有人提问，但是官方没有回应。大概2个月前做了https改造的时候就发现这个问题了，当时没找到解决方案。当时简单尝试了一下，没有成功，加上我的blog也没设么评论，于是就放弃了。">
+<meta property="og:image" content="https://img.nofile.cc/images/2016/12/03/14807622255019.png">
+<meta property="og:image" content="https://img.nofile.cc/images/2016/12/03/14807622396074.png">
+<meta property="og:image" content="https://img.nofile.cc/images/2016/12/03/14807628131313.png">
+<meta property="og:updated_time" content="2017-05-08T15:38:05.270Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="多说插件支持站点https">
+<meta name="twitter:description" content="问题hexo 集成多说插件之后，对站点做了https 。https之后，要求页面里所有的引用资源都是htts协议的。但是多说的的官方js中的第三三方平台的头像没有做https，现在多说官方貌似没怎么维护了，去论坛逛了几圈，有人提问，但是官方没有回应。大概2个月前做了https改造的时候就发现这个问题了，当时没找到解决方案。当时简单尝试了一下，没有成功，加上我的blog也没设么评论，于是就放弃了。">
+<meta name="twitter:image" content="https://img.nofile.cc/images/2016/12/03/14807622255019.png">
+  
+    <link rel="alternative" href="/atom.xml" title="faith技术博客" type="application/atom+xml">
+  
+  <meta name="summary" content="">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu"  >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">faith</h5>
+        <a href="mailto:xiaolongnk@126.com" title="xiaolongnk@126.com" class="mail">xiaolongnk@126.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
+      
+          <li class="waves-block waves-effect">
+            <a href="/"  >
+              <i class="icon icon-lg icon-home"></i>
+              主页
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/archives"  >
+              <i class="icon icon-lg icon-archives"></i>
+              Archives
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/tags"  >
+              <i class="icon icon-lg icon-tags"></i>
+              Tags
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/xiaolongnk" target="_blank" >
+              <i class="icon icon-lg icon-github"></i>
+              Github
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/about"  >
+              <i class="icon icon-lg icon-about"></i>
+              About
+            </a>
+          </li>
+       <i class="icon icon-lg icon-link" style="margin-left:20px"></i>
+      <span style="margin-left:20px">
+      <strong >Friends links:</strong>
+      </span>
+      
+      <li>
+        <a href="https://utils.nofile.cc/imageStore" target="_blank" >
+          imageStore
+        </a>
+      </li>
+       
+    </ul>
+
+    <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>faith技术博客 &copy; 2017</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+  </div>
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">多说插件支持站点https</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">多说插件支持站点https</h1>
+    <h5 class="subtitle">
+        
+            <time datetime="2016-11-26T09:28:00.000Z" itemprop="datePublished" class="page-time">
+  2016-11-26
+</time>
+
+
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-note-duoshuo-https" 
+  class="article article-type-post" itemprop="blogPost">
+    <div class="post-meta flex-row">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/https/">https</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/多说/">多说</a></li></ul>
+
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#问题"><span class="post-toc-text">问题</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#解决方案"><span class="post-toc-text">解决方案</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Github-repo"><span class="post-toc-text">Github repo</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#参考资料："><span class="post-toc-text">参考资料：</span></a>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>hexo 集成多说插件之后，对站点做了https 。https之后，要求页面里所有的引用资源都是htts协议的。但是多说的的官方js中的第三<br>三方平台的头像没有做https，现在多说官方貌似没怎么维护了，去论坛逛了几圈，有人提问，但是官方没有回应。<br>大概2个月前做了https改造的时候就发现这个问题了，当时没找到解决方案。当时简单尝试了一下，没有成功，加上我的blog也没设么<br>评论，于是就放弃了。</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>今天浏览我的<a href="https://blog.nofile.cc/posts/2016/10/11/note-linux.html">这篇文章</a><br>发现竟然有一个评论，并且另外一篇文章也有。然后感觉没有那个绿色的锁很不舒服，于是再次长草了。<br>打开浏览器，再次分析了下这个页面。发现页面中加载了多说的一个js ，embed.js，warning直接告诉我，是这个js有问题。<br>查看站点请求的网络资源，发现相关的还有一个http接口。<br><img src="https://img.nofile.cc/images/2016/12/03/14807622255019.png" style="width:600px"> </p>
+<p>embed.js 是压缩过的，整个页面只有2行，根本没法看，也没法调试。所以，先想办法将这个js替换掉，用一个格式化好的替换掉<br>之后，可以给调试带来很多方便。</p>
+<p>利用<code>工具1</code>我们可以将embed.js 处理一下，基本上可以看了。虽然变量被换成没意义的了，但是并不是太影响。<br>处理之后的代码大概就是我们<a href="https://github.com/xiaolongnk/duoshuo-js-http-patch/blob/master/embed-https.js" target="_blank" rel="external">src</a>中的样子。<br>这个代码读起来会方便很多。先看了下这个代码，看了一会也没太看明白。于是再次回到console中。</p>
+<p>从这个接口出发，在embed.js 中可以找到一些信息。用我们的格式化的js替换官方js。刷新页面，发现功能没有变化，说明替换js并<br>不会影响功能。继续在浏览器中调试。这次可以试下浏览器的断点功能，在embed.js 中打一个断点。要在报出warning之前。<br>然后单步调试，很快发现了浏览器出现warning的位置，发现这个之后，可以加一个更精确的断点。经过几次观察之后，我们可以定位到这个内容<br><img src="https://img.nofile.cc/images/2016/12/03/14807622396074.png" style="width:600px"></p>
+<p>在前面，js从api接口中获取到了数据，但是数据里面的图像是http的，而不是https的，我们猜想可以把里面的http强行换成https以了。按照我们的想法，在server上修改一下，并且加上log，发现还是不行，但是warning 变少了。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">n.replace(&apos;http:&apos;,&apos;https:&apos;)</div></pre></td></tr></table></figure>
+<p>后面发现，原来javascript的replace就是只替换一个。于是找了replaceall的方法。<br>用chrome的debug的过程如下。<br><img src="https://img.nofile.cc/images/2016/12/03/14807628131313.png" alt="chrome debug"><br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">n.replace(/http:/g , &apos;https&apos;);</div></pre></td></tr></table></figure></p>
+<p>刷新页面，发现页面上的所有数据都变成了https 的了，锁变绿了，开心。</p>
+<p><a href="https://blog.nofile.cc/posts/2016/08/19/note-https.html">https站点</a><br>的方法，可以参考我之前的blog.</p>
+<h3 id="Github-repo"><a href="#Github-repo" class="headerlink" title="Github repo"></a>Github repo</h3><p>最终修改后的结果在我的<a href="https://github.com/xiaolongnk/duoshuo-js-http-patch" target="_blank" rel="external">xiaolongnk</a>上.<br>喜欢的可以star一下我。</p>
+<h3 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h3><ol>
+<li><a href="http://jsbeautifier.org/" target="_blank" rel="external">javascript beautifer</a></li>
+<li>chrome 单步调试</li>
+</ol>
+
+
+            
+            <div class="post-reward">
+                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+            </div>
+            
+            
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="https://blog.nofile.cc/posts/2016/11/26/note-duoshuo-https.html" target="_blank" rel="external">https://blog.nofile.cc/posts/2016/11/26/note-duoshuo-https.html</a>
+                </p>
+                <footer><cite><a href="https://blog.nofile.cc">@faith技术博客</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/posts/2016/12/03/note-sh-01.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">shell while loop break</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/posts/2016/10/18/note-tcp.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">tcp简介</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="note-duoshuo-https" data-title="多说插件支持站点https" data-url="https://blog.nofile.cc/posts/2016/11/26/note-duoshuo-https.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"nofile"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+        ds.src = "https://img.nofile.cc/embed.js";
+		//ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "多说插件支持站点https",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "https://blog.nofile.cc/posts/2016/11/26/note-duoshuo-https.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        大爷的，太感谢了~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+
+
+<script>
+    var _baId = 'b98900c3864b32c37d696546d1911856';
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?" + _baId;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>tmux -- 终端复用 | faith技术博客 | 我们一起快乐吧...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="linux,tmux">
+  <meta name="description" content="tmux 简介这里简单介绍一下tmux。tmux 是一个终端复用软件，类似的软甲有screen。但是现在的screen 用的人已经越来越少了。慢慢得会被tmux一统江湖。先不多说了，看一张效果图吧。
+
+有时候，我们需要开多个terminal，大部分情况下，我们可以通过多个tab来完成。但是在我们不需要全屏展示的时候，这样感觉浪费。比如说我们需要一边写代码，一边看log，一边调试代码。这个时候，用多">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tmux -- 终端复用">
+<meta property="og:url" content="https://blog.nofile.cc/posts/2016/10/11/note-tmux.html">
+<meta property="og:site_name" content="faith技术博客">
+<meta property="og:description" content="tmux 简介这里简单介绍一下tmux。tmux 是一个终端复用软件，类似的软甲有screen。但是现在的screen 用的人已经越来越少了。慢慢得会被tmux一统江湖。先不多说了，看一张效果图吧。
+
+有时候，我们需要开多个terminal，大部分情况下，我们可以通过多个tab来完成。但是在我们不需要全屏展示的时候，这样感觉浪费。比如说我们需要一边写代码，一边看log，一边调试代码。这个时候，用多">
+<meta property="og:image" content="https://img.nofile.cc/images/2016/12/25/14826321686494.png">
+<meta property="og:image" content="https://img.nofile.cc/images/2016/12/25/14826334955905.png">
+<meta property="og:updated_time" content="2017-05-08T15:38:02.849Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="tmux -- 终端复用">
+<meta name="twitter:description" content="tmux 简介这里简单介绍一下tmux。tmux 是一个终端复用软件，类似的软甲有screen。但是现在的screen 用的人已经越来越少了。慢慢得会被tmux一统江湖。先不多说了，看一张效果图吧。
+
+有时候，我们需要开多个terminal，大部分情况下，我们可以通过多个tab来完成。但是在我们不需要全屏展示的时候，这样感觉浪费。比如说我们需要一边写代码，一边看log，一边调试代码。这个时候，用多">
+<meta name="twitter:image" content="https://img.nofile.cc/images/2016/12/25/14826321686494.png">
+  
+    <link rel="alternative" href="/atom.xml" title="faith技术博客" type="application/atom+xml">
+  
+  <meta name="summary" content="">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu"  >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">faith</h5>
+        <a href="mailto:xiaolongnk@126.com" title="xiaolongnk@126.com" class="mail">xiaolongnk@126.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
+      
+          <li class="waves-block waves-effect">
+            <a href="/"  >
+              <i class="icon icon-lg icon-home"></i>
+              主页
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/archives"  >
+              <i class="icon icon-lg icon-archives"></i>
+              Archives
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/tags"  >
+              <i class="icon icon-lg icon-tags"></i>
+              Tags
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/xiaolongnk" target="_blank" >
+              <i class="icon icon-lg icon-github"></i>
+              Github
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/about"  >
+              <i class="icon icon-lg icon-about"></i>
+              About
+            </a>
+          </li>
+       <i class="icon icon-lg icon-link" style="margin-left:20px"></i>
+      <span style="margin-left:20px">
+      <strong >Friends links:</strong>
+      </span>
+      
+      <li>
+        <a href="https://utils.nofile.cc/imageStore" target="_blank" >
+          imageStore
+        </a>
+      </li>
+       
+    </ul>
+
+    <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>faith技术博客 &copy; 2017</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+  </div>
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">tmux -- 终端复用</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">tmux -- 终端复用</h1>
+    <h5 class="subtitle">
+        
+            <time datetime="2016-10-11T02:18:00.000Z" itemprop="datePublished" class="page-time">
+  2016-10-11
+</time>
+
+
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-note-tmux" 
+  class="article article-type-post" itemprop="blogPost">
+    <div class="post-meta flex-row">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tmux/">tmux</a></li></ul>
+
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#tmux-简介"><span class="post-toc-text">tmux 简介</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#tmux-配置"><span class="post-toc-text">tmux 配置</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#配置文件依赖"><span class="post-toc-text">配置文件依赖</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#tmux-快捷键"><span class="post-toc-text">tmux 快捷键</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#tmux-常见问题"><span class="post-toc-text">tmux 常见问题</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#写在最后"><span class="post-toc-text">写在最后</span></a></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <h4 id="tmux-简介"><a href="#tmux-简介" class="headerlink" title="tmux 简介"></a>tmux 简介</h4><p>这里简单介绍一下<a href="https://github.com/tmux/tmux" target="_blank" rel="external">tmux</a>。<br>tmux 是一个终端复用软件，类似的软甲有screen。但是现在的screen 用的人已经越来越少了。<br>慢慢得会被tmux一统江湖。先不多说了，看一张效果图吧。</p>
+<p><img src="https://img.nofile.cc/images/2016/12/25/14826321686494.png" alt="tmux 效果1"><br><img src="https://img.nofile.cc/images/2016/12/25/14826334955905.png" alt="tmux 效果2"></p>
+<p>有时候，我们需要开多个terminal，大部分情况下，我们可以通过多个tab来完成。但是在我们<br>不需要全屏展示的时候，这样感觉浪费。比如说我们需要一边写代码，一边看log，一边调试<br>代码。这个时候，用多个tab的方式，效率就比较低了。有tmux之后，我们就可以都在一个terminal<br>中完成这个操作了。</p>
+<p>除了，终端分屏的功能，tmux还可以帮我们保存我们的工作session。我们在一个session中打开的tab<br>都会被保存下来，我们可以中断当前的工作，去做其他的事情，在我们回来之后，我们还可以直接恢复<br>我们原来的工作环境。所有打开的窗口会再次出现，就算关了terminal也没有关系。</p>
+<p>并且现在有了<a href="https://github.com/tmux-plugins/tmux-resurrect" target="_blank" rel="external">session恢复插件</a>之后，就<br>算server重启了也没有关系了，我们的session依然可以恢复。</p>
+<p>tmux可以支持鼠标了，不过这个功能要求tmux的version&gt;2.2 。如果比较就的系统，会给你配备1.6的tmux。<br>这个时候，可能需要你自己编译一个tmux啦，具体的方法，可以参考前面那个tmux的链接啦。</p>
+<p>总之，linux的软件，未经配置的是一个，配置好的是另一个，当然我说的易用性。tmux同样也有很强的定制<br>性，具体的配置，可以参考我下面的配置。里面有一些简单的解释，不过不那么全。如果你很感兴趣，那么<br>可以对其中自己不太明白的地方，自己搜索下,应该能获得很多新知识,可以帮助你更好的使用tmux。</p>
+<p>如果你希望了解更多的tmux插件，你可以参考这个<a href="https://github.com/tmux-plugins/tpm" target="_blank" rel="external">tpm</a></p>
+<h4 id="tmux-配置"><a href="#tmux-配置" class="headerlink" title="tmux 配置"></a>tmux 配置</h4><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="built_in">set</span> -g prefix ^q</div><div class="line">unbind ^b  </div><div class="line"><span class="built_in">bind</span> a send-prefix  </div><div class="line">unbind <span class="string">'"'</span>  </div><div class="line"><span class="built_in">bind</span> - splitw -v  </div><div class="line">unbind %  </div><div class="line"><span class="built_in">bind</span> \ splitw -h  </div><div class="line"><span class="built_in">bind</span> r <span class="built_in">source</span>-file ~/.tmux.conf \; display <span class="string">"Reloaded!"</span>  </div><div class="line"></div><div class="line">unbind C-[  </div><div class="line">unbind C-]  </div><div class="line"><span class="built_in">bind</span> C-n new-session   </div><div class="line"><span class="built_in">bind</span> Tab last-window</div><div class="line"></div><div class="line"><span class="comment">#set status-interval 1</span></div><div class="line"><span class="built_in">set</span>-option -g status on  </div><div class="line"><span class="built_in">set</span>-option -g status-interval 1  </div><div class="line"><span class="built_in">set</span>-option -g status-justify <span class="string">"left"</span>  </div><div class="line"><span class="built_in">set</span>-option -g status-left-length 60  </div><div class="line"><span class="built_in">set</span>-option -g status-right-length 90  </div><div class="line"><span class="built_in">set</span>-option -g  mouse on</div><div class="line"></div><div class="line"><span class="comment">#选择分割的窗格</span></div><div class="line"><span class="built_in">bind</span> k selectp -U <span class="comment">#选择上窗格</span></div><div class="line"><span class="built_in">bind</span> j selectp -D <span class="comment">#选择下窗格</span></div><div class="line"><span class="built_in">bind</span> h selectp -L <span class="comment">#选择左窗格</span></div><div class="line"><span class="built_in">bind</span> l selectp -R <span class="comment">#选择右窗格</span></div><div class="line"><span class="comment">#----------------------------------------------</span></div><div class="line"></div><div class="line"><span class="comment">#重新调整窗格的大小</span></div><div class="line"><span class="built_in">bind</span> ^k resizep -U 10</div><div class="line"><span class="built_in">bind</span> ^j resizep -D 10</div><div class="line"><span class="built_in">bind</span> ^h resizep -L 10</div><div class="line"><span class="built_in">bind</span> ^l resizep -R 10</div><div class="line"><span class="built_in">bind</span> ^u swapp -U</div><div class="line"><span class="built_in">bind</span> ^d swapp -D</div><div class="line"><span class="comment">#----------------------------------------------</span></div><div class="line"></div><div class="line"><span class="comment"># 颜色</span></div><div class="line"><span class="built_in">set</span> -g status-fg white</div><div class="line"><span class="built_in">set</span> -g status-bg cyan</div><div class="line"><span class="comment">#设置终端颜色为256色  </span></div><div class="line"><span class="built_in">set</span> -g default-terminal <span class="string">"screen-256color"</span></div><div class="line"><span class="comment"># Use vim keybindings in copy mode</span></div><div class="line">setw -g mode-keys vi</div><div class="line"><span class="comment"># 对齐方式</span></div><div class="line"><span class="built_in">set</span>-option -g status-justify centre</div><div class="line"></div><div class="line"><span class="comment"># 左下角</span></div><div class="line"><span class="comment"># set-option -g status-left '#[bg=black,fg=green][#[fg=blue]#S#[fg=green]]'</span></div><div class="line"><span class="built_in">set</span>-option -g status-left-length 20</div><div class="line"><span class="built_in">set</span>-option -g allow-rename off</div><div class="line"><span class="comment"># 窗口列表</span></div><div class="line">setw -g automatic-rename on</div><div class="line"><span class="built_in">set</span>-window-option -g window-status-format <span class="string">'#[fg=yellow,bold]#I:#W#[fg=blue,dim]'</span></div><div class="line"><span class="built_in">set</span>-window-option -g window-status-current-format <span class="string">'#[fg=green,bold][#[fg=blue]#I#[fg=blue]:#[fg=blue]#W#[fg=dim]#[fg=green,bold]]'</span></div><div class="line"><span class="comment"># 右下角</span></div><div class="line"><span class="built_in">set</span> -g status-right <span class="string">'#[fg=green,bold][#[fg=yellow,bold]%Y-%m-%d %H:%M:%S#[fg=green]]'</span></div><div class="line"></div><div class="line"><span class="comment"># just for mac settings. install reattach-to-user-namespace first.</span></div><div class="line"><span class="comment"># Copy-paste integration  </span></div><div class="line"><span class="built_in">set</span>-option -g default-command <span class="string">"reattach-to-user-namespace -l zsh"</span></div><div class="line"><span class="comment"># Setup 'v' to begin selection as in Vim</span></div><div class="line"><span class="built_in">bind</span>-key -t vi-copy v begin-selection</div><div class="line"><span class="built_in">bind</span>-key -t vi-copy y copy-pipe <span class="string">"reattach-to-user-namespace pbcopy"</span></div><div class="line"><span class="comment"># Update default binding of `Enter` to also use copy-pipe</span></div><div class="line">unbind -t vi-copy Enter</div><div class="line"><span class="built_in">bind</span>-key -t vi-copy Enter copy-pipe <span class="string">"reattach-to-user-namespace pbcopy"</span></div><div class="line"><span class="comment"># Bind ']' to use pbpaste</span></div><div class="line"><span class="built_in">bind</span> ] run <span class="string">"reattach-to-user-namespace pbpaste | tmux load-buffer - &amp;&amp; tmux paste-buffer"</span></div><div class="line"></div><div class="line"><span class="comment"># List of plugins</span></div><div class="line"><span class="built_in">set</span> -g @plugin <span class="string">'tmux-plugins/tpm'</span></div><div class="line"><span class="built_in">set</span> -g @plugin <span class="string">'tmux-plugins/tmux-sensible'</span></div><div class="line"><span class="built_in">set</span> -g @plugin <span class="string">'nhdaly/tmux-better-mouse-mode'</span></div><div class="line"><span class="built_in">set</span> -g @plugin <span class="string">'tmux-plugins/tmux-yank'</span></div><div class="line"><span class="built_in">set</span> -g @plugin <span class="string">'tmux-plugins/tmux-resurrect'</span></div><div class="line"><span class="built_in">set</span> -g @plugin <span class="string">'tmux-plugins/tmux-continuum'</span></div><div class="line"><span class="built_in">set</span> -g @plugin <span class="string">'tmux-plugins/tmux-sidebar'</span></div><div class="line"><span class="built_in">set</span> -g @plugin <span class="string">'tmux-plugins/tmux-copycat'</span></div><div class="line"></div><div class="line"><span class="comment"># for vim</span></div><div class="line"><span class="built_in">set</span> -g @resurrect-strategy-vim <span class="string">'session'</span></div><div class="line"><span class="comment"># for neovim</span></div><div class="line"><span class="built_in">set</span> -g @resurrect-strategy-nvim <span class="string">'session'</span></div><div class="line">run <span class="string">'~/.tmux/plugins/tpm/tpm'</span></div></pre></td></tr></table></figure>
+<p>完整的配置文件在这里<a href="https://raw.githubusercontent.com/xiaolongnk/tmux-conf/master/tmux.conf" target="_blank" rel="external">tmux-conf</a>.<br>我的github-tmux-conf <a href="https://github.com/xiaolongnk/tmux-conf" target="_blank" rel="external">tmux-conf</a></p>
+<h4 id="配置文件依赖"><a href="#配置文件依赖" class="headerlink" title="配置文件依赖"></a>配置文件依赖</h4><ol>
+<li>tmux-version <code>&gt;</code> 1.9</li>
+<li>mac 下需要reattach-to-user-namespace <code>brew install reattatch-to-user-namespae</code></li>
+</ol>
+<h4 id="tmux-快捷键"><a href="#tmux-快捷键" class="headerlink" title="tmux 快捷键"></a>tmux 快捷键</h4><p><code>ctrl + q</code>  是 <code>prefix</code><br><code>prefix + c</code> 创建新窗口<br><code>prefix + ,</code> 窗口重命名<br><code>prefix + n</code> 下一个窗口<br><code>prefix + ctrl + n</code> 开启一个新session<br><code>prefix + tab</code>  切换到上次工作的窗口<br><code>prefix + d</code>  detach current tmux session ， 可以用<code>tmux a</code>命令重新恢复</p>
+<h4 id="tmux-常见问题"><a href="#tmux-常见问题" class="headerlink" title="tmux 常见问题"></a>tmux 常见问题</h4><ol>
+<li><p>tmux title 经常改变</p>
+<p> 这个问题我是从stackoverflow上找到的，<br> <a href="http://stackoverflow.com/questions/17289439/tmux-window-title-keeps-renaming" target="_blank" rel="external">原问题在这里</a>,解决<br> 方案是在tmux.conf中添加如下配置 <code>set-option -g allow-rename off</code><br> 当然，这个已经包含在我的配置文件里面了。</p>
+</li>
+<li><p>tmux 中 将vim中内容复制到系统剪切板。</p>
+<p> 还有就是tmux 中使用vim复制到系统clipboard中的问题。一般情况下，只有mac下好像才会有这个问题。<br> 对应的修复方案也写在配置文件里了。如果是mac系统，直接用这个配置文件应该就可以了，另外需要自己<br> 安装下依赖。</p>
+</li>
+</ol>
+<h4 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h4><p>tmux 的包含session，session中可以有好多标签。<br>有不少快捷键。刚开始记起来可能有点费尽，感觉有点像vim的学习过程。刚开始可能有点困难，但是一旦你适应了，<br>对它足够了解了，的确会方便很多。<br>加油吧。有问题欢迎发我邮箱，随时交流。</p>
+
+
+            
+            <div class="post-reward">
+                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+            </div>
+            
+            
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="https://blog.nofile.cc/posts/2016/10/11/note-tmux.html" target="_blank" rel="external">https://blog.nofile.cc/posts/2016/10/11/note-tmux.html</a>
+                </p>
+                <footer><cite><a href="https://blog.nofile.cc">@faith技术博客</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/posts/2016/10/18/note-tcp.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">tcp简介</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/posts/2016/10/11/note-phpcompileinstall.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">PHP编译安装</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="note-tmux" data-title="tmux -- 终端复用" data-url="https://blog.nofile.cc/posts/2016/10/11/note-tmux.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"nofile"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+        ds.src = "https://img.nofile.cc/embed.js";
+		//ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "tmux -- 终端复用",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "https://blog.nofile.cc/posts/2016/10/11/note-tmux.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        大爷的，太感谢了~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+
+
+<script>
+    var _baId = 'b98900c3864b32c37d696546d1911856';
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?" + _baId;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+</body>
+</html>

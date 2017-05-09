@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>C学习笔记 | faith技术博客 | 我们一起快乐吧...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="c">
+  <meta name="description" content="C文件的编译过程编译一个c文件，产生一个可执行文件，这个过程分为四个步骤
+
+.c 文件到 .i 文件， --&amp;gt; .s 文件 --&amp;gt; .o 文件 --&amp;gt; 可执行文件分别是预处理， 编译， 汇编， 链接
+
+预处理所做的事情。
+gcc -o helloworld.i helloworld.c -E
+
+将 include 变成真实的东西
+宏替换。 
+宏函数的优点。比一些函数要方便，
+条件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C学习笔记">
+<meta property="og:url" content="https://blog.nofile.cc/posts/2016/08/28/note-c.html">
+<meta property="og:site_name" content="faith技术博客">
+<meta property="og:description" content="C文件的编译过程编译一个c文件，产生一个可执行文件，这个过程分为四个步骤
+
+.c 文件到 .i 文件， --&amp;gt; .s 文件 --&amp;gt; .o 文件 --&amp;gt; 可执行文件分别是预处理， 编译， 汇编， 链接
+
+预处理所做的事情。
+gcc -o helloworld.i helloworld.c -E
+
+将 include 变成真实的东西
+宏替换。 
+宏函数的优点。比一些函数要方便，
+条件">
+<meta property="og:updated_time" content="2017-05-08T15:38:16.281Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C学习笔记">
+<meta name="twitter:description" content="C文件的编译过程编译一个c文件，产生一个可执行文件，这个过程分为四个步骤
+
+.c 文件到 .i 文件， --&amp;gt; .s 文件 --&amp;gt; .o 文件 --&amp;gt; 可执行文件分别是预处理， 编译， 汇编， 链接
+
+预处理所做的事情。
+gcc -o helloworld.i helloworld.c -E
+
+将 include 变成真实的东西
+宏替换。 
+宏函数的优点。比一些函数要方便，
+条件">
+  
+    <link rel="alternative" href="/atom.xml" title="faith技术博客" type="application/atom+xml">
+  
+  <meta name="summary" content="">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu"  >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">faith</h5>
+        <a href="mailto:xiaolongnk@126.com" title="xiaolongnk@126.com" class="mail">xiaolongnk@126.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
+      
+          <li class="waves-block waves-effect">
+            <a href="/"  >
+              <i class="icon icon-lg icon-home"></i>
+              主页
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/archives"  >
+              <i class="icon icon-lg icon-archives"></i>
+              Archives
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/tags"  >
+              <i class="icon icon-lg icon-tags"></i>
+              Tags
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/xiaolongnk" target="_blank" >
+              <i class="icon icon-lg icon-github"></i>
+              Github
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/about"  >
+              <i class="icon icon-lg icon-about"></i>
+              About
+            </a>
+          </li>
+       <i class="icon icon-lg icon-link" style="margin-left:20px"></i>
+      <span style="margin-left:20px">
+      <strong >Friends links:</strong>
+      </span>
+      
+      <li>
+        <a href="https://utils.nofile.cc/imageStore" target="_blank" >
+          imageStore
+        </a>
+      </li>
+       
+    </ul>
+
+    <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>faith技术博客 &copy; 2017</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+  </div>
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">C学习笔记</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">C学习笔记</h1>
+    <h5 class="subtitle">
+        
+            <time datetime="2016-08-28T09:39:00.000Z" itemprop="datePublished" class="page-time">
+  2016-08-28
+</time>
+
+
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-note-c" 
+  class="article article-type-post" itemprop="blogPost">
+    <div class="post-meta flex-row">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c</a></li></ul>
+
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#C文件的编译过程"><span class="post-toc-text">C文件的编译过程</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#C语言中的宏"><span class="post-toc-text">C语言中的宏</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#C-指针-函数指针"><span class="post-toc-text">C 指针(函数指针)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#C-中的extern关键字"><span class="post-toc-text">C 中的extern关键字</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#一些语言细节"><span class="post-toc-text">一些语言细节</span></a></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <h4 id="C文件的编译过程"><a href="#C文件的编译过程" class="headerlink" title="C文件的编译过程"></a>C文件的编译过程</h4><p>编译一个c文件，产生一个可执行文件，这个过程分为四个步骤</p>
+<ol>
+<li>.c 文件到 .i 文件， <code>--&gt;</code> .s 文件 <code>--&gt;</code> .o 文件 <code>--&gt;</code> 可执行文件<br>分别是预处理， 编译， 汇编， 链接</li>
+</ol>
+<p>预处理所做的事情。</p>
+<p>gcc -o helloworld.i helloworld.c -E</p>
+<ol>
+<li>将 include 变成真实的东西</li>
+<li>宏替换。 </li>
+<li>宏函数的优点。比一些函数要方便，</li>
+<li>条件编译，对于程序的移植和调试，非常有用。</li>
+</ol>
+<h4 id="C语言中的宏"><a href="#C语言中的宏" class="headerlink" title="C语言中的宏"></a>C语言中的宏</h4><ol>
+<li><p>条件宏</p>
+<pre><code>#include &lt;iostream&gt;
+#include &quot;head.h&quot;
+#include &quot;head.h&quot;
+if you include &quot;head.h&quot; twice, you find you can compile your file
+ as well.but if your head.h is writte without #ifndef, #define #endif, then you must will get an error to stop your working.also, here the use of,
+
+#ifdef
+#else
+#endif
+this condition definition can save your release code size :).what is different between static type and dynamic type.static type: know when program is in compile process.dynamic type: know only in the run process.  For pointer type.
+</code></pre></li>
+<li><p>宏函数,宏可以实现一个函数的功能，这样可以减少函数调用的消耗。函数中可以有参数，宏的功能也比较强大，远远不止是定义一个常亮那么简单,线面是一个简单的例子。并且宏中也可以调用另一个宏，就像函数调用那样,但是必须保证顺序。</p>
+<pre><code>注意使用do-while的格式。这样会比较安全（可以避免在宏后面增加一个；而带来的语法问题）。    
+例如下面的代码
+#define swap(a , b)                 \
+    *(a) = (*(a)) ^ (*(b));         \
+    *(b) = (*(a)) ^ (*(b));         \
+    *(a) = (*(a)) ^ (*(b));   
+
+#define msort(a , n )               \
+do{                                 \
+    for(int i = 0; i &lt; n; i++){     \
+        for(int j =0 ; j &lt; i ;j++){ \
+            if(a[i] &lt; a[j]) {       \
+                   swap(a+i , a+j);    \
+            }                       \
+        }                           \
+    }                               \
+}while(0)                           
+</code></pre></li>
+</ol>
+<h4 id="C-指针-函数指针"><a href="#C-指针-函数指针" class="headerlink" title="C 指针(函数指针)"></a>C 指针(函数指针)</h4><ol>
+<li><code>int (*) p[10]</code> 本质上是一个指针，指向一个有10个元素的数组。指针数组。</li>
+<li><code>int * p[10]</code> 本质上是一个数组，数组里面的每一个元素都是一个<code>int*</code>类型的指针。数组指针。</li>
+<li>函数指针，函数指针可以作为一个普通的指针，既然它是一个指针，就可以通过参数来传递。下面是作为参数。可以参考下面的例子。</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">int</span> <span class="params">(* funcType)</span> <span class="params">(<span class="keyword">int</span>)</span></span>; <span class="comment">/*定义一个函数指针的类型*/</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">func</span> <span class="params">(<span class="keyword">int</span>)</span></span>;  <span class="comment">/*函数指针*/</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">func_test</span><span class="params">(funcType fp , <span class="keyword">int</span>)</span></span>; <span class="comment">/*用函数指针作为参数*/</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span> a)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> a+<span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">func_test</span><span class="params">(funcType fp , <span class="keyword">int</span> a)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> fp(a);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> abc = <span class="number">100</span>;</div><div class="line">    <span class="comment">/*定义一个函数指针，指向一个函数。函数名本质上是一个指针常量*/</span></div><div class="line">    funcType hello = func;</div><div class="line">    <span class="keyword">int</span> dd = (*hello)(abc);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"value of variable dd  is %d\n"</span>,dd);</div><div class="line">    abc = func_test(func , abc);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,abc);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="C-中的extern关键字"><a href="#C-中的extern关键字" class="headerlink" title="C 中的extern关键字"></a>C 中的extern关键字</h4><ol>
+<li>让变量可以在其他文件中也可以使用。只能对全局变量起作用，不在全局作用域会导致编译报错。本质上是为了多个文件中共享变量，在工程中，可以让工程更好维护。</li>
+<li>需要注意的是，c语言中的函数原型本身具有外部链接属性，所以对与函数而言，用不用extern都是一样的。所以呢，对于extern来说，用在变量上可能作用更大一些。在C语言中，extern变量的存在改变了变量的链接属性，用extern关键字修饰的变量其定义将在别处，编译器的变量解析将推迟到链接上。</li>
+<li>一般来说，C工程的管理方式是将所有的外部函数定义在一个.h文件中。在需要用到这些函数的C文件中，包含这个.h文件就可以了。但是如果没有用.h 文件的话，这个时候就必须在主文件中用extern申明一下用到的函数了，但是这并不是必须的，没有这个extern也是可以的，所以extern对于函数来说，不是必须的，完全可以忽略，对于函数，作用不大。</li>
+<li>函数可以申明多次，编译并不会报错，但是只能定义一次。</li>
+</ol>
+<p>下面是一个具体的例子:里面函数申明前面的extern关键字都可以没有，函数默认有了这个属性。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="comment">/*** main.c ***/</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"b.h"</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">void</span> <span class="title">print_hello</span><span class="params">(<span class="keyword">char</span> *)</span></span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> TSM = <span class="number">10000</span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    print_hello(<span class="string">"hello world"</span>);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/*** b.h ***/</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> B_H</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> B_H</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">print_hello</span><span class="params">(<span class="keyword">char</span> *)</span></span>;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="comment">/*** b.c ***/</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">extern</span> <span class="keyword">int</span> TSM;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_hello</span><span class="params">(<span class="keyword">char</span> *s)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"\t\t%s\n"</span>,s);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,TSM);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="一些语言细节"><a href="#一些语言细节" class="headerlink" title="一些语言细节"></a>一些语言细节</h4><ol>
+<li>malloc 和 calloc的区别。  malloc 可以分配内存，但是不做初始化。calloc也是分配内存，但是给你做初始化，新能比malloc差一点。但是在需要初始化的时候，用calloc可以省去memset的函数调用时间，看需求来定。注意malloc和calloc的参数的不同,malloc 只需要一个参数。<code>realloc</code>的使用,比如你给int *a分配了10个空间，现在发现10个不够了，那么你需要realloc以下。realloc的指针必须是没有free的。</li>
+<li>使用math.h的时候，在编译的时候需要加上<code>-lm</code> 参数。</li>
+<li>c语言的struct关键字，在定义节点的时候都需要带上，这一点和c++不同，需要注意。可以用typedef来简化这一点。typedef可以出现在结构体定义之前。</li>
+</ol>
+
+
+            
+            <div class="post-reward">
+                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+            </div>
+            
+            
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="https://blog.nofile.cc/posts/2016/08/28/note-c.html" target="_blank" rel="external">https://blog.nofile.cc/posts/2016/08/28/note-c.html</a>
+                </p>
+                <footer><cite><a href="https://blog.nofile.cc">@faith技术博客</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/posts/2016/08/29/note-vpn.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Linux VPN 配置</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/posts/2016/08/28/note-vim.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">vim 学习笔记</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="note-c" data-title="C学习笔记" data-url="https://blog.nofile.cc/posts/2016/08/28/note-c.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"nofile"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+        ds.src = "https://img.nofile.cc/embed.js";
+		//ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "C学习笔记",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "https://blog.nofile.cc/posts/2016/08/28/note-c.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        大爷的，太感谢了~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+
+
+<script>
+    var _baId = 'b98900c3864b32c37d696546d1911856';
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?" + _baId;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+</body>
+</html>

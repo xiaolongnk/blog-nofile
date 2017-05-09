@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>vim 学习笔记 | faith技术博客 | 我们一起快乐吧...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="vim,cscope,ctags">
+  <meta name="description" content="vim的几个常用的插件
+
+
+插件
+说明
+
+
+
+
+vim-ariline
+彩色 的状态栏
+
+
+nerdtree
+一个文件管理器
+
+
+gittur
+git集成插件,可以显示修改了的内容
+
+
+bundle
+插件管理
+
+
+vim-markdown
+支持markdown的语法
+
+
+taglist
+和ctags配合使用的，会在右边出现一列，展示所有的变量和函数。 常用的快捷键是这3个 ctrl + ] , c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vim 学习笔记">
+<meta property="og:url" content="https://blog.nofile.cc/posts/2016/08/28/note-vim.html">
+<meta property="og:site_name" content="faith技术博客">
+<meta property="og:description" content="vim的几个常用的插件
+
+
+插件
+说明
+
+
+
+
+vim-ariline
+彩色 的状态栏
+
+
+nerdtree
+一个文件管理器
+
+
+gittur
+git集成插件,可以显示修改了的内容
+
+
+bundle
+插件管理
+
+
+vim-markdown
+支持markdown的语法
+
+
+taglist
+和ctags配合使用的，会在右边出现一列，展示所有的变量和函数。 常用的快捷键是这3个 ctrl + ] , c">
+<meta property="og:updated_time" content="2017-05-08T15:57:26.758Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vim 学习笔记">
+<meta name="twitter:description" content="vim的几个常用的插件
+
+
+插件
+说明
+
+
+
+
+vim-ariline
+彩色 的状态栏
+
+
+nerdtree
+一个文件管理器
+
+
+gittur
+git集成插件,可以显示修改了的内容
+
+
+bundle
+插件管理
+
+
+vim-markdown
+支持markdown的语法
+
+
+taglist
+和ctags配合使用的，会在右边出现一列，展示所有的变量和函数。 常用的快捷键是这3个 ctrl + ] , c">
+  
+    <link rel="alternative" href="/atom.xml" title="faith技术博客" type="application/atom+xml">
+  
+  <meta name="summary" content="">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu"  >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">faith</h5>
+        <a href="mailto:xiaolongnk@126.com" title="xiaolongnk@126.com" class="mail">xiaolongnk@126.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
+      
+          <li class="waves-block waves-effect">
+            <a href="/"  >
+              <i class="icon icon-lg icon-home"></i>
+              主页
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/archives"  >
+              <i class="icon icon-lg icon-archives"></i>
+              Archives
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/tags"  >
+              <i class="icon icon-lg icon-tags"></i>
+              Tags
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/xiaolongnk" target="_blank" >
+              <i class="icon icon-lg icon-github"></i>
+              Github
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/about"  >
+              <i class="icon icon-lg icon-about"></i>
+              About
+            </a>
+          </li>
+       <i class="icon icon-lg icon-link" style="margin-left:20px"></i>
+      <span style="margin-left:20px">
+      <strong >Friends links:</strong>
+      </span>
+      
+      <li>
+        <a href="https://utils.nofile.cc/imageStore" target="_blank" >
+          imageStore
+        </a>
+      </li>
+       
+    </ul>
+
+    <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>faith技术博客 &copy; 2017</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+  </div>
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">vim 学习笔记</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">vim 学习笔记</h1>
+    <h5 class="subtitle">
+        
+            <time datetime="2016-08-28T06:43:00.000Z" itemprop="datePublished" class="page-time">
+  2016-08-28
+</time>
+
+
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-note-vim" 
+  class="article article-type-post" itemprop="blogPost">
+    <div class="post-meta flex-row">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cscope/">cscope</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctags/">ctags</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
+
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#vim的几个常用的插件"><span class="post-toc-text">vim的几个常用的插件</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#vimscript"><span class="post-toc-text">vimscript</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#vim-slowstart"><span class="post-toc-text">vim slowstart</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#vim-常用操作"><span class="post-toc-text">vim 常用操作</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#vim-导入其他文件内容"><span class="post-toc-text">vim 导入其他文件内容</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#vim和系统共享剪切板"><span class="post-toc-text">vim和系统共享剪切板</span></a></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <h4 id="vim的几个常用的插件"><a href="#vim的几个常用的插件" class="headerlink" title="vim的几个常用的插件"></a>vim的几个常用的插件</h4><table>
+<thead>
+<tr>
+<th>插件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>vim-ariline</td>
+<td>彩色 的状态栏</td>
+</tr>
+<tr>
+<td>nerdtree</td>
+<td>一个文件管理器</td>
+</tr>
+<tr>
+<td>gittur</td>
+<td>git集成插件,可以显示修改了的内容</td>
+</tr>
+<tr>
+<td>bundle</td>
+<td>插件管理</td>
+</tr>
+<tr>
+<td>vim-markdown</td>
+<td>支持markdown的语法</td>
+</tr>
+<tr>
+<td>taglist</td>
+<td>和ctags配合使用的，会在右边出现一列，展示所有的变量和函数。 常用的快捷键是这3个 ctrl + ] , ctrl + t ,ctrl + o</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li><code>ctags</code> 安装比较简单<code>sudo apt-get install ctags</code> , 安装之后，进入代码目录，执行 <code>ctags -R .</code></li>
+<li><code>cscope</code>安装 <code>sudo apt-get install cscope</code> 下载就好 ，进入代码目录，执行 <code>cscope -Rbkq</code>执行这个命令后，会生成3个文件，cscope.in.out和cscope.po.out文件,cscope.out .然后配置vim ，将如下配置文件写入vimrc 。<br><em>vim cscope file not found</em></li>
+<li>用cscope的话，需要给vim中增加一个配置。<code>set csre</code> ,具体的可以:help csre 看一下。增加这个设置，可以让vim中的cscope真正能用起来。如果没有的话，在你找到了东西想跳转的时候，会提示没有这个文件的错误，这个在下面的配置中已经增加了。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">set tags=tags;  &quot;conf for ctags</div><div class="line">set csre        &quot;use absolute path in cscope</div><div class="line">if filereadable(&quot;cscope.out&quot;) </div><div class="line">	cs add cscope.out </div><div class="line">endif</div><div class="line"></div><div class="line">if has(&quot;cscope&quot;)</div><div class="line">	set cscopetag   &quot; 使支持用 Ctrl+]  和 Ctrl+t 快捷键在代码间跳来跳去</div><div class="line">	&quot; check cscope for definition of a symbol before checking ctags:</div><div class="line">	&quot; set to 1 if you want the reverse search order.</div><div class="line">	set csto=1</div><div class="line"></div><div class="line">	&quot; add any cscope database in current directory</div><div class="line">	if filereadable(&quot;cscope.out&quot;)</div><div class="line">		cs add cscope.out</div><div class="line">		&quot; else add the database pointed to by environment variable</div><div class="line">	elseif $CSCOPE_DB !=&quot;&quot;</div><div class="line">		cs add $CSCOPE_DB</div><div class="line">	endif</div><div class="line"></div><div class="line">	&quot; show msg when any other cscope db added</div><div class="line">    set cscopeverbose</div><div class="line"></div><div class="line">    nmap &lt;C-S&gt; :cs find s &lt;C-R&gt;=expand(&quot;&lt;cword&gt;&quot;)&lt;CR&gt;&lt;CR&gt;</div><div class="line">    nmap &lt;C-G&gt; :cs find g &lt;C-R&gt;=expand(&quot;&lt;cword&gt;&quot;)&lt;CR&gt;&lt;CR&gt;</div><div class="line">    nmap &lt;C-C&gt; :cs find c &lt;C-R&gt;=expand(&quot;&lt;cword&gt;&quot;)&lt;CR&gt;&lt;CR&gt;</div><div class="line">    nmap &lt;C-T&gt; :cs find t &lt;C-R&gt;=expand(&quot;&lt;cword&gt;&quot;)&lt;CR&gt;&lt;CR&gt;</div><div class="line">    nmap &lt;C-E&gt; :cs find e &lt;C-R&gt;=expand(&quot;&lt;cword&gt;&quot;)&lt;CR&gt;&lt;CR&gt;</div><div class="line">    nmap &lt;C-Y&gt; :cs find f &lt;C-R&gt;=expand(&quot;&lt;cfile&gt;&quot;)&lt;CR&gt;&lt;CR&gt;</div><div class="line">    nmap &lt;C-I&gt; :cs find i ^&lt;C-R&gt;=expand(&quot;&lt;cfile&gt;&quot;)&lt;CR&gt;$&lt;CR&gt;</div><div class="line">    nmap &lt;C-D&gt; :cs find d &lt;C-R&gt;=expand(&quot;&lt;cword&gt;&quot;)&lt;CR&gt;&lt;CR&gt;</div><div class="line">endif</div><div class="line"></div><div class="line">set autochdir</div></pre></td></tr></table></figure>
+<ol>
+<li>使用，在if语句里面，我们队cscope进行了快捷键映射，这样会方便我们使用。快捷键是Ctrl 和 字母的组合，例如Ctrl + S ，可以触发:cs find s + <code>光标所在位置的单词</code>  这个命令。 其他的同理。在vim中忘记了我们设置的映射，可以用:map 来查看。关于vim 的key-binding，可以参考这篇文章，<a href="http://yyq123.blogspot.com/2010/12/vim-map.html" target="_blank" rel="external">http://yyq123.blogspot.com/2010/12/vim-map.html</a>。 <code>:h key-notation</code>可以查看键盘符号的详细说明。 </li>
+</ol>
+<h4 id="vimscript"><a href="#vimscript" class="headerlink" title="vimscript"></a>vimscript</h4><p>下面是一些简单的vimscript内容。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">vim 中定义变量要用</div><div class="line"></div><div class="line">let a=123  空格并不能影响效果，这一点和shell并不一样.</div><div class="line">echo a</div><div class="line">这样就可以看到效果。</div><div class="line"></div><div class="line">在 vimrc 中可以写简单函数，来做一些想做的事情，比如</div><div class="line">根据文件后缀，自动执行脚本程序。</div><div class="line"></div><div class="line">:echo %    这个是获得当前文件的全名，包括后缀的。</div><div class="line">:echo %&lt;   和下面的一行作用一样。</div><div class="line">:echo %:r  这个是获取当前文件的文件名，除去扩展后缀</div></pre></td></tr></table></figure>
+<p>插入模式下的 vim ， ctrl + j 可以将文本内容下移一行。ctrl + m 我也不知道具体是什么，<br>我只是通过实验尝试出来的。</p>
+<h4 id="vim-slowstart"><a href="#vim-slowstart" class="headerlink" title="vim slowstart"></a>vim slowstart</h4><p>vim –startuptime vim.log -c q<br>sudo vim 启动速度超级慢。<br>vim 启动速度变慢.在终端中可以这样启动 vim -X 这样是不需要和X挂上勾的,所以会变慢.修改了一下之后<br>瞬间感觉电脑变快了.vimariline这个插件会明显增加启动时间，加之没什么用，后面就从我的vim插件里面去掉了。</p>
+<p>调查之后，发现是我把系统的hosts文件删除了，touch了一个空文件。<br>后面，总是提示unresolve host 的提示。<br>在增加了我的hostname在host中之后，sudo vim 速度就快了。开来和这个也有关系。</p>
+<h4 id="vim-常用操作"><a href="#vim-常用操作" class="headerlink" title="vim 常用操作"></a>vim 常用操作</h4><ol>
+<li>vim 记录上次编辑位置。加入这一行<code>au BufReadPost * if line(&quot;&#39;\&quot;&quot;) &gt; 0|if line(&quot;&#39;\&quot;&quot;) &lt;= line(&quot;$&quot;)|exe(&quot;norm &#39;\&quot;&quot;)|else|exe &quot;norm $&quot;|endif|endif</code>到vimrc里面</li>
+<li>vim 删除重复行 <code>sort</code>然后<code>g/^\(.\+\)$\n\1/d</code></li>
+<li>vim 插入当前时间,在vimrc中加入这个map，在normal模式下，输入,dt就可以在当前位置插入时间了<code>map ,dt a&lt;C-R&gt;=strftime(&#39;%Y-%m-%d %H:%M&#39;)&lt;CR&gt;</code>。</li>
+<li>vim find 在vimrc中加入如下配置<code>set path=/home/yourpath</code>,在vim命令行中查找文件，有了这个配置之后，就会在这个目录下进行搜索。</li>
+</ol>
+<h4 id="vim-导入其他文件内容"><a href="#vim-导入其他文件内容" class="headerlink" title="vim 导入其他文件内容"></a>vim 导入其他文件内容</h4><p>将当前文件的部分内容导入到其他文件<br>1,20 w&gt;&gt; /path/otherfile.txt<br>1,20 w /path/otherfile.txt<br>具体命令就是这样。</p>
+<p>同样的，也可以将其他文件的内容读入到当前文件来。命令是这个<br>r: /path/file.txt</p>
+<p>同时，这个命令也可以将外部程序的输出读入到当前文件中。<br>r !date<br>这样也是可以插入时间的。将这个命令用map命令映射一下，就可以得到和那个实现的同样的功能了。<br>设置VIM为shell的默认编辑器<br>export VISUAL=vim<br>export EDITOR=”$VISUAL”</p>
+<h4 id="vim和系统共享剪切板"><a href="#vim和系统共享剪切板" class="headerlink" title="vim和系统共享剪切板"></a>vim和系统共享剪切板</h4><p>首先需要补充的一点是，+寄存器是只有vim-gtk 或者 vim-gnome 才会有的，不要只安装了<br>vim，这是不够的啦，在安装的时候需要注意一下，不然是无法使用系统剪切板的啦。<br>复制单个字符， nyl n 是数字，l和vim的方向键一样，表示向后，就是向后复制n个字符。<br>同理，nyh 表示向前复制n个字符。这样就可以很自由的复制了。<br>复制单词 ynw 其中n是数字，表示要复制的单词的个数。<br>按行为单位复制：<br>nyy 表示复制n 行，和上面的命令差不多。应该是向下取的。<br>p 表示粘贴，注意小写，这个是代表粘贴在下面。<br>P 也表示粘贴，这次是大写啊，这个是代表粘贴在前面。<br>估计对于字符复制粘贴的内容也是同样的规则啊。<br>“+y 表示复制到系统剪切板去。这个应该忘不了吧。</p>
+<p>vim 有很多的粘贴板，这些东西的用处你自己应该可以理解，一般情况下，都是只用一个粘贴板<br>的，但是粘贴板多一点也是没有坏处的啊。vim中的复制是用y来完成的，在这之前，你当然可以<br>决定你的内容是存放在那个粘贴办中，你可以用reg来查看这些粘贴板中都存了什么内容，同时<br>p是用来复制的，你也可以在复制之前决定你从哪个粘贴板中复制内容，例如”4p表示是从4好粘<br>贴板中拿东西。如果4好粘贴板中有你存下的内容的话，那么他就可以复制出来了，结合上面的<br>命令，你当然可以做成你想做的。<br>复制到第n 个粘贴板的命令: 先选择要复制的内容，然后”ny 就可以将这些内容放到粘贴板了。<br>然后在你想复制的地方”+p 就可以了。</p>
+
+
+            
+            <div class="post-reward">
+                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+            </div>
+            
+            
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="https://blog.nofile.cc/posts/2016/08/28/note-vim.html" target="_blank" rel="external">https://blog.nofile.cc/posts/2016/08/28/note-vim.html</a>
+                </p>
+                <footer><cite><a href="https://blog.nofile.cc">@faith技术博客</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/posts/2016/08/28/note-c.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">C学习笔记</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/posts/2016/08/26/note-ng.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">nginx 学习笔记</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="note-vim" data-title="vim 学习笔记" data-url="https://blog.nofile.cc/posts/2016/08/28/note-vim.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"nofile"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+        ds.src = "https://img.nofile.cc/embed.js";
+		//ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "vim 学习笔记",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "https://blog.nofile.cc/posts/2016/08/28/note-vim.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        大爷的，太感谢了~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+
+
+<script>
+    var _baId = 'b98900c3864b32c37d696546d1911856';
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?" + _baId;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+</body>
+</html>

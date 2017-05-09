@@ -1,0 +1,712 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+
+    
+  <url>
+    <loc>https://blog.nofile.cc/posts/2017/05/08/note-for-mysql-tutor.html</loc>
+    <lastmod>2017-05-08T16:15:04.591Z</lastmod>
+    <data>
+        <display>
+        <title>mysql 入门</title>
+        <pubTime>2017-05-08T14:58:00.000Z</pubTime>
+        
+        <tag>mysql</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.nofile.cc/posts/2016/08/28/note-vim.html</loc>
+    <lastmod>2017-05-08T15:57:26.758Z</lastmod>
+    <data>
+        <display>
+        <title>vim 学习笔记</title>
+        <pubTime>2016-08-28T06:43:00.000Z</pubTime>
+        
+        <tag>vim</tag>
+         
+        <tag>cscope</tag>
+         
+        <tag>ctags</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.nofile.cc/posts/2016/09/09/note-shell.html</loc>
+    <lastmod>2017-05-08T15:38:25.828Z</lastmod>
+    <data>
+        <display>
+        <title>shell 学习笔记</title>
+        <pubTime>2016-09-09T06:42:00.000Z</pubTime>
+        
+        <tag>shell</tag>
+         
+        <tag>awk</tag>
+         
+        <tag>sed</tag>
+         
+        <tag>grep</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.nofile.cc/posts/2017/03/06/note-node.html</loc>
+    <lastmod>2017-05-08T15:38:24.644Z</lastmod>
+    <data>
+        <display>
+        <title>npm update npm</title>
+        <pubTime>2017-03-06T15:35:00.000Z</pubTime>
+        
+        <tag>tags</tag>
+         
+        <tag>node</tag>
+         
+        <tag>npm</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.nofile.cc/posts/2016/10/11/note-phpcompileinstall.html</loc>
+    <lastmod>2017-05-08T15:38:23.456Z</lastmod>
+    <data>
+        <display>
+        <title>PHP编译安装</title>
+        <pubTime>2016-10-11T02:18:00.000Z</pubTime>
+        
+        <tag>linux</tag>
+         
+        <tag>php</tag>
+         
+        <tag>php-extension</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.nofile.cc/posts/2016/08/19/note-https.html</loc>
+    <lastmod>2017-05-08T15:38:22.271Z</lastmod>
+    <data>
+        <display>
+        <title>HTTPS Your site</title>
+        <pubTime>2016-08-19T08:54:00.000Z</pubTime>
+        
+        <tag>https</tag>
+         
+        <tag>nginx</tag>
+         
+         
+           
+             
+              <breadCrumb title="web" url="https://blog.nofile.cc/categories/web/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.nofile.cc/posts/2016/10/09/note-read.html</loc>
+    <lastmod>2017-05-08T15:38:21.047Z</lastmod>
+    <data>
+        <display>
+        <title>读书笔记</title>
+        <pubTime>2016-10-09T06:38:00.000Z</pubTime>
+        
+        <tag>阅读</tag>
+         
+        <tag>感悟</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.nofile.cc/posts/2016/08/25/note-leetcode.html</loc>
+    <lastmod>2017-05-08T15:38:19.835Z</lastmod>
+    <data>
+        <display>
+        <title>leetcode 刷题笔记</title>
+        <pubTime>2016-08-25T06:40:00.000Z</pubTime>
+        
+        <tag>leetcode</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.nofile.cc/posts/2016/09/09/note-ubuntu.html</loc>
+    <lastmod>2017-05-08T15:38:18.654Z</lastmod>
+    <data>
+        <display>
+        <title>Ubuntu学习笔记</title>
+        <pubTime>2016-09-09T06:42:00.000Z</pubTime>
+        
+        <tag>linux</tag>
+         
+        <tag>ubuntu</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.nofile.cc/posts/2016/12/03/note-sh-01.html</loc>
+    <lastmod>2017-05-08T15:38:17.454Z</lastmod>
+    <data>
+        <display>
+        <title>shell while loop break</title>
+        <pubTime>2016-12-03T08:47:00.000Z</pubTime>
+        
+        <tag>linux</tag>
+         
+        <tag>shell</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.nofile.cc/posts/2016/08/28/note-c.html</loc>
+    <lastmod>2017-05-08T15:38:16.281Z</lastmod>
+    <data>
+        <display>
+        <title>C学习笔记</title>
+        <pubTime>2016-08-28T09:39:00.000Z</pubTime>
+        
+        <tag>c</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.nofile.cc/posts/2016/08/25/note-phpfpm.html</loc>
+    <lastmod>2017-05-08T15:38:15.093Z</lastmod>
+    <data>
+        <display>
+        <title>PHP 与 FPM 的区别</title>
+        <pubTime>2016-08-25T15:47:00.000Z</pubTime>
+        
+        <tag>php</tag>
+         
+        <tag>php-fpm</tag>
+         
+        <tag>fastcgi</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.nofile.cc/posts/2016/08/23/note-laravel.html</loc>
+    <lastmod>2017-05-08T15:38:13.885Z</lastmod>
+    <data>
+        <display>
+        <title>Laravel 学习笔记</title>
+        <pubTime>2016-08-22T16:41:00.000Z</pubTime>
+        
+        <tag>laravel</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.nofile.cc/posts/2016/08/26/note-python.html</loc>
+    <lastmod>2017-05-08T15:38:12.708Z</lastmod>
+    <data>
+        <display>
+        <title>Python 学习笔记</title>
+        <pubTime>2016-08-26T06:39:00.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.nofile.cc/posts/2016/09/09/note-web.html</loc>
+    <lastmod>2017-05-08T15:38:11.536Z</lastmod>
+    <data>
+        <display>
+        <title>前端笔记</title>
+        <pubTime>2016-09-09T06:43:00.000Z</pubTime>
+        
+        <tag>html</tag>
+         
+        <tag>css</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.nofile.cc/posts/2016/10/18/note-tcp.html</loc>
+    <lastmod>2017-05-08T15:38:10.332Z</lastmod>
+    <data>
+        <display>
+        <title>tcp简介</title>
+        <pubTime>2016-10-18T07:21:00.000Z</pubTime>
+        
+        <tag>tcp</tag>
+         
+        <tag>network</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.nofile.cc/posts/2016/09/09/note-software.html</loc>
+    <lastmod>2017-05-08T15:38:09.151Z</lastmod>
+    <data>
+        <display>
+        <title>mac常用软件</title>
+        <pubTime>2016-09-09T06:42:00.000Z</pubTime>
+        
+        <tag>开发工具</tag>
+         
+        <tag>工程效率</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.nofile.cc/posts/2016/10/11/note-linux.html</loc>
+    <lastmod>2017-05-08T15:38:06.750Z</lastmod>
+    <data>
+        <display>
+        <title>linux 标准开发环境</title>
+        <pubTime>2016-10-11T02:18:00.000Z</pubTime>
+        
+        <tag>web</tag>
+         
+        <tag>linux</tag>
+         
+        <tag>zsh</tag>
+         
+        <tag>spider</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.nofile.cc/posts/2016/11/26/note-duoshuo-https.html</loc>
+    <lastmod>2017-05-08T15:38:05.270Z</lastmod>
+    <data>
+        <display>
+        <title>多说插件支持站点https</title>
+        <pubTime>2016-11-26T09:28:00.000Z</pubTime>
+        
+        <tag>https</tag>
+         
+        <tag>多说</tag>
+         
+        <tag>javascript</tag>
+         
+        <tag>web</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.nofile.cc/posts/2016/08/26/note-ng.html</loc>
+    <lastmod>2017-05-08T15:38:04.062Z</lastmod>
+    <data>
+        <display>
+        <title>nginx 学习笔记</title>
+        <pubTime>2016-08-26T06:41:00.000Z</pubTime>
+        
+        <tag>nginx</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.nofile.cc/posts/2016/10/11/note-tmux.html</loc>
+    <lastmod>2017-05-08T15:38:02.849Z</lastmod>
+    <data>
+        <display>
+        <title>tmux -- 终端复用</title>
+        <pubTime>2016-10-11T02:18:00.000Z</pubTime>
+        
+        <tag>linux</tag>
+         
+        <tag>tmux</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.nofile.cc/posts/2016/08/24/note-mysql.html</loc>
+    <lastmod>2017-05-08T15:38:01.681Z</lastmod>
+    <data>
+        <display>
+        <title>mysql笔记</title>
+        <pubTime>2016-08-24T06:40:00.000Z</pubTime>
+        
+        <tag>mysql</tag>
+         
+        <tag>存储</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.nofile.cc/posts/2016/08/23/note-mac.html</loc>
+    <lastmod>2017-05-08T15:38:00.088Z</lastmod>
+    <data>
+        <display>
+        <title>mac 开发环境搭建</title>
+        <pubTime>2016-08-23T06:40:00.000Z</pubTime>
+        
+        <tag>开发工具</tag>
+         
+        <tag>mac</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.nofile.cc/posts/2016/08/26/note-php.html</loc>
+    <lastmod>2017-05-08T15:37:58.632Z</lastmod>
+    <data>
+        <display>
+        <title>PHP 学习笔记</title>
+        <pubTime>2016-08-26T06:41:00.000Z</pubTime>
+        
+        <tag>web</tag>
+         
+        <tag>php</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.nofile.cc/posts/2016/08/29/note-vpn.html</loc>
+    <lastmod>2017-05-08T15:37:55.039Z</lastmod>
+    <data>
+        <display>
+        <title>Linux VPN 配置</title>
+        <pubTime>2016-08-29T06:43:00.000Z</pubTime>
+        
+        <tag>vpn msjnc</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.nofile.cc/posts/2016/09/09/note-sphinx.html</loc>
+    <lastmod>2017-05-08T15:37:53.822Z</lastmod>
+    <data>
+        <display>
+        <title>sphinx学习笔记</title>
+        <pubTime>2016-09-09T06:42:00.000Z</pubTime>
+        
+        <tag>sphinx</tag>
+         
+        <tag>搜索</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.nofile.cc/posts/2016/09/09/note-js.html</loc>
+    <lastmod>2017-05-08T15:37:52.630Z</lastmod>
+    <data>
+        <display>
+        <title>javascript 学习笔记</title>
+        <pubTime>2016-09-09T06:39:00.000Z</pubTime>
+        
+        <tag>javascript</tag>
+         
+        <tag>web</tag>
+         
+        <tag>programming</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.nofile.cc/posts/2016/10/09/ag-121.html</loc>
+    <lastmod>2017-05-08T15:37:51.161Z</lastmod>
+    <data>
+        <display>
+        <title>Best Time to Buy and Sell Stock</title>
+        <pubTime>2016-10-09T02:37:00.000Z</pubTime>
+        
+        <tag>leetcode</tag>
+         
+        <tag>dynamic programming</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.nofile.cc/posts/2016/08/19/ag-08.html</loc>
+    <lastmod>2017-05-08T15:37:49.729Z</lastmod>
+    <data>
+        <display>
+        <title>String to Integer (atoi)</title>
+        <pubTime>2016-08-19T03:27:00.000Z</pubTime>
+        
+        <tag>leetcode</tag>
+         
+        <tag>atoi</tag>
+         
+        <tag>math</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.nofile.cc/posts/2016/08/18/ag-146.html</loc>
+    <lastmod>2017-05-08T15:37:48.541Z</lastmod>
+    <data>
+        <display>
+        <title>leetcode LRU Cache</title>
+        <pubTime>2016-08-18T15:29:00.000Z</pubTime>
+        
+        <tag>leetcode</tag>
+         
+        <tag>lru</tag>
+         
+        <tag>ordereddict</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.nofile.cc/posts/2016/08/18/ag-385.html</loc>
+    <lastmod>2017-05-08T15:37:47.352Z</lastmod>
+    <data>
+        <display>
+        <title>leetcode Mini Parser</title>
+        <pubTime>2016-08-18T15:03:00.000Z</pubTime>
+        
+        <tag>leetcode</tag>
+         
+        <tag>stack</tag>
+         
+        <tag>python</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.nofile.cc/posts/2016/10/09/ag-112.html</loc>
+    <lastmod>2017-05-08T15:37:46.068Z</lastmod>
+    <data>
+        <display>
+        <title>Path Sum</title>
+        <pubTime>2016-10-09T02:49:00.000Z</pubTime>
+        
+        <tag>leetcode</tag>
+         
+        <tag>tree</tag>
+         
+        <tag>dfs</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.nofile.cc/posts/2016/08/20/ag-282.html</loc>
+    <lastmod>2017-05-08T15:37:44.731Z</lastmod>
+    <data>
+        <display>
+        <title>Expression Add Operators</title>
+        <pubTime>2016-08-20T11:06:00.000Z</pubTime>
+        
+        <tag>leetcode</tag>
+         
+        <tag>dfs</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.nofile.cc/posts/2016/10/09/ag-113.html</loc>
+    <lastmod>2017-05-08T15:37:43.563Z</lastmod>
+    <data>
+        <display>
+        <title>Path Sum II</title>
+        <pubTime>2016-10-09T04:02:00.000Z</pubTime>
+        
+        <tag>leetcode</tag>
+         
+        <tag>tree</tag>
+         
+        <tag>dfs</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.nofile.cc/posts/2016/08/20/ag-382.html</loc>
+    <lastmod>2017-05-08T15:37:42.375Z</lastmod>
+    <data>
+        <display>
+        <title>382. Linked List Random Node</title>
+        <pubTime>2016-08-20T11:07:00.000Z</pubTime>
+        
+        <tag>leetcode</tag>
+         
+        <tag>random</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.nofile.cc/posts/2016/08/20/ag-05.html</loc>
+    <lastmod>2017-05-08T15:37:41.218Z</lastmod>
+    <data>
+        <display>
+        <title>Longest Palindromic Substring</title>
+        <pubTime>2016-08-20T11:06:00.000Z</pubTime>
+        
+        <tag>string</tag>
+         
+        <tag>leetcode</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+    
+</urlset>

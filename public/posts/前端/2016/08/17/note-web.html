@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="技术笔记，leetcode学习">
+    <meta name="keyword"  content="mysql , leetcode , php , nginx , linux ,shell , python , mac , mysql索引,https,programming, awk,sed,vim,阅读,kindle,dfs,算法">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#60090">
+    <link rel="shortcut icon" href="/img/coffee.png">
+
+    <title>
+        
+          前端笔记｜faith&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="https://blog.nofile.cc/posts/前端/2016/08/17/note-web.html">
+    <link href="https://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<style>
+
+    header.intro-header{
+        background-image: url('https://img.nofile.cc/banner.jpg')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                <span class="brand-logo">
+                    faith
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+                        
+                        <li>
+                            <a href="/tags/">tags</a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/search/">search</a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!--only post-->
+
+    
+        <img class="wechat-title-img" src="https://img.nofile.cc/banner.jpg">
+    
+
+<style>
+
+    header.intro-header{
+        background-image: url('https://img.nofile.cc/banner.jpg')
+    }
+
+</style>
+
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>前端笔记</h1>
+                    
+                    <span class="meta">
+                         作者: faith
+                         <span>
+                          日期: 2016-08-17
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#html" title="html">html</a>
+                        
+                        <a class="tag" href="/tags/#css" title="css">css</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            前端笔记
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+                <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+
+                <h4 id="margin"><a href="#margin" class="headerlink" title="margin"></a>margin</h4><p>margin: 的4个参数。up ,right, down , left;<br>如果只有一个参数，那么表示4个都是n px。可以是1–4个参数。</p>
+<h4 id="some-input-type"><a href="#some-input-type" class="headerlink" title="some input type"></a>some input type</h4><p>radio, checkbox , button, 他们都有对应的时间，可以在里面添加对应的 函数。可以带参数的。<br>checkbox 也可以写成数组。<br>name=’chk[]’  $_REQUEST [‘chk’] 取值的方式是这样的。</p>
+<h4 id="fontawesome"><a href="#fontawesome" class="headerlink" title="fontawesome"></a>fontawesome</h4><p>学习两个前端页面会使用到的js.</p>
+<p><a href="https://www.woothemes.com/flexslider/" target="_blank" rel="external">https://www.woothemes.com/flexslider/</a>  这个是用来做轮播图的js。<br><a href="http://fontawesome.dashgame.com/" target="_blank" rel="external">http://fontawesome.dashgame.com/</a><br>这个是用来给页面中显示一些字体用的。还有一些常用的图标，用法也很简单，</p>
+<p>####<br>304 错误. 强制不从本地设备读取内容.</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"pragma"</span> <span class="attr">content</span>=<span class="string">"no-cache"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"cache-control"</span> <span class="attr">content</span>=<span class="string">"no-cache"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"expires"</span> <span class="attr">content</span>=<span class="string">"0"</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="Node基础"><a href="#Node基础" class="headerlink" title="Node基础"></a>Node基础</h4><p><a href="http://npm.taobao.org/" target="_blank" rel="external">http://npm.taobao.org/</a><br>首先是npm， node package manager, 这个还相对好理解。可以用淘宝的镜像，速度会快一点。<br>换一个淘宝镜像。<br>例外是nvm，这个是node version manager。node 的版本太多了，所以也有了一个manager。<br>nvm 可以选择安装 node 的版本，也很方便。<br>nvm可以从这里下载。<br><a href="https://raw.githubusercontent.com/creationix/nvm/v0.4.0/install.sh" target="_blank" rel="external">https://raw.githubusercontent.com/creationix/nvm/v0.4.0/install.sh</a></p>
+<p>在一个node的项目里，可以通过<code>cnpm install</code>来安装项目依赖。<br>这里推荐一个node的应用[hexo]<a href="https://hexo.io/" target="_blank" rel="external">https://hexo.io/</a>.我的blog就是基于这个做的。</p>
+<h4 id="在lavarel中使用静态图片。"><a href="#在lavarel中使用静态图片。" class="headerlink" title="在lavarel中使用静态图片。"></a>在lavarel中使用静态图片。</h4><p>q1: 在页面中中使让一段字体在一个div中垂直居中？<br><a href="http://stackoverflow.com/questions/79461/vertical-alignment-of-elements-in-a-div" target="_blank" rel="external">http://stackoverflow.com/questions/79461/vertical-alignment-of-elements-in-a-div</a></p>
+<h4 id="几个常用的-搜索引擎"><a href="#几个常用的-搜索引擎" class="headerlink" title="几个常用的 搜索引擎"></a>几个常用的 搜索引擎</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">搜索引擎</th>
+<th style="text-align:center">地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">百度</td>
+<td style="text-align:center"><a href="http://zhanzhang.baidu.com/sitesubmit/index" target="_blank" rel="external">http://zhanzhang.baidu.com/sitesubmit/index</a></td>
+</tr>
+<tr>
+<td style="text-align:center">谷歌</td>
+<td style="text-align:center"><a href="http://www.sogou.com/feedback/urlfeedback.php" target="_blank" rel="external">http://www.sogou.com/feedback/urlfeedback.php</a></td>
+</tr>
+<tr>
+<td style="text-align:center">谷歌</td>
+<td style="text-align:center"><a href="http://www.google.com/intl/zh-CN/add_url.html" target="_blank" rel="external">http://www.google.com/intl/zh-CN/add_url.html</a></td>
+</tr>
+</tbody>
+</table>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/posts/存储/2016/08/17/note-mysql.html" data-toggle="tooltip" data-placement="top" title="Mysql笔记">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/posts/VPN/2016/08/17/note-vpn.html" data-toggle="tooltip" data-placement="top" title="Linux VPN 配置">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="posts/前端/2016/08/17/note-web.html"
+                        data-title="前端笔记"
+                        data-url="https://blog.nofile.cc/posts/前端/2016/08/17/note-web.html" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col" >
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#margin"><span class="toc-text">margin</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#some-input-type"><span class="toc-text">some input type</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#fontawesome"><span class="toc-text">fontawesome</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Node基础"><span class="toc-text">Node基础</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#在lavarel中使用静态图片。"><span class="toc-text">在lavarel中使用静态图片。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#几个常用的-搜索引擎"><span class="toc-text">几个常用的 搜索引擎</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                <h5 class="text-center">
+                    <a href="/tags/">FEATURED TAGS</a>
+                </h5>
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#html" title="html">html</a>
+                        
+                          <a class="tag" href="/tags/#css" title="css">css</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'nofile';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <span class="text-muted"style="font-size: 14px">双击导航条返回顶部</span>
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/ou-xiao-long-89">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/5369993110">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/xiaolongnk">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; faith 2016
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://blog.nofile.cc/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    var _baId = 'b98900c3864b32c37d696546d1911856';
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?" + _baId;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- swiftype -->
+<!--<script type="text/javascript">-->
+  <!--(function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){-->
+  <!--(w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);-->
+  <!--e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);-->
+  <!--})(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');-->
+  <!--_st('install','undefined','2.0.0');-->
+<!--</script>-->
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <!--wechat title img-->
+    <img class="wechat-title-img" src="https://img.nofile.cc/icon.jpg">
+</body>
+
+</html>
