@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.nofile.cc/posts/2017/05/11/note-https.html</loc>
+    
+    <lastmod>2017-05-11T01:06:08.480Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.nofile.cc/posts/2017/05/08/note-for-mysql-tutor.html</loc>
     
     <lastmod>2017-05-08T16:15:04.591Z</lastmod>
@@ -33,13 +40,6 @@
     <loc>https://blog.nofile.cc/posts/2016/10/11/note-phpcompileinstall.html</loc>
     
     <lastmod>2017-05-08T15:38:23.456Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.nofile.cc/posts/2016/08/19/note-https.html</loc>
-    
-    <lastmod>2017-05-08T15:38:22.271Z</lastmod>
     
   </url>
   

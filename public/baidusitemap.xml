@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>https://blog.nofile.cc/posts/2017/05/11/note-https.html</loc>
+    <lastmod>2017-05-11T01:06:08.480Z</lastmod>
+    <data>
+        <display>
+        <title>letsencrypt your site --- https</title>
+        <pubTime>2017-05-11T01:02:00.000Z</pubTime>
+        
+        <tag>https</tag>
+         
+        <tag>nginx</tag>
+         
+         
+           
+             
+              <breadCrumb title="web" url="https://blog.nofile.cc/categories/web/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://blog.nofile.cc/posts/2017/05/08/note-for-mysql-tutor.html</loc>
     <lastmod>2017-05-08T16:15:04.591Z</lastmod>
     <data>
@@ -101,28 +123,6 @@
          
          
            
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.nofile.cc/posts/2016/08/19/note-https.html</loc>
-    <lastmod>2017-05-08T15:38:22.271Z</lastmod>
-    <data>
-        <display>
-        <title>HTTPS Your site</title>
-        <pubTime>2016-08-19T08:54:00.000Z</pubTime>
-        
-        <tag>https</tag>
-         
-        <tag>nginx</tag>
-         
-         
-           
-             
-              <breadCrumb title="web" url="https://blog.nofile.cc/categories/web/"/>
-          
         </display>
     </data>
     </url>

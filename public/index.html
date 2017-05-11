@@ -143,6 +143,53 @@
       <ul class="post-list">
   
     <li class="post-list-item">
+        <article id="post-note-https"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/2017/05/11/note-https.html">letsencrypt your site --- https</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2017-05-11T01:02:00.000Z" itemprop="datePublished" class="post-time">
+  2017-05-11
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/web/">web</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           让NGINX支持SSL  需要编译时支持ssl，可以sbin/nginx -V 来查看confiture参数，如果当时没有支持，那么需要重新编译安装。 编译参数前面已经有一篇文章了。 nginx编译参数 ,也不用全加，用 --with-http_ssl_module  就可以了。 
+   生成证书  主要参考这个 letsencrypty ，可以生成免费证书。 生成方式也很简单，读上面的文章基本就能明白。 ubuntu+nginx . 
+ 
+  ubuntu 用户的大致步骤如下： 
+       sudo apt-get install software-properties-commo
+    
+    
+        <a href="/posts/2017/05/11/note-https.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/https/">https</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
         <article id="post-note-for-mysql-tutor"
   class="article article-type-post" itemprop="blogPost">
      
@@ -415,49 +462,6 @@
     </li>
   
     <li class="post-list-item">
-        <article id="post-note-phpcompileinstall"
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/posts/2016/10/11/note-phpcompileinstall.html">PHP编译安装</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2016-10-11T02:18:00.000Z" itemprop="datePublished" class="post-time">
-  2016-10-11
-</time>
-
-        
-
-
-    </div>
-
-    <div class="post-content" id="post-content" itemprop="postContent" >
-
-    
-           php 编译  
- 下载php源码 
- 安装一些以来的库，如果这些库缺失的话，configure 会失败。也可以失败一次安装一个。这类问题的解决方案相对简单，在linux上用apt-get 安装对应的库就可以了。不行的话，用搜索引擎找一下就会有大片的解决方案，随便一个都可以拿来参考。      sudo apt-get install libcurl4-openssl-dev  sudo apt-get install libssl-dev  sudo apt-get install libxml2-dev    ./configure --prefix=/yourpath/php --
-    
-    
-        <a href="/posts/2016/10/11/note-phpcompileinstall.html" class="post-more waves-effect waves-button">
-            阅读全文...
-        </a>
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php-extension/">php-extension</a></li></ul>
-
-</article>
-
-    </li>
-  
-    <li class="post-list-item">
         <article id="post-note-linux"
   class="article article-type-post" itemprop="blogPost">
      
@@ -498,6 +502,49 @@
     </div>
     
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spider/">spider</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/zsh/">zsh</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-note-phpcompileinstall"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/2016/10/11/note-phpcompileinstall.html">PHP编译安装</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-10-11T02:18:00.000Z" itemprop="datePublished" class="post-time">
+  2016-10-11
+</time>
+
+        
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           php 编译  
+ 下载php源码 
+ 安装一些以来的库，如果这些库缺失的话，configure 会失败。也可以失败一次安装一个。这类问题的解决方案相对简单，在linux上用apt-get 安装对应的库就可以了。不行的话，用搜索引擎找一下就会有大片的解决方案，随便一个都可以拿来参考。      sudo apt-get install libcurl4-openssl-dev  sudo apt-get install libssl-dev  sudo apt-get install libxml2-dev    ./configure --prefix=/yourpath/php --
+    
+    
+        <a href="/posts/2016/10/11/note-phpcompileinstall.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php-extension/">php-extension</a></li></ul>
 
 </article>
 
@@ -751,14 +798,14 @@ In this case, no transaction is
     </li>
   
     <li class="post-list-item">
-        <article id="post-note-ubuntu"
+        <article id="post-note-shell"
   class="article article-type-post" itemprop="blogPost">
      
 
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/posts/2016/09/09/note-ubuntu.html">Ubuntu学习笔记</a>
+      <a class="post-title-link" href="/posts/2016/09/09/note-shell.html">shell 学习笔记</a>
     </h3>
   
 
@@ -777,17 +824,16 @@ In this case, no transaction is
     <div class="post-content" id="post-content" itemprop="postContent" >
 
     
-           tmux vim slowstart  tmux 中vim slow start 的原因,就是因为开了多个tmux,启动速度就变慢了. 查看了slowlog,发现是因为xsmp消耗了大概1s的时间.只要保证一个tmux运行就可以了. 
- 让你的ubuntu文件夹变成彩色的. 可以添加下面的ppa,添加这个 sudo add-apt-repository ppa:costales/folder-color 然后安装下面这个 folder-color 就可以了. sudo apt-get install folder-color 
-   ubuntu get source code  如何获
+           awk  the follow command can be used to restart php-fpm in server. ps aux | grep ‘php-fpm’ | awk ‘{print $1}’ | xargs kill -USR2 -F option 是用来改变默认的分隔符的。 awk -F ‘:’ ‘{print $3}’ awk 的 BEGIN 和 END 语句的功能。 BEGIN 是最开始的部分执行的，然后AWK开始读取文件内容，进行处理。 END 是最后面结束执行的.  $NR  是拿到最后一列。 
+   sed笔记       sed &apos;s/x
     
     
-        <a href="/posts/2016/09/09/note-ubuntu.html" class="post-more waves-effect waves-button">
+        <a href="/posts/2016/09/09/note-shell.html" class="post-more waves-effect waves-button">
             阅读全文...
         </a>
     </div>
     
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/awk/">awk</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grep/">grep</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sed/">sed</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/">shell</a></li></ul>
 
 </article>
 
@@ -838,48 +884,6 @@ In this case, no transaction is
     </li>
   
     <li class="post-list-item">
-        <article id="post-note-shell"
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/posts/2016/09/09/note-shell.html">shell 学习笔记</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2016-09-09T06:42:00.000Z" itemprop="datePublished" class="post-time">
-  2016-09-09
-</time>
-
-        
-
-
-    </div>
-
-    <div class="post-content" id="post-content" itemprop="postContent" >
-
-    
-           awk  the follow command can be used to restart php-fpm in server. ps aux | grep ‘php-fpm’ | awk ‘{print $1}’ | xargs kill -USR2 -F option 是用来改变默认的分隔符的。 awk -F ‘:’ ‘{print $3}’ awk 的 BEGIN 和 END 语句的功能。 BEGIN 是最开始的部分执行的，然后AWK开始读取文件内容，进行处理。 END 是最后面结束执行的.  $NR  是拿到最后一列。 
-   sed笔记       sed &apos;s/x
-    
-    
-        <a href="/posts/2016/09/09/note-shell.html" class="post-more waves-effect waves-button">
-            阅读全文...
-        </a>
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/awk/">awk</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/grep/">grep</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sed/">sed</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/">shell</a></li></ul>
-
-</article>
-
-    </li>
-  
-    <li class="post-list-item">
         <article id="post-note-software"
   class="article article-type-post" itemprop="blogPost">
      
@@ -920,6 +924,49 @@ In this case, no transaction is
     </div>
     
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工程效率/">工程效率</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/开发工具/">开发工具</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-note-ubuntu"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/2016/09/09/note-ubuntu.html">Ubuntu学习笔记</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-09-09T06:42:00.000Z" itemprop="datePublished" class="post-time">
+  2016-09-09
+</time>
+
+        
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           tmux vim slowstart  tmux 中vim slow start 的原因,就是因为开了多个tmux,启动速度就变慢了. 查看了slowlog,发现是因为xsmp消耗了大概1s的时间.只要保证一个tmux运行就可以了. 
+ 让你的ubuntu文件夹变成彩色的. 可以添加下面的ppa,添加这个 sudo add-apt-repository ppa:costales/folder-color 然后安装下面这个 folder-color 就可以了. sudo apt-get install folder-color 
+   ubuntu get source code  如何获
+    
+    
+        <a href="/posts/2016/09/09/note-ubuntu.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li></ul>
 
 </article>
 
@@ -1005,62 +1052,6 @@ In this case, no transaction is
     </div>
     
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vpn-msjnc/">vpn msjnc</a></li></ul>
-
-</article>
-
-    </li>
-  
-    <li class="post-list-item">
-        <article id="post-note-c"
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/posts/2016/08/28/note-c.html">C学习笔记</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2016-08-28T09:39:00.000Z" itemprop="datePublished" class="post-time">
-  2016-08-28
-</time>
-
-        
-
-
-    </div>
-
-    <div class="post-content" id="post-content" itemprop="postContent" >
-
-    
-           C文件的编译过程  编译一个c文件，产生一个可执行文件，这个过程分为四个步骤 
- 
- .c 文件到 .i 文件，  --&gt;  .s 文件  --&gt;  .o 文件  --&gt;  可执行文件 分别是预处理， 编译， 汇编， 链接 
- 
- 预处理所做的事情。 
- gcc -o helloworld.i helloworld.c -E 
- 
- 将 include 变成真实的东西 
- 宏替换。  
- 宏函数的优点。比一些函数要方便， 
- 条件编译，对于程序的移植和调试，非常有用。 
- 
-   C语言中的宏  
-  条件宏 
-  #include &lt;iostream&gt;
-#
-    
-    
-        <a href="/posts/2016/08/28/note-c.html" class="post-more waves-effect waves-button">
-            阅读全文...
-        </a>
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c</a></li></ul>
 
 </article>
 

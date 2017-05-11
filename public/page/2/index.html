@@ -143,6 +143,62 @@
       <ul class="post-list">
   
     <li class="post-list-item">
+        <article id="post-note-c"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/posts/2016/08/28/note-c.html">C学习笔记</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-08-28T09:39:00.000Z" itemprop="datePublished" class="post-time">
+  2016-08-28
+</time>
+
+        
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+           C文件的编译过程  编译一个c文件，产生一个可执行文件，这个过程分为四个步骤 
+ 
+ .c 文件到 .i 文件，  --&gt;  .s 文件  --&gt;  .o 文件  --&gt;  可执行文件 分别是预处理， 编译， 汇编， 链接 
+ 
+ 预处理所做的事情。 
+ gcc -o helloworld.i helloworld.c -E 
+ 
+ 将 include 变成真实的东西 
+ 宏替换。  
+ 宏函数的优点。比一些函数要方便， 
+ 条件编译，对于程序的移植和调试，非常有用。 
+ 
+   C语言中的宏  
+  条件宏 
+  #include &lt;iostream&gt;
+#
+    
+    
+        <a href="/posts/2016/08/28/note-c.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
         <article id="post-note-vim"
   class="article article-type-post" itemprop="blogPost">
      
@@ -684,52 +740,6 @@ What if the linked list is extremely large and its length is unknown to you? Cou
     </div>
     
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/string/">string</a></li></ul>
-
-</article>
-
-    </li>
-  
-    <li class="post-list-item">
-        <article id="post-note-https"
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/posts/2016/08/19/note-https.html">HTTPS Your site</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2016-08-19T08:54:00.000Z" itemprop="datePublished" class="post-time">
-  2016-08-19
-</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/web/">web</a></li></ul>
-
-
-
-    </div>
-
-    <div class="post-content" id="post-content" itemprop="postContent" >
-
-    
-           让NGINX支持SSL  需要编译时支持ssl，可以sbin/nginx -V 来查看confiture参数，如果当时没有支持，那么需要重新编译安装。 编译参数前面已经有一篇文章了。 nginx编译参数 ,也不用全加，用 --with-http_ssl_module  就可以了。 
-   生成证书  主要参考这个 letsencrypty ，可以生成免费证书。 生成方式也很简单，读上面的文章基本就能明白。 ubuntu+nginx . 
- 大致步骤如下： 
-      wget https://dl.eff.org/certbot-auto  chmod a+x certbot-auto
-    
-    
-        <a href="/posts/2016/08/19/note-https.html" class="post-more waves-effect waves-button">
-            阅读全文...
-        </a>
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/https/">https</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
 
 </article>
 

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.nofile.cc/"/>
-  <updated>2017-05-08T16:15:04.591Z</updated>
+  <updated>2017-05-11T01:06:08.480Z</updated>
   <id>https://blog.nofile.cc/</id>
   
   <author>
@@ -14,6 +14,56 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>letsencrypt your site --- https</title>
+    <link href="https://blog.nofile.cc/posts/2017/05/11/note-https.html"/>
+    <id>https://blog.nofile.cc/posts/2017/05/11/note-https.html</id>
+    <published>2017-05-11T01:02:00.000Z</published>
+    <updated>2017-05-11T01:06:08.480Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="让NGINX支持SSL"><a href="#让NGINX支持SSL" class="headerlink" title="让NGINX支持SSL"></a>让NGINX支持SSL</h4><p>需要编译时支持ssl，可以sbin/nginx -V 来查看confiture参数，如果当时没有支持，那么需要重新编译安装。 编译参数前面已经有一篇文章了。<a href="https://blog.nofile.cc/posts/nginx/2016/08/17/note-ng.html">nginx编译参数</a>,也不用全加，用<code>--with-http_ssl_module</code> 就可以了。</p>
+<h4 id="生成证书"><a href="#生成证书" class="headerlink" title="生成证书"></a>生成证书</h4><p>主要参考这个<a href="https://letsencrypt.org/getting-started/" target="_blank" rel="external">letsencrypty</a>，可以生成免费证书。 生成方式也很简单，读上面的文章基本就能明白。<a href="https://certbot.eff.org/#ubuntutrusty-nginx" target="_blank" rel="external">ubuntu+nginx</a>.</p>
+<ol>
+<li><p>ubuntu 用户的大致步骤如下：</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo apt-get install software-properties-common</div><div class="line">sudo add-apt-repository ppa:certbot/certbot</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install certbot</div></pre></td></tr></table></figure>
+</li>
+<li><p>给自己的服务器生成对应的认证文件,需要给每个域名都生成一下，下面指的是3个域名。</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">certbot certonly --webroot  -w /yourpath1/lablog/public -d yourdomain1.com</div><div class="line">certbot certonly --webroot  -w /yourpath2 -d yourdomain2.com</div><div class="line">certbot certonly --webroot  -w /xxx/yourpath3  -d yourdomain3.com</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="Automating-renewal"><a href="#Automating-renewal" class="headerlink" title="Automating renewal"></a>Automating renewal</h4><ol>
+<li><p>上面生成的证书，有效期好像是90天，所以需要到期自己重新renewal一下。方法如下：</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo certbot renew                 // 只有过期才会生成</div><div class="line">sudo certbot renew --force-renew   // 强制重新生成</div></pre></td></tr></table></figure>
+<p> 执行完之后系统中会生成这些文件。<img src="https://omssgfgqf.qnssl.com/images/2017/05/11/14944638279557.png" alt="系统中生成的文件"></p>
+</li>
+<li><p>加密文件分析<br> 每个域名的文件都会放在一个目录里面。live目录中的只是archive目录总文件的一个软链，没重新renew一次，archive中的文件都会多一个，表现为数字后缀的增加。同时live中的软链也会变成最新的有效的文件，软连名称不变，只是指向变成了较新的内容。如果感觉自己的renew有问题，或者renew过程中遇到了问题，可以直接将<code>/etc/letsencrypt</code> 这个目录直接删除，重新用上面的步骤重新设置一下我们的域名，然后对应的文件都会重新生成。执行完之后，我们可以通过<code>sudo certbot certificates</code> 查看我们的证书的详情，包括证书的存放位置，证书还有多少天过期等信息。</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo certbot certificates</div></pre></td></tr></table></figure>
+<p> <img src="https://omssgfgqf.qnssl.com/images/2017/05/11/14944643659616.png" alt="证书详情"></p>
+</li>
+</ol>
+<h4 id="配置NGINX"><a href="#配置NGINX" class="headerlink" title="配置NGINX"></a>配置NGINX</h4><ol>
+<li>nginx 配置说明<br> 配置就不多说了.首先需要配置2个server，监听2个端口。这样可以强制将80端口的请求重定向至443端口。https本身监听的是443端口。最主要的是ssl中间那3行。将步骤2中生成的对应key写在nginx的配置文件里。注意改成你的具体路径。</li>
+<li>nginx 配置文件示例 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">server &#123;</div><div class="line"></div><div class="line">    listen       443;</div><div class="line">    server_name  blog.nofile.cc;</div><div class="line"></div><div class="line">    ssl                  on;</div><div class="line">    ssl_certificate      /xxxx/letsencrypt/live/yoursite/fullchain.pem;</div><div class="line">    ssl_certificate_key  /xxxx/letsencrypt/live/yoursite/privkey.pem;</div><div class="line">   </div><div class="line">     location / &#123;</div><div class="line">        #这个地方指定被访问的文件夹位置</div><div class="line">        root   /your/webroot/;</div><div class="line">        index  index.html;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">server &#123;</div><div class="line">    listen      80;</div><div class="line">    server_name blog.nofile.cc;</div><div class="line">    return 301 https://blog.nofile.cc$request_uri;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>配置好之后，重启nginx，应该就可以看到绿色的锁了。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;让NGINX支持SSL&quot;&gt;&lt;a href=&quot;#让NGINX支持SSL&quot; class=&quot;headerlink&quot; title=&quot;让NGINX支持SSL&quot;&gt;&lt;/a&gt;让NGINX支持SSL&lt;/h4&gt;&lt;p&gt;需要编译时支持ssl，可以sbin/nginx -V 来查看conf
+    
+    </summary>
+    
+      <category term="web" scheme="https://blog.nofile.cc/categories/web/"/>
+    
+    
+      <category term="https" scheme="https://blog.nofile.cc/tags/https/"/>
+    
+      <category term="nginx" scheme="https://blog.nofile.cc/tags/nginx/"/>
+    
+  </entry>
   
   <entry>
     <title>mysql 入门</title>
@@ -387,61 +437,6 @@
   </entry>
   
   <entry>
-    <title>PHP编译安装</title>
-    <link href="https://blog.nofile.cc/posts/2016/10/11/note-phpcompileinstall.html"/>
-    <id>https://blog.nofile.cc/posts/2016/10/11/note-phpcompileinstall.html</id>
-    <published>2016-10-11T02:18:00.000Z</published>
-    <updated>2017-05-08T15:38:23.456Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="php-编译"><a href="#php-编译" class="headerlink" title="php 编译"></a>php 编译</h4><ol>
-<li>下载php源码</li>
-<li>安装一些以来的库，如果这些库缺失的话，configure 会失败。也可以失败一次安装一个。这类问题的解决方案相对简单，在linux上用apt-get 安装对应的库就可以了。不行的话，用搜索引擎找一下就会有大片的解决方案，随便一个都可以拿来参考。<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo apt-get install libcurl4-openssl-dev</div><div class="line">sudo apt-get install libssl-dev</div><div class="line">sudo apt-get install libxml2-dev</div><div class="line"></div><div class="line">./configure --prefix=/yourpath/php --with-config-file-path=/yourpath/php/etc --with-mysql=/usr/ --with-iconv-dir=/usr/ --with-freetype-dir --with-jpeg-dir --with-png-dir --with-zlib --with-libxml-dir=/usr --with-curl --with-mcrypt --with-gd --with-openssl --with-mhash --with-xmlrpc --with-zlib --with-pdo-mysql --with-mysql=shared,mysqlnd --enable-xml --enable-bcmath --enable-shmop --enable-sysvsem --enable-inline-optimization --enable-mbregex --enable-fpm --enable-mbstring --enable-gd-native-ttf --enable-pcntl --enable-sockets --enable-zip --enable-pdo --disable-rpath</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>配置中我们开启了好多功能，有好多我们都不知道是干什么的，没关系，好奇的同学们可以先<code>./configure --help</code>来了解下，这个问题先留着，后面有空了我们开专题专门堂研究下这个问题。</p>
-<ol>
-<li>可能会遇到的问题。<ol>
-<li>openssl.h not found</li>
-<li>libxml2 没有安装</li>
-<li>jpeglib.h not found</li>
-<li>pnglib.h not found</li>
-<li>freetype-config not found</li>
-<li>mcrypt.h not found</li>
-</ol>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo apt-get install libxml2-dev</div><div class="line">sudo apt-get install pkg-config</div><div class="line">sudo apt-get install libssl-dev libsslcommon2-dev</div><div class="line">sudo apt-get install libjpeg-dev</div><div class="line">sudo apt-get install libpng++-dev</div><div class="line">sudo apt-get install libfreetype6-dev</div><div class="line">sudo apt-get install libmcrypt-dev</div></pre></td></tr></table></figure>
-<ol>
-<li>make -j4  <code>-j4</code> 这个参数不是必须的，如果你的电脑是4核的，这样会加快编译速度。</li>
-</ol>
-<h4 id="php-扩展安装"><a href="#php-扩展安装" class="headerlink" title="php 扩展安装"></a>php 扩展安装</h4><ol>
-<li>下载php扩展，比如phpredis ，可以直接来这里找<a href="https://pecl.php.net/" target="_blank" rel="external">https://pecl.php.net/</a></li>
-<li><p>进入php扩展目录，操作如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">/your/path/phpize </div><div class="line">./configure </div><div class="line">make</div><div class="line">make install</div></pre></td></tr></table></figure>
-</li>
-<li><p>如果按照上面的方法安装扩展的时候还是会失败，那么可以换一个版本的扩展再试下。</p>
-</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h4 id=&quot;php-编译&quot;&gt;&lt;a href=&quot;#php-编译&quot; class=&quot;headerlink&quot; title=&quot;php 编译&quot;&gt;&lt;/a&gt;php 编译&lt;/h4&gt;&lt;ol&gt;
-&lt;li&gt;下载php源码&lt;/li&gt;
-&lt;li&gt;安装一些以来的库，如果这些库缺失的话，configure 会失
-    
-    </summary>
-    
-    
-      <category term="linux" scheme="https://blog.nofile.cc/tags/linux/"/>
-    
-      <category term="php" scheme="https://blog.nofile.cc/tags/php/"/>
-    
-      <category term="php-extension" scheme="https://blog.nofile.cc/tags/php-extension/"/>
-    
-  </entry>
-  
-  <entry>
     <title>linux 标准开发环境</title>
     <link href="https://blog.nofile.cc/posts/2016/10/11/note-linux.html"/>
     <id>https://blog.nofile.cc/posts/2016/10/11/note-linux.html</id>
@@ -513,6 +508,61 @@
       <category term="zsh" scheme="https://blog.nofile.cc/tags/zsh/"/>
     
       <category term="spider" scheme="https://blog.nofile.cc/tags/spider/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PHP编译安装</title>
+    <link href="https://blog.nofile.cc/posts/2016/10/11/note-phpcompileinstall.html"/>
+    <id>https://blog.nofile.cc/posts/2016/10/11/note-phpcompileinstall.html</id>
+    <published>2016-10-11T02:18:00.000Z</published>
+    <updated>2017-05-08T15:38:23.456Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="php-编译"><a href="#php-编译" class="headerlink" title="php 编译"></a>php 编译</h4><ol>
+<li>下载php源码</li>
+<li>安装一些以来的库，如果这些库缺失的话，configure 会失败。也可以失败一次安装一个。这类问题的解决方案相对简单，在linux上用apt-get 安装对应的库就可以了。不行的话，用搜索引擎找一下就会有大片的解决方案，随便一个都可以拿来参考。<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo apt-get install libcurl4-openssl-dev</div><div class="line">sudo apt-get install libssl-dev</div><div class="line">sudo apt-get install libxml2-dev</div><div class="line"></div><div class="line">./configure --prefix=/yourpath/php --with-config-file-path=/yourpath/php/etc --with-mysql=/usr/ --with-iconv-dir=/usr/ --with-freetype-dir --with-jpeg-dir --with-png-dir --with-zlib --with-libxml-dir=/usr --with-curl --with-mcrypt --with-gd --with-openssl --with-mhash --with-xmlrpc --with-zlib --with-pdo-mysql --with-mysql=shared,mysqlnd --enable-xml --enable-bcmath --enable-shmop --enable-sysvsem --enable-inline-optimization --enable-mbregex --enable-fpm --enable-mbstring --enable-gd-native-ttf --enable-pcntl --enable-sockets --enable-zip --enable-pdo --disable-rpath</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>配置中我们开启了好多功能，有好多我们都不知道是干什么的，没关系，好奇的同学们可以先<code>./configure --help</code>来了解下，这个问题先留着，后面有空了我们开专题专门堂研究下这个问题。</p>
+<ol>
+<li>可能会遇到的问题。<ol>
+<li>openssl.h not found</li>
+<li>libxml2 没有安装</li>
+<li>jpeglib.h not found</li>
+<li>pnglib.h not found</li>
+<li>freetype-config not found</li>
+<li>mcrypt.h not found</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo apt-get install libxml2-dev</div><div class="line">sudo apt-get install pkg-config</div><div class="line">sudo apt-get install libssl-dev libsslcommon2-dev</div><div class="line">sudo apt-get install libjpeg-dev</div><div class="line">sudo apt-get install libpng++-dev</div><div class="line">sudo apt-get install libfreetype6-dev</div><div class="line">sudo apt-get install libmcrypt-dev</div></pre></td></tr></table></figure>
+<ol>
+<li>make -j4  <code>-j4</code> 这个参数不是必须的，如果你的电脑是4核的，这样会加快编译速度。</li>
+</ol>
+<h4 id="php-扩展安装"><a href="#php-扩展安装" class="headerlink" title="php 扩展安装"></a>php 扩展安装</h4><ol>
+<li>下载php扩展，比如phpredis ，可以直接来这里找<a href="https://pecl.php.net/" target="_blank" rel="external">https://pecl.php.net/</a></li>
+<li><p>进入php扩展目录，操作如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">/your/path/phpize </div><div class="line">./configure </div><div class="line">make</div><div class="line">make install</div></pre></td></tr></table></figure>
+</li>
+<li><p>如果按照上面的方法安装扩展的时候还是会失败，那么可以换一个版本的扩展再试下。</p>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;php-编译&quot;&gt;&lt;a href=&quot;#php-编译&quot; class=&quot;headerlink&quot; title=&quot;php 编译&quot;&gt;&lt;/a&gt;php 编译&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;下载php源码&lt;/li&gt;
+&lt;li&gt;安装一些以来的库，如果这些库缺失的话，configure 会失
+    
+    </summary>
+    
+    
+      <category term="linux" scheme="https://blog.nofile.cc/tags/linux/"/>
+    
+      <category term="php" scheme="https://blog.nofile.cc/tags/php/"/>
+    
+      <category term="php-extension" scheme="https://blog.nofile.cc/tags/php-extension/"/>
     
   </entry>
   
@@ -695,6 +745,115 @@ In this case, no transaction is done, i.e. max profit = 0.
   </entry>
   
   <entry>
+    <title>shell 学习笔记</title>
+    <link href="https://blog.nofile.cc/posts/2016/09/09/note-shell.html"/>
+    <id>https://blog.nofile.cc/posts/2016/09/09/note-shell.html</id>
+    <published>2016-09-09T06:42:00.000Z</published>
+    <updated>2017-05-08T15:38:25.828Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h4><p>the follow command can be used to restart php-fpm in server.<br>ps aux | grep ‘php-fpm’ | awk ‘{print $1}’ | xargs kill -USR2<br>-F option 是用来改变默认的分隔符的。<br>awk -F ‘:’ ‘{print $3}’<br>awk 的 BEGIN 和 END 语句的功能。<br>BEGIN 是最开始的部分执行的，然后AWK开始读取文件内容，进行处理。<br>END 是最后面结束执行的.<br><code>$NR</code> 是拿到最后一列。</p>
+<h4 id="sed笔记"><a href="#sed笔记" class="headerlink" title="sed笔记"></a>sed笔记</h4><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sed &apos;s/xx/ds/&apos; note</div><div class="line"></div><div class="line">[ ! -x result ] &amp;&amp; mkdir result</div><div class="line">for i in `ls *.grb`</div><div class="line">do</div><div class="line">    out=`echo $i | sed &apos;s/GLDAS_NOAH10_M.A//&apos; | sed &apos;s/\..*[[:graph:]]//&apos;`</div><div class="line">    wgrib $i &gt; result/$out&quot;.out&quot;</div><div class="line">done</div><div class="line"></div><div class="line">sed -i &quot;This command to use replace the input file&quot;</div><div class="line">just a simple example.</div><div class="line">sed -i &apos;s/--/-/&apos;</div></pre></td></tr></table></figure>
+<p><strong>mac 下sed -i 的问题</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sed -i &apos;s/a/b&apos;       #linux style</div><div class="line">sed -i &apos;&apos; &apos;s/a/b/&apos;   #mac style , mac 上的sed要求给一个备份文件的文件名，会在替换前做一个备份，</div><div class="line">#不需要的话给个空参数，就不会备份。  前面的那个空格不能少</div></pre></td></tr></table></figure>
+<p>d 表示是删除的意思。用新文件覆盖旧文件。<br>sed ‘/vim/d’ ~/.bashrc &gt; ~/.bashrc</p>
+<h4 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h4><p>grep -E   支持扩展的正则<br>grep -o   只输出指定内容, only-match 的含义<br>grep -F   相当于 fgrep<br>grep -v   不匹配指定正则的指令<br>grep 输出匹配内容的上下两行内容,输出上下文,记得这个参数.<br>grep -C 2 ‘linux’<br>grep -i 进行大小写无关的搜索<br>grep -P perl分格的正则</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">grep -i -Po &quot;HREF=\&quot;.*?\&quot;&quot; bookmarks_4_27_15.html</div></pre></td></tr></table></figure>
+<h4 id="find使用的例子"><a href="#find使用的例子" class="headerlink" title="find使用的例子"></a>find使用的例子</h4><p>下面这个script结合了find 的regex参数的用法。find regex 和 那么的区别还是挺大的。regex搜索的输出是全名的，name知识一个短的名字。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line"># 要搜索的路径。</div><div class="line">path=&quot;$HOME&quot;</div><div class="line"></div><div class="line">for i in `find $path -regex &quot;.*/[0-9]\&#123;6\&#125;/*&quot; -type d 2&gt;/dev/null`</div><div class="line">do </div><div class="line">    echo $i</div><div class="line">    for j in `ls $i`</div><div class="line">    do</div><div class="line">        echo $j</div><div class="line">        m=`echo &quot;$j&quot; | cut -d. -f2`</div><div class="line">        if [ $m != &apos;log&apos; ]</div><div class="line">        then</div><div class="line">            echo &quot;mv for $j&quot;</div><div class="line">            mv $i&quot;/&quot;$j $i&quot;/&quot;$j&quot;.log&quot;</div><div class="line">        fi</div><div class="line">    done</div><div class="line">done</div></pre></td></tr></table></figure>
+<h4 id="shell重定向"><a href="#shell重定向" class="headerlink" title="shell重定向"></a>shell重定向</h4><p>来自这个链接 <a href="http://www.cnblogs.com/yangyongzhi/p/3364939.html" target="_blank" rel="external">http://www.cnblogs.com/yangyongzhi/p/3364939.html</a></p>
+<p>./Test.py 1&gt;normal 2&gt;error 3&gt;&amp;2 2&gt;&amp;1 1&gt;&amp;3<br>./Test.py 3&gt;&amp;2 2&gt;&amp;1 1&gt;&amp;3 1&gt;normal 2&gt;error  </p>
+<p>可以通过这两个命令看出差别,其实就是从右向左执行的.</p>
+<p>具体的执行过程是这样的,一个完整的shell指令的执行是从右往左的.<br>先执行 1&gt;&amp;3 , 然后执行 2&gt;&amp;1 , 3&gt;&amp;2</p>
+<p>nohup的使用<br>在mac中，在tmux中使用nohup会有问题，会抛出下面这样的错误。所以只能在开一个终端执行。<br>nohup: can’t detach from console: Undefined error: 0<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">nohup redis-server &amp; &gt;/dev/null</div></pre></td></tr></table></figure></p>
+<h4 id="git-笔记"><a href="#git-笔记" class="headerlink" title="git 笔记"></a>git 笔记</h4><p>一个项目可以添加多个源,origin是默认的一个源.并且也可以跨源合并.这是比较高级的用法.<br>如果要跨项目合并. git 跨项目合并.</p>
+<p>git remote add code “url”<br>git push code master</p>
+<p>git remote add.</p>
+<p>将一个远端的项目添加到新的分支上,然后可以合并。<br>git remote add name git@gitlabserver.meiliworks.com:higo/api.git<br>删除这个分支。<br>git remote rm old_pandora<br>git 将某个分支强制覆盖。比如我想用newpush  的代码完全覆盖 master 的代码。<br>可以这样做。<br>git push origin newpush:master -f</p>
+<p>git remote add origin url  #这样可以讲自己的git目录添加到远端仓库.很方便.<br>同一个项目可以添加多个远端仓库,可以一起使用.</p>
+<p>git config –global core.editor “vim”<br>git config core.fileMode false<br>这样你的git就不会官 fileMode 的变化了，默认的模式是 true 的。</p>
+<h4 id="shell-get-your-ip"><a href="#shell-get-your-ip" class="headerlink" title="shell get your ip"></a>shell get your ip</h4><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">ifconfig | grep -E -o &quot;inet ([0-9]&#123;1,3&#125;.)&#123;3&#125;([0-9]&#123;1,3&#125;)&quot; |  grep -E  -o &quot;([0-9]&#123;1,3&#125;.)&#123;3&#125;([0-9]&#123;1,3&#125;)&quot; | tail -n 1</div><div class="line">ip a| grep -E -o &quot;inet addr:([0-9]&#123;1,3&#125;.)&#123;3&#125;([0-9]&#123;1,3&#125;)&quot; |  grep -E  -o &quot;([0-9]&#123;1,3&#125;.)&#123;3&#125;([0-9]&#123;1,3&#125;)&quot; | tail -n 1</div></pre></td></tr></table></figure>
+<p>linux 下 ifconfig | grep ‘inet ‘ | awk ‘{split($2, ip_cntr, “:”); print ip_cntr[2];}’<br>netstat –tunlp |grep 90</p>
+<h4 id="shell-functions"><a href="#shell-functions" class="headerlink" title="shell functions"></a>shell functions</h4><p>函数的返回值,函数的参数.<br><a href="http://www.jb51.net/article/33895.htm" target="_blank" rel="external">http://www.jb51.net/article/33895.htm</a><br>这里看到了一些参考,主要是这两个参数, $@ 和 $* 是一样的,可以将函数的参数当做一个字符串.<br>如果你仍然利用$1,$#,$0这些而参数,那么你可能得不到你想要的结果.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">shell 执行字符串命令。可以这样。</div><div class="line">eval $cmd</div><div class="line"></div><div class="line">date &apos;+%Y-%m-%d&apos;</div><div class="line">httpd -S</div><div class="line"></div><div class="line">shell 脚本中的 空变量。可能是你的程序报错，所以写判断的时候需要考虑变量为空的情况。</div><div class="line">如果出现这样的情况，报的错误可能是这个。</div><div class="line">&quot;[: =: unary operator expected&quot;</div><div class="line"></div><div class="line">a=$(($i + 1))</div><div class="line"></div><div class="line">同时满足2各条件</div><div class="line"></div><div class="line">if test &quot;$dev&quot; = &quot;0&quot; -a &quot;$devok&quot; = &quot;0&quot; ; then</div><div class="line">	echo &quot;your comment&quot;</div><div class="line">	echo &quot;your comment&quot;</div><div class="line">exit 1</div><div class="line">fi</div></pre></td></tr></table></figure>
+<p>shell中函数的返回值貌似可以用 $? 变量拿到。<br>但是 return 是不支持返回非数字类型的。这是不是一个新的约束条件。<br>对于数值运算，可以实用 expr 这个工具，其实这是另一个简单的工具，可以用 man 手册来查看帮助文档。<br>shell 中有几个比较特殊的变量。<br>$0 表示当前脚本的名字<br>$1 $2 … $i  第 i 个参数<br>$# 参数的个数。<br>$?</p>
+<p>如何调试shell。<br>bash -x your.sh 就可以看你的shell的执行过程了。<br>或者在shell的开始部分增加一行，set -x。</p>
+<p><code>crontab l</code>列出当前的任务。分 时 日 月 星期  执行命令,* 表示任意的变量;<br>在linux 下，你当前用户的crontab文件存放在 /var/spool/cron/ 目录下，这个文件以你的用户身份命名。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">00 23 * * * run-your script  每天23:00 执行你的脚本。其实我需要做的就是一行命令。</div><div class="line">10 1 * * 6,0 /usr/local/etc/rc.d/lighttpd restart  这个任务表示每周6和周日的1:10重启服务器。注意逗号，表示多个的意思。再看下面一个。</div><div class="line">* */1 * * * /usr/local/etc/rc.d/lighttpd restart  注意这个符号/ 表示每个一个小时重启一下服务器。</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;awk&quot;&gt;&lt;a href=&quot;#awk&quot; class=&quot;headerlink&quot; title=&quot;awk&quot;&gt;&lt;/a&gt;awk&lt;/h4&gt;&lt;p&gt;the follow command can be used to restart php-fpm in server.&lt;br&gt;ps
+    
+    </summary>
+    
+    
+      <category term="shell" scheme="https://blog.nofile.cc/tags/shell/"/>
+    
+      <category term="awk" scheme="https://blog.nofile.cc/tags/awk/"/>
+    
+      <category term="sed" scheme="https://blog.nofile.cc/tags/sed/"/>
+    
+      <category term="grep" scheme="https://blog.nofile.cc/tags/grep/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>sphinx学习笔记</title>
+    <link href="https://blog.nofile.cc/posts/2016/09/09/note-sphinx.html"/>
+    <id>https://blog.nofile.cc/posts/2016/09/09/note-sphinx.html</id>
+    <published>2016-09-09T06:42:00.000Z</published>
+    <updated>2017-05-08T15:37:53.822Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="sphinx实践"><a href="#sphinx实践" class="headerlink" title="sphinx实践"></a>sphinx实践</h4><p>用shpinx实现一个搜索相关的小项目<br>需要安装sphinx，然后和mysql配合使用。</p>
+<h4 id="sphinx安装配置"><a href="#sphinx安装配置" class="headerlink" title="sphinx安装配置"></a>sphinx安装配置</h4><p>编译安装sphinx。</p>
+<h4 id="中文分词"><a href="#中文分词" class="headerlink" title="中文分词"></a>中文分词</h4><p>需要下载一个中文字典，应该有好多现成的。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;sphinx实践&quot;&gt;&lt;a href=&quot;#sphinx实践&quot; class=&quot;headerlink&quot; title=&quot;sphinx实践&quot;&gt;&lt;/a&gt;sphinx实践&lt;/h4&gt;&lt;p&gt;用shpinx实现一个搜索相关的小项目&lt;br&gt;需要安装sphinx，然后和mysql配合使用
+    
+    </summary>
+    
+    
+      <category term="sphinx" scheme="https://blog.nofile.cc/tags/sphinx/"/>
+    
+      <category term="搜索" scheme="https://blog.nofile.cc/tags/%E6%90%9C%E7%B4%A2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mac常用软件</title>
+    <link href="https://blog.nofile.cc/posts/2016/09/09/note-software.html"/>
+    <id>https://blog.nofile.cc/posts/2016/09/09/note-software.html</id>
+    <published>2016-09-09T06:42:00.000Z</published>
+    <updated>2017-05-08T15:38:09.151Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="charles-APP代理软件"><a href="#charles-APP代理软件" class="headerlink" title="charles APP代理软件"></a>charles APP代理软件</h4><p>charles 破解。我的link。 <a href="http://pan.baidu.com/s/1i4UUbOh" target="_blank" rel="external">http://pan.baidu.com/s/1i4UUbOh</a></p>
+<h4 id="Dash"><a href="#Dash" class="headerlink" title="Dash"></a>Dash</h4><p>非常便捷的API手册，方便查询。</p>
+<h4 id="PhpStorm"><a href="#PhpStorm" class="headerlink" title="PhpStorm"></a>PhpStorm</h4><p>PHP 开发的好帮手，可以帮你避免一些低级错误。</p>
+<h4 id="WebStorm"><a href="#WebStorm" class="headerlink" title="WebStorm"></a>WebStorm</h4><p>和Phpstorm是同一个公司开发的，使用上和PhpStorm 差不多,用于偏前端的开发<br>工作场景。</p>
+<h4 id="ipython"><a href="#ipython" class="headerlink" title="ipython"></a>ipython</h4><p>Python 命令行工具，和Python不同的是，这个可以进行命令提示，方便初学者。</p>
+<h4 id="Postman"><a href="#Postman" class="headerlink" title="Postman"></a>Postman</h4><p>管理接口，方便重用，经常和一堆接口打交道的话，这个会很方便。</p>
+<pre><code>以上貌似除了postman，其他的都是付费的。不过买起来确实很贵，但破解都
+相对容易，需要的话，请自行百度，都很简单。
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;charles-APP代理软件&quot;&gt;&lt;a href=&quot;#charles-APP代理软件&quot; class=&quot;headerlink&quot; title=&quot;charles APP代理软件&quot;&gt;&lt;/a&gt;charles APP代理软件&lt;/h4&gt;&lt;p&gt;charles 破解。我的link。
+    
+    </summary>
+    
+    
+      <category term="开发工具" scheme="https://blog.nofile.cc/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="工程效率" scheme="https://blog.nofile.cc/tags/%E5%B7%A5%E7%A8%8B%E6%95%88%E7%8E%87/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Ubuntu学习笔记</title>
     <link href="https://blog.nofile.cc/posts/2016/09/09/note-ubuntu.html"/>
     <id>https://blog.nofile.cc/posts/2016/09/09/note-ubuntu.html</id>
@@ -775,115 +934,6 @@ In this case, no transaction is done, i.e. max profit = 0.
   </entry>
   
   <entry>
-    <title>sphinx学习笔记</title>
-    <link href="https://blog.nofile.cc/posts/2016/09/09/note-sphinx.html"/>
-    <id>https://blog.nofile.cc/posts/2016/09/09/note-sphinx.html</id>
-    <published>2016-09-09T06:42:00.000Z</published>
-    <updated>2017-05-08T15:37:53.822Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="sphinx实践"><a href="#sphinx实践" class="headerlink" title="sphinx实践"></a>sphinx实践</h4><p>用shpinx实现一个搜索相关的小项目<br>需要安装sphinx，然后和mysql配合使用。</p>
-<h4 id="sphinx安装配置"><a href="#sphinx安装配置" class="headerlink" title="sphinx安装配置"></a>sphinx安装配置</h4><p>编译安装sphinx。</p>
-<h4 id="中文分词"><a href="#中文分词" class="headerlink" title="中文分词"></a>中文分词</h4><p>需要下载一个中文字典，应该有好多现成的。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h4 id=&quot;sphinx实践&quot;&gt;&lt;a href=&quot;#sphinx实践&quot; class=&quot;headerlink&quot; title=&quot;sphinx实践&quot;&gt;&lt;/a&gt;sphinx实践&lt;/h4&gt;&lt;p&gt;用shpinx实现一个搜索相关的小项目&lt;br&gt;需要安装sphinx，然后和mysql配合使用
-    
-    </summary>
-    
-    
-      <category term="sphinx" scheme="https://blog.nofile.cc/tags/sphinx/"/>
-    
-      <category term="搜索" scheme="https://blog.nofile.cc/tags/%E6%90%9C%E7%B4%A2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>shell 学习笔记</title>
-    <link href="https://blog.nofile.cc/posts/2016/09/09/note-shell.html"/>
-    <id>https://blog.nofile.cc/posts/2016/09/09/note-shell.html</id>
-    <published>2016-09-09T06:42:00.000Z</published>
-    <updated>2017-05-08T15:38:25.828Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h4><p>the follow command can be used to restart php-fpm in server.<br>ps aux | grep ‘php-fpm’ | awk ‘{print $1}’ | xargs kill -USR2<br>-F option 是用来改变默认的分隔符的。<br>awk -F ‘:’ ‘{print $3}’<br>awk 的 BEGIN 和 END 语句的功能。<br>BEGIN 是最开始的部分执行的，然后AWK开始读取文件内容，进行处理。<br>END 是最后面结束执行的.<br><code>$NR</code> 是拿到最后一列。</p>
-<h4 id="sed笔记"><a href="#sed笔记" class="headerlink" title="sed笔记"></a>sed笔记</h4><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sed &apos;s/xx/ds/&apos; note</div><div class="line"></div><div class="line">[ ! -x result ] &amp;&amp; mkdir result</div><div class="line">for i in `ls *.grb`</div><div class="line">do</div><div class="line">    out=`echo $i | sed &apos;s/GLDAS_NOAH10_M.A//&apos; | sed &apos;s/\..*[[:graph:]]//&apos;`</div><div class="line">    wgrib $i &gt; result/$out&quot;.out&quot;</div><div class="line">done</div><div class="line"></div><div class="line">sed -i &quot;This command to use replace the input file&quot;</div><div class="line">just a simple example.</div><div class="line">sed -i &apos;s/--/-/&apos;</div></pre></td></tr></table></figure>
-<p><strong>mac 下sed -i 的问题</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sed -i &apos;s/a/b&apos;       #linux style</div><div class="line">sed -i &apos;&apos; &apos;s/a/b/&apos;   #mac style , mac 上的sed要求给一个备份文件的文件名，会在替换前做一个备份，</div><div class="line">#不需要的话给个空参数，就不会备份。  前面的那个空格不能少</div></pre></td></tr></table></figure>
-<p>d 表示是删除的意思。用新文件覆盖旧文件。<br>sed ‘/vim/d’ ~/.bashrc &gt; ~/.bashrc</p>
-<h4 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h4><p>grep -E   支持扩展的正则<br>grep -o   只输出指定内容, only-match 的含义<br>grep -F   相当于 fgrep<br>grep -v   不匹配指定正则的指令<br>grep 输出匹配内容的上下两行内容,输出上下文,记得这个参数.<br>grep -C 2 ‘linux’<br>grep -i 进行大小写无关的搜索<br>grep -P perl分格的正则</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">grep -i -Po &quot;HREF=\&quot;.*?\&quot;&quot; bookmarks_4_27_15.html</div></pre></td></tr></table></figure>
-<h4 id="find使用的例子"><a href="#find使用的例子" class="headerlink" title="find使用的例子"></a>find使用的例子</h4><p>下面这个script结合了find 的regex参数的用法。find regex 和 那么的区别还是挺大的。regex搜索的输出是全名的，name知识一个短的名字。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line"># 要搜索的路径。</div><div class="line">path=&quot;$HOME&quot;</div><div class="line"></div><div class="line">for i in `find $path -regex &quot;.*/[0-9]\&#123;6\&#125;/*&quot; -type d 2&gt;/dev/null`</div><div class="line">do </div><div class="line">    echo $i</div><div class="line">    for j in `ls $i`</div><div class="line">    do</div><div class="line">        echo $j</div><div class="line">        m=`echo &quot;$j&quot; | cut -d. -f2`</div><div class="line">        if [ $m != &apos;log&apos; ]</div><div class="line">        then</div><div class="line">            echo &quot;mv for $j&quot;</div><div class="line">            mv $i&quot;/&quot;$j $i&quot;/&quot;$j&quot;.log&quot;</div><div class="line">        fi</div><div class="line">    done</div><div class="line">done</div></pre></td></tr></table></figure>
-<h4 id="shell重定向"><a href="#shell重定向" class="headerlink" title="shell重定向"></a>shell重定向</h4><p>来自这个链接 <a href="http://www.cnblogs.com/yangyongzhi/p/3364939.html" target="_blank" rel="external">http://www.cnblogs.com/yangyongzhi/p/3364939.html</a></p>
-<p>./Test.py 1&gt;normal 2&gt;error 3&gt;&amp;2 2&gt;&amp;1 1&gt;&amp;3<br>./Test.py 3&gt;&amp;2 2&gt;&amp;1 1&gt;&amp;3 1&gt;normal 2&gt;error  </p>
-<p>可以通过这两个命令看出差别,其实就是从右向左执行的.</p>
-<p>具体的执行过程是这样的,一个完整的shell指令的执行是从右往左的.<br>先执行 1&gt;&amp;3 , 然后执行 2&gt;&amp;1 , 3&gt;&amp;2</p>
-<p>nohup的使用<br>在mac中，在tmux中使用nohup会有问题，会抛出下面这样的错误。所以只能在开一个终端执行。<br>nohup: can’t detach from console: Undefined error: 0<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">nohup redis-server &amp; &gt;/dev/null</div></pre></td></tr></table></figure></p>
-<h4 id="git-笔记"><a href="#git-笔记" class="headerlink" title="git 笔记"></a>git 笔记</h4><p>一个项目可以添加多个源,origin是默认的一个源.并且也可以跨源合并.这是比较高级的用法.<br>如果要跨项目合并. git 跨项目合并.</p>
-<p>git remote add code “url”<br>git push code master</p>
-<p>git remote add.</p>
-<p>将一个远端的项目添加到新的分支上,然后可以合并。<br>git remote add name git@gitlabserver.meiliworks.com:higo/api.git<br>删除这个分支。<br>git remote rm old_pandora<br>git 将某个分支强制覆盖。比如我想用newpush  的代码完全覆盖 master 的代码。<br>可以这样做。<br>git push origin newpush:master -f</p>
-<p>git remote add origin url  #这样可以讲自己的git目录添加到远端仓库.很方便.<br>同一个项目可以添加多个远端仓库,可以一起使用.</p>
-<p>git config –global core.editor “vim”<br>git config core.fileMode false<br>这样你的git就不会官 fileMode 的变化了，默认的模式是 true 的。</p>
-<h4 id="shell-get-your-ip"><a href="#shell-get-your-ip" class="headerlink" title="shell get your ip"></a>shell get your ip</h4><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">ifconfig | grep -E -o &quot;inet ([0-9]&#123;1,3&#125;.)&#123;3&#125;([0-9]&#123;1,3&#125;)&quot; |  grep -E  -o &quot;([0-9]&#123;1,3&#125;.)&#123;3&#125;([0-9]&#123;1,3&#125;)&quot; | tail -n 1</div><div class="line">ip a| grep -E -o &quot;inet addr:([0-9]&#123;1,3&#125;.)&#123;3&#125;([0-9]&#123;1,3&#125;)&quot; |  grep -E  -o &quot;([0-9]&#123;1,3&#125;.)&#123;3&#125;([0-9]&#123;1,3&#125;)&quot; | tail -n 1</div></pre></td></tr></table></figure>
-<p>linux 下 ifconfig | grep ‘inet ‘ | awk ‘{split($2, ip_cntr, “:”); print ip_cntr[2];}’<br>netstat –tunlp |grep 90</p>
-<h4 id="shell-functions"><a href="#shell-functions" class="headerlink" title="shell functions"></a>shell functions</h4><p>函数的返回值,函数的参数.<br><a href="http://www.jb51.net/article/33895.htm" target="_blank" rel="external">http://www.jb51.net/article/33895.htm</a><br>这里看到了一些参考,主要是这两个参数, $@ 和 $* 是一样的,可以将函数的参数当做一个字符串.<br>如果你仍然利用$1,$#,$0这些而参数,那么你可能得不到你想要的结果.</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">shell 执行字符串命令。可以这样。</div><div class="line">eval $cmd</div><div class="line"></div><div class="line">date &apos;+%Y-%m-%d&apos;</div><div class="line">httpd -S</div><div class="line"></div><div class="line">shell 脚本中的 空变量。可能是你的程序报错，所以写判断的时候需要考虑变量为空的情况。</div><div class="line">如果出现这样的情况，报的错误可能是这个。</div><div class="line">&quot;[: =: unary operator expected&quot;</div><div class="line"></div><div class="line">a=$(($i + 1))</div><div class="line"></div><div class="line">同时满足2各条件</div><div class="line"></div><div class="line">if test &quot;$dev&quot; = &quot;0&quot; -a &quot;$devok&quot; = &quot;0&quot; ; then</div><div class="line">	echo &quot;your comment&quot;</div><div class="line">	echo &quot;your comment&quot;</div><div class="line">exit 1</div><div class="line">fi</div></pre></td></tr></table></figure>
-<p>shell中函数的返回值貌似可以用 $? 变量拿到。<br>但是 return 是不支持返回非数字类型的。这是不是一个新的约束条件。<br>对于数值运算，可以实用 expr 这个工具，其实这是另一个简单的工具，可以用 man 手册来查看帮助文档。<br>shell 中有几个比较特殊的变量。<br>$0 表示当前脚本的名字<br>$1 $2 … $i  第 i 个参数<br>$# 参数的个数。<br>$?</p>
-<p>如何调试shell。<br>bash -x your.sh 就可以看你的shell的执行过程了。<br>或者在shell的开始部分增加一行，set -x。</p>
-<p><code>crontab l</code>列出当前的任务。分 时 日 月 星期  执行命令,* 表示任意的变量;<br>在linux 下，你当前用户的crontab文件存放在 /var/spool/cron/ 目录下，这个文件以你的用户身份命名。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">00 23 * * * run-your script  每天23:00 执行你的脚本。其实我需要做的就是一行命令。</div><div class="line">10 1 * * 6,0 /usr/local/etc/rc.d/lighttpd restart  这个任务表示每周6和周日的1:10重启服务器。注意逗号，表示多个的意思。再看下面一个。</div><div class="line">* */1 * * * /usr/local/etc/rc.d/lighttpd restart  注意这个符号/ 表示每个一个小时重启一下服务器。</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h4 id=&quot;awk&quot;&gt;&lt;a href=&quot;#awk&quot; class=&quot;headerlink&quot; title=&quot;awk&quot;&gt;&lt;/a&gt;awk&lt;/h4&gt;&lt;p&gt;the follow command can be used to restart php-fpm in server.&lt;br&gt;ps
-    
-    </summary>
-    
-    
-      <category term="shell" scheme="https://blog.nofile.cc/tags/shell/"/>
-    
-      <category term="awk" scheme="https://blog.nofile.cc/tags/awk/"/>
-    
-      <category term="sed" scheme="https://blog.nofile.cc/tags/sed/"/>
-    
-      <category term="grep" scheme="https://blog.nofile.cc/tags/grep/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>mac常用软件</title>
-    <link href="https://blog.nofile.cc/posts/2016/09/09/note-software.html"/>
-    <id>https://blog.nofile.cc/posts/2016/09/09/note-software.html</id>
-    <published>2016-09-09T06:42:00.000Z</published>
-    <updated>2017-05-08T15:38:09.151Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="charles-APP代理软件"><a href="#charles-APP代理软件" class="headerlink" title="charles APP代理软件"></a>charles APP代理软件</h4><p>charles 破解。我的link。 <a href="http://pan.baidu.com/s/1i4UUbOh" target="_blank" rel="external">http://pan.baidu.com/s/1i4UUbOh</a></p>
-<h4 id="Dash"><a href="#Dash" class="headerlink" title="Dash"></a>Dash</h4><p>非常便捷的API手册，方便查询。</p>
-<h4 id="PhpStorm"><a href="#PhpStorm" class="headerlink" title="PhpStorm"></a>PhpStorm</h4><p>PHP 开发的好帮手，可以帮你避免一些低级错误。</p>
-<h4 id="WebStorm"><a href="#WebStorm" class="headerlink" title="WebStorm"></a>WebStorm</h4><p>和Phpstorm是同一个公司开发的，使用上和PhpStorm 差不多,用于偏前端的开发<br>工作场景。</p>
-<h4 id="ipython"><a href="#ipython" class="headerlink" title="ipython"></a>ipython</h4><p>Python 命令行工具，和Python不同的是，这个可以进行命令提示，方便初学者。</p>
-<h4 id="Postman"><a href="#Postman" class="headerlink" title="Postman"></a>Postman</h4><p>管理接口，方便重用，经常和一堆接口打交道的话，这个会很方便。</p>
-<pre><code>以上貌似除了postman，其他的都是付费的。不过买起来确实很贵，但破解都
-相对容易，需要的话，请自行百度，都很简单。
-</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h4 id=&quot;charles-APP代理软件&quot;&gt;&lt;a href=&quot;#charles-APP代理软件&quot; class=&quot;headerlink&quot; title=&quot;charles APP代理软件&quot;&gt;&lt;/a&gt;charles APP代理软件&lt;/h4&gt;&lt;p&gt;charles 破解。我的link。
-    
-    </summary>
-    
-    
-      <category term="开发工具" scheme="https://blog.nofile.cc/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
-    
-      <category term="工程效率" scheme="https://blog.nofile.cc/tags/%E5%B7%A5%E7%A8%8B%E6%95%88%E7%8E%87/"/>
-    
-  </entry>
-  
-  <entry>
     <title>javascript 学习笔记</title>
     <link href="https://blog.nofile.cc/posts/2016/09/09/note-js.html"/>
     <id>https://blog.nofile.cc/posts/2016/09/09/note-js.html</id>
@@ -937,92 +987,6 @@ In this case, no transaction is done, i.e. max profit = 0.
     
     
       <category term="vpn msjnc" scheme="https://blog.nofile.cc/tags/vpn-msjnc/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>C学习笔记</title>
-    <link href="https://blog.nofile.cc/posts/2016/08/28/note-c.html"/>
-    <id>https://blog.nofile.cc/posts/2016/08/28/note-c.html</id>
-    <published>2016-08-28T09:39:00.000Z</published>
-    <updated>2017-05-08T15:38:16.281Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="C文件的编译过程"><a href="#C文件的编译过程" class="headerlink" title="C文件的编译过程"></a>C文件的编译过程</h4><p>编译一个c文件，产生一个可执行文件，这个过程分为四个步骤</p>
-<ol>
-<li>.c 文件到 .i 文件， <code>--&gt;</code> .s 文件 <code>--&gt;</code> .o 文件 <code>--&gt;</code> 可执行文件<br>分别是预处理， 编译， 汇编， 链接</li>
-</ol>
-<p>预处理所做的事情。</p>
-<p>gcc -o helloworld.i helloworld.c -E</p>
-<ol>
-<li>将 include 变成真实的东西</li>
-<li>宏替换。 </li>
-<li>宏函数的优点。比一些函数要方便，</li>
-<li>条件编译，对于程序的移植和调试，非常有用。</li>
-</ol>
-<h4 id="C语言中的宏"><a href="#C语言中的宏" class="headerlink" title="C语言中的宏"></a>C语言中的宏</h4><ol>
-<li><p>条件宏</p>
-<pre><code>#include &lt;iostream&gt;
-#include &quot;head.h&quot;
-#include &quot;head.h&quot;
-if you include &quot;head.h&quot; twice, you find you can compile your file
- as well.but if your head.h is writte without #ifndef, #define #endif, then you must will get an error to stop your working.also, here the use of,
-
-#ifdef
-#else
-#endif
-this condition definition can save your release code size :).what is different between static type and dynamic type.static type: know when program is in compile process.dynamic type: know only in the run process.  For pointer type.
-</code></pre></li>
-<li><p>宏函数,宏可以实现一个函数的功能，这样可以减少函数调用的消耗。函数中可以有参数，宏的功能也比较强大，远远不止是定义一个常亮那么简单,线面是一个简单的例子。并且宏中也可以调用另一个宏，就像函数调用那样,但是必须保证顺序。</p>
-<pre><code>注意使用do-while的格式。这样会比较安全（可以避免在宏后面增加一个；而带来的语法问题）。    
-例如下面的代码
-#define swap(a , b)                 \
-    *(a) = (*(a)) ^ (*(b));         \
-    *(b) = (*(a)) ^ (*(b));         \
-    *(a) = (*(a)) ^ (*(b));   
-
-#define msort(a , n )               \
-do{                                 \
-    for(int i = 0; i &lt; n; i++){     \
-        for(int j =0 ; j &lt; i ;j++){ \
-            if(a[i] &lt; a[j]) {       \
-                   swap(a+i , a+j);    \
-            }                       \
-        }                           \
-    }                               \
-}while(0)                           
-</code></pre></li>
-</ol>
-<h4 id="C-指针-函数指针"><a href="#C-指针-函数指针" class="headerlink" title="C 指针(函数指针)"></a>C 指针(函数指针)</h4><ol>
-<li><code>int (*) p[10]</code> 本质上是一个指针，指向一个有10个元素的数组。指针数组。</li>
-<li><code>int * p[10]</code> 本质上是一个数组，数组里面的每一个元素都是一个<code>int*</code>类型的指针。数组指针。</li>
-<li>函数指针，函数指针可以作为一个普通的指针，既然它是一个指针，就可以通过参数来传递。下面是作为参数。可以参考下面的例子。</li>
-</ol>
-<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">int</span> <span class="params">(* funcType)</span> <span class="params">(<span class="keyword">int</span>)</span></span>; <span class="comment">/*定义一个函数指针的类型*/</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">func</span> <span class="params">(<span class="keyword">int</span>)</span></span>;  <span class="comment">/*函数指针*/</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">func_test</span><span class="params">(funcType fp , <span class="keyword">int</span>)</span></span>; <span class="comment">/*用函数指针作为参数*/</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span> a)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> a+<span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">func_test</span><span class="params">(funcType fp , <span class="keyword">int</span> a)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> fp(a);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> abc = <span class="number">100</span>;</div><div class="line">    <span class="comment">/*定义一个函数指针，指向一个函数。函数名本质上是一个指针常量*/</span></div><div class="line">    funcType hello = func;</div><div class="line">    <span class="keyword">int</span> dd = (*hello)(abc);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"value of variable dd  is %d\n"</span>,dd);</div><div class="line">    abc = func_test(func , abc);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,abc);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="C-中的extern关键字"><a href="#C-中的extern关键字" class="headerlink" title="C 中的extern关键字"></a>C 中的extern关键字</h4><ol>
-<li>让变量可以在其他文件中也可以使用。只能对全局变量起作用，不在全局作用域会导致编译报错。本质上是为了多个文件中共享变量，在工程中，可以让工程更好维护。</li>
-<li>需要注意的是，c语言中的函数原型本身具有外部链接属性，所以对与函数而言，用不用extern都是一样的。所以呢，对于extern来说，用在变量上可能作用更大一些。在C语言中，extern变量的存在改变了变量的链接属性，用extern关键字修饰的变量其定义将在别处，编译器的变量解析将推迟到链接上。</li>
-<li>一般来说，C工程的管理方式是将所有的外部函数定义在一个.h文件中。在需要用到这些函数的C文件中，包含这个.h文件就可以了。但是如果没有用.h 文件的话，这个时候就必须在主文件中用extern申明一下用到的函数了，但是这并不是必须的，没有这个extern也是可以的，所以extern对于函数来说，不是必须的，完全可以忽略，对于函数，作用不大。</li>
-<li>函数可以申明多次，编译并不会报错，但是只能定义一次。</li>
-</ol>
-<p>下面是一个具体的例子:里面函数申明前面的extern关键字都可以没有，函数默认有了这个属性。</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="comment">/*** main.c ***/</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"b.h"</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">void</span> <span class="title">print_hello</span><span class="params">(<span class="keyword">char</span> *)</span></span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> TSM = <span class="number">10000</span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    print_hello(<span class="string">"hello world"</span>);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/*** b.h ***/</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> B_H</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> B_H</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">print_hello</span><span class="params">(<span class="keyword">char</span> *)</span></span>;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="comment">/*** b.c ***/</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">extern</span> <span class="keyword">int</span> TSM;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_hello</span><span class="params">(<span class="keyword">char</span> *s)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"\t\t%s\n"</span>,s);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,TSM);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="一些语言细节"><a href="#一些语言细节" class="headerlink" title="一些语言细节"></a>一些语言细节</h4><ol>
-<li>malloc 和 calloc的区别。  malloc 可以分配内存，但是不做初始化。calloc也是分配内存，但是给你做初始化，新能比malloc差一点。但是在需要初始化的时候，用calloc可以省去memset的函数调用时间，看需求来定。注意malloc和calloc的参数的不同,malloc 只需要一个参数。<code>realloc</code>的使用,比如你给int *a分配了10个空间，现在发现10个不够了，那么你需要realloc以下。realloc的指针必须是没有free的。</li>
-<li>使用math.h的时候，在编译的时候需要加上<code>-lm</code> 参数。</li>
-<li>c语言的struct关键字，在定义节点的时候都需要带上，这一点和c++不同，需要注意。可以用typedef来简化这一点。typedef可以出现在结构体定义之前。</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h4 id=&quot;C文件的编译过程&quot;&gt;&lt;a href=&quot;#C文件的编译过程&quot; class=&quot;headerlink&quot; title=&quot;C文件的编译过程&quot;&gt;&lt;/a&gt;C文件的编译过程&lt;/h4&gt;&lt;p&gt;编译一个c文件，产生一个可执行文件，这个过程分为四个步骤&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;.c 文
-    
-    </summary>
-    
-    
-      <category term="c" scheme="https://blog.nofile.cc/tags/c/"/>
     
   </entry>
   
