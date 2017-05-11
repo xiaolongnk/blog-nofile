@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>faith技术博客</title>
-  <subtitle>我们一起快乐吧...</subtitle>
+  <title>xiaolong的博客</title>
+  <subtitle>梦想是个好东西</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.nofile.cc/"/>
-  <updated>2017-05-11T01:06:08.480Z</updated>
+  <updated>2017-05-11T01:12:53.368Z</updated>
   <id>https://blog.nofile.cc/</id>
   
   <author>
-    <name>faith</name>
+    <name>xiaolongnk</name>
     
   </author>
   
@@ -20,7 +20,7 @@
     <link href="https://blog.nofile.cc/posts/2017/05/11/note-https.html"/>
     <id>https://blog.nofile.cc/posts/2017/05/11/note-https.html</id>
     <published>2017-05-11T01:02:00.000Z</published>
-    <updated>2017-05-11T01:06:08.480Z</updated>
+    <updated>2017-05-11T01:12:53.368Z</updated>
     
     <content type="html"><![CDATA[<h4 id="让NGINX支持SSL"><a href="#让NGINX支持SSL" class="headerlink" title="让NGINX支持SSL"></a>让NGINX支持SSL</h4><p>需要编译时支持ssl，可以sbin/nginx -V 来查看confiture参数，如果当时没有支持，那么需要重新编译安装。 编译参数前面已经有一篇文章了。<a href="https://blog.nofile.cc/posts/nginx/2016/08/17/note-ng.html">nginx编译参数</a>,也不用全加，用<code>--with-http_ssl_module</code> 就可以了。</p>
 <h4 id="生成证书"><a href="#生成证书" class="headerlink" title="生成证书"></a>生成证书</h4><p>主要参考这个<a href="https://letsencrypt.org/getting-started/" target="_blank" rel="external">letsencrypty</a>，可以生成免费证书。 生成方式也很简单，读上面的文章基本就能明白。<a href="https://certbot.eff.org/#ubuntutrusty-nginx" target="_blank" rel="external">ubuntu+nginx</a>.</p>
